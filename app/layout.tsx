@@ -8,6 +8,7 @@ import "../components/hero/hero.css";
 import "../components/sections/sections.css";
 import "../components/machines/machines.css";
 import "../components/night/night.css";
+import "../components/readability.css";
 
 // Fraunces (display) + Inter (body): the Anarix website design system
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-fraunces" });

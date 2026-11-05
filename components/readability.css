@@ -1,0 +1,110 @@
+/* ------------------------------------------------------------------
+   Readability pass — small labels move from tiny monospace to Inter at
+   readable sizes and contrast (Anarix website body font). Code, ASINs and
+   numbers keep monospace.
+------------------------------------------------------------------- */
+
+/* machine scene labels */
+.mx-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  fill: hsl(var(--h-foreground) / 0.8);
+}
+
+.mx-label--sm {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  fill: hsl(var(--h-muted-fg));
+}
+
+.mx-label--accent {
+  fill: hsl(var(--h-foreground));
+}
+
+/* MCP diagram */
+.mcp-small,
+.mcp-hub-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  fill: hsl(var(--h-muted-fg));
+}
+
+.mcp-small {
+  font-size: 12px;
+}
+
+.mcp-hub-label {
+  font-size: 14px;
+  fill: hsl(var(--h-foreground) / 0.8);
+}
+
+/* card micro-labels */
+.signal__why dt,
+.profit__grid dt,
+.tile > span,
+.chat__k,
+.rules__row--head,
+.kpi__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: hsl(var(--h-muted-fg));
+}
+
+.signal__time,
+.media__meta,
+.stage__foot,
+.chat__thinking {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  letter-spacing: 0;
+  color: hsl(var(--h-muted-fg));
+}
+
+/* Aan's speech bubble */
+.aan-bubble {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Night Watch */
+.nw-tag {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.nw-card__t,
+.night__t,
+.brief__k {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.night__ampm {
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+/* footer + misc */
+.footer__h,
+.footer__aan,
+.term__note {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.hero__trust {
+  color: hsl(var(--h-muted-fg));
+}

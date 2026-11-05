@@ -5,10 +5,11 @@ import { FIGURES } from "./SectorFigures";
 
 /**
  * The hero lazy Susan, built after hairline's Turntable figure: an isometric
- * plate you flick to spin. It coasts, then settles on the nearest quarter turn.
+ * plate you flick to spin. It coasts, then settles on the nearest sector.
  * The sector facing you is active; clicking it (or its tab) jumps to that
  * section, so the turntable doubles as the homepage jump bar. Aan stands on the
- * hub (the hub is Aan's first dock). The plate spins on an MCP spindle.
+ * hub (the hub is Aan's first dock). Each sector carries a solid miniature of
+ * the machine its section uses further down the page.
  */
 
 export const SECTORS = [
@@ -16,16 +17,20 @@ export const SECTORS = [
   { id: "signals", label: "Signals", line: "Know first." },
   { id: "profitability", label: "Profitability", line: "Real profit. Daily." },
   { id: "rules", label: "Rules", line: "Set once. Runs forever." },
+  { id: "mcp", label: "MCP", line: "Your data. Any AI." },
 ] as const;
+
+const N = SECTORS.length;
+const STEP = 360 / N;
 
 const TILT = 62;
 const norm = (a: number) => ((a % 360) + 360) % 360;
 // point on the plate (1000×1000 svg), rounded so server and client markup match exactly
 const pc = (rad: number, ang: number) =>
   [Math.round((500 + rad * Math.cos(ang)) * 100) / 100, Math.round((500 + rad * Math.sin(ang)) * 100) / 100] as const;
-// sector i sits at plate angle 90*i; it faces the viewer when theta + 90i = 90
-const thetaFor = (i: number) => 90 - 90 * i;
-const activeFrom = (theta: number) => ((Math.round((90 - theta) / 90) % 4) + 4) % 4;
+// sector i sits at plate angle STEP*i; it faces the viewer when theta + STEP*i = 90
+const thetaFor = (i: number) => 90 - STEP * i;
+const activeFrom = (theta: number) => ((Math.round((90 - theta) / STEP) % N) + N) % N;
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -56,11 +61,11 @@ export function LazySusan() {
         theta.current += vel.current;
         vel.current *= 0.94;
         if (Math.abs(vel.current) < 0.35) {
-          const snapped = Math.round((theta.current - 90) / 90) * 90 + 90;
+          const snapped = Math.round((theta.current - 90) / STEP) * STEP + 90;
           target.current = snapped;
         }
       } else {
-        // settle on the quarter turn (critically damped-ish)
+        // settle on the nearest sector (critically damped-ish)
         const d = target.current - theta.current;
         vel.current = vel.current * 0.72 + d * 0.11;
         theta.current += vel.current;
@@ -102,7 +107,7 @@ export function LazySusan() {
     if (reduce) return;
     const id = window.setInterval(() => {
       if (interacted.current || drag.current || window.scrollY > 200) return;
-      goTo((activeFrom(theta.current) + 1) % 4);
+      goTo((activeFrom(theta.current) + 1) % N);
     }, 3800);
     return () => window.clearInterval(id);
   }, [goTo, paint]);
@@ -155,10 +160,10 @@ export function LazySusan() {
     const a = activeFrom(theta.current);
     if (e.key === "ArrowRight") {
       e.preventDefault();
-      goTo((a + 1) % 4);
+      goTo((a + 1) % N);
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
-      goTo((a + 3) % 4);
+      goTo((a + N - 1) % N);
     } else if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       scrollToSection(SECTORS[a].id);
@@ -191,10 +196,6 @@ export function LazySusan() {
           <path d="M46,226 A74,20 0 0 0 194,226" className="spindle-line" />
           <path d="M120,196 V214" className="spindle-pulse" />
         </svg>
-        <div className="susan__mcp" aria-hidden="true">
-          <span className="susan__mcp-tag">MCP</span>
-          <span className="susan__mcp-note">everything spins on your data</span>
-        </div>
 
         <div className="susan__tilt" ref={tiltRef} style={{ "--tilt": `${TILT}deg` } as React.CSSProperties}>
           <div className="susan__plate">
@@ -213,9 +214,9 @@ export function LazySusan() {
               <circle cx="500" cy="500" r="496" className="plate-line" />
               <circle cx="500" cy="500" r="462" className="plate-line plate-line--soft" />
               {SECTORS.map((s, i) => {
-                const a = (i * 90 * Math.PI) / 180;
-                const a0 = a - Math.PI / 4;
-                const a1 = a + Math.PI / 4;
+                const a = (i * STEP * Math.PI) / 180;
+                const a0 = a - Math.PI / N;
+                const a1 = a + Math.PI / N;
                 const R = 462;
                 const r = 128;
                 const P = (rad: number, ang: number) => pc(rad, ang).join(",");
@@ -230,7 +231,7 @@ export function LazySusan() {
                 const [x2, y2] = pc(490, a);
                 return <line key={k} x1={x1} y1={y1} x2={x2} y2={y2} className="plate-tick" />;
               })}
-              {[45, 135, 225, 315].map((deg) => {
+              {SECTORS.map((_, i) => i * STEP + STEP / 2).map((deg) => {
                 const a = (deg * Math.PI) / 180;
                 const [x1, y1] = pc(128, a);
                 const [x2, y2] = pc(462, a);
@@ -238,24 +239,6 @@ export function LazySusan() {
               })}
               <circle cx="500" cy="500" r="128" className="plate-line" />
               <circle cx="500" cy="500" r="96" className="plate-line plate-line--soft" strokeDasharray="4 8" />
-              {SECTORS.map((s, i) => {
-                const deg = i * 90;
-                const a = (deg * Math.PI) / 180;
-                const [x, y] = pc(420, a);
-                return (
-                  <text
-                    key={s.id}
-                    x={x}
-                    y={y}
-                    transform={`rotate(${deg - 90} ${x} ${y})`}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className={`plate-label ${i === active ? "is-active" : ""}`}
-                  >
-                    {`0${i + 1} · ${s.label.toUpperCase()}`}
-                  </text>
-                );
-              })}
             </svg>
 
             {SECTORS.map((s, i) => {
@@ -264,15 +247,15 @@ export function LazySusan() {
                 <div
                   key={s.id}
                   className={`susan__board ${i === active ? "is-active" : ""}`}
-                  style={{ "--a": `${i * 90}deg` } as React.CSSProperties}
+                  style={{ "--a": `${i * STEP}deg` } as React.CSSProperties}
                   data-sector={i}
                 >
                   <Fig />
+                  <span className="susan__chip">{s.label}</span>
                 </div>
               );
             })}
 
-            {/* hub: Aan's first dock */}
             {/* raised hub Aan stands on */}
             {Array.from({ length: 12 }).map((_, k) => (
               <div key={`hub${k}`} className={`susan__hub ${k === 11 ? "susan__hub--top" : ""}`} style={{ transform: `translateZ(${(k + 1) * 2}px)` }} />

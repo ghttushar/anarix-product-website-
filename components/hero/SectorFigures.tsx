@@ -1,93 +1,116 @@
-// Hairline mini-figures that stand on the lazy Susan (hairline-library style:
-// thin isometric line drawings). Grey at rest; they light up and animate when
-// their sector faces the viewer (.is-active on the billboard).
+// Solid isometric miniatures that stand on the lazy Susan. Each one is a tiny
+// model of the machine its section runs further down the page, so the hero
+// previews the story: compute cube (Aan), chip (Signals), refinery
+// (Profitability), factory (Rules) and hub (MCP).
+import { isoBox, isoCylinder, makeIso, pts, type Pt } from "@/lib/iso";
 
-const S = { fill: "none", stroke: "currentColor", strokeWidth: 1.4, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-const panel = { fill: "var(--panel-solid)" };
+const iso = makeIso(60, 74, 0.62);
 
-function Ground() {
-  return <ellipse cx="60" cy="108" rx="42" ry="9" {...S} opacity="0.55" />;
+function Box({ x, y, w, d, h, z = 0, tone = "base" }: { x: number; y: number; w: number; d: number; h: number; z?: number; tone?: string }) {
+  const b = isoBox(iso, x, y, w, d, h, z);
+  return (
+    <g className={`sf sf--${tone}`}>
+      <polygon points={b.right} className="sf-r" />
+      <polygon points={b.left} className="sf-l" />
+      <polygon points={b.top} className="sf-t" />
+    </g>
+  );
 }
 
-function isoBox(x: number, base: number, w: number, h: number, d = 10) {
-  const k = d * 0.58;
-  return {
-    front: `M${x},${base - h} H${x + w} V${base} H${x} Z`,
-    top: `M${x},${base - h} L${x + d},${base - h - k} H${x + w + d} L${x + w},${base - h} Z`,
-    side: `M${x + w},${base - h} L${x + w + d},${base - h - k} V${base - k} L${x + w},${base} Z`,
-  };
+function Cyl({ x, y, r, h, z = 0, tone = "base" }: { x: number; y: number; r: number; h: number; z?: number; tone?: string }) {
+  const c = isoCylinder(iso, x, y, r, h, z, 24);
+  return (
+    <g className={`sf sf--${tone}`}>
+      <path d={c.side} className="sf-l" />
+      <path d={c.top} className="sf-t" />
+    </g>
+  );
 }
+
+function Slab() {
+  return <Box x={-40} y={-40} w={80} d={80} h={6} tone="slab" />;
+}
+
+const line = (a: Pt, b: Pt) => `M${a[0].toFixed(1)},${a[1].toFixed(1)} L${b[0].toFixed(1)},${b[1].toFixed(1)}`;
 
 export function FigAan() {
+  const [cx, cy] = iso(0, 0, 32);
   return (
-    <svg viewBox="0 0 120 120" className="fig fig--aan" aria-hidden="true">
-      <Ground />
-      <path d="M16,24 h60 a8,8 0 0 1 8,8 v22 a8,8 0 0 1 -8,8 h-40 l-10,9 v-9 h-10 a8,8 0 0 1 -8,-8 v-22 a8,8 0 0 1 8,-8z" {...S} {...panel} />
-      <path d="M26,36 h40 M26,46 h28" {...S} opacity="0.6" />
-      <path d="M44,62 h56 a8,8 0 0 1 8,8 v18 a8,8 0 0 1 -8,8 h-6 v9 l-10,-9 h-40 a8,8 0 0 1 -8,-8 v-18 a8,8 0 0 1 8,-8z" {...S} {...panel} className="fig-accent-stroke" />
-      <circle cx="62" cy="79" r="3" className="fig-dot fig-dot--1" />
-      <circle cx="74" cy="79" r="3" className="fig-dot fig-dot--2" />
-      <circle cx="86" cy="79" r="3" className="fig-dot fig-dot--3" />
+    <svg viewBox="0 0 120 110" className="fig" aria-hidden="true">
+      <Slab />
+      <Box x={-26} y={-26} w={52} d={52} h={52} z={6} tone="glass" />
+      <g transform={`translate(${cx.toFixed(1)} ${cy.toFixed(1)})`}>
+        <rect x="-8" y="-8" width="16" height="16" rx="3.5" transform="rotate(45)" className="sf-aan" />
+        <circle cx="-3" cy="1" r="1.6" className="sf-eye" />
+        <circle cx="3" cy="1" r="1.6" className="sf-eye" />
+      </g>
     </svg>
   );
 }
 
 export function FigSignals() {
   return (
-    <svg viewBox="0 0 120 120" className="fig fig--signals" aria-hidden="true">
-      <Ground />
-      <path d="M22,100 a38,38 0 0 1 76,0" {...S} opacity="0.5" />
-      <path d="M34,100 a26,26 0 0 1 52,0" {...S} opacity="0.7" />
-      <path d="M46,100 a14,14 0 0 1 28,0" {...S} />
-      <path d="M60,100 L88,72" {...S} className="fig-sweep" />
-      <path d="M14,46 l12,0 l6,-14 l8,26 l6,-12 l8,0" {...S} className="fig-accent-stroke" />
-      <circle cx="80" cy="70" r="4" className="fig-blip" />
-      <circle cx="80" cy="70" r="4" className="fig-blip-ring" {...S} />
+    <svg viewBox="0 0 120 110" className="fig" aria-hidden="true">
+      <Slab />
+      {[-28, 0, 28].map((y) => (
+        <path key={y} d={line(iso(-40, y, 6), iso(-20, y * 0.4, 6))} className="sf-trace" />
+      ))}
+      <path d={line(iso(20, 0, 6), iso(40, 0, 6))} className="sf-trace sf-trace--out" />
+      <Box x={-20} y={-20} w={40} d={40} h={8} z={6} tone="ink" />
+      <Box x={-10} y={-10} w={20} d={20} h={5} z={14} tone="coral" />
+      <Box x={22} y={-34} w={5} d={22} h={12} z={6} tone="base" />
+      <Box x={30} y={-34} w={5} d={22} h={12} z={6} tone="base" />
     </svg>
   );
 }
 
 export function FigProfit() {
-  const bars = [
-    { x: 18, h: 18 },
-    { x: 40, h: 30 },
-    { x: 62, h: 44 },
-    { x: 84, h: 62 },
-  ];
   return (
-    <svg viewBox="0 0 120 120" className="fig fig--profit" aria-hidden="true">
-      <Ground />
-      {bars.map((b, i) => {
-        const p = isoBox(b.x, 104, 14, b.h);
-        return (
-          <g key={i} className={`fig-bar fig-bar--${i}`}>
-            <path d={p.side} {...S} {...panel} />
-            <path d={p.top} {...S} {...panel} />
-            <path d={p.front} {...S} {...panel} className={i === 3 ? "fig-accent-fill" : ""} />
-          </g>
-        );
-      })}
-      <path d="M16,60 L40,52 L62,40 L94,20" {...S} className="fig-trend" />
-      <path d="M86,18 L95,19.5 L92,28" {...S} className="fig-trend" />
+    <svg viewBox="0 0 120 110" className="fig" aria-hidden="true">
+      <Slab />
+      <path d={line(iso(-18, -14, 20), iso(18, 16, 20))} className="sf-pipe" />
+      <Cyl x={-18} y={-14} r={13} h={36} z={6} tone="glass" />
+      <Cyl x={-18} y={-14} r={12} h={22} z={6} tone="blue" />
+      <Cyl x={18} y={16} r={13} h={48} z={6} tone="glass" />
+      <Cyl x={18} y={16} r={12} h={36} z={6} tone="green" />
     </svg>
   );
 }
 
 export function FigRules() {
   return (
-    <svg viewBox="0 0 120 120" className="fig fig--rules" aria-hidden="true">
-      <Ground />
-      <path d="M18,98 L60,76 L102,98 L60,120 Z" {...S} opacity="0" />
-      {[0, 1, 2].map((i) => {
-        const y = 30 + i * 24;
-        return (
-          <g key={i} className={`fig-toggle fig-toggle--${i}`}>
-            <rect x="20" y={y} width="44" height="16" rx="8" {...S} {...panel} className="fig-track" />
-            <circle cx="28" cy={y + 8} r="5.5" className="fig-knob" />
-            <path d={`M74,${y + 8} h28`} {...S} opacity="0.55" />
-          </g>
-        );
-      })}
+    <svg viewBox="0 0 120 110" className="fig" aria-hidden="true">
+      <Slab />
+      <Box x={-10} y={-36} w={22} d={22} h={42} z={6} tone="base" />
+      <polygon
+        points={pts(iso(-10, -14, 32), iso(12, -14, 32), iso(12, -14, 40), iso(-10, -14, 40))}
+        className="sf-window"
+      />
+      <Box x={-38} y={6} w={76} d={18} h={8} z={6} tone="ink" />
+      <Box x={-30} y={9} w={11} d={11} h={9} z={14} tone="crate" />
+      <Box x={-4} y={9} w={11} d={11} h={9} z={14} tone="crate" />
+      <Box x={22} y={9} w={11} d={11} h={9} z={14} tone="crate" />
+    </svg>
+  );
+}
+
+export function FigMcp() {
+  const nodes: [number, number][] = [
+    [26, -30],
+    [-30, 26],
+    [26, 26],
+  ];
+  return (
+    <svg viewBox="0 0 120 110" className="fig" aria-hidden="true">
+      <Slab />
+      {nodes.map(([x, y]) => (
+        <path key={`c${x}${y}`} d={line(iso(0, 0, 12), iso(x + 5, y + 5, 10))} className="sf-trace" />
+      ))}
+      {nodes.map(([x, y]) => (
+        <Box key={`n${x}${y}`} x={x} y={y} w={10} d={10} h={9} z={6} tone="base" />
+      ))}
+      <Box x={-16} y={-16} w={32} d={32} h={16} z={6} tone="blue-solid" />
+      <Cyl x={0} y={0} r={7} h={3} z={22} tone="coral" />
     </svg>
   );
 }
@@ -97,4 +120,5 @@ export const FIGURES = {
   signals: FigSignals,
   profitability: FigProfit,
   rules: FigRules,
+  mcp: FigMcp,
 } as const;

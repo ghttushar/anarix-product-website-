@@ -2,7 +2,6 @@ import { Nav } from "@/components/chrome/Nav";
 import { ActionIsland } from "@/components/chrome/ActionIsland";
 import { AanTraveler } from "@/components/aan/AanTraveler";
 import { LazySusan } from "@/components/hero/LazySusan";
-import { HeroDataViz } from "@/components/hero/HeroDataViz";
 import { HeroStats } from "@/components/hero/HeroStats";
 import { MediaSlot } from "@/components/sections/shared";
 import { AanSection, ProfitSection, RulesSection, SignalsSection } from "@/components/sections/Features";
@@ -17,7 +16,6 @@ export default function Home() {
       <main id="top">
         {/* 1. Hero: the lazy Susan (also the homepage jump bar) */}
         <section className="hero" data-stop="hero">
-          <HeroDataViz />
           <div className="container hero__grid">
             <div className="hero__copy">
               <p className="hero__pill">
