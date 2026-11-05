@@ -252,7 +252,7 @@ export function LazySusan() {
               <div key={`hub${k}`} className={`susan__hub ${k === 11 ? "susan__hub--top" : ""}`} style={{ transform: `translateZ(${(k + 1) * 2}px)` }} />
             ))}
             <div className="susan__board susan__board--hub" style={{ "--a": "0deg" } as React.CSSProperties}>
-              <div data-dock data-size="104" data-size-sm="64" data-state="diamond" data-bubble="I'm Aan. Your stores, watched 24/7." className="susan__hub-dock" />
+              <div data-dock data-size="104" data-size-sm="64" data-state="diamond" data-bubble="I'm Aan. The Guardian of your Business!" className="susan__hub-dock" />
             </div>
           </div>
         </div>
