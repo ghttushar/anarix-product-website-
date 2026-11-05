@@ -124,11 +124,13 @@ html[data-theme="dark"] .aan__shadow {
   top: 0;
   left: 0;
   height: 100%;
-  width: var(--prog, 0%);
+  width: 100%;
+  transform: scaleX(var(--prog-k, 0));
+  transform-origin: left center;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-base) 60%, var(--c-light) 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 0 12px -2px rgba(244, 109, 118, 0.55);
-  transition: width 0.6s var(--spring);
+  transition: transform 0.6s var(--ease-out);
 }
 
 .aan__fill.is-loop {
@@ -265,13 +267,13 @@ html[data-theme="dark"] .aan__shadow {
 
 @keyframes aan-work {
   0% {
-    width: 0%;
+    transform: scaleX(0);
   }
   70% {
-    width: 100%;
+    transform: scaleX(1);
   }
   100% {
-    width: 100%;
+    transform: scaleX(1);
     opacity: 0.6;
   }
 }

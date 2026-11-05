@@ -125,7 +125,7 @@ export function AanMascot({
           "--es": `${eyeSize}px`,
           "--eo": `${eyeOffset}px`,
           "--ey": `${eyeY}px`,
-          "--prog": progress === undefined ? undefined : `${Math.max(0, Math.min(100, progress))}%`,
+          "--prog-k": progress === undefined ? undefined : Math.max(0, Math.min(100, progress)) / 100,
           "--c-base": CORAL.base,
           "--c-light": CORAL.light,
           "--c-deep": CORAL.deep,
