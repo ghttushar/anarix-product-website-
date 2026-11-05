@@ -1,0 +1,465 @@
+/* ------------------------------------------------------------------
+   The Night Watch — day -> night -> day driven by --d (0..1)
+------------------------------------------------------------------- */
+.night {
+  --d: 0;
+  --p: 0;
+  --sun: 1;
+  position: relative;
+  height: 440vh;
+}
+
+.night__sticky {
+  --mix: calc(100% - var(--d) * 100%);
+  --n-ink: color-mix(in srgb, #1d252d var(--mix), #eef0f5);
+  --n-ink-2: color-mix(in srgb, #55616e var(--mix), #a3acb9);
+  --n-line: color-mix(in srgb, rgba(29, 37, 45, 0.42) var(--mix), rgba(238, 240, 245, 0.4));
+  --n-face-t: color-mix(in srgb, #ffffff var(--mix), #1b2130);
+  --n-face-l: color-mix(in srgb, #f4f3f0 var(--mix), #141924);
+  --n-face-r: color-mix(in srgb, #e8e7e3 var(--mix), #0f131c);
+  --n-ground: color-mix(in srgb, #f6f5f2 var(--mix), #111520);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--bg) var(--mix), #0b0d14);
+  color: var(--n-ink);
+}
+
+html[data-theme="dark"] .night__sticky {
+  --n-ink: #eef0f5;
+  --n-ink-2: #a3acb9;
+  --n-line: rgba(238, 240, 245, 0.4);
+  --n-face-t: #1b2130;
+  --n-face-l: #141924;
+  --n-face-r: #0f131c;
+  --n-ground: #111520;
+}
+
+/* sky */
+.night__sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.night__stars {
+  position: absolute;
+  inset: 0;
+  opacity: var(--d);
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 28% 9%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 44% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 61% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 77% 26%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 89% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 8% 42%, #fff 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 94% 44%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 53% 6%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 35% 34%, #fff 50%, transparent 51%);
+}
+
+.night__sun {
+  position: absolute;
+  right: 8%;
+  top: calc(16% + (1 - var(--sun)) * 30%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd27a 0 40%, rgba(255, 210, 122, 0.25) 41%, transparent 70%);
+  opacity: var(--sun);
+}
+
+.night__moon {
+  position: absolute;
+  left: calc(8% + var(--p) * 78%);
+  top: 15%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  box-shadow: inset -9px 3px 0 0 #f1ecdf;
+  opacity: var(--d);
+}
+
+.night__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.night__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.night__copy .eyebrow,
+.night__title {
+  margin: 0;
+}
+
+.night__title {
+  color: var(--n-ink);
+}
+
+.night__clock {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 6px 0 4px;
+  font-family: var(--font-mono);
+  color: var(--n-ink);
+}
+
+.night__hm {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.4vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.night__ampm {
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  color: var(--coral);
+}
+
+.night__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.night__timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 12px;
+  padding: 8px 0 8px 22px;
+  color: var(--n-ink-2);
+  opacity: 0.45;
+  transition: opacity 0.4s, color 0.4s;
+}
+
+.night__timeline li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--n-line);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.night__timeline li.is-done {
+  opacity: 1;
+  color: var(--n-ink);
+}
+
+.night__timeline li.is-done::before {
+  background: var(--coral);
+  border-color: var(--coral);
+}
+
+.night__t {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding-top: 2px;
+}
+
+.night__e {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* scene */
+.night__scene {
+  position: relative;
+  aspect-ratio: 900 / 600;
+  width: 100%;
+}
+
+.nw-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.nw-face {
+  stroke: var(--n-line);
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+  transition: stroke 0.5s;
+}
+
+.nw-face--t {
+  fill: var(--n-face-t);
+}
+
+.nw-face--l {
+  fill: var(--n-face-l);
+}
+
+.nw-face--r {
+  fill: var(--n-face-r);
+}
+
+.nw-ground .nw-face--t {
+  fill: var(--n-ground);
+}
+
+.nw-roof {
+  fill: var(--n-face-t);
+}
+
+.nw-road {
+  fill: none;
+  stroke: var(--n-line);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 7;
+  opacity: 0.7;
+}
+
+.nw-trail {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 1.2;
+  stroke-dasharray: 2 8;
+  opacity: calc(var(--d) * 0.6);
+}
+
+.nw-line {
+  fill: none;
+  stroke: var(--n-line);
+  stroke-width: 1.2;
+}
+
+.nw-line--post {
+  stroke-width: 2;
+}
+
+.nw-window {
+  fill: var(--n-face-r);
+  stroke: var(--n-line);
+  stroke-width: 1.1;
+  transition: fill 0.5s;
+}
+
+.nw-home.is-lit .nw-window {
+  fill: #ffd27a;
+  filter: drop-shadow(0 0 6px rgba(255, 196, 92, calc(var(--d) * 0.9)));
+}
+
+.nw-window--shop {
+  fill: color-mix(in srgb, #e6ebff var(--mix), #1d2540);
+}
+
+.nw-door {
+  fill: var(--n-face-r);
+  stroke: var(--n-line);
+  stroke-width: 1.1;
+}
+
+.nw-awning {
+  fill: rgba(242, 110, 119, 0.35);
+  stroke: var(--coral);
+  stroke-width: 1.2;
+}
+
+.nw-ad {
+  fill: rgba(74, 98, 217, 0.25);
+  stroke: var(--blue);
+  stroke-width: 1.2;
+}
+
+.nw-dollar {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  fill: var(--n-ink);
+}
+
+.nw-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  fill: var(--n-ink-2);
+}
+
+.nw-bld.is-alert .nw-face {
+  stroke: var(--coral);
+}
+
+/* event cards pinned to buildings */
+.nw-card {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d252d;
+  border: 1px solid rgba(29, 37, 45, 0.1);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -100%) translateY(8px) scale(0.92);
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out), border-color 0.3s;
+}
+
+.nw-card.is-on {
+  opacity: 0.55;
+  transform: translate(-50%, -100%) scale(0.92);
+}
+
+.nw-card.is-fresh {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+  border-color: var(--coral);
+}
+
+.nw-card__t {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--coral);
+}
+
+.nw-card__e {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.nw-dock {
+  position: absolute;
+  z-index: 3;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  pointer-events: none;
+}
+
+/* 7am brief */
+.brief {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: 2%;
+  width: min(300px, 70%);
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: #fff;
+  color: #1d252d;
+  border: 1px solid rgba(29, 37, 45, 0.1);
+  box-shadow: 0 30px 60px rgba(19, 29, 41, 0.22);
+  transform: translateY(24px);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.brief.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.brief__k {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+
+.brief__title {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.brief ul {
+  margin: 0 0 10px;
+  padding-left: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #55616e;
+}
+
+.brief__sum {
+  margin: 0;
+  font-size: 15px;
+}
+
+.brief__sum b {
+  color: var(--blue);
+}
+
+@media (max-width: 1023px) {
+  .night {
+    height: 360vh;
+  }
+
+  .night__grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+
+  .night__title {
+    font-size: 34px;
+  }
+
+  .night__clock {
+    margin: 0;
+  }
+
+  .night__copy {
+    gap: 6px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .night__timeline {
+    display: none;
+  }
+
+  .night__hm {
+    font-size: 44px;
+  }
+
+  .nw-card__e {
+    font-size: 11px;
+  }
+
+  .nw-card {
+    padding: 5px 8px;
+  }
+
+  .brief {
+    right: 50%;
+    transform: translate(50%, 24px);
+    bottom: -4%;
+  }
+
+  .brief.is-on {
+    transform: translate(50%, 0);
+  }
+}
