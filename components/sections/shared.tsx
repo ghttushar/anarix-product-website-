@@ -69,16 +69,13 @@ export function MediaSlot({ kind, label, ratio = "16 / 9" }: { kind: "video" | "
 }
 
 /**
- * The machine stage: Aan's machine on top, a powered conduit, and the real
- * product UI the machine drives underneath.
+ * The machine stage: an isometric scene (Aan's machine) behind, and the real
+ * product UI it drives floating in front of its lower half.
  */
 export function MachineStage({ machine, children, label }: { machine: ReactNode; children: ReactNode; label: string }) {
   return (
     <div className="stage">
       <div className="stage__machine">{machine}</div>
-      <div className="stage__conduit" aria-hidden="true">
-        <span />
-      </div>
       <div className="stage__ui" aria-label={label}>
         {children}
       </div>

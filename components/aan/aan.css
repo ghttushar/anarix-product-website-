@@ -1,166 +1,213 @@
-/* Aan mascot — 2.5D, brand-manual coral */
+/* Aan mascot — ported from anarix-insight-engine AanMascot.tsx */
 .aan {
-  --ex: 0;
-  --ey: 0;
+  --lx: 0px;
+  --ly: 0px;
+  --lt: 0deg;
+  --pt: 0deg;
+  --gx: 0px;
+  --gy: 0px;
+  --spring: cubic-bezier(0.34, 1.3, 0.64, 1);
   position: relative;
-  width: var(--s);
-  height: var(--s);
   display: inline-block;
   flex-shrink: 0;
+  width: var(--s);
+  height: var(--s);
+}
+
+/* floating ground shadow */
+.aan__shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -2%;
+  width: calc(var(--bw) * 0.7);
+  height: max(3px, calc(var(--u) * 0.07));
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(17, 20, 31, 0.26) 0%, rgba(17, 20, 31, 0) 70%);
+  animation: aan-shadow 4.4s ease-in-out infinite;
   pointer-events: none;
 }
 
-.aan__glow {
-  position: absolute;
-  inset: -40%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(242, 110, 119, 0.42) 0%, rgba(242, 110, 119, 0.12) 38%, transparent 64%);
-  animation: aan-breathe 4.8s ease-in-out infinite;
-}
-
-.aan__shadow {
-  position: absolute;
-  left: 18%;
-  right: 18%;
-  bottom: -14%;
-  height: 14%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(29, 37, 45, 0.22), transparent 70%);
-  animation: aan-shadow 4.8s ease-in-out infinite;
-}
-
 html[data-theme="dark"] .aan__shadow {
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 70%);
 }
 
+.aan__float {
+  position: absolute;
+  inset: 0;
+  animation: aan-float 7s ease-in-out infinite;
+}
+
+.aan__lean {
+  position: absolute;
+  inset: 0;
+  transform: translate(var(--lx), var(--ly)) rotate(calc(var(--lt) + var(--pt)));
+  transition: transform 0.45s var(--spring);
+}
+
+/* aura: blurred coral copy of the body */
+.aan__aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--bw) * 1.1);
+  height: calc(var(--bh) * 1.1);
+  border-radius: var(--r);
+  transform: translate(-50%, -50%) rotate(var(--rot));
+  background: rgba(244, 109, 118, 0.32);
+  filter: blur(calc(var(--u) * 0.3));
+  opacity: 0.85;
+  animation: aan-aura 3.2s ease-in-out infinite;
+  transition:
+    width 0.6s var(--spring),
+    height 0.6s var(--spring),
+    border-radius 0.6s var(--spring),
+    transform 0.6s var(--spring);
+  pointer-events: none;
+}
+
+.aan--cube .aan__aura,
+.aan--circle .aan__aura {
+  opacity: 1;
+}
+
+.aan--bar .aan__aura {
+  opacity: 0.55;
+}
+
+/* body */
 .aan__body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: var(--w);
-  height: var(--h);
+  width: var(--bw);
+  height: var(--bh);
   border-radius: var(--r);
-  transform: translate(-50%, -50%) rotate(var(--rot));
-  background: radial-gradient(circle at 50% 38%, #f88a93 0%, #f57780 42%, #f46d76 78%, #f05e6a 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    var(--dx) var(--dy) 0 var(--coral-deep),
-    calc(var(--dx) * 2.2) calc(var(--dy) * 2.2) 18px rgba(217, 80, 92, 0.28);
   overflow: hidden;
+  transform: translate(-50%, -50%) rotate(var(--rot)) scale(var(--sx), var(--sy));
+  background: radial-gradient(circle at 50% 38%, var(--c-light) 0%, #f57780 42%, var(--c-base) 78%, var(--c-deep) 100%);
+  box-shadow:
+    0 26px 64px -28px rgba(244, 109, 118, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition:
-    width 0.55s var(--ease-inout),
-    height 0.55s var(--ease-inout),
-    border-radius 0.55s var(--ease-inout),
-    transform 0.55s var(--ease-inout),
-    box-shadow 0.55s var(--ease-inout);
-  animation: aan-float 4.8s ease-in-out infinite;
+    width 0.6s var(--spring),
+    height 0.6s var(--spring),
+    border-radius 0.6s var(--spring),
+    transform 0.6s var(--spring),
+    background 0.4s;
 }
 
-.aan__shine {
+.aan--bar .aan__body {
+  background: linear-gradient(180deg, rgba(244, 109, 118, 0.18) 0%, rgba(244, 109, 118, 0.28) 100%);
+}
+
+.aan--cube .aan__body {
+  animation: aan-spin 5s linear infinite;
+}
+
+.aan__sheen {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 45%);
+  background: radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 45%);
 }
 
-.aan__rim {
+.aan__ring {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   box-shadow: inset 0 0 0 1px rgba(167, 174, 242, 0.18);
 }
 
-/* face layer is never rotated, so the eyes stay level */
-.aan__face {
+/* working: coral progress fill inside the translucent pill */
+.aan__fill {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: aan-float 4.8s ease-in-out infinite;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--prog, 0%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-base) 60%, var(--c-light) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 0 12px -2px rgba(244, 109, 118, 0.55);
+  transition: width 0.6s var(--spring);
 }
 
+.aan__fill.is-loop {
+  animation: aan-work 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* thinking: liquid swirl counter-rotating inside the cube */
+.aan__swirl {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: aan-spin 5s linear infinite reverse;
+}
+
+.aan__swirl path {
+  fill: rgba(255, 255, 255, 0.12);
+  animation: aan-liquid 2.4s ease-in-out infinite;
+}
+
+/* eyes: always upright, gaze toward the cursor */
 .aan__eyes {
-  display: flex;
-  gap: calc(var(--s) * 0.2);
-  transform: translate(calc(var(--ex) * var(--s) * 0.075), calc(var(--s) * 0.03 + var(--ey) * var(--s) * 0.06));
-  transition: transform 0.18s var(--ease-out), gap 0.4s var(--ease-inout);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .aan__eye {
-  width: calc(var(--s) * 0.15);
-  height: calc(var(--s) * 0.15);
-  min-width: 3px;
-  min-height: 3px;
+  position: absolute;
+  top: calc(50% + var(--ey));
+  width: var(--es);
+  height: var(--es);
+  margin: calc(var(--es) / -2) 0 0 calc(var(--es) / -2);
+  transform: translate(var(--gx), var(--gy));
+  transition:
+    transform 0.4s var(--spring),
+    left 0.6s var(--spring),
+    width 0.6s var(--spring),
+    height 0.6s var(--spring),
+    top 0.6s var(--spring);
+}
+
+.aan__eye--l {
+  left: calc(50% - var(--eo));
+}
+
+.aan__eye--r {
+  left: calc(50% + var(--eo));
+}
+
+.aan__lid {
+  display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: #1a0608;
-  animation: aan-blink 5.2s infinite;
-  transition: transform 0.3s var(--ease-out);
+  animation: aan-blink 0.16s ease-out;
 }
 
-.aan__eye + .aan__eye {
-  animation-delay: 0.04s;
-}
-
-/* states */
-.aan--circle .aan__eye {
-  transform: scale(1.12);
-}
-
-.aan--bar .aan__eyes {
-  gap: calc(var(--s) * 0.16);
-  animation: aan-scan 1.1s var(--ease-inout) infinite alternate;
-}
-
-.aan--bar .aan__eye {
-  width: calc(var(--s) * 0.12);
-  height: calc(var(--s) * 0.12);
-}
-
-.aan--cube .aan__eyes {
-  transform: translate(calc(var(--s) * 0.06), calc(var(--s) * -0.03));
-  gap: calc(var(--s) * 0.17);
-}
-
-.aan--cube .aan__eye {
-  animation: aan-think 2.4s ease-in-out infinite;
-}
-
-/* orbiting satellite dot (elliptical, 2.5D) */
-.aan__orbit {
-  position: absolute;
-  inset: 0;
-  animation: aan-orbit-x 3.6s ease-in-out infinite alternate;
-}
-
-.aan__sat {
+.aan__ripple {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(var(--s) * 0.085);
-  height: calc(var(--s) * 0.085);
-  min-width: 3px;
-  min-height: 3px;
-  margin: calc(var(--s) * -0.0425);
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(29, 37, 45, 0.08);
-  animation: aan-orbit-y 3.6s ease-in-out infinite alternate;
-  animation-delay: -1.8s;
+  width: var(--bw);
+  height: var(--bh);
+  border-radius: var(--r);
+  border: 1px solid var(--c-base);
+  transform: translate(-50%, -50%) rotate(var(--rot));
+  animation: aan-ripple 1.8s ease-out infinite;
 }
 
-/* hover: attentive */
-.aan.is-hover .aan__body {
-  transform: translate(-50%, -50%) rotate(var(--rot)) scale(1.06);
+/* tiny tier: flat coral chip, no eyes or aura */
+.aan--tiny .aan__body {
+  background: linear-gradient(140deg, var(--c-light) 0%, var(--c-base) 60%, var(--c-deep) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-.aan.is-hover .aan__eye {
-  transform: scale(1.22);
-}
-
-.aan.is-hover .aan__glow {
+.aan--tiny .aan__float {
   animation: none;
-  opacity: 1;
-  transform: scale(1.12);
 }
 
 @keyframes aan-float {
@@ -168,79 +215,100 @@ html[data-theme="dark"] .aan__shadow {
   100% {
     translate: 0 0;
   }
+  25% {
+    translate: 0 calc(var(--u) * -0.04);
+  }
   50% {
-    translate: 0 calc(var(--s) * -0.035);
+    translate: 0 0;
+  }
+  75% {
+    translate: 0 calc(var(--u) * -0.024);
   }
 }
 
 @keyframes aan-shadow {
   0%,
   100% {
-    transform: scaleX(1);
+    transform: translateX(-50%) scaleX(1);
     opacity: 1;
   }
   50% {
-    transform: scaleX(0.86);
-    opacity: 0.7;
+    transform: translateX(-50%) scaleX(0.88);
+    opacity: 0.75;
   }
 }
 
-@keyframes aan-breathe {
+@keyframes aan-aura {
+  50% {
+    scale: 1.05;
+  }
+}
+
+@keyframes aan-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes aan-liquid {
   0%,
   100% {
-    opacity: 0.75;
-    transform: scale(0.96);
+    d: path("M30,50 Q50,20 70,50 Q50,80 30,50 Z");
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.04);
+  33% {
+    d: path("M28,52 Q52,28 72,48 Q48,78 28,52 Z");
+  }
+  66% {
+    d: path("M32,48 Q48,22 68,52 Q52,82 32,48 Z");
+  }
+}
+
+@keyframes aan-work {
+  0% {
+    width: 0%;
+  }
+  70% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+    opacity: 0.6;
   }
 }
 
 @keyframes aan-blink {
-  0%,
-  92%,
-  100% {
-    scale: 1 1;
-  }
-  95% {
-    scale: 1 0.12;
-  }
-}
-
-@keyframes aan-scan {
-  from {
-    translate: calc(var(--s) * -0.12) 0;
-  }
-  to {
-    translate: calc(var(--s) * 0.12) 0;
-  }
-}
-
-@keyframes aan-think {
-  0%,
-  100% {
-    scale: 1 1;
+  0% {
+    transform: scaleY(1);
   }
   50% {
-    scale: 1 0.82;
+    transform: scaleY(0.05);
+  }
+  100% {
+    transform: scaleY(1);
   }
 }
 
-@keyframes aan-orbit-x {
+@keyframes aan-ripple {
   from {
-    translate: calc(var(--s) * -0.62) 0;
+    transform: translate(-50%, -50%) rotate(var(--rot)) scale(1);
+    opacity: 0.5;
   }
   to {
-    translate: calc(var(--s) * 0.62) 0;
+    transform: translate(-50%, -50%) rotate(var(--rot)) scale(1.45);
+    opacity: 0;
   }
 }
 
-@keyframes aan-orbit-y {
-  from {
-    translate: 0 calc(var(--s) * -0.28);
+@media (prefers-reduced-motion: reduce) {
+  .aan__float,
+  .aan__aura,
+  .aan__shadow,
+  .aan--cube .aan__body,
+  .aan__swirl,
+  .aan__fill.is-loop {
+    animation: none !important;
   }
-  to {
-    translate: 0 calc(var(--s) * 0.28);
+  .aan__lean {
+    transform: none;
   }
 }

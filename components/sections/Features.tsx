@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { FeatureSection, MachineStage, usePowered } from "./shared";
-import { Gearworks, NeuralBrain, RadarCpu, Refinery } from "../machines/Machines";
+import { NeuralCore, ProfitRefinery, RulesFactory, SignalsBoard } from "../machines/Machines";
 import { Live, Spark, Ticker, useSeries } from "@/lib/live";
 
 const reduced = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -14,7 +14,7 @@ function SignalsStage() {
   const [ref, powered] = usePowered<HTMLDivElement>();
   return (
     <div ref={ref}>
-      <MachineStage machine={<RadarCpu />} label="Signal card from Anarix Signals">
+      <MachineStage machine={<SignalsBoard />} label="Signal card from Anarix Signals">
         <article className={`card signal ${powered ? "is-good" : ""}`}>
           <header className="signal__head">
             <span className="pill pill--risk">High</span>
@@ -102,7 +102,7 @@ function ProfitStage() {
   const series = useSeries(powered);
   return (
     <div ref={ref}>
-      <MachineStage machine={<Refinery />} label="Profitability date card from Anarix Profitability">
+      <MachineStage machine={<ProfitRefinery />} label="Profitability date card from Anarix Profitability">
         <article className={`card profit ${powered ? "is-good" : ""}`}>
           <header className="profit__head">
             <span className="profit__date">
@@ -198,7 +198,7 @@ function RulesStage() {
   }, [powered]);
   return (
     <div ref={ref}>
-      <MachineStage machine={<Gearworks />} label="Applied Rules table from Anarix Rules">
+      <MachineStage machine={<RulesFactory powered={powered} />} label="Applied Rules table from Anarix Rules">
         <article className={`card rules ${powered ? "is-good" : ""}`}>
           <div className="rules__ai">
             <span className="rules__ai-k">✦ Create rules with AI</span>
@@ -304,7 +304,7 @@ function AanStage() {
 
   return (
     <div ref={ref}>
-      <MachineStage machine={<NeuralBrain />} label="Ask Aan chat from Anarix">
+      <MachineStage machine={<NeuralCore />} label="Ask Aan chat from Anarix">
         <article className="card chat">
           {phase === "idle" && <p className="chat__empty">Ask Aan anything about your accounts.</p>}
           {phase !== "idle" && <p className="chat__you">What changed overnight?</p>}

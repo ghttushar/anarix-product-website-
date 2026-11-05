@@ -1,350 +1,391 @@
 "use client";
 
-import { isoBox, isoCircle, makeIso, pts } from "@/lib/iso";
+import { isoBox, isoCircle, isoCylinder, makeIso, pts, type Pt } from "@/lib/iso";
 
 /**
- * The machines Aan powers. Each one is a hairline isometric drawing with a
- * socket in the middle (the Aan dock). Dormant = grey line art; when the section
- * is powered (data-powered on the <section>) strokes light up and the machinery
- * runs. All animation lives in machines.css, keyed off [data-powered="true"].
+ * Isometric scenes that sit *behind* each product UI card. Each scene is a
+ * real 3D isometric drawing (boxes + cylinders on a ground slab) with a socket
+ * where Aan docks. Dormant = quiet line art; when the section is powered
+ * ([data-powered="true"] on the <section>) lights come on, packets flow,
+ * liquids rise and the machinery runs. Animation lives in machines.css.
  */
 
-const W = 560;
-const H = 260;
-const pct = (x: number, y: number) => ({ left: `${(x / W) * 100}%`, top: `${(y / H) * 100}%` });
+const W = 640;
+const H = 400;
+type Iso = ReturnType<typeof makeIso>;
+const pct = (p: Pt) => ({ left: `${(p[0] / W) * 100}%`, top: `${(p[1] / H) * 100}%` });
+const path = (p: Pt[]) => "M" + p.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" L");
 
-function Dock({ x, y, bubble, state = "cube", size = 60, sizeSm = 44 }: { x: number; y: number; bubble: string; state?: string; size?: number; sizeSm?: number }) {
+function Box({ iso, x, y, w, d, h, z = 0, className = "" }: { iso: Iso; x: number; y: number; w: number; d: number; h: number; z?: number; className?: string }) {
+  const b = isoBox(iso, x, y, w, d, h, z);
   return (
-    <div
-      className="mx-dock"
-      style={pct(x, y)}
-      data-dock
-      data-size={size}
-      data-size-sm={sizeSm}
-      data-state={state}
-      data-bubble={bubble}
-      aria-hidden="true"
-    />
+    <g className={`ib ${className}`}>
+      <polygon points={b.right} className="ib-r" />
+      <polygon points={b.left} className="ib-l" />
+      <polygon points={b.top} className="ib-t" />
+    </g>
   );
 }
 
-/** packets riding a path (SMIL), rendered always, shown only when powered */
+function Cyl({ iso, x, y, r, h, z = 0, className = "" }: { iso: Iso; x: number; y: number; r: number; h: number; z?: number; className?: string }) {
+  const c = isoCylinder(iso, x, y, r, h, z);
+  return (
+    <g className={`ic ${className}`}>
+      <path d={c.side} className="ic-side" />
+      <path d={c.top} className="ic-top" />
+    </g>
+  );
+}
+
+function Dock({ at, bubble, state = "cube", size = 56, sizeSm = 40 }: { at: Pt; bubble: string; state?: string; size?: number; sizeSm?: number }) {
+  return <div className="mx-dock" style={pct(at)} data-dock data-size={size} data-size-sm={sizeSm} data-state={state} data-bubble={bubble} aria-hidden="true" />;
+}
+
 function Packets({ d, n = 3, dur = 1.8, className = "" }: { d: string; n?: number; dur?: number; className?: string }) {
   return (
     <g className={`mx-packets ${className}`}>
       {Array.from({ length: n }).map((_, k) => (
-        <circle key={k} r="3.2" className="mx-packet">
-          <animateMotion dur={`${dur}s`} repeatCount="indefinite" begin={`${(k * dur) / n}s`} path={d} />
+        <circle key={k} r="3" className="mx-packet">
+          <animateMotion dur={`${dur}s`} repeatCount="indefinite" begin={`${((k * dur) / n).toFixed(2)}s`} path={d} />
         </circle>
       ))}
     </g>
   );
 }
 
-/* ------------------------------------------------------------ Radar CPU */
-export function RadarCpu() {
-  const iso = makeIso(280, 128);
-  const chip = isoBox(iso, -72, -72, 144, 144, 14);
-  const die = isoBox(iso, -38, -38, 76, 76, 6, 14);
-  const L = iso(-72, 72, 7);
-  const T = iso(-72, -72, 7);
-  const B = iso(72, 72, 7);
-  const mid = (a: readonly [number, number], b: readonly [number, number], t: number) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t] as const;
-  const ins = [
-    { label: "Amazon", y: 54, to: mid(L, T, 0.55) },
-    { label: "Walmart", y: 132, to: mid(L, T, 0.05) },
-    { label: "Shopify", y: 210, to: mid(L, B, 0.5) },
+/* ============================================================ Signals: motherboard */
+export function SignalsBoard() {
+  const iso = makeIso(320, 178);
+  const Z = 8;
+  const ports = [
+    { label: "Amazon", y: -95 },
+    { label: "Walmart", y: -5 },
+    { label: "Shopify", y: 85 },
   ];
-  const trace = (y: number, to: readonly [number, number]) => `M96,${y} H128 L${to[0].toFixed(1)},${to[1].toFixed(1)}`;
-  const out = `M${B[0].toFixed(1)},${(B[1] + 8).toFixed(1)} V${H}`;
-  const pins: string[] = [];
-  for (let k = 1; k < 10; k++) {
-    const a = iso(-72 + k * 14.4, 72, 0);
-    const b = iso(-72 + k * 14.4, 80, 0);
-    pins.push(`M${a[0].toFixed(1)},${a[1].toFixed(1)} L${b[0].toFixed(1)},${b[1].toFixed(1)}`);
-    const c = iso(72, -72 + k * 14.4, 0);
-    const e = iso(80, -72 + k * 14.4, 0);
-    pins.push(`M${c[0].toFixed(1)},${c[1].toFixed(1)} L${e[0].toFixed(1)},${e[1].toFixed(1)}`);
-  }
-  const top = iso(0, 0, 20);
+  const traceIn = (y: number) => path([iso(-182, y + 20, Z), iso(-110, y + 20, Z), iso(-55, y * 0.35, Z)]);
+  const toRam = path([iso(30, -55, Z), iso(30, -80, Z), iso(70, -80, Z)]);
+  const toOut = path([iso(40, 55, Z), iso(40, 80, Z), iso(100, 80, Z)]);
+  const caps = [-46, -28, -10, 8, 26];
   return (
-    <div className="mx mx--cpu">
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A processor chip: marketplace data streams in, Aan processes it, a signal streams out">
-        {ins.map((p) => (
+    <div className="mx mx--board">
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A motherboard: marketplace data enters through ports, Aan processes it in the CPU, signals stream out">
+        <Box iso={iso} x={-210} y={-150} w={420} d={300} h={Z} className="ib--pcb" />
+        {/* etched grid on the board */}
+        {[-150, -90, -30, 30, 90].map((v) => (
+          <polyline key={`gx${v}`} points={pts(iso(-210, v + 30, Z), iso(210, v + 30, Z))} className="mx-etch" />
+        ))}
+        {[-130, -50, 30, 110, 190].map((v) => (
+          <polyline key={`gy${v}`} points={pts(iso(v, -150, Z), iso(v, 150, Z))} className="mx-etch" />
+        ))}
+
+        {/* traces + packets */}
+        {ports.map((p) => (
           <g key={p.label}>
-            <path d={trace(p.y, p.to)} className="mx-trace" />
-            <rect x="14" y={p.y - 14} width="82" height="28" rx="14" className="mx-port" />
-            <text x="55" y={p.y + 4} textAnchor="middle" className="mx-label">
+            <path d={traceIn(p.y)} className="mx-trace" />
+            <Packets d={traceIn(p.y)} n={2} dur={1.6} />
+          </g>
+        ))}
+        <path d={toRam} className="mx-trace" />
+        <Packets d={toRam} n={2} dur={1.2} className="mx-packets--out" />
+        <path d={toOut} className="mx-trace mx-trace--out" />
+        <Packets d={toOut} n={2} dur={1.2} className="mx-packets--out" />
+
+        {/* ports on the back-left edge */}
+        {ports.map((p) => (
+          <g key={`port-${p.label}`}>
+            <Box iso={iso} x={-210} y={p.y} w={28} d={40} h={18} z={Z} className="ib--port" />
+            <text x={iso(-210, p.y + 20, Z + 18)[0] - 16} y={iso(-210, p.y + 20, Z + 18)[1] - 8} textAnchor="end" className="mx-label">
               {p.label}
             </text>
-            <Packets d={trace(p.y, p.to)} n={2} dur={1.6} />
           </g>
         ))}
-        <path d={out} className="mx-trace mx-trace--out" />
-        <Packets d={out} n={3} dur={1.4} className="mx-packets--out" />
-        <text x={B[0] + 10} y={H - 14} className="mx-label mx-label--sm">
-          SIGNAL
+
+        {/* capacitors behind the CPU */}
+        {caps.map((cx) => (
+          <Cyl key={cx} iso={iso} x={cx} y={-92} r={6} h={16} z={Z} className="ic--cap" />
+        ))}
+
+        {/* RAM sticks */}
+        {[0, 1, 2, 3].map((k) => (
+          <g key={`ram${k}`}>
+            <Box iso={iso} x={72 + k * 16} y={-138} w={7} d={96} h={30} z={Z} className="ib--ram" />
+            <polyline points={pts(iso(79 + k * 16, -126, Z + 22), iso(79 + k * 16, -54, Z + 22))} className="mx-led-line" />
+          </g>
+        ))}
+        <text x={iso(130, -138, Z + 30)[0] + 8} y={iso(130, -138, Z + 30)[1] - 4} className="mx-label mx-label--sm">
+          MEMORY
         </text>
 
-        {pins.map((d, k) => (
-          <path key={k} d={d} className="mx-pin" />
-        ))}
-        <polygon points={chip.right} className="mx-face mx-face--r" />
-        <polygon points={chip.left} className="mx-face mx-face--l" />
-        <polygon points={chip.top} className="mx-face mx-face--t" />
-        <polygon points={die.right} className="mx-face mx-face--r" />
-        <polygon points={die.left} className="mx-face mx-face--l" />
-        <polygon points={die.top} className="mx-face mx-face--t mx-die" />
-        {/* grid etched into the die */}
-        {[-19, 0, 19].map((v) => (
-          <g key={v}>
-            <polyline points={pts(iso(v, -38, 20), iso(v, 38, 20))} className="mx-etch" />
-            <polyline points={pts(iso(-38, v, 20), iso(38, v, 20))} className="mx-etch" />
-          </g>
-        ))}
-        {/* radar rings rippling out from the socket */}
-        {[0, 1, 2].map((k) => (
-          <path key={k} d={isoCircle(iso, 0, 0, 40, 20)} className={`mx-ring mx-ring--${k}`} />
-        ))}
-        <path d={isoCircle(iso, 0, 0, 24, 20)} className="mx-socket" />
-        <path d={isoCircle(iso, 0, 0, 14, 20)} className="mx-socket mx-socket--in" />
-        <text x={T[0]} y={T[1] - 14} textAnchor="middle" className="mx-label mx-label--sm">
-          AAN · SIGNAL CORE
+        {/* small chips */}
+        <Box iso={iso} x={-150} y={60} w={52} d={40} h={7} z={Z} className="ib--chip" />
+        <Box iso={iso} x={100} y={58} w={64} d={50} h={9} z={Z} className="ib--chip ib--out" />
+        <text x={iso(132, 108, Z + 9)[0]} y={iso(132, 108, Z + 9)[1] + 20} textAnchor="middle" className="mx-label mx-label--sm">
+          SIGNALS OUT
         </text>
+
+        {/* status LEDs along the front edge */}
+        {[0, 1, 2, 3, 4, 5].map((k) => (
+          <Box key={`led${k}`} iso={iso} x={-60 + k * 16} y={128} w={8} d={8} h={4} z={Z} className={`ib--led ib--led-${k % 3}`} />
+        ))}
+
+        {/* CPU socket + die */}
+        <Box iso={iso} x={-55} y={-55} w={110} d={110} h={14} z={Z} className="ib--socket" />
+        <Box iso={iso} x={-36} y={-36} w={72} d={72} h={8} z={Z + 14} className="ib--die" />
+        {[0, 1, 2].map((k) => (
+          <path key={k} d={isoCircle(iso, 0, 0, 34, Z + 22)} className={`mx-ring mx-ring--${k}`} />
+        ))}
+        <path d={isoCircle(iso, 0, 0, 20, Z + 22)} className="mx-socket" />
       </svg>
-      <Dock x={top[0]} y={top[1] - 26} bubble="Reading 1,248 signals." />
+      <Dock at={[iso(0, 0, 30)[0], iso(0, 0, 30)[1] - 24]} bubble="Reading 1,248 signals." />
     </div>
   );
 }
 
-/* ------------------------------------------------------------- Refinery */
-export function Refinery() {
-  const level = (cx: number, top: number, bottom: number, rx: number, cls: string) => (
-    <g className={cls}>
-      <rect x={cx - rx} y={top} width={rx * 2} height={bottom - top} className="mx-liquid" />
-    </g>
-  );
+/* ======================================================== Profitability: refinery */
+// flow runs back-to-front along the x axis: sales tank -> Aan reactor ->
+// fees / ads / COGS towers -> profit silo (painter order = x + y)
+const TOWERS = [
+  { x: 36, k: "FEES" },
+  { x: 82, k: "ADS" },
+  { x: 128, k: "COGS" },
+];
+
+export function ProfitRefinery() {
+  const iso = makeIso(292, 226);
+  const Z = 8;
+  const TY = -72; // tower row
+  const p1 = path([iso(-175, -55, 30), iso(-60, -55, 30)]);
+  const p2 = path([iso(-60, -55, 30), iso(-60, TY, 30), iso(190, TY, 30), iso(190, -40, 30)]);
   return (
     <div className="mx mx--refinery">
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A refinery: sales flow in, Aan filters out fees, ads and cost of goods, and profit drips into the beaker">
-        <defs>
-          <clipPath id="tank-clip">
-            <path d="M44,74 A40,13 0 0 0 124,74 V196 A40,13 0 0 1 44,196 Z" />
-          </clipPath>
-          <clipPath id="beaker-clip">
-            <path d="M494,96 A28,10 0 0 0 550,96 V200 A28,10 0 0 1 494,200 Z" />
-          </clipPath>
-        </defs>
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A refinery: sales flow in, Aan's reactor strips fees, ads and cost of goods, and profit fills the silo">
+        <Box iso={iso} x={-220} y={-130} w={440} d={200} h={Z} className="ib--slab" />
+        {[-90, -50, -10, 30].map((v) => (
+          <polyline key={v} points={pts(iso(-220, v, Z), iso(220, v, Z))} className="mx-etch" />
+        ))}
 
-        {/* sales tank */}
-        <path d="M44,74 V196 A40,13 0 0 0 124,196 V74" className="mx-face mx-face--l" />
-        <g clipPath="url(#tank-clip)">{level(84, 92, 212, 40, "mx-level mx-level--sales")}</g>
-        <ellipse cx="84" cy="74" rx="40" ry="13" className="mx-face mx-face--t" />
-        <text x="84" y="226" textAnchor="middle" className="mx-label">
+        {/* pipes (drawn under the vessels) */}
+        {[p1, p2].map((d, i) => (
+          <g key={i}>
+            <path d={d} className="mx-pipe" />
+            <path d={d} className={`mx-flow ${i === 1 ? "mx-flow--gain" : ""}`} />
+          </g>
+        ))}
+
+        {/* sales tank: glass, liquid inside */}
+        <Cyl iso={iso} x={-175} y={-55} r={33} h={40} z={Z} className="ic--liquid ic--sales ic--low" />
+        <Cyl iso={iso} x={-175} y={-55} r={33} h={78} z={Z} className="ic--liquid ic--sales ic--high" />
+        <Cyl iso={iso} x={-175} y={-55} r={36} h={90} z={Z} className="ic--glass" />
+        <text x={iso(-175, -55, Z)[0] - 44} y={iso(-175, -55, Z)[1] + 14} textAnchor="end" className="mx-label">
           Sales
         </text>
 
-        {/* pipes */}
-        <path d="M124,150 H226" className="mx-pipe" />
-        <path d="M124,150 H226" className="mx-flow" />
-        <path d="M334,150 H494" className="mx-pipe" />
-        <path d="M334,150 H494" className="mx-flow mx-flow--late" />
+        {/* reactor: Aan docks on top */}
+        <Cyl iso={iso} x={-60} y={-55} r={44} h={64} z={Z} className="ic--reactor" />
+        <path d={isoCircle(iso, -60, -55, 44, Z + 22)} className="mx-band" />
+        <path d={isoCircle(iso, -60, -55, 44, Z + 44)} className="mx-band" />
+        {[0, 1].map((k) => (
+          <path key={k} d={isoCircle(iso, -60, -55, 30, Z + 64)} className={`mx-ring mx-ring--${k}`} />
+        ))}
+        <path d={isoCircle(iso, -60, -55, 20, Z + 64)} className="mx-socket" />
 
-        {/* reactor (Aan) */}
-        <path d="M226,96 V176 A54,18 0 0 0 334,176 V96" className="mx-face mx-face--l" />
-        <ellipse cx="280" cy="96" rx="54" ry="18" className="mx-face mx-face--t" />
-        <path d="M226,136 A54,18 0 0 0 334,136" className="mx-etch" />
-        <ellipse cx="280" cy="96" rx="26" ry="9" className="mx-socket" />
-        <ellipse cx="280" cy="96" rx="15" ry="5" className="mx-socket mx-socket--in" />
-        <ellipse cx="280" cy="96" rx="40" ry="14" className="mx-ring mx-ring--0" />
-
-        {/* filters: fees / ads / cogs */}
-        {[
-          { x: 362, k: "Fees" },
-          { x: 408, k: "Ads" },
-          { x: 454, k: "COGS" },
-        ].map((f, i) => (
-          <g key={f.k} className={`mx-filter mx-filter--${i}`}>
-            <rect x={f.x - 14} y="130" width="28" height="40" rx="6" className="mx-face mx-face--t" />
-            <path d={`M${f.x - 14},142 h28 M${f.x - 14},152 h28`} className="mx-etch" />
-            <path d={`M${f.x},170 V214`} className="mx-drip" />
-            <text x={f.x} y="228" textAnchor="middle" className="mx-label mx-label--sm">
-              {f.k.toUpperCase()}
+        {/* filter towers */}
+        {TOWERS.map((t, i) => (
+          <g key={t.k} className={`mx-tower mx-tower--${i}`}>
+            <Box iso={iso} x={t.x - 13} y={TY - 13} w={26} d={26} h={52} z={Z} className="ib--tower" />
+            <Cyl iso={iso} x={t.x} y={TY} r={4.5} h={14} z={Z + 52} className="ic--stack" />
+            {[0, 1, 2].map((s2) => (
+              <circle key={s2} cx={iso(t.x, TY, Z + 72)[0]} cy={iso(t.x, TY, Z + 72)[1]} r="3.5" className={`mx-steam mx-steam--${s2}`} />
+            ))}
+            <text x={iso(t.x, TY + 13, Z)[0] - 6} y={iso(t.x, TY + 13, Z)[1] + 16} textAnchor="end" className="mx-label mx-label--sm">
+              {t.k}
             </text>
           </g>
         ))}
 
-        {/* profit beaker */}
-        <path d="M494,96 V200 A28,10 0 0 0 550,200 V96" className="mx-face mx-face--l" />
-        <g clipPath="url(#beaker-clip)">{level(522, 96, 212, 28, "mx-level mx-level--profit")}</g>
-        <ellipse cx="522" cy="96" rx="28" ry="10" className="mx-face mx-face--t mx-face--glass" />
-        {[120, 145, 170].map((y) => (
-          <path key={y} d={`M494,${y} h8`} className="mx-etch" />
-        ))}
-        <text x="522" y="226" textAnchor="middle" className="mx-label mx-label--accent">
+        {/* profit silo */}
+        <Cyl iso={iso} x={190} y={-40} r={29} h={18} z={Z} className="ic--liquid ic--profit ic--low" />
+        <Cyl iso={iso} x={190} y={-40} r={29} h={70} z={Z} className="ic--liquid ic--profit ic--high" />
+        <Cyl iso={iso} x={190} y={-40} r={32} h={84} z={Z} className="ic--glass" />
+        <text x={iso(190, -40, Z + 84)[0]} y={iso(190, -40, Z + 84)[1] - 22} textAnchor="middle" className="mx-label mx-label--accent">
           Profit
         </text>
       </svg>
-      <Dock x={280} y={66} bubble="Refining profit." />
+      <Dock at={[iso(-60, -55, Z + 64)[0], iso(-60, -55, Z + 64)[1] - 24]} bubble="Refining profit." size={56} />
     </div>
   );
 }
 
-/* ----------------------------------------------------------- Gearworks */
-function gearPath(cx: number, cy: number, r: number, teeth: number) {
-  const ro = r;
-  const ri = r - Math.max(6, r * 0.16);
-  let d = "";
-  const step = (Math.PI * 2) / teeth;
-  for (let k = 0; k < teeth; k++) {
-    const a = k * step;
-    const p = [
-      [ri, a],
-      [ro, a + step * 0.18],
-      [ro, a + step * 0.5],
-      [ri, a + step * 0.68],
-    ] as const;
-    p.forEach(([rad, ang], j) => {
-      d += `${k === 0 && j === 0 ? "M" : "L"}${(cx + rad * Math.cos(ang)).toFixed(1)},${(cy + rad * Math.sin(ang)).toFixed(1)}`;
-    });
-  }
-  return d + "Z";
-}
-
-const GEARS = [
-  { x: 280, y: 128, r: 64, t: 16, label: "", main: true },
-  { x: 184, y: 94, r: 40, t: 10, label: "CTR" },
-  { x: 196, y: 180, r: 34, t: 9, label: "BUDGET" },
-  { x: 372, y: 86, r: 38, t: 10, label: "ACOS" },
-  { x: 372, y: 182, r: 42, t: 11, label: "STOCK" },
-];
-
-export function Gearworks() {
+/* ====================================================== Rules: processing factory */
+// crate drawn around (0,0) in screen space so it can ride a motion path
+function Crate({ s = 22, h = 16 }: { s?: number; h?: number }) {
+  const loc = (dx: number, dy: number, dz: number): Pt => [(dx - dy) * 0.866, (dx + dy) * 0.5 - dz];
+  const a = -s / 2;
+  const b = s / 2;
   return (
-    <div className="mx mx--gears">
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="Gearworks: Aan is the main gear and drives one gear per rule">
-        {GEARS.map((g, i) => {
-          const dur = (14 * g.r) / 64;
-          return (
-            <g key={i} className={`mx-gear ${g.main ? "mx-gear--main" : ""}`} style={{ "--dur": `${dur}s` } as React.CSSProperties}>
-              {/* thickness */}
-              <path d={gearPath(g.x + 3, g.y + 5, g.r, g.t)} className="mx-gear__back" />
-              <g className={`mx-gear__spin ${g.main ? "" : "is-rev"}`} style={{ transformOrigin: `${g.x}px ${g.y}px` }}>
-                <path d={gearPath(g.x, g.y, g.r, g.t)} className="mx-face mx-face--t mx-gear__face" />
-                <circle cx={g.x} cy={g.y} r={g.r * 0.42} className="mx-etch" />
-                {[0, 60, 120].map((deg) => {
-                  const a = (deg * Math.PI) / 180;
-                  return (
-                    <line
-                      key={deg}
-                      x1={(g.x - g.r * 0.42 * Math.cos(a)).toFixed(1)}
-                      y1={(g.y - g.r * 0.42 * Math.sin(a)).toFixed(1)}
-                      x2={(g.x + g.r * 0.42 * Math.cos(a)).toFixed(1)}
-                      y2={(g.y + g.r * 0.42 * Math.sin(a)).toFixed(1)}
-                      className="mx-etch"
-                    />
-                  );
-                })}
-              </g>
-              {g.main ? (
-                <>
-                  <circle cx={g.x} cy={g.y} r="26" className="mx-socket mx-socket--fill" />
-                  <circle cx={g.x} cy={g.y} r="36" className="mx-ring mx-ring--0" />
-                </>
-              ) : (
-                <text x={g.x} y={g.y + 4} textAnchor="middle" className="mx-label mx-label--sm mx-gear__label">
-                  {g.label}
-                </text>
-              )}
-            </g>
-          );
-        })}
-        <path d={`M280,192 V${H}`} className="mx-trace mx-trace--out" />
-        <Packets d={`M280,192 V${H}`} n={2} dur={1.2} className="mx-packets--out" />
-      </svg>
-      <Dock x={280} y={124} bubble="12 rules turning." />
-    </div>
+    <g className="mx-crate">
+      <polygon points={pts(loc(b, a, 0), loc(b, b, 0), loc(b, b, h), loc(b, a, h))} className="ib-r" />
+      <polygon points={pts(loc(a, b, 0), loc(b, b, 0), loc(b, b, h), loc(a, b, h))} className="ib-l" />
+      <polygon points={pts(loc(a, a, h), loc(b, a, h), loc(b, b, h), loc(a, b, h))} className="ib-t" />
+      <polyline points={pts(loc(a, 0, h), loc(b, 0, h))} className="mx-crate-tape" />
+    </g>
   );
 }
 
-/* --------------------------------------------------------- Neural brain */
-// deterministic PRNG so server and client draw the same brain
-function rng(seed: number) {
-  return () => {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-const BRAIN = (() => {
-  const r = rng(7);
-  const nodes: { x: number; y: number; d: number }[] = [];
-  while (nodes.length < 34) {
-    const x = 160 + r() * 240;
-    const y = 50 + r() * 160;
-    const nx = (x - 280) / 125;
-    const ny = (y - 132) / 82;
-    if (nx * nx + ny * ny > 1) continue;
-    if (Math.hypot(x - 280, y - 132) < 34) continue;
-    nodes.push({ x: Math.round(x), y: Math.round(y), d: Math.hypot(x - 280, y - 132) });
-  }
-  const edges: [number, number][] = [];
-  nodes.forEach((a, i) => {
-    const near = nodes
-      .map((b, j) => ({ j, dist: Math.hypot(a.x - b.x, a.y - b.y) }))
-      .filter((o) => o.j !== i)
-      .sort((p, q) => p.dist - q.dist)
-      .slice(0, 2);
-    near.forEach(({ j }) => {
-      if (!edges.some(([p, q]) => (p === i && q === j) || (p === j && q === i))) edges.push([i, j]);
-    });
-  });
-  return { nodes, edges };
-})();
-
-export function NeuralBrain() {
-  const { nodes, edges } = BRAIN;
+export function RulesFactory({ powered = false }: { powered?: boolean }) {
+  const iso = makeIso(330, 190);
+  const Z = 8;
+  const BZ = Z + 22; // belt surface
+  const belt = path([iso(-210, 55, BZ), iso(205, 55, BZ)]);
+  const stations = [
+    { x: -120, k: "PAUSE" },
+    { x: -20, k: "CAP" },
+    { x: 80, k: "BID" },
+  ];
+  const crateStops = [-180, -70, 30, 140];
   return (
-    <div className="mx mx--brain">
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A neural brain: your question flows in, Aan reasons across your data, the answer flows out">
-        <path
-          d="M154,140 C140,92 178,52 228,56 C250,34 306,32 326,54 C374,46 418,84 412,128 C434,160 408,206 362,206 C342,226 300,224 284,212 C266,226 216,226 200,206 C160,212 134,180 154,140 Z"
-          className="mx-face mx-face--t mx-brain"
+    <div className="mx mx--factory">
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A processing factory: campaigns ride the belt through rule stations while Aan runs the line from the control tower">
+        <Box iso={iso} x={-240} y={-150} w={480} d={300} h={Z} className="ib--slab" />
+        {[-150, -75, 0, 75].map((v) => (
+          <polyline key={v} points={pts(iso(-240, v + 37, Z), iso(240, v + 37, Z))} className="mx-etch" />
+        ))}
+
+        {/* control tower: Aan on the roof */}
+        <Box iso={iso} x={-40} y={-135} w={74} d={74} h={104} z={Z} className="ib--tower" />
+        <polygon
+          points={pts(iso(-40, -61, Z + 70), iso(34, -61, Z + 70), iso(34, -61, Z + 88), iso(-40, -61, Z + 88))}
+          className="mx-window"
         />
-        <path d="M282,58 C268,92 296,120 280,150 C268,176 292,196 284,212" className="mx-etch" />
-        <path d="M196,96 C214,104 220,120 206,134 M352,92 C336,104 334,122 350,136 M210,176 C230,170 244,180 246,194 M342,178 C326,172 314,182 312,196" className="mx-etch" />
-        {edges.map(([a, b], k) => (
-          <line
-            key={k}
-            x1={nodes[a].x}
-            y1={nodes[a].y}
-            x2={nodes[b].x}
-            y2={nodes[b].y}
-            className="mx-synapse"
-            style={{ animationDelay: `${(Math.min(nodes[a].d, nodes[b].d) / 130).toFixed(2)}s` }}
-          />
+        <polygon points={pts(iso(34, -135, Z + 70), iso(34, -61, Z + 70), iso(34, -61, Z + 88), iso(34, -135, Z + 88))} className="mx-window mx-window--side" />
+        {[0, 1].map((k) => (
+          <path key={k} d={isoCircle(iso, -3, -98, 30, Z + 104)} className={`mx-ring mx-ring--${k}`} />
         ))}
-        {nodes.map((n, k) => (
-          <circle key={k} cx={n.x} cy={n.y} r="3.4" className="mx-neuron" style={{ animationDelay: `${(n.d / 130).toFixed(2)}s` }} />
-        ))}
-        <circle cx="280" cy="132" r="26" className="mx-socket mx-socket--fill" />
-        <circle cx="280" cy="132" r="38" className="mx-ring mx-ring--0" />
+        <path d={isoCircle(iso, -3, -98, 20, Z + 104)} className="mx-socket" />
+        <text x={iso(-40, -135, Z + 104)[0] - 10} y={iso(-40, -135, Z + 104)[1] - 6} textAnchor="end" className="mx-label mx-label--sm">
+          CONTROL
+        </text>
 
-        <path d="M20,132 H150" className="mx-trace" />
-        <Packets d="M20,132 H150" n={2} dur={1.4} />
-        <text x="20" y="120" className="mx-label mx-label--sm">
+        {/* conveyor */}
+        <Box iso={iso} x={-215} y={32} w={425} d={46} h={22} z={Z} className="ib--belt" />
+        <path d={path([iso(-215, 36, BZ), iso(210, 36, BZ)])} className="mx-belt-line" />
+        <path d={path([iso(-215, 74, BZ), iso(210, 74, BZ)])} className="mx-belt-line" />
+        {Array.from({ length: 12 }).map((_, k) => (
+          <polyline key={k} points={pts(iso(-205 + k * 35, 78, Z + 4), iso(-205 + k * 35, 78, Z + 18))} className="mx-roller" />
+        ))}
+
+        {/* crates: parked when dormant, riding the belt when powered */}
+        {powered
+          ? crateStops.map((_, k) => (
+              <g key={`m${k}`}>
+                <Crate />
+                <animateMotion dur="6s" repeatCount="indefinite" begin={`${(-k * 1.5).toFixed(1)}s`} path={belt} />
+              </g>
+            ))
+          : crateStops.map((x) => {
+              const [cx, cy] = iso(x, 55, BZ);
+              return (
+                <g key={`s${x}`} transform={`translate(${cx.toFixed(1)} ${cy.toFixed(1)})`}>
+                  <Crate />
+                </g>
+              );
+            })}
+
+        {/* rule stations (gantries with a press) */}
+        {stations.map((s, i) => (
+          <g key={s.k} className={`mx-station mx-station--${i}`}>
+            <Box iso={iso} x={s.x} y={24} w={7} d={7} h={70} z={Z} className="ib--post" />
+            <Box iso={iso} x={s.x} y={79} w={7} d={7} h={70} z={Z} className="ib--post" />
+            <Box iso={iso} x={s.x - 3} y={24} w={13} d={62} h={9} z={Z + 70} className="ib--beam" />
+            <g className="mx-press">
+              <Box iso={iso} x={s.x - 6} y={44} w={19} d={22} h={14} z={Z + 50} className="ib--press" />
+            </g>
+            <Box iso={iso} x={s.x + 1} y={52} w={5} d={5} h={5} z={Z + 79} className="ib--led" />
+            <text x={iso(s.x + 3, 24, Z + 79)[0]} y={iso(s.x + 3, 24, Z + 79)[1] - 10} textAnchor="middle" className="mx-label mx-label--sm">
+              {s.k}
+            </text>
+          </g>
+        ))}
+
+        {/* output bay */}
+        <Box iso={iso} x={212} y={28} w={26} d={54} h={34} z={Z} className="ib--bay" />
+      </svg>
+      <Dock at={[iso(-3, -98, Z + 104)[0], iso(-3, -98, Z + 104)[1] - 24]} bubble="12 rules on the line." size={54} />
+    </div>
+  );
+}
+
+/* ================================================== Aan: neural compute cube */
+const L = [-62, 0, 62];
+const LZ = [46, 108, 170];
+
+export function NeuralCore() {
+  const iso = makeIso(320, 238);
+  const Z = 14;
+  const nodes: { p: Pt; d: number; key: string }[] = [];
+  L.forEach((x) =>
+    L.forEach((y) =>
+      LZ.forEach((z) => {
+        if (x === 0 && y === 0 && z === 108) return; // Aan sits in the centre
+        nodes.push({ p: iso(x, y, z), d: Math.abs(x) / 62 + Math.abs(y) / 62 + Math.abs(z - 108) / 62, key: `${x}.${y}.${z}` });
+      }),
+    ),
+  );
+  const edges: { a: Pt; b: Pt; d: number }[] = [];
+  L.forEach((x, i) =>
+    L.forEach((y, j) =>
+      LZ.forEach((z, k) => {
+        const here = iso(x, y, z);
+        const d = Math.abs(x) / 62 + Math.abs(y) / 62 + Math.abs(z - 108) / 62;
+        if (i < 2) edges.push({ a: here, b: iso(L[i + 1], y, z), d });
+        if (j < 2) edges.push({ a: here, b: iso(x, L[j + 1], z), d });
+        if (k < 2) edges.push({ a: here, b: iso(x, y, LZ[k + 1]), d });
+      }),
+    ),
+  );
+  const c = 96;
+  const cube = isoBox(iso, -c, -c, c * 2, c * 2, 190, Z);
+  const back = [
+    [iso(-c, -c, Z), iso(-c, -c, Z + 190)],
+    [iso(-c, -c, Z), iso(c, -c, Z)],
+    [iso(-c, -c, Z), iso(-c, c, Z)],
+  ];
+  const qIn = path([iso(-230, 0, 108), iso(-c, 0, 108)]);
+  const qOut = path([iso(c, 0, 108), iso(230, 0, 108)]);
+  return (
+    <div className="mx mx--core">
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A glass compute cube: your question flows in, Aan reasons across a lattice of your data, the answer flows out">
+        <Box iso={iso} x={-130} y={-130} w={260} d={260} h={Z} className="ib--slab" />
+        <path d={isoCircle(iso, 0, 0, 120, Z)} className="mx-etch" />
+        {back.map(([a, b], k) => (
+          <line key={k} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className="mx-etch" />
+        ))}
+
+        <path d={qIn} className="mx-trace" />
+        <Packets d={qIn} n={2} dur={1.4} />
+        <text x={iso(-230, 0, 108)[0]} y={iso(-230, 0, 108)[1] - 12} className="mx-label mx-label--sm">
           YOUR QUESTION
         </text>
-        <path d="M414,132 H540" className="mx-trace mx-trace--out" />
-        <Packets d="M414,132 H540" n={2} dur={1.4} className="mx-packets--out" />
-        <text x="540" y="120" textAnchor="end" className="mx-label mx-label--sm">
+
+        {edges.map((e, k) => (
+          <line key={k} x1={e.a[0].toFixed(1)} y1={e.a[1].toFixed(1)} x2={e.b[0].toFixed(1)} y2={e.b[1].toFixed(1)} className="mx-synapse" style={{ animationDelay: `${(e.d * 0.35).toFixed(2)}s` }} />
+        ))}
+        {nodes.map((n) => (
+          <circle key={n.key} cx={n.p[0].toFixed(1)} cy={n.p[1].toFixed(1)} r="4" className="mx-neuron" style={{ animationDelay: `${(n.d * 0.35).toFixed(2)}s` }} />
+        ))}
+
+        {/* glass walls in front */}
+        <polygon points={cube.right} className="mx-glass" />
+        <polygon points={cube.left} className="mx-glass" />
+        <polygon points={cube.top} className="mx-glass mx-glass--top" />
+
+        <path d={qOut} className="mx-trace mx-trace--out" />
+        <Packets d={qOut} n={2} dur={1.4} className="mx-packets--out" />
+        <text x={iso(230, 0, 108)[0]} y={iso(230, 0, 108)[1] - 12} textAnchor="end" className="mx-label mx-label--sm">
           THE WHY
         </text>
       </svg>
-      <Dock x={280} y={128} state="circle" bubble="Thinking with your data." size={58} />
+      <Dock at={iso(0, 0, 108)} state="circle" bubble="Thinking with your data." size={60} sizeSm={42} />
     </div>
   );
 }

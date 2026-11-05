@@ -1,10 +1,13 @@
 /* ------------------------------------------------------------------
-   Machines — dormant hairline art that powers up when Aan docks
+   Isometric scenes — dormant line art that powers up when Aan docks
 ------------------------------------------------------------------- */
 .mx {
-  --mline: color-mix(in srgb, var(--ink) 26%, transparent);
-  --mline-soft: color-mix(in srgb, var(--ink) 12%, transparent);
+  --mline: color-mix(in srgb, var(--ink) 24%, transparent);
+  --mline-soft: color-mix(in srgb, var(--ink) 10%, transparent);
   --mface: var(--panel-solid);
+  --mface-l: color-mix(in srgb, var(--panel-solid) 93%, var(--ink));
+  --mface-r: color-mix(in srgb, var(--panel-solid) 85%, var(--ink));
+  --on-blue: color-mix(in srgb, var(--blue) 60%, transparent);
   position: relative;
   width: 100%;
 }
@@ -18,31 +21,44 @@
 
 .mx-dock {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
-/* faces & lines */
-.mx-face {
-  fill: var(--mface);
+/* box + cylinder faces */
+.ib-t,
+.ib-l,
+.ib-r,
+.ic-side,
+.ic-top {
   stroke: var(--mline);
-  stroke-width: 1.2;
+  stroke-width: 1;
   stroke-linejoin: round;
-  transition: stroke 0.6s var(--ease-out), fill 0.6s var(--ease-out);
+  transition: fill 0.7s var(--ease-out), stroke 0.7s var(--ease-out);
 }
 
-.mx-face--l {
-  fill: color-mix(in srgb, var(--mface) 94%, var(--ink));
+.ib-t,
+.ic-top {
+  fill: var(--mface);
 }
 
-.mx-face--r {
-  fill: color-mix(in srgb, var(--mface) 88%, var(--ink));
+.ib-l,
+.ic-side {
+  fill: var(--mface-l);
 }
 
-.mx-etch,
-.mx-pin {
+.ib-r {
+  fill: var(--mface-r);
+}
+
+.ib--slab .ib-t,
+.ib--pcb .ib-t {
+  fill: color-mix(in srgb, var(--mface) 96%, var(--ink));
+}
+
+.mx-etch {
   fill: none;
   stroke: var(--mline-soft);
   stroke-width: 1;
@@ -51,7 +67,7 @@
 .mx-label {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   fill: var(--ink-2);
 }
 
@@ -66,19 +82,13 @@
   font-weight: 500;
 }
 
-.mx-port {
-  fill: var(--mface);
-  stroke: var(--mline);
-  stroke-width: 1.2;
-  transition: stroke 0.5s;
-}
-
+/* traces, packets, rings, socket */
 .mx-trace {
   fill: none;
   stroke: var(--mline);
-  stroke-width: 1.4;
+  stroke-width: 1.6;
   stroke-linejoin: round;
-  transition: stroke 0.6s var(--ease-out);
+  transition: stroke 0.7s;
 }
 
 .mx-packet {
@@ -94,36 +104,22 @@
 .mx-socket {
   fill: none;
   stroke: var(--mline);
-  stroke-width: 1.4;
+  stroke-width: 1.3;
   stroke-dasharray: 3 4;
   transition: stroke 0.5s, fill 0.5s;
-}
-
-.mx-socket--in {
-  stroke-dasharray: none;
-}
-
-.mx-socket--fill {
-  fill: var(--mface);
-  stroke-dasharray: 3 4;
 }
 
 .mx-ring {
   fill: none;
   stroke: var(--coral);
-  stroke-width: 1.4;
+  stroke-width: 1.3;
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
 }
 
-/* powered ---------------------------------------------------------- */
 [data-powered="true"] .mx-trace {
-  stroke: color-mix(in srgb, var(--blue) 55%, transparent);
-}
-
-[data-powered="true"] .mx-port {
-  stroke: color-mix(in srgb, var(--coral) 70%, transparent);
+  stroke: var(--on-blue);
 }
 
 [data-powered="true"] .mx-packet {
@@ -133,11 +129,7 @@
 [data-powered="true"] .mx-socket {
   stroke: var(--coral);
   stroke-dasharray: none;
-}
-
-[data-powered="true"] .mx-socket--in,
-[data-powered="true"] .mx-socket--fill {
-  fill: color-mix(in srgb, var(--coral) 14%, var(--mface));
+  fill: color-mix(in srgb, var(--coral) 14%, transparent);
 }
 
 [data-powered="true"] .mx-ring {
@@ -159,30 +151,96 @@
   }
   100% {
     opacity: 0;
-    transform: scale(2.6);
+    transform: scale(2.4);
   }
 }
 
-/* CPU */
-[data-powered="true"] .mx-die {
-  fill: color-mix(in srgb, var(--blue) 8%, var(--mface));
-  stroke: color-mix(in srgb, var(--blue) 60%, transparent);
+/* ---------------------------------------------------------- motherboard */
+[data-powered="true"] .ib--pcb .ib-t {
+  fill: color-mix(in srgb, var(--blue) 4%, var(--mface));
 }
 
-[data-powered="true"] .mx--cpu .mx-face--t:not(.mx-die) {
-  stroke: color-mix(in srgb, var(--blue) 40%, transparent);
+.ib--die .ib-t {
+  fill: color-mix(in srgb, var(--mface) 90%, var(--ink));
 }
 
-[data-powered="true"] .mx-etch {
-  stroke: color-mix(in srgb, var(--blue) 25%, transparent);
+[data-powered="true"] .ib--die .ib-t {
+  fill: color-mix(in srgb, var(--coral) 16%, var(--mface));
+  stroke: var(--coral);
 }
 
-/* refinery */
-.mx-pipe {
+[data-powered="true"] .ib--socket .ib-t,
+[data-powered="true"] .ib--chip .ib-t,
+[data-powered="true"] .ib--port .ib-t {
+  stroke: var(--on-blue);
+}
+
+[data-powered="true"] .ib--out .ib-t {
+  fill: color-mix(in srgb, var(--blue) 10%, var(--mface));
+}
+
+.ib--ram .ib-t {
+  fill: color-mix(in srgb, var(--mface) 92%, var(--ink));
+}
+
+.mx-led-line {
   fill: none;
   stroke: var(--mline-soft);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 3 5;
+}
+
+[data-powered="true"] .mx-led-line {
+  stroke: #1f9d6b;
+  animation: mx-flow 1.1s linear infinite;
+}
+
+.ic--cap .ic-top {
+  fill: color-mix(in srgb, var(--mface) 88%, var(--ink));
+}
+
+[data-powered="true"] .ic--cap .ic-top {
+  fill: color-mix(in srgb, var(--blue) 20%, var(--mface));
+}
+
+/* LEDs */
+.ib--led .ib-t {
+  fill: color-mix(in srgb, var(--mface) 80%, var(--ink));
+}
+
+[data-powered="true"] .ib--led .ib-t {
+  fill: #1f9d6b;
+  stroke: #1f9d6b;
+  animation: mx-led 1.6s steps(1) infinite;
+}
+
+[data-powered="true"] .ib--led-1 .ib-t {
+  fill: var(--coral);
+  stroke: var(--coral);
+  animation-delay: 0.4s;
+}
+
+[data-powered="true"] .ib--led-2 .ib-t {
+  fill: var(--blue);
+  stroke: var(--blue);
+  animation-delay: 0.8s;
+}
+
+@keyframes mx-led {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ------------------------------------------------------------- refinery */
+.mx-pipe {
+  fill: none;
+  stroke: var(--mline);
   stroke-width: 9;
   stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.55;
 }
 
 .mx-flow {
@@ -190,145 +248,241 @@
   stroke: var(--blue);
   stroke-width: 3;
   stroke-linecap: round;
-  stroke-dasharray: 8 12;
+  stroke-linejoin: round;
+  stroke-dasharray: 7 11;
   opacity: 0;
   transition: opacity 0.5s;
 }
 
-[data-powered="true"] .mx-flow {
-  opacity: 0.85;
-  animation: mx-flow 0.9s linear infinite;
+.mx-flow--gain {
+  stroke: #1f9d6b;
 }
 
-[data-powered="true"] .mx-flow--late {
-  stroke: #1f9d6b;
+[data-powered="true"] .mx-flow {
+  opacity: 0.9;
+  animation: mx-flow 0.9s linear infinite;
 }
 
 @keyframes mx-flow {
   to {
-    stroke-dashoffset: -20;
+    stroke-dashoffset: -18;
   }
 }
 
-.mx-level {
-  transition: transform 1.8s var(--ease-out);
+.ic--glass .ic-side {
+  fill: color-mix(in srgb, var(--mface) 30%, transparent);
 }
 
-.mx-level--sales {
-  transform: translateY(48px);
+.ic--glass .ic-top {
+  fill: color-mix(in srgb, var(--mface) 55%, transparent);
 }
 
-.mx-level--sales .mx-liquid {
-  fill: color-mix(in srgb, var(--blue) 18%, transparent);
+.ic--liquid .ic-side,
+.ic--liquid .ic-top {
+  stroke: none;
+  transition: opacity 1.2s var(--ease-out);
 }
 
-.mx-level--profit {
-  transform: translateY(92px);
+.ic--sales .ic-side {
+  fill: color-mix(in srgb, var(--blue) 22%, transparent);
 }
 
-.mx-level--profit .mx-liquid {
+.ic--sales .ic-top {
+  fill: color-mix(in srgb, var(--blue) 30%, transparent);
+}
+
+.ic--profit .ic-side {
   fill: color-mix(in srgb, var(--coral) 30%, transparent);
-  transition: fill 1.2s;
 }
 
-[data-powered="true"] .mx-level--sales {
-  transform: translateY(6px);
+.ic--profit .ic-top {
+  fill: color-mix(in srgb, var(--coral) 40%, transparent);
 }
 
-[data-powered="true"] .mx-level--profit {
-  transform: translateY(26px);
-  animation: mx-bob 3.2s ease-in-out 2s infinite;
-}
-
-[data-powered="true"] .mx-level--profit .mx-liquid {
-  fill: rgba(31, 157, 107, 0.28);
-}
-
-@keyframes mx-bob {
-  0%,
-  100% {
-    transform: translateY(26px);
-  }
-  50% {
-    transform: translateY(16px);
-  }
-}
-
-.mx-drip {
-  fill: none;
-  stroke: var(--coral);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-dasharray: 2 10;
+.ic--high {
   opacity: 0;
 }
 
-[data-powered="true"] .mx-drip {
-  opacity: 0.8;
-  animation: mx-drip 0.8s linear infinite;
+[data-powered="true"] .ic--low {
+  opacity: 0;
 }
 
-[data-powered="true"] .mx-filter--1 .mx-drip {
-  animation-delay: 0.25s;
+[data-powered="true"] .ic--high {
+  opacity: 1;
 }
 
-[data-powered="true"] .mx-filter--2 .mx-drip {
+[data-powered="true"] .ic--profit.ic--high .ic-side {
+  fill: rgba(31, 157, 107, 0.28);
+}
+
+[data-powered="true"] .ic--profit.ic--high .ic-top {
+  fill: rgba(31, 157, 107, 0.4);
+}
+
+.ic--reactor .ic-top {
+  fill: var(--mface);
+}
+
+[data-powered="true"] .ic--reactor .ic-side,
+[data-powered="true"] .ic--reactor .ic-top,
+[data-powered="true"] .ib--tower .ib-t {
+  stroke: var(--on-blue);
+}
+
+.mx-band {
+  fill: none;
+  stroke: var(--mline-soft);
+  stroke-width: 1;
+  clip-path: inset(50% 0 0 0);
+}
+
+[data-powered="true"] .mx-band {
+  stroke: color-mix(in srgb, var(--coral) 50%, transparent);
+}
+
+.mx-steam {
+  fill: color-mix(in srgb, var(--ink) 12%, transparent);
+  opacity: 0;
+}
+
+[data-powered="true"] .mx-steam {
+  animation: mx-steam 2.4s ease-out infinite;
+}
+
+[data-powered="true"] .mx-steam--1 {
+  animation-delay: 0.8s;
+}
+
+[data-powered="true"] .mx-steam--2 {
+  animation-delay: 1.6s;
+}
+
+@keyframes mx-steam {
+  0% {
+    opacity: 0.7;
+    transform: translateY(0) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-28px) scale(1.8);
+  }
+}
+
+/* -------------------------------------------------------------- factory */
+.mx-window {
+  fill: color-mix(in srgb, var(--mface) 80%, var(--ink));
+  stroke: var(--mline);
+  stroke-width: 1;
+  transition: fill 0.7s;
+}
+
+[data-powered="true"] .mx-window {
+  fill: color-mix(in srgb, var(--blue) 26%, var(--mface));
+}
+
+[data-powered="true"] .mx-window--side {
+  fill: color-mix(in srgb, var(--blue) 18%, var(--mface));
+}
+
+.ib--belt .ib-t {
+  fill: color-mix(in srgb, var(--mface) 86%, var(--ink));
+}
+
+.mx-belt-line {
+  fill: none;
+  stroke: var(--mline);
+  stroke-width: 1.4;
+  stroke-dasharray: 6 8;
+}
+
+[data-powered="true"] .mx-belt-line {
+  stroke: var(--on-blue);
+  animation: mx-belt 0.8s linear infinite;
+}
+
+@keyframes mx-belt {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+.mx-roller {
+  stroke: var(--mline-soft);
+  stroke-width: 2;
+}
+
+.mx-crate .ib-t {
+  fill: color-mix(in srgb, #e9c79a 40%, var(--mface));
+}
+
+.mx-crate .ib-l {
+  fill: color-mix(in srgb, #e9c79a 30%, var(--mface-l));
+}
+
+.mx-crate .ib-r {
+  fill: color-mix(in srgb, #e9c79a 25%, var(--mface-r));
+}
+
+.mx-crate-tape {
+  fill: none;
+  stroke: var(--mline);
+  stroke-width: 2;
+}
+
+[data-powered="true"] .mx-crate-tape {
+  stroke: var(--coral);
+}
+
+.mx-press {
+  transform-box: view-box;
+}
+
+[data-powered="true"] .mx-press {
+  animation: mx-press 1.5s var(--ease-inout) infinite;
+}
+
+[data-powered="true"] .mx-station--1 .mx-press {
   animation-delay: 0.5s;
 }
 
-@keyframes mx-drip {
-  to {
-    stroke-dashoffset: -12;
+[data-powered="true"] .mx-station--2 .mx-press {
+  animation-delay: 1s;
+}
+
+@keyframes mx-press {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(14px);
   }
 }
 
-[data-powered="true"] .mx--refinery .mx-face--t {
-  stroke: color-mix(in srgb, var(--blue) 40%, transparent);
+[data-powered="true"] .ib--beam .ib-t,
+[data-powered="true"] .ib--press .ib-t {
+  stroke: var(--on-blue);
 }
 
-/* gears */
-.mx-gear__back {
-  fill: color-mix(in srgb, var(--ink) 7%, transparent);
-  stroke: var(--mline-soft);
+[data-powered="true"] .ib--press .ib-t {
+  fill: color-mix(in srgb, var(--blue) 12%, var(--mface));
+}
+
+/* --------------------------------------------------------- neural core */
+.mx-glass {
+  fill: color-mix(in srgb, var(--mface) 22%, transparent);
+  stroke: var(--mline);
   stroke-width: 1;
+  transition: stroke 0.7s;
 }
 
-.mx-gear__spin {
-  transform-box: view-box;
-  animation: mx-spin var(--dur) linear infinite;
-  animation-play-state: paused;
+.mx-glass--top {
+  fill: color-mix(in srgb, var(--mface) 30%, transparent);
 }
 
-.mx-gear__spin.is-rev {
-  animation-direction: reverse;
-}
-
-[data-powered="true"] .mx-gear__spin {
-  animation-play-state: running;
-}
-
-[data-powered="true"] .mx-gear__face {
-  stroke: color-mix(in srgb, var(--blue) 60%, transparent);
-}
-
-[data-powered="true"] .mx-gear--main .mx-gear__face {
-  stroke: var(--coral);
-  fill: color-mix(in srgb, var(--coral) 6%, var(--mface));
-}
-
-.mx-gear__label {
-  fill: var(--ink-2);
-}
-
-@keyframes mx-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* brain */
-.mx-brain {
-  stroke-width: 1.3;
+[data-powered="true"] .mx-glass {
+  stroke: color-mix(in srgb, var(--blue) 45%, transparent);
 }
 
 .mx-synapse {
@@ -340,10 +494,6 @@
   fill: var(--mline);
   transform-box: fill-box;
   transform-origin: center;
-}
-
-[data-powered="true"] .mx-brain {
-  stroke: color-mix(in srgb, var(--blue) 50%, transparent);
 }
 
 [data-powered="true"] .mx-synapse {
@@ -358,12 +508,12 @@
   0%,
   70%,
   100% {
-    fill: color-mix(in srgb, var(--blue) 55%, transparent);
+    fill: color-mix(in srgb, var(--blue) 60%, transparent);
     transform: scale(1);
   }
   20% {
     fill: var(--coral);
-    transform: scale(1.7);
+    transform: scale(1.8);
   }
 }
 
@@ -371,23 +521,31 @@
   0%,
   70%,
   100% {
-    stroke: color-mix(in srgb, var(--blue) 22%, transparent);
+    stroke: color-mix(in srgb, var(--blue) 24%, transparent);
   }
   20% {
-    stroke: color-mix(in srgb, var(--coral) 70%, transparent);
+    stroke: color-mix(in srgb, var(--coral) 75%, transparent);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mx-gear__spin,
   .mx-ring,
   .mx-neuron,
   .mx-synapse,
   .mx-flow,
-  .mx-drip {
+  .mx-steam,
+  .mx-press,
+  .mx-belt-line,
+  .mx-led-line,
+  .ib--led .ib-t {
     animation: none !important;
   }
   .mx-packets {
     display: none;
   }
+}
+
+.mx-steam {
+  transform-box: fill-box;
+  transform-origin: center;
 }
