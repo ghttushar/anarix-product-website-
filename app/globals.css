@@ -1,34 +1,53 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Tokens
-   Body = Anarix revamp brand manual. Chrome (nav + action island) =
-   the services site (www.anarix.ai), light and dark variants.
+   Tokens — taken from the Anarix website design system
+   (anarix-website-final-state · src/website/website.css + styles/_semantic.scss).
+   Coral / Blue (periwinkle) / Ink, Fraunces display + Inter body.
 ------------------------------------------------------------------- */
 :root {
-  /* brand manual */
-  --coral: #f26e77;
-  --coral-deep: #d9505c;
-  --blue: #4a62d9;
-  --blue-2: #6b80f0;
-  --night: #0b0d14;
-  --cream: #fbfaf8;
+  /* reference HSL tokens (light) */
+  --h-background: 228 25% 97%;
+  --h-foreground: 209 22% 14%;
+  --h-card: 0 0% 100%;
+  --h-primary: 230 65% 57%;
+  --h-muted: 228 20% 94%;
+  --h-muted-fg: 215 14% 42%;
+  --h-accent: 230 65% 95%;
+  --h-accent-fg: 230 65% 35%;
+  --h-border: 228 20% 90%;
+  --h-coral: 355 84% 70%;
+  --h-glow: 230 75% 65%;
+  --h-lavender: 230 40% 96%;
 
-  --bg: var(--cream);
-  --ink: #1d252d;
-  --ink-2: #55616e;
-  --ink-3: #8a94a0;
-  --line: rgba(29, 37, 45, 0.16);
-  --line-soft: rgba(29, 37, 45, 0.08);
-  --panel: rgba(255, 255, 255, 0.94);
-  --panel-solid: #ffffff;
-  --panel-border: rgba(29, 37, 45, 0.1);
-  --shadow-panel: 0 18px 48px rgba(19, 29, 41, 0.1);
-  --wash-blue: rgba(74, 98, 217, 0.08);
-  --wash-coral: rgba(242, 110, 119, 0.09);
-  --skel: rgba(29, 37, 45, 0.07);
+  --shadow-soft: 0 2px 8px -2px hsl(var(--h-primary) / 0.08);
+  --shadow-medium: 0 4px 16px -4px hsl(var(--h-primary) / 0.12);
+  --shadow-strong: 0 8px 32px -8px hsl(var(--h-primary) / 0.18);
+  --shadow-glow: 0 0 24px -4px hsl(var(--h-primary) / 0.25);
 
-  /* services-site chrome, light */
+  /* semantic aliases used across the site */
+  --coral: hsl(var(--h-coral));
+  --coral-deep: hsl(355 70% 60%);
+  --blue: hsl(var(--h-primary));
+  --blue-2: hsl(var(--h-glow));
+  --night: hsl(209 28% 11%); /* reference .section-dark */
+  --night-deep: hsl(209 30% 8%);
+
+  --bg: hsl(var(--h-background));
+  --ink: hsl(var(--h-foreground));
+  --ink-2: hsl(var(--h-muted-fg));
+  --ink-3: hsl(var(--h-muted-fg) / 0.75);
+  --line: hsl(var(--h-border));
+  --line-soft: hsl(var(--h-border) / 0.6);
+  --panel: hsl(var(--h-card));
+  --panel-solid: hsl(var(--h-card));
+  --panel-border: hsl(var(--h-border));
+  --shadow-panel: var(--shadow-medium);
+  --skel: hsl(var(--h-muted));
+  --accent-soft: hsl(var(--h-accent));
+  --lavender: hsl(var(--h-lavender));
+
+  /* nav + island chrome (same system) */
   --c-card: 0 0% 100%;
   --c-primary: 230 65% 57%;
   --c-primary-fg: 0 0% 100%;
@@ -41,35 +60,37 @@
   --c-shadow-medium: 0 4px 16px -4px hsl(230 65% 57% / 0.12);
   --c-shadow-strong: 0 8px 32px -8px hsl(230 65% 57% / 0.18);
 
-  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
-  --font-body: var(--font-manrope), "Manrope", system-ui, sans-serif;
+  --font-display: var(--font-fraunces), "Fraunces", Georgia, serif;
+  --font-body: var(--font-inter), Inter, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
   --font-chrome: var(--font-inter), Inter, system-ui, sans-serif;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
-  --container: 1200px;
+  --container: 1280px;
 }
 
-/* Dark theme (island toggle) */
+/* Dark theme (island toggle) — reference `.dark .website-scope` */
 html[data-theme="dark"] {
-  --bg: var(--night);
-  --ink: #eef0f5;
-  --ink-2: #a3acb9;
-  --ink-3: #6d7685;
-  --line: rgba(238, 240, 245, 0.16);
-  --line-soft: rgba(238, 240, 245, 0.07);
-  --panel: rgba(20, 24, 34, 0.92);
-  --panel-solid: #141822;
-  --panel-border: rgba(255, 255, 255, 0.08);
-  --shadow-panel: 0 18px 48px rgba(0, 0, 0, 0.45);
-  --wash-blue: rgba(74, 98, 217, 0.14);
-  --wash-coral: rgba(242, 110, 119, 0.1);
-  --skel: rgba(238, 240, 245, 0.08);
+  --h-background: 209 30% 8%;
+  --h-foreground: 228 20% 94%;
+  --h-card: 209 28% 11%;
+  --h-primary: 230 70% 65%;
+  --h-muted: 209 25% 16%;
+  --h-muted-fg: 215 12% 60%;
+  --h-accent: 230 40% 20%;
+  --h-accent-fg: 230 70% 85%;
+  --h-border: 209 25% 18%;
+  --h-coral: 355 84% 72%;
+  --h-glow: 230 80% 75%;
+  --h-lavender: 230 30% 14%;
+  --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+  --shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
+  --shadow-strong: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+  --shadow-glow: 0 0 24px -4px hsl(var(--h-primary) / 0.3);
 }
 
-/* services-site chrome, dark: when the theme is dark, or when the
-   nav / island sits over a dark surface (Aan panel, Night Watch) */
+/* chrome over dark surfaces / dark theme */
 html[data-theme="dark"] .chrome,
 html[data-nav="dark"] .chrome--nav,
 html[data-island="dark"] .chrome--island {
@@ -102,20 +123,8 @@ body {
   transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
 }
 
-/* brand-manual corner washes, pinned to the viewport */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 0% 0%, var(--wash-blue), transparent 34%),
-    radial-gradient(circle at 100% 0%, var(--wash-coral), transparent 36%);
-}
-
 ::selection {
-  background: rgba(242, 110, 119, 0.25);
+  background: hsl(var(--h-primary) / 0.18);
 }
 
 a {
@@ -132,13 +141,13 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid hsl(var(--h-primary));
   outline-offset: 3px;
   border-radius: 8px;
 }
 
 /* ------------------------------------------------------------------
-   Shared primitives
+   Shared primitives (reference .ws-* components)
 ------------------------------------------------------------------- */
 .container {
   width: 100%;
@@ -147,88 +156,124 @@ button {
   padding: 0 24px;
 }
 
+/* .ws-eyebrow */
 .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  background-color: hsl(var(--h-primary) / 0.12);
+  color: hsl(var(--h-primary));
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--coral);
 }
 
+/* .ws-heading */
 .display {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.94;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
   color: var(--ink);
 }
 
+/* .text-gradient-primary */
+.text-gradient {
+  background-image: linear-gradient(135deg, hsl(var(--h-primary)), hsl(var(--h-glow)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .h1 {
-  font-size: clamp(40px, 4vw, 58px);
+  font-size: clamp(40px, 4.4vw, 60px);
 }
 
 .h2 {
-  font-size: clamp(36px, 4.2vw, 54px);
-  line-height: 0.98;
+  font-size: clamp(34px, 3.6vw, 48px);
+  line-height: 1.1;
 }
 
 .lede {
-  font-size: clamp(17px, 1.4vw, 19px);
-  line-height: 1.6;
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.7;
   color: var(--ink-2);
 }
 
+/* .ws-btn */
 .btn {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   height: 48px;
-  padding: 0 24px;
-  border-radius: 999px;
+  padding: 0 32px;
+  border-radius: 9999px;
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
   white-space: nowrap;
-  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), background-color 0.2s;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0) scale(0.97);
 }
 
 .btn--primary {
   color: #fff;
-  background-image: linear-gradient(135deg, var(--blue), var(--blue-2));
-  box-shadow: 0 14px 36px rgba(74, 98, 217, 0.18);
+  background-color: hsl(var(--h-primary));
 }
 
 .btn--primary:hover {
-  box-shadow: 0 18px 40px rgba(74, 98, 217, 0.28);
+  background-color: hsl(var(--h-primary) / 0.9);
+  box-shadow: var(--shadow-strong);
 }
 
+/* .btn-shine */
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.18), transparent);
+  transition: left 0.5s var(--ease-out);
+}
+
+.btn--primary:hover::after {
+  left: 100%;
+}
+
+/* .ws-btn--outline */
 .btn--secondary {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(29, 37, 45, 0.1);
-}
-
-html[data-theme="dark"] .btn--secondary {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: transparent;
+  border: 1px solid hsl(var(--h-border));
 }
 
 .btn--secondary:hover {
-  background: #fff;
+  border-color: hsl(var(--h-primary) / 0.4);
 }
 
-html[data-theme="dark"] .btn--secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+/* .bg-dot-grid */
+.dot-grid {
+  background-image: radial-gradient(circle, hsl(var(--h-primary) / 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .sr-only {

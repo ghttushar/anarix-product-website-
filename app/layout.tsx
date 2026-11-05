@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Inter, Manrope, Space_Grotesk } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import "../components/aan/aan.css";
 import "../components/aan/traveler.css";
@@ -9,11 +9,10 @@ import "../components/sections/sections.css";
 import "../components/machines/machines.css";
 import "../components/night/night.css";
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-space-grotesk" });
-const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope" });
+// Fraunces (display) + Inter (body): the Anarix website design system
+const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-fraunces" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono" });
-// Inter: the services-site chrome (nav + action island) is set in Inter
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Anarix Platform · One AI. Every marketplace. Always on.",
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FBFAF8",
+  themeColor: "#F5F6FA",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -35,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-theme="light"
-      className={`${spaceGrotesk.variable} ${manrope.variable} ${plexMono.variable} ${inter.variable}`}
+      className={`${fraunces.variable} ${plexMono.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
       <body>{children}</body>

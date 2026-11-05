@@ -198,8 +198,10 @@ export function LazySusan() {
 
         <div className="susan__tilt" ref={tiltRef} style={{ "--tilt": `${TILT}deg` } as React.CSSProperties}>
           <div className="susan__plate">
-            <div className="susan__edge susan__edge--3" />
-            <div className="susan__edge susan__edge--2" />
+            {/* solid rim: stacked discs give the plate real thickness */}
+            {Array.from({ length: 14 }).map((_, k) => (
+              <div key={k} className="susan__rim" style={{ transform: `translateZ(${-(k + 1) * 2}px)` }} />
+            ))}
             <svg className="susan__top" viewBox="0 0 1000 1000" aria-hidden="true">
               <defs>
                 <radialGradient id="plate-grad" cx="45%" cy="40%" r="65%">
@@ -218,7 +220,7 @@ export function LazySusan() {
                 const r = 128;
                 const P = (rad: number, ang: number) => pc(rad, ang).join(",");
                 const d = `M${P(r, a0)} L${P(R, a0)} A${R},${R} 0 0 1 ${P(R, a1)} L${P(r, a1)} A${r},${r} 0 0 0 ${P(r, a0)}Z`;
-                return <path key={s.id} d={d} className={`plate-wedge ${i === active ? "is-active" : ""}`} />;
+                return <path key={s.id} d={d} className={`plate-wedge plate-wedge--${i % 2} ${i === active ? "is-active" : ""}`} />;
               })}
               {Array.from({ length: 36 }).map((_, k) => {
                 const a = (k * 10 * Math.PI) / 180;
@@ -271,6 +273,10 @@ export function LazySusan() {
             })}
 
             {/* hub: Aan's first dock */}
+            {/* raised hub Aan stands on */}
+            {Array.from({ length: 12 }).map((_, k) => (
+              <div key={`hub${k}`} className={`susan__hub ${k === 11 ? "susan__hub--top" : ""}`} style={{ transform: `translateZ(${(k + 1) * 2}px)` }} />
+            ))}
             <div className="susan__board susan__board--hub" style={{ "--a": "0deg" } as React.CSSProperties}>
               <div data-dock data-size="104" data-size-sm="64" data-state="diamond" data-bubble="Hi, I'm Aan. Spin me." className="susan__hub-dock" />
             </div>

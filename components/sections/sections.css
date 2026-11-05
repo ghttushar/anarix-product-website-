@@ -1557,3 +1557,126 @@ html[data-theme="dark"] .rules__scope {
 .feature {
   overflow-x: clip;
 }
+
+/* ------------------------------------------------------------------
+   v4: Anarix website design system (anarix-website-final-state)
+   .ws-card · .section-dark · .section-tint · shadows
+------------------------------------------------------------------- */
+:root {
+  --gain: hsl(160 84% 39%);
+  --risk: hsl(355 75% 58%);
+  --surface-shadow: var(--shadow-medium);
+}
+
+html[data-theme="dark"] {
+  --gain: hsl(158 64% 52%);
+  --risk: hsl(355 84% 72%);
+}
+
+/* .ws-card + .ws-card--soft + .ws-hover-lift */
+.card {
+  border-radius: 1rem;
+  border: 1px solid hsl(var(--h-border));
+  background: hsl(var(--h-card));
+  box-shadow: var(--shadow-medium);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-strong);
+}
+
+[data-powered="true"] .card {
+  border-color: hsl(var(--h-primary) / 0.35);
+  box-shadow: var(--shadow-strong), var(--shadow-glow);
+}
+
+.stage__ui .card {
+  background: hsl(var(--h-card) / 0.92);
+}
+
+.profit__grid div,
+.rules__ai-input,
+.signal__aan {
+  background-color: hsl(var(--h-card));
+}
+
+.signal__aan,
+.rules__ai {
+  background: hsl(var(--h-accent));
+}
+
+.pill--risk {
+  color: var(--risk);
+  background: color-mix(in srgb, var(--risk) 12%, transparent);
+}
+
+/* .section-tint: alternating band */
+#profitability,
+#mcp {
+  background-color: hsl(var(--h-muted) / 0.35);
+}
+
+/* .section-dark: fixed dark tokens in both site modes */
+.feature--dark {
+  --h-background: 209 28% 11%;
+  --h-card: 209 28% 14%;
+  --h-foreground: 228 20% 94%;
+  --h-muted-fg: 215 12% 60%;
+  --h-border: 209 25% 18%;
+  --h-muted: 209 25% 16%;
+  --h-accent: 230 40% 20%;
+  --h-primary: 230 70% 65%;
+  --bg: hsl(var(--h-background));
+  --ink: hsl(var(--h-foreground));
+  --ink-2: hsl(var(--h-muted-fg));
+  --ink-3: hsl(var(--h-muted-fg) / 0.75);
+  --line: hsl(var(--h-border));
+  --line-soft: hsl(var(--h-border) / 0.7);
+  --panel: hsl(var(--h-card));
+  --panel-solid: hsl(var(--h-card));
+  --panel-border: hsl(var(--h-border));
+  --skel: hsl(var(--h-muted));
+  --shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
+  --shadow-strong: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+  --shadow-glow: 0 0 24px -4px hsl(var(--h-primary) / 0.3);
+  background-color: hsl(var(--h-background));
+  background-image: none;
+  border-radius: 1.5rem;
+  color: var(--ink);
+}
+
+/* media: a quiet .ws-card */
+.media {
+  border-radius: 1rem;
+  border: 1px solid hsl(var(--h-border));
+  background: hsl(var(--h-lavender));
+  box-shadow: var(--shadow-soft);
+}
+
+.media__play {
+  background: hsl(var(--h-card));
+  color: hsl(var(--h-primary));
+  box-shadow: var(--shadow-medium);
+}
+
+.feature__proof li::before {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A62D9' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+      center / 10px no-repeat,
+    hsl(var(--h-primary) / 0.12);
+}
+
+.signal__value .live,
+.profit__v,
+.tile b,
+.kpi__value {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.term {
+  border-radius: 1rem;
+  background: hsl(209 28% 11%);
+}

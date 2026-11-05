@@ -2,6 +2,8 @@ import { Nav } from "@/components/chrome/Nav";
 import { ActionIsland } from "@/components/chrome/ActionIsland";
 import { AanTraveler } from "@/components/aan/AanTraveler";
 import { LazySusan } from "@/components/hero/LazySusan";
+import { HeroDataViz } from "@/components/hero/HeroDataViz";
+import { HeroStats } from "@/components/hero/HeroStats";
 import { MediaSlot } from "@/components/sections/shared";
 import { AanSection, ProfitSection, RulesSection, SignalsSection } from "@/components/sections/Features";
 import { McpSection } from "@/components/sections/McpSection";
@@ -15,25 +17,35 @@ export default function Home() {
       <main id="top">
         {/* 1. Hero: the lazy Susan (also the homepage jump bar) */}
         <section className="hero" data-stop="hero">
+          <HeroDataViz />
           <div className="container hero__grid">
             <div className="hero__copy">
-              <p className="eyebrow">Anarix Platform · Powered by Aan</p>
+              <p className="hero__pill">
+                <span className="hero__pill-dot" />
+                The Anarix platform, powered by Aan
+              </p>
               <h1 className="display h1 hero__title">
                 <span>One AI.</span>
                 <span>Every marketplace.</span>
-                <span className="is-accent">Always on.</span>
+                <span className="text-gradient">Always on.</span>
               </h1>
               <p className="lede hero__lede">
-                Aan watches your Amazon, Walmart and Shopify accounts 24/7, and acts before it costs you.
+                Aan watches your Amazon, Walmart and Shopify accounts 24/7, and acts before it costs you.{" "}
+                <strong>You sleep. Aan doesn&apos;t.</strong>
               </p>
               <div className="hero__ctas">
                 <a className="btn btn--primary" href="https://www.anarix.ai/contact-us">
                   Book a demo
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
                 </a>
                 <a className="btn btn--secondary" href="#aan">
                   Meet Aan
                 </a>
               </div>
+              <HeroStats />
             </div>
             <LazySusan />
           </div>

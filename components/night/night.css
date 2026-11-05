@@ -25,7 +25,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: color-mix(in srgb, var(--bg) var(--mix), #0b0d14);
+  background: color-mix(in srgb, var(--bg) var(--mix), hsl(209 30% 8%));
   color: var(--n-ink);
 }
 
@@ -39,7 +39,7 @@ html[data-theme="dark"] .night__sticky {
   --n-face-l: color-mix(in srgb, #141924 var(--mix), #f4f3f0);
   --n-face-r: color-mix(in srgb, #0f131c var(--mix), #e8e7e3);
   --n-ground: color-mix(in srgb, #111520 var(--mix), #f6f5f2);
-  background: color-mix(in srgb, #0b0d14 var(--mix), #fbfaf8);
+  background: color-mix(in srgb, hsl(209 30% 8%) var(--mix), hsl(228 25% 97%));
 }
 
 html[data-theme="dark"] .night__stars {

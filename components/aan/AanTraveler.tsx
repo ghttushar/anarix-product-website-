@@ -141,7 +141,9 @@ export function AanTraveler() {
 
       const docked = t >= 0.97;
       const traveling = t > 0.06 && t < 0.94;
-      const dockState = (overrides[cur.id] ?? (cur.dock.dataset.state as AanState)) || "diamond";
+      // docked Aan is always the idle diamond, eyes on the pointer
+      const dockState: AanState = "diamond";
+      void overrides;
       const next: AanState = traveling ? "bar" : dockState;
       if (next !== lastState) {
         lastState = next;
