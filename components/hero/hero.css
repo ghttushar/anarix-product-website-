@@ -1040,8 +1040,8 @@ html[data-theme="dark"] .susan__tab.is-active {
 .sf--blue .sf-t { fill: hsl(230 70% 70% / 0.85); stroke: none; }
 .sf--blue .sf-l { fill: hsl(230 60% 60% / 0.75); stroke: none; }
 
-.sf--green .sf-t { fill: hsl(158 60% 62% / 0.9); stroke: none; }
-.sf--green .sf-l { fill: hsl(160 60% 42% / 0.8); stroke: none; }
+.sf--green .sf-t { fill: hsl(230 60% 62% / 0.9); stroke: none; }
+.sf--green .sf-l { fill: hsl(230 60% 42% / 0.8); stroke: none; }
 
 .sf--crate .sf-t { fill: hsl(34 70% 82%); }
 .sf--crate .sf-l { fill: hsl(32 50% 70%); }
@@ -1192,3 +1192,21 @@ html[data-theme="dark"] .sf--slab .sf-r { fill: hsl(230 25% 17%); }
     radial-gradient(42% 52% at 74% 46%, hsl(var(--h-primary) / 0.14), transparent 70%),
     radial-gradient(30% 36% at 82% 30%, hsl(var(--h-coral) / 0.08), transparent 70%);
 }
+
+/* v6: no spindle or tab bar under the turntable */
+.susan__stage {
+  height: 470px;
+}
+
+.susan__shadow {
+  top: calc(var(--cy) + var(--D) * 0.25);
+}
+
+@media (max-width: 640px) {
+  .susan__stage {
+    height: 330px;
+  }
+}
+
+.sf--coin .sf-t { fill: hsl(230 70% 88%); }
+.sf--coin .sf-l { fill: hsl(230 55% 66%); }

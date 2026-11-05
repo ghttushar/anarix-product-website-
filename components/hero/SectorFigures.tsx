@@ -68,11 +68,15 @@ export function FigProfit() {
   return (
     <svg viewBox="0 0 120 110" className="fig" aria-hidden="true">
       <Slab />
-      <path d={line(iso(-18, -14, 20), iso(18, 16, 20))} className="sf-pipe" />
-      <Cyl x={-18} y={-14} r={13} h={36} z={6} tone="glass" />
-      <Cyl x={-18} y={-14} r={12} h={22} z={6} tone="blue" />
-      <Cyl x={18} y={16} r={13} h={48} z={6} tone="glass" />
-      <Cyl x={18} y={16} r={12} h={36} z={6} tone="green" />
+      {[0, 1, 2, 3, 4, 5].map((k) => (
+        <Cyl key={k} x={-22} y={-18} r={11} h={3} z={6 + k * 4} tone="coin" />
+      ))}
+      {[0, 1, 2, 3].map((k) => (
+        <Cyl key={`b${k}`} x={-24} y={14} r={9} h={3} z={6 + k * 4} tone="coin" />
+      ))}
+      <Box x={4} y={-2} w={10} d={10} h={14} z={6} tone="blue-solid" />
+      <Box x={18} y={-2} w={10} d={10} h={24} z={6} tone="blue-solid" />
+      <Box x={32} y={-2} w={10} d={10} h={36} z={6} tone="blue-solid" />
     </svg>
   );
 }

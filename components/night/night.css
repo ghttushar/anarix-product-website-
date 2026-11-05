@@ -475,3 +475,207 @@ html[data-theme="dark"] .night__moon {
     transform: translate(50%, 0);
   }
 }
+
+/* ------------------------------------------------------------------
+   v2 diorama: solid island, roads, trees, lamps, van, spotlight.
+   --lit = share of the bright palette; --dk = how dark the scene is.
+   Dark mode inverts both, like the rest of the Night Watch.
+------------------------------------------------------------------- */
+.night__sticky {
+  --lit: calc(100% - var(--d) * 100%);
+  --dk: var(--d);
+}
+
+html[data-theme="dark"] .night__sticky {
+  --lit: calc(var(--d) * 100%);
+  --dk: calc(1 - var(--d));
+}
+
+.nw-svg .nw-face {
+  stroke-width: 1;
+  stroke: color-mix(in srgb, hsl(230 25% 55% / 0.45) var(--lit), hsl(230 40% 70% / 0.25));
+}
+
+/* island: grass top, soil sides */
+.nw-ground .nw-face--t {
+  fill: color-mix(in srgb, hsl(230 32% 84%) var(--lit), hsl(230 22% 15%));
+}
+
+.nw-ground .nw-face--l {
+  fill: color-mix(in srgb, hsl(30 28% 70%) var(--lit), hsl(25 18% 13%));
+}
+
+.nw-ground .nw-face--r {
+  fill: color-mix(in srgb, hsl(28 24% 60%) var(--lit), hsl(25 18% 10%));
+}
+
+/* roads */
+.nw-asphalt {
+  fill: color-mix(in srgb, hsl(225 14% 76%) var(--lit), hsl(225 18% 20%));
+}
+
+.nw-lane {
+  fill: none;
+  stroke: color-mix(in srgb, hsl(45 95% 98%) var(--lit), hsl(45 80% 70% / 0.55));
+  stroke-width: 1.6;
+  stroke-dasharray: 8 10;
+}
+
+/* buildings: solid shading */
+.nw-svg .nw-face--t {
+  fill: color-mix(in srgb, hsl(0 0% 100%) var(--lit), hsl(215 24% 24%));
+}
+
+.nw-svg .nw-face--l {
+  fill: color-mix(in srgb, hsl(228 30% 93%) var(--lit), hsl(215 24% 18%));
+}
+
+.nw-svg .nw-face--r {
+  fill: color-mix(in srgb, hsl(228 24% 84%) var(--lit), hsl(215 24% 13%));
+}
+
+.nw-roof {
+  fill: color-mix(in srgb, hsl(355 70% 72%) var(--lit), hsl(355 30% 30%));
+  stroke: color-mix(in srgb, hsl(355 60% 55% / 0.6) var(--lit), hsl(355 40% 50% / 0.4));
+  stroke-width: 1;
+}
+
+.nw-roof--flat {
+  fill: color-mix(in srgb, hsl(230 40% 90%) var(--lit), hsl(230 25% 26%));
+  stroke: none;
+}
+
+.nw-awning {
+  fill: color-mix(in srgb, hsl(0 0% 100%) var(--lit), hsl(215 24% 30%));
+  stroke: none;
+}
+
+.nw-awning-stripe {
+  fill: color-mix(in srgb, hsl(355 84% 70%) var(--lit), hsl(355 50% 45%));
+}
+
+.nw-sign {
+  fill: hsl(230 65% 57%);
+}
+
+.nw-svg .nw-window {
+  fill: color-mix(in srgb, hsl(210 60% 88%) var(--lit), hsl(215 30% 22%));
+  stroke: none;
+}
+
+.nw-home.is-lit .nw-window {
+  fill: #ffd27a;
+  filter: drop-shadow(0 0 6px rgba(255, 196, 92, calc(var(--dk) * 0.9)));
+}
+
+/* Aan keeps the shop and warehouse lit while it works */
+.nw-svg .nw-window--shop {
+  fill: color-mix(in srgb, hsl(210 60% 88%) var(--lit), hsl(230 70% 68%));
+  filter: drop-shadow(0 0 5px hsl(230 70% 65% / calc(var(--dk) * 0.8)));
+}
+
+.nw-svg .nw-door {
+  fill: color-mix(in srgb, hsl(228 20% 78%) var(--lit), hsl(215 24% 10%));
+  stroke: none;
+}
+
+.nw-crate .nw-face--t {
+  fill: color-mix(in srgb, hsl(34 70% 84%) var(--lit), hsl(30 30% 30%));
+}
+
+.nw-crate .nw-face--l {
+  fill: color-mix(in srgb, hsl(32 50% 72%) var(--lit), hsl(30 30% 22%));
+}
+
+.nw-crate .nw-face--r {
+  fill: color-mix(in srgb, hsl(30 44% 62%) var(--lit), hsl(30 30% 16%));
+}
+
+.nw-svg .nw-ad {
+  fill: hsl(230 65% 60%);
+  stroke: none;
+}
+
+.nw-ad-line {
+  fill: hsl(0 0% 100% / 0.9);
+}
+
+.nw-ad-line--soft {
+  fill: hsl(0 0% 100% / 0.5);
+}
+
+.nw-bld.is-alert .nw-face {
+  stroke: var(--coral);
+  stroke-width: 1.5;
+}
+
+/* trees */
+.nw-trunk {
+  fill: color-mix(in srgb, hsl(28 35% 45%) var(--lit), hsl(28 25% 18%));
+}
+
+.nw-leaf {
+  fill: color-mix(in srgb, hsl(230 38% 55%) var(--lit), hsl(230 28% 20%));
+}
+
+.nw-leaf-hi {
+  fill: color-mix(in srgb, hsl(230 45% 70%) var(--lit), hsl(230 26% 28%));
+}
+
+/* lamps switch on when the scene goes dark */
+.nw-lamp__post {
+  stroke: color-mix(in srgb, hsl(225 12% 55%) var(--lit), hsl(225 15% 40%));
+  stroke-width: 2;
+}
+
+.nw-lamp__bulb {
+  fill: color-mix(in srgb, hsl(225 12% 80%) var(--lit), #ffe2a0);
+}
+
+.nw-lamp__glow,
+.nw-lamp__pool {
+  opacity: var(--dk);
+}
+
+/* the van runs by day, parks out of sight at night */
+.nw-van {
+  opacity: calc(1 - var(--dk) * 1.4);
+}
+
+.nw-van__top {
+  fill: hsl(0 0% 100%);
+}
+
+.nw-van__l {
+  fill: hsl(230 65% 62%);
+}
+
+.nw-van__r {
+  fill: hsl(230 55% 50%);
+}
+
+.nw-van__win {
+  fill: hsl(210 60% 88%);
+}
+
+/* Aan's spotlight */
+.nw-spot {
+  opacity: calc(0.25 + var(--dk) * 0.75);
+  mix-blend-mode: screen;
+}
+
+html:not([data-theme="dark"]) .nw-spot {
+  mix-blend-mode: normal;
+}
+
+.nw-svg .nw-tag {
+  fill: color-mix(in srgb, hsl(215 14% 32%) var(--lit), hsl(228 20% 85%));
+}
+
+.nw-dollar {
+  fill: hsl(230 65% 57%);
+}
+
+.nw-trail {
+  display: none;
+}

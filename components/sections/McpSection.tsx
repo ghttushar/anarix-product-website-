@@ -1,6 +1,6 @@
 "use client";
 
-import { MediaSlot, usePowered } from "./shared";
+import { DetailRow, MediaSlot, usePowered } from "./shared";
 
 const LEFT = [
   { name: "Amazon", x: 110 },
@@ -102,6 +102,7 @@ export function McpSection() {
           <p className="lede">Plug Anarix into Claude, ChatGPT or Gemini. The same numbers, wherever you work.</p>
         </div>
         <McpDiagram />
+        <DetailRow items={[{ title: "Live, structured data", text: "Sales, ads, inventory and profit, served as clean tools any AI can call." }, { title: "Works where you work", text: "Use it inside Claude, ChatGPT, Gemini or your own agent." }, { title: "Same numbers everywhere", text: "One source of truth, so every AI answer matches your Anarix dashboard." }]} />
         <div className="mcp__grid">
           <div className="term" aria-label="Example: Claude using Anarix MCP">
             <div className="term__bar">

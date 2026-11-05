@@ -141,77 +141,114 @@ export function SignalsBoard() {
   );
 }
 
-/* ======================================================== Profitability: refinery */
-// flow runs back-to-front along the x axis: sales tank -> Aan reactor ->
-// fees / ads / COGS towers -> profit silo (painter order = x + y)
-const TOWERS = [
-  { x: 36, k: "FEES" },
-  { x: 82, k: "ADS" },
-  { x: 128, k: "COGS" },
+/* ===================================================== Profitability: profit engine */
+// Sales arrive as coin stacks, Aan's counting machine strips fees / ads / COGS
+// into coral trays at the back, and profit comes out as a rising bar chart.
+function CoinStack({ iso, x, y, n, tone }: { iso: Iso; x: number; y: number; n: number; tone: "sales" | "cost" }) {
+  return (
+    <g className={`mx-coins mx-coins--${tone}`}>
+      {Array.from({ length: n }).map((_, k) => (
+        <Cyl key={k} iso={iso} x={x} y={y} r={tone === "sales" ? 15 : 11} h={4} z={8 + k * 5} className="ic--coin" />
+      ))}
+    </g>
+  );
+}
+
+const CUTS = [
+  { x: 52, k: "FEES" },
+  { x: 96, k: "ADS" },
+  { x: 140, k: "COGS" },
+];
+const BARS = [
+  { lo: 10, hi: 34 },
+  { lo: 16, hi: 50 },
+  { lo: 12, hi: 66 },
+  { lo: 18, hi: 88 },
 ];
 
 export function ProfitRefinery() {
-  const iso = makeIso(292, 226);
+  const iso = makeIso(300, 196);
   const Z = 8;
-  const TY = -72; // tower row
-  const p1 = path([iso(-175, -55, 30), iso(-60, -55, 30)]);
-  const p2 = path([iso(-60, -55, 30), iso(-60, TY, 30), iso(190, TY, 30), iso(190, -40, 30)]);
+  const toMachine = path([iso(-128, -24, 20), iso(-55, -24, 20)]);
+  const toChart = path([iso(40, -24, 20), iso(96, -24, 20), iso(96, 6, 20)]);
   return (
-    <div className="mx mx--refinery">
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A refinery: sales flow in, Aan's reactor strips fees, ads and cost of goods, and profit fills the silo">
-        <Box iso={iso} x={-220} y={-130} w={440} d={200} h={Z} className="ib--slab" />
+    <div className="mx mx--profit">
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A profit engine: sales arrive as coin stacks, Aan's counting machine strips out fees, ads and cost of goods, and profit rises as a bar chart">
+        <Box iso={iso} x={-225} y={-130} w={450} d={200} h={Z} className="ib--slab" />
         {[-90, -50, -10, 30].map((v) => (
-          <polyline key={v} points={pts(iso(-220, v, Z), iso(220, v, Z))} className="mx-etch" />
+          <polyline key={v} points={pts(iso(-225, v, Z), iso(225, v, Z))} className="mx-etch" />
         ))}
 
-        {/* pipes (drawn under the vessels) */}
-        {[p1, p2].map((d, i) => (
-          <g key={i}>
-            <path d={d} className="mx-pipe" />
-            <path d={d} className={`mx-flow ${i === 1 ? "mx-flow--gain" : ""}`} />
-          </g>
-        ))}
-
-        {/* sales tank: glass, liquid inside */}
-        <Cyl iso={iso} x={-175} y={-55} r={33} h={40} z={Z} className="ic--liquid ic--sales ic--low" />
-        <Cyl iso={iso} x={-175} y={-55} r={33} h={78} z={Z} className="ic--liquid ic--sales ic--high" />
-        <Cyl iso={iso} x={-175} y={-55} r={36} h={90} z={Z} className="ic--glass" />
-        <text x={iso(-175, -55, Z)[0] - 44} y={iso(-175, -55, Z)[1] + 14} textAnchor="end" className="mx-label">
-          Sales
-        </text>
-
-        {/* reactor: Aan docks on top */}
-        <Cyl iso={iso} x={-60} y={-55} r={44} h={64} z={Z} className="ic--reactor" />
-        <path d={isoCircle(iso, -60, -55, 44, Z + 22)} className="mx-band" />
-        <path d={isoCircle(iso, -60, -55, 44, Z + 44)} className="mx-band" />
-        {[0, 1].map((k) => (
-          <path key={k} d={isoCircle(iso, -60, -55, 30, Z + 64)} className={`mx-ring mx-ring--${k}`} />
-        ))}
-        <path d={isoCircle(iso, -60, -55, 20, Z + 64)} className="mx-socket" />
-
-        {/* filter towers */}
-        {TOWERS.map((t, i) => (
-          <g key={t.k} className={`mx-tower mx-tower--${i}`}>
-            <Box iso={iso} x={t.x - 13} y={TY - 13} w={26} d={26} h={52} z={Z} className="ib--tower" />
-            <Cyl iso={iso} x={t.x} y={TY} r={4.5} h={14} z={Z + 52} className="ic--stack" />
-            {[0, 1, 2].map((s2) => (
-              <circle key={s2} cx={iso(t.x, TY, Z + 72)[0]} cy={iso(t.x, TY, Z + 72)[1]} r="3.5" className={`mx-steam mx-steam--${s2}`} />
-            ))}
-            <text x={iso(t.x, TY + 13, Z)[0] - 6} y={iso(t.x, TY + 13, Z)[1] + 16} textAnchor="end" className="mx-label mx-label--sm">
-              {t.k}
+        {/* deduction trays at the back */}
+        {CUTS.map((c) => (
+          <g key={c.k} className="mx-cut">
+            <Box iso={iso} x={c.x - 16} y={-120} w={32} d={32} h={6} z={Z} className="ib--tray" />
+            <g className="mx-cut__lo">
+              <CoinStack iso={iso} x={c.x} y={-104} n={1} tone="cost" />
+            </g>
+            <g className="mx-cut__hi">
+              <CoinStack iso={iso} x={c.x} y={-104} n={5} tone="cost" />
+            </g>
+            <text x={iso(c.x, -104, Z + 40)[0]} y={iso(c.x, -104, Z + 40)[1] - 6} textAnchor="middle" className="mx-label mx-label--sm">
+              {c.k}
             </text>
           </g>
         ))}
+        {CUTS.map((c) => {
+          const d = path([iso(10, -64, 50), iso(c.x, -88, 40), iso(c.x, -104, 36)]);
+          return (
+            <g key={`p${c.k}`}>
+              <path d={d} className="mx-trace mx-trace--cut" />
+              <Packets d={d} n={1} dur={1.8} className="mx-packets--cut" />
+            </g>
+          );
+        })}
 
-        {/* profit silo */}
-        <Cyl iso={iso} x={190} y={-40} r={29} h={18} z={Z} className="ic--liquid ic--profit ic--low" />
-        <Cyl iso={iso} x={190} y={-40} r={29} h={70} z={Z} className="ic--liquid ic--profit ic--high" />
-        <Cyl iso={iso} x={190} y={-40} r={32} h={84} z={Z} className="ic--glass" />
-        <text x={iso(190, -40, Z + 84)[0]} y={iso(190, -40, Z + 84)[1] - 22} textAnchor="middle" className="mx-label mx-label--accent">
+        {/* sales coin stacks */}
+        <CoinStack iso={iso} x={-185} y={-52} n={9} tone="sales" />
+        <CoinStack iso={iso} x={-150} y={-52} n={12} tone="sales" />
+        <CoinStack iso={iso} x={-170} y={-14} n={7} tone="sales" />
+        <text x={iso(-200, -14, Z)[0] - 10} y={iso(-200, -14, Z)[1] + 16} textAnchor="end" className="mx-label">
+          Sales
+        </text>
+
+        <path d={toMachine} className="mx-trace" />
+        <Packets d={toMachine} n={3} dur={1.4} />
+
+        {/* Aan's counting machine */}
+        <Box iso={iso} x={-55} y={-64} w={95} d={80} h={56} z={Z} className="ib--machine" />
+        <polygon points={pts(iso(-45, 16, Z + 16), iso(30, 16, Z + 16), iso(30, 16, Z + 46), iso(-45, 16, Z + 46))} className="mx-screen" />
+        {[0, 1, 2, 3].map((k) => (
+          <polygon
+            key={k}
+            points={pts(iso(-36 + k * 16, 16, Z + 20), iso(-28 + k * 16, 16, Z + 20), iso(-28 + k * 16, 16, Z + 26 + k * 4), iso(-36 + k * 16, 16, Z + 26 + k * 4))}
+            className="mx-screen-bar"
+          />
+        ))}
+        {[0, 1].map((k) => (
+          <path key={k} d={isoCircle(iso, -8, -24, 28, Z + 56)} className={`mx-ring mx-ring--${k}`} />
+        ))}
+        <path d={isoCircle(iso, -8, -24, 18, Z + 56)} className="mx-socket" />
+
+        <path d={toChart} className="mx-trace mx-trace--out" />
+        <Packets d={toChart} n={2} dur={1.2} className="mx-packets--out" />
+
+        {/* profit chart */}
+        {BARS.map((b, i) => (
+          <g key={i}>
+            <g className="mx-bar__lo">
+              <Box iso={iso} x={72 + i * 30} y={8} w={20} d={20} h={b.lo} z={Z} className="ib--bar-lo" />
+            </g>
+            <g className="mx-bar__hi" style={{ transitionDelay: `${0.2 + i * 0.15}s` }}>
+              <Box iso={iso} x={72 + i * 30} y={8} w={20} d={20} h={b.hi} z={Z} className="ib--bar" />
+            </g>
+          </g>
+        ))}
+        <text x={iso(162, 18, Z + 88)[0] + 22} y={iso(162, 18, Z + 88)[1] - 4} className="mx-label mx-label--accent">
           Profit
         </text>
       </svg>
-      <Dock at={[iso(-60, -55, Z + 64)[0], iso(-60, -55, Z + 64)[1] - 24]} bubble="Refining profit." size={56} />
+      <Dock at={[iso(-8, -24, Z + 56)[0], iso(-8, -24, Z + 56)[1] - 24]} bubble="Counting every fee." size={56} />
     </div>
   );
 }
@@ -233,19 +270,23 @@ function Crate({ s = 22, h = 16 }: { s?: number; h?: number }) {
 }
 
 export function RulesFactory({ powered = false }: { powered?: boolean }) {
-  const iso = makeIso(330, 190);
+  const iso = makeIso(330, 182);
   const Z = 8;
   const BZ = Z + 22; // belt surface
-  const belt = path([iso(-210, 55, BZ), iso(205, 55, BZ)]);
+  const GX = 110; // diverter gate
+  const allow = path([iso(-210, 55, BZ), iso(GX, 55, BZ), iso(212, 55, BZ)]);
+  const stop = path([iso(-210, 55, BZ), iso(GX, 55, BZ), iso(GX, -38, BZ)]);
   const stations = [
-    { x: -120, k: "PAUSE" },
-    { x: -20, k: "CAP" },
-    { x: 80, k: "BID" },
+    { x: -168, k: "PAUSE" },
+    { x: -98, k: "CAP" },
+    { x: -28, k: "BID" },
   ];
-  const crateStops = [-180, -70, 30, 140];
+  // which crates the rules stop (coral) vs allow (periwinkle)
+  const crates = [false, true, false, false, true];
+  const parked = [-185, -125, -60, 10, 70];
   return (
     <div className="mx mx--factory">
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A processing factory: campaigns ride the belt through rule stations while Aan runs the line from the control tower">
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-svg" role="img" aria-label="A processing factory: campaigns ride the belt through rule stations; a gate sends each one to the Allowed channel or the Stopped channel while Aan runs the line from the control tower">
         <Box iso={iso} x={-240} y={-150} w={480} d={300} h={Z} className="ib--slab" />
         {[-150, -75, 0, 75].map((v) => (
           <polyline key={v} points={pts(iso(-240, v + 37, Z), iso(240, v + 37, Z))} className="mx-etch" />
@@ -253,10 +294,7 @@ export function RulesFactory({ powered = false }: { powered?: boolean }) {
 
         {/* control tower: Aan on the roof */}
         <Box iso={iso} x={-40} y={-135} w={74} d={74} h={104} z={Z} className="ib--tower" />
-        <polygon
-          points={pts(iso(-40, -61, Z + 70), iso(34, -61, Z + 70), iso(34, -61, Z + 88), iso(-40, -61, Z + 88))}
-          className="mx-window"
-        />
+        <polygon points={pts(iso(-40, -61, Z + 70), iso(34, -61, Z + 70), iso(34, -61, Z + 88), iso(-40, -61, Z + 88))} className="mx-window" />
         <polygon points={pts(iso(34, -135, Z + 70), iso(34, -61, Z + 70), iso(34, -61, Z + 88), iso(34, -135, Z + 88))} className="mx-window mx-window--side" />
         {[0, 1].map((k) => (
           <path key={k} d={isoCircle(iso, -3, -98, 30, Z + 104)} className={`mx-ring mx-ring--${k}`} />
@@ -266,23 +304,41 @@ export function RulesFactory({ powered = false }: { powered?: boolean }) {
           CONTROL
         </text>
 
-        {/* conveyor */}
-        <Box iso={iso} x={-215} y={32} w={425} d={46} h={22} z={Z} className="ib--belt" />
-        <path d={path([iso(-215, 36, BZ), iso(210, 36, BZ)])} className="mx-belt-line" />
-        <path d={path([iso(-215, 74, BZ), iso(210, 74, BZ)])} className="mx-belt-line" />
-        {Array.from({ length: 12 }).map((_, k) => (
-          <polyline key={k} points={pts(iso(-205 + k * 35, 78, Z + 4), iso(-205 + k * 35, 78, Z + 18))} className="mx-roller" />
-        ))}
+        {/* stopped channel: turns off to the back, into the reject bin */}
+        <Box iso={iso} x={91} y={-22} w={38} d={54} h={22} z={Z} className="ib--lane-stop" />
+        <path d={path([iso(GX, 32, BZ), iso(GX, -22, BZ)])} className="mx-lane mx-lane--stop" />
+        <Box iso={iso} x={86} y={-52} w={48} d={30} h={30} z={Z} className="ib--bin-stop" />
+        <text x={iso(134, -52, Z + 30)[0] + 8} y={iso(134, -52, Z + 30)[1] - 4} className="mx-label mx-label--stop">
+          ✕ Stopped
+        </text>
 
-        {/* crates: parked when dormant, riding the belt when powered */}
+        {/* main conveyor */}
+        <Box iso={iso} x={-215} y={32} w={308} d={46} h={22} z={Z} className="ib--belt" />
+        <path d={path([iso(-215, 36, BZ), iso(93, 36, BZ)])} className="mx-belt-line" />
+        <path d={path([iso(-215, 74, BZ), iso(93, 74, BZ)])} className="mx-belt-line" />
+
+        {/* allowed channel: straight on */}
+        <Box iso={iso} x={127} y={34} w={86} d={42} h={22} z={Z} className="ib--lane-allow" />
+        <path d={path([iso(127, 55, BZ), iso(213, 55, BZ)])} className="mx-lane mx-lane--allow" />
+        <Box iso={iso} x={213} y={28} w={26} d={54} h={34} z={Z} className="ib--bin-allow" />
+        <text x={iso(239, 28, Z + 34)[0] + 6} y={iso(239, 28, Z + 34)[1] - 4} className="mx-label mx-label--allow">
+          ✓ Allowed
+        </text>
+
+        {/* diverter gate */}
+        <Box iso={iso} x={93} y={32} w={34} d={46} h={22} z={Z} className="ib--gate" />
+        <Box iso={iso} x={104} y={46} w={12} d={18} h={16} z={BZ} className="ib--gate-head" />
+        <Box iso={iso} x={107} y={52} w={6} d={6} h={5} z={BZ + 16} className="ib--led ib--led-gate" />
+
+        {/* crates: parked when dormant; when powered each rides to its channel */}
         {powered
-          ? crateStops.map((_, k) => (
-              <g key={`m${k}`}>
+          ? crates.map((stopped, k) => (
+              <g key={`m${k}`} className={stopped ? "is-stopped" : "is-allowed"}>
                 <Crate />
-                <animateMotion dur="6s" repeatCount="indefinite" begin={`${(-k * 1.5).toFixed(1)}s`} path={belt} />
+                <animateMotion dur="7s" repeatCount="indefinite" begin={`${(-k * 1.4).toFixed(1)}s`} path={stopped ? stop : allow} />
               </g>
             ))
-          : crateStops.map((x) => {
+          : parked.map((x) => {
               const [cx, cy] = iso(x, 55, BZ);
               return (
                 <g key={`s${x}`} transform={`translate(${cx.toFixed(1)} ${cy.toFixed(1)})`}>
@@ -306,11 +362,8 @@ export function RulesFactory({ powered = false }: { powered?: boolean }) {
             </text>
           </g>
         ))}
-
-        {/* output bay */}
-        <Box iso={iso} x={212} y={28} w={26} d={54} h={34} z={Z} className="ib--bay" />
       </svg>
-      <Dock at={[iso(-3, -98, Z + 104)[0], iso(-3, -98, Z + 104)[1] - 24]} bubble="12 rules on the line." size={54} />
+      <Dock at={[iso(-3, -98, Z + 104)[0], iso(-3, -98, Z + 104)[1] - 24]} bubble="Allowing good spend, stopping waste." size={54} />
     </div>
   );
 }

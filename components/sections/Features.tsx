@@ -80,6 +80,7 @@ export function SignalsSection() {
       }
       body="What moved, why, and what to do. Across every account."
       proof={["Every alert comes with its root cause", "One feed for Amazon, Walmart and Shopify"]}
+      details={[{ title: "Root cause, not just an alert", text: "Every signal explains what moved and why: price, Buy Box, ad eligibility, stock or spend." }, { title: "Ranked by money at risk", text: "The biggest dollar impact rises to the top, so the first fix is always the one that matters most." }, { title: "Fix it from the alert", text: "Execute, modify or assign Aan's suggested action without opening another tool." }]}
       media={{ kind: "video", label: "Signals walkthrough" }}
       stage={<SignalsStage />}
     />
@@ -166,6 +167,7 @@ export function ProfitSection() {
       }
       body="Every fee, ad dollar and return. One P&L."
       proof={["Product-level P&L, updated daily", "Amazon, Walmart and Shopify side by side"]}
+      details={[{ title: "True product-level P&L", text: "Fees, ad spend, refunds and COGS on every SKU, not just top-line revenue." }, { title: "Daily, not month-end", text: "See yesterday's profit this morning and catch margin leaks while they're still small." }, { title: "Every marketplace, one view", text: "Amazon, Walmart and Shopify side by side, so you know where you actually make money." }]}
       media={{ kind: "image", label: "Profitability dashboard" }}
       stage={<ProfitStage />}
     />
@@ -260,6 +262,7 @@ export function RulesSection() {
       }
       body="Pause waste. Guard budgets. Answer price moves. 24/7."
       proof={["Describe a rule in plain words", "Every action logged, big moves need approval"]}
+      details={[{ title: "Write rules in plain words", text: "Describe what you want and Aan builds the conditions, scope and schedule for you." }, { title: "Allowed or stopped, with a reason", text: "Every campaign and keyword passes the gate, and every decision is logged." }, { title: "You stay in control", text: "Approval mode holds any change above your limit until you say yes." }]}
       media={{ kind: "video", label: "Building a rule with AI" }}
       stage={<RulesStage />}
     />
@@ -388,6 +391,7 @@ export function AanSection() {
       }
       body="Plain answers. Real numbers. Reports in seconds."
       proof={["Knows your account history", "Shows the numbers behind every answer"]}
+      details={[{ title: "Knows your history", text: "Aan remembers past launches, promos and price changes when it explains a result." }, { title: "Shows its work", text: "Every answer comes with the numbers and sources behind it, so you can check it." }, { title: "Turns answers into action", text: "Build a report, draft a rule or fix an alert straight from the conversation." }]}
       media={{ kind: "video", label: "Ask Aan demo" }}
       stage={<AanStage />}
     />

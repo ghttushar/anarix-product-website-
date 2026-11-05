@@ -90,6 +90,7 @@ export function FeatureSection({
   title,
   body,
   proof,
+  details = [],
   media,
   stage,
   reverse = false,
@@ -100,6 +101,7 @@ export function FeatureSection({
   title: ReactNode;
   body: string;
   proof: string[];
+  details?: { title: string; text: string }[];
   media: { kind: "video" | "image"; label: string };
   stage: ReactNode;
   reverse?: boolean;
@@ -126,10 +128,26 @@ export function FeatureSection({
           </Reveal>
           <div className="feature__stage">{stage}</div>
         </div>
+        {details.length > 0 && <DetailRow items={details} />}
         <Reveal className="feature__media">
           <MediaSlot {...media} />
         </Reveal>
       </div>
     </section>
+  );
+}
+
+/** three capability cards: what Aan does in this part of the product */
+export function DetailRow({ items }: { items: { title: string; text: string }[] }) {
+  return (
+    <div className="details">
+      {items.map((d, i) => (
+        <Reveal key={d.title} className="detail" delay={i * 90}>
+          <span className="detail__n">0{i + 1}</span>
+          <h3 className="detail__title">{d.title}</h3>
+          <p className="detail__text">{d.text}</p>
+        </Reveal>
+      ))}
+    </div>
   );
 }

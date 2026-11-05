@@ -186,16 +186,7 @@ export function LazySusan() {
         onPointerCancel={onPointerUp}
         onKeyDown={onKeyDown}
       >
-        {/* MCP spindle + base, drawn behind the plate */}
         <div className="susan__shadow" aria-hidden="true" />
-        <svg className="susan__spindle" viewBox="0 0 240 260" aria-hidden="true">
-          <path d="M112,0 V196 M128,0 V196" className="spindle-line" />
-          <ellipse cx="120" cy="196" rx="8" ry="3" className="spindle-line" />
-          <ellipse cx="120" cy="214" rx="74" ry="20" className="spindle-base" />
-          <path d="M46,214 V226 M194,214 V226" className="spindle-line" />
-          <path d="M46,226 A74,20 0 0 0 194,226" className="spindle-line" />
-          <path d="M120,196 V214" className="spindle-pulse" />
-        </svg>
 
         <div className="susan__tilt" ref={tiltRef} style={{ "--tilt": `${TILT}deg` } as React.CSSProperties}>
           <div className="susan__plate">
@@ -261,7 +252,7 @@ export function LazySusan() {
               <div key={`hub${k}`} className={`susan__hub ${k === 11 ? "susan__hub--top" : ""}`} style={{ transform: `translateZ(${(k + 1) * 2}px)` }} />
             ))}
             <div className="susan__board susan__board--hub" style={{ "--a": "0deg" } as React.CSSProperties}>
-              <div data-dock data-size="104" data-size-sm="64" data-state="diamond" data-bubble="Hi, I'm Aan. Spin me." className="susan__hub-dock" />
+              <div data-dock data-size="104" data-size-sm="64" data-state="diamond" data-bubble="I'm Aan. Your stores, watched 24/7." className="susan__hub-dock" />
             </div>
           </div>
         </div>
@@ -271,27 +262,6 @@ export function LazySusan() {
         {cur.label}: {cur.line}
       </p>
 
-      <div className="susan__tabs" role="tablist" aria-label="Jump to a section">
-        {SECTORS.map((s, i) => (
-          <button
-            key={s.id}
-            role="tab"
-            aria-selected={i === active}
-            className={`susan__tab ${i === active ? "is-active" : ""}`}
-            onClick={() => {
-              markInteracted();
-              if (i === active) scrollToSection(s.id);
-              else {
-                goTo(i);
-                window.setTimeout(() => scrollToSection(s.id), 420);
-              }
-            }}
-          >
-            <span className="susan__tab-label">{s.label}</span>
-            <span className="susan__tab-line">{s.line}</span>
-          </button>
-        ))}
-      </div>
     </div>
   );
 }

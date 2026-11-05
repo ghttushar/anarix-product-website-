@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 /**
  * The Night Watch. Scroll scrubs a clock from 6:00pm to 7:00am over a sticky
  * scene: the customer's own business (home, store, warehouse, billboard,
- * ledger) drawn as an isometric hairline miniature. The house goes dark at
+ * ledger) as a solid isometric diorama with roads, trees, streetlamps and a
+ * delivery van. The house goes dark at
  * 9pm; Aan keeps watch, walking to each problem as it happens. At 7am the
  * morning brief lands.
  */
@@ -42,6 +43,29 @@ function winL(x: number, yFace: number, w: number, z: number, h: number) {
 function winR(xFace: number, y: number, d: number, z: number, h: number) {
   return pts(iso(xFace, y, z), iso(xFace, y + d, z), iso(xFace, y + d, z + h), iso(xFace, y, z + h));
 }
+
+
+// scenery
+const loop = (pts2: (readonly [number, number])[]) => "M" + pts2.map(([a, b]) => `${a.toFixed(1)},${b.toFixed(1)}`).join(" L") + "Z";
+const ROAD_RING =
+  loop([iso(-188, -64), iso(174, -64), iso(174, 154), iso(-188, 154)]) + " " + loop([iso(-160, -36), iso(-160, 126), iso(146, 126), iso(146, -36)]);
+const VAN_LOOP = loop([iso(-174, -50), iso(160, -50), iso(160, 140), iso(-174, 140)]);
+const TREES = [
+  [-280, -200],
+  [-120, -200],
+  [70, -200],
+  [272, -196],
+  [-110, 182],
+  [70, 186],
+  [276, 150],
+  [-282, 150],
+] as const;
+const LAMPS = [
+  [-188, 30],
+  [174, 30],
+  [-80, 154],
+  [80, -64],
+] as const;
 
 // --- timeline -------------------------------------------------------------
 const TOTAL = 780; // minutes from 18:00 to 07:00
@@ -92,6 +116,7 @@ const ANCHORS: Record<string, readonly [number, number]> = {
 export function NightWatch() {
   const section = useRef<HTMLElement>(null);
   const dock = useRef<HTMLDivElement>(null);
+  const spot = useRef<SVGEllipseElement>(null);
   const [minute, setMinute] = useState(0);
 
   useEffect(() => {
@@ -123,6 +148,9 @@ export function NightWatch() {
       const b = PATH[k + 1];
       const t = smooth(a.m, b.m, m);
       const [sx, sy] = iso(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t, 34);
+      const [gx, gy] = iso(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t, 0);
+      spot.current?.setAttribute("cx", gx.toFixed(1));
+      spot.current?.setAttribute("cy", gy.toFixed(1));
       if (dock.current) {
         dock.current.style.left = `${(sx / 900) * 100}%`;
         dock.current.style.top = `${(sy / 600) * 100}%`;
@@ -156,7 +184,7 @@ export function NightWatch() {
   };
   const morning = minute >= 760;
 
-  const ground = box(-290, -210, 580, 420, 8, -8);
+  const ground = box(-290, -210, 580, 420, 22, -22);
   const home = box(-250, -160, 100, 90, 62);
   const store = box(-60, -170, 110, 72, 54);
   const warehouse = box(110, -180, 150, 104, 72);
@@ -196,15 +224,56 @@ export function NightWatch() {
 
           <div className="night__scene">
             <svg viewBox="0 0 900 600" className="nw-svg" role="img" aria-label="Your business at night: home, store, warehouse, billboard and ledger, with Aan on patrol">
+              <defs>
+                <radialGradient id="nw-lamp" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#ffd98a" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#ffd98a" stopOpacity="0" />
+                </radialGradient>
+                <radialGradient id="nw-spot" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#f46d76" stopOpacity="0.55" />
+                  <stop offset="100%" stopColor="#f46d76" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+
+              {/* island */}
               <Box b={ground} className="nw-ground" />
-              {/* roads */}
-              <polyline points={pts(iso(-170, -50), iso(160, -50), iso(160, 140), iso(-170, 140), iso(-170, -50))} className="nw-road" />
-              <polyline points={pts(iso(-20, -50), iso(-20, 140))} className="nw-road" />
+
+              {/* road loop + avenue, with lane markings */}
+              <path d={ROAD_RING} fillRule="evenodd" className="nw-asphalt" />
+              <polygon points={pts(iso(-34, -36), iso(-6, -36), iso(-6, 126), iso(-34, 126))} className="nw-asphalt" />
+              <polyline points={pts(iso(-174, -50), iso(160, -50), iso(160, 140), iso(-174, 140), iso(-174, -50))} className="nw-lane" />
+              <polyline points={pts(iso(-20, -36), iso(-20, 126))} className="nw-lane" />
+
+              {/* delivery van doing the rounds by day */}
+              <g className="nw-van">
+                <g transform="translate(0 -14)">
+                  <polygon points="-14,4 0,-4 14,4 0,12" className="nw-van__top" />
+                  <polygon points="-14,4 0,12 0,22 -14,14" className="nw-van__l" />
+                  <polygon points="0,12 14,4 14,14 0,22" className="nw-van__r" />
+                  <polygon points="2,12 12,6 12,11 2,17" className="nw-van__win" />
+                </g>
+                <animateMotion dur="9s" repeatCount="indefinite" path={VAN_LOOP} />
+              </g>
+
+              {/* trees */}
+              {TREES.map(([x, y]) => {
+                const [tx, ty] = iso(x, y, 0);
+                return (
+                  <g key={`t${x}${y}`} className="nw-tree">
+                    <rect x={tx - 2} y={ty - 16} width="4" height="16" rx="1" className="nw-trunk" />
+                    <circle cx={tx} cy={ty - 24} r="13" className="nw-leaf" />
+                    <circle cx={tx - 4} cy={ty - 28} r="6" className="nw-leaf-hi" />
+                  </g>
+                );
+              })}
+
+              {/* Aan's spotlight follows the patrol */}
+              <ellipse ref={spot} cx="0" cy="0" rx="62" ry="32" fill="url(#nw-spot)" className="nw-spot" />
 
               {/* home + roof */}
               <g className={`nw-home ${lightsOn ? "is-lit" : ""}`}>
                 <Box b={home} />
-                <polygon points={pts(iso(-250, -115, 98), iso(-150, -115, 98), iso(-150, -70, 62), iso(-250, -70, 62))} className="nw-face nw-face--l nw-roof" />
+                <polygon points={pts(iso(-250, -115, 98), iso(-150, -115, 98), iso(-150, -70, 62), iso(-250, -70, 62))} className="nw-roof" />
                 <polygon points={pts(iso(-150, -160, 62), iso(-150, -70, 62), iso(-150, -115, 98))} className="nw-face nw-face--r" />
                 <polygon points={winL(-236, -70, 22, 18, 22)} className="nw-window" />
                 <polygon points={winL(-196, -70, 22, 18, 22)} className="nw-window" />
@@ -216,45 +285,58 @@ export function NightWatch() {
               </text>
 
               {/* store */}
-              <g className={`nw-bld ${reached("store") ? "is-alert" : ""}`}>
+              <g className={`nw-bld nw-store ${reached("store") ? "is-alert" : ""}`}>
                 <Box b={store} />
                 <polygon points={pts(iso(-60, -98, 40), iso(50, -98, 40), iso(50, -84, 30), iso(-60, -84, 30))} className="nw-awning" />
+                {[0, 1, 2, 3, 4, 5].map((k) => (
+                  <polygon
+                    key={k}
+                    points={pts(iso(-60 + k * 18.3, -98, 40), iso(-51 + k * 18.3, -98, 40), iso(-51 + k * 18.3, -84, 30), iso(-60 + k * 18.3, -84, 30))}
+                    className="nw-awning-stripe"
+                  />
+                ))}
                 <polygon points={winL(-48, -98, 40, 6, 22)} className="nw-window nw-window--shop" />
                 <polygon points={winL(4, -98, 30, 0, 30)} className="nw-door" />
+                <polygon points={winL(-40, -98, 60, 44, 8)} className="nw-sign" />
               </g>
               <text x={iso(-5, -90)[0]} y={iso(-5, -90)[1] + 26} className="nw-tag" textAnchor="middle">
                 STOREFRONT
               </text>
 
               {/* warehouse */}
-              <g className={`nw-bld ${reached("warehouse") ? "is-alert" : ""}`}>
+              <g className={`nw-bld nw-warehouse ${reached("warehouse") ? "is-alert" : ""}`}>
                 <Box b={warehouse} />
+                <polygon points={pts(iso(110, -180, 72), iso(260, -180, 72), iso(260, -76, 72), iso(110, -76, 72))} className="nw-roof nw-roof--flat" />
                 {[0, 1, 2, 3, 4].map((k) => (
                   <polyline key={k} points={pts(iso(130, -76, 8 + k * 9), iso(190, -76, 8 + k * 9))} className="nw-line" />
                 ))}
                 <polygon points={winL(130, -76, 60, 0, 50)} className="nw-door nw-door--roll" />
-                <Box b={box(214, -60, 22, 22, 18)} />
-                <Box b={box(240, -60, 22, 22, 18)} />
-                <Box b={box(227, -60, 22, 22, 18, 18)} />
+                <polygon points={winR(260, -160, 70, 50, 10)} className="nw-window nw-window--shop" />
+                <Box b={box(214, -60, 22, 22, 18)} className="nw-crate" />
+                <Box b={box(240, -60, 22, 22, 18)} className="nw-crate" />
+                <Box b={box(227, -60, 22, 22, 18, 18)} className="nw-crate" />
               </g>
-              <text x={iso(185, -70)[0]} y={iso(185, -70)[1] + 30} className="nw-tag" textAnchor="middle">
+              <text x={iso(185, -128, 72)[0]} y={iso(185, -128, 72)[1] - 10} className="nw-tag" textAnchor="middle">
                 WAREHOUSE
               </text>
 
               {/* billboard (your ads) */}
               <g className={`nw-bld ${reached("ads") ? "is-alert" : ""}`}>
-                <polyline points={pts(iso(214, 58, 0), iso(214, 58, 76))} className="nw-line nw-line--post" />
-                <polyline points={pts(iso(274, 58, 0), iso(274, 58, 76))} className="nw-line nw-line--post" />
+                <Box b={box(212, 56, 4, 4, 76)} />
+                <Box b={box(272, 56, 4, 4, 76)} />
                 <Box b={boardPanel} />
                 <polygon points={winL(206, 58, 76, 84, 38)} className="nw-ad" />
+                <polygon points={winL(214, 58, 30, 104, 8)} className="nw-ad-line" />
+                <polygon points={winL(214, 58, 50, 92, 6)} className="nw-ad-line nw-ad-line--soft" />
               </g>
               <text x={iso(244, 70)[0]} y={iso(244, 70)[1] + 22} className="nw-tag" textAnchor="middle">
                 YOUR ADS
               </text>
 
-              {/* ledger */}
+              {/* ledger kiosk */}
               <g className="nw-bld">
                 <Box b={ledger} />
+                <polygon points={pts(iso(-270, 40, 40), iso(-206, 40, 40), iso(-206, 104, 40), iso(-270, 104, 40))} className="nw-roof nw-roof--flat" />
                 <text x={iso(-238, 104, 14)[0]} y={iso(-238, 104, 14)[1]} className="nw-dollar" textAnchor="middle">
                   $
                 </text>
@@ -263,8 +345,19 @@ export function NightWatch() {
                 LEDGER
               </text>
 
-              {/* Aan's patrol trail */}
-              <polyline points={pts(...PATH.map((q) => iso(q.x, q.y)))} className="nw-trail" />
+              {/* streetlamps */}
+              {LAMPS.map(([x, y]) => {
+                const [bx, by] = iso(x, y, 0);
+                const [hx, hy] = iso(x, y, 46);
+                return (
+                  <g key={`l${x}${y}`} className="nw-lamp">
+                    <ellipse cx={bx} cy={by} rx="34" ry="17" fill="url(#nw-lamp)" className="nw-lamp__pool" />
+                    <line x1={bx} y1={by} x2={hx} y2={hy} className="nw-lamp__post" />
+                    <circle cx={hx} cy={hy} r="9" fill="url(#nw-lamp)" className="nw-lamp__glow" />
+                    <circle cx={hx} cy={hy} r="3" className="nw-lamp__bulb" />
+                  </g>
+                );
+              })}
             </svg>
 
             {/* event cards pinned to the buildings */}
