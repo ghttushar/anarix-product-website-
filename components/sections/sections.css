@@ -1749,3 +1749,79 @@ html[data-theme="dark"] {
     margin-top: 48px;
   }
 }
+
+/* ------------------------------------------------------------------
+   v7: capability points as paragraphs in the copy column; MCP points
+   as open (box-less) columns; smaller isometric scenes
+------------------------------------------------------------------- */
+.feature__more {
+  display: grid;
+  gap: 14px;
+  max-width: 30em;
+  padding-top: 4px;
+}
+
+.feature__more p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.feature__more strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.feature__proof {
+  margin-top: 4px !important;
+}
+
+/* MCP points: no boxes, just text in three columns */
+.detail,
+.detail:hover {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.detail {
+  padding-left: 18px;
+  border-left: 2px solid hsl(var(--h-primary) / 0.25);
+}
+
+.detail__n {
+  display: none;
+}
+
+.detail__title {
+  margin-top: 0;
+}
+
+/* smaller scenes: the product UI and copy lead, the machine supports */
+.stage__machine {
+  width: 82%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.stage__ui {
+  margin-top: -64px;
+}
+
+.mcp-diagram {
+  max-width: 720px;
+}
+
+@media (max-width: 640px) {
+  .stage__machine {
+    width: 92%;
+    margin: 0 auto;
+  }
+
+  .stage__ui {
+    margin-top: -36px;
+  }
+}

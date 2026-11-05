@@ -120,6 +120,15 @@ export function FeatureSection({
             <p className="eyebrow">{eyebrow}</p>
             <h2 className="display h2 feature__title">{title}</h2>
             <p className="lede feature__body">{body}</p>
+            {details.length > 0 && (
+              <div className="feature__more">
+                {details.map((d) => (
+                  <p key={d.title}>
+                    <strong>{d.title}.</strong> {d.text}
+                  </p>
+                ))}
+              </div>
+            )}
             <ul className="feature__proof">
               {proof.map((p) => (
                 <li key={p}>{p}</li>
@@ -128,7 +137,6 @@ export function FeatureSection({
           </Reveal>
           <div className="feature__stage">{stage}</div>
         </div>
-        {details.length > 0 && <DetailRow items={details} />}
         <Reveal className="feature__media">
           <MediaSlot {...media} />
         </Reveal>
