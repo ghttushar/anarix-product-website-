@@ -58,6 +58,8 @@ export function AanTraveler() {
     };
     window.addEventListener("aan:override", onOverride);
 
+    let phase = 0;
+    let lastNow = 0;
     let lastState: AanState = "diamond";
     let lastBubble = "";
     let lastIndex = -1;
@@ -84,25 +86,43 @@ export function AanTraveler() {
       const y1 = reduce ? y0 - 1 : vh * 0.55;
       const dockRects = stops.map((s) => s.dock.getBoundingClientRect());
       const held = stops.map((s) => s.section.dataset.hold === "true" && s.section.getBoundingClientRect().top <= c);
-      let i = 0;
-      for (let k = 1; k < stops.length; k++) if (center(dockRects[k]).y <= y0 || held[k]) i = k;
+      // where the scroll says Aan should be: phase = (from stop) + progress
+      let ti = 0;
+      for (let k = 1; k < stops.length; k++) if (center(dockRects[k]).y <= y0 || held[k]) ti = k;
+      const tt = ti > 0 ? (held[ti] ? 1 : clamp((y0 - center(dockRects[ti]).y) / (y0 - y1), 0, 1)) : 1;
+      const target = ti === 0 ? 0 : ti - 1 + tt;
+
+      // Aan glides toward it (damped), so fast scrolls become one smooth flight
+      const dt = Math.min(300, lastNow ? now - lastNow : 16.67); // catch up after throttled frames
+      lastNow = now;
+      const gap = target - phase;
+      const rate = Math.abs(gap) > 1.2 ? 0.2 : 0.11;
+      phase = reduce ? target : phase + gap * (1 - Math.pow(1 - rate, dt / 16.67));
+      if (Math.abs(target - phase) < 0.0008) phase = target;
+
+      let j = Math.floor(phase + 1e-6);
+      let frac = phase - j;
+      if (j >= stops.length - 1) {
+        j = stops.length - 1;
+        frac = 0;
+      }
+      const i = frac > 0 ? j + 1 : j; // destination stop
+      let t = frac > 0 ? frac : 1;
 
       const cur = stops[i];
-      const bR = dockRects[i];
-      const B = center(bR);
+      const B = center(dockRects[i]);
       const small = vw < 640;
       const sizeOf = (d: HTMLElement) => Number((small && d.dataset.sizeSm) || d.dataset.size || 64);
       const sizeB = sizeOf(cur.dock);
 
-      let t = 1;
       let A = B;
       let sizeA = sizeB;
-      if (i > 0) {
-        t = held[i] ? 1 : clamp((y0 - B.y) / (y0 - y1), 0, 1);
-        const prev = stops[i - 1];
-        A = center(dockRects[i - 1]);
+      if (frac > 0) {
+        A = center(dockRects[j]);
         A = { x: clamp(A.x, 40, vw - 40), y: clamp(A.y, 90, vh - 90) };
-        sizeA = sizeOf(prev.dock);
+        sizeA = sizeOf(stops[j].dock);
+      } else {
+        t = 1;
       }
 
       const e = ease(t);

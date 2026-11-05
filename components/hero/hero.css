@@ -82,7 +82,9 @@ html[data-theme="dark"] .hero__title .is-accent {
 /* susan layout */
 .susan {
   --D: min(540px, 92vw);
-  --bw: 118px;
+  --bw: 104px;
+  --plate-hi: #ffffff;
+  --plate-lo: #f2f1ed;
   --r: calc(var(--D) * 0.355);
   --cy: 38%;
   position: relative;
@@ -138,11 +140,33 @@ html[data-theme="dark"] .hero__title .is-accent {
   overflow: visible;
 }
 
+html[data-theme="dark"] .susan {
+  --plate-hi: #1c2230;
+  --plate-lo: #11141c;
+}
+
 .susan__edge {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
+}
+
+.susan__shadow {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--cy) + var(--D) * 0.27);
+  width: calc(var(--D) * 0.92);
+  height: calc(var(--D) * 0.2);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(19, 29, 41, 0.16), transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .susan__shadow {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55), transparent 70%);
 }
 
 .susan__edge--2 {
@@ -156,14 +180,14 @@ html[data-theme="dark"] .hero__title .is-accent {
 }
 
 .plate-fill {
-  fill: var(--panel-solid);
+  fill: url(#plate-grad);
 }
 
 .plate-line {
   fill: none;
   stroke: var(--ink);
-  stroke-opacity: 0.32;
-  stroke-width: 2.2;
+  stroke-opacity: 0.22;
+  stroke-width: 1.6;
 }
 
 .plate-line--soft {
@@ -517,12 +541,15 @@ html[data-theme="dark"] .hero__title .is-accent {
 .susan__tabs {
   grid-area: tabs;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  max-width: 100%;
   justify-content: center;
-  gap: 6px;
-  margin-top: 18px;
+  gap: 4px;
+  margin-top: -36px;
   padding: 5px;
   border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--panel-border);
   background: var(--panel);
   box-shadow: 0 10px 30px rgba(19, 29, 41, 0.06);
@@ -531,13 +558,27 @@ html[data-theme="dark"] .hero__title .is-accent {
 .susan__tab {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  padding: 9px 16px;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
   color: var(--ink-2);
-  transition: background-color 0.25s, color 0.25s;
+  transition: background-color 0.35s var(--ease-out), color 0.35s var(--ease-out);
+}
+
+.susan__tab-line {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  font-weight: 500;
+  transition: max-width 0.6s var(--ease-out), opacity 0.4s var(--ease-out), margin 0.6s var(--ease-out);
+}
+
+.susan__tab.is-active .susan__tab-line {
+  max-width: 170px;
+  opacity: 0.72;
+  margin-left: 8px;
 }
 
 .susan__tab:hover {
@@ -645,5 +686,22 @@ html[data-theme="dark"] .susan__tab.is-active {
   .film__head {
     flex-direction: column;
     align-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .susan__tab {
+    padding: 8px 11px;
+    font-size: 13px;
+  }
+
+  .susan__tab.is-active .susan__tab-line {
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+  }
+
+  .susan__tabs {
+    margin-top: -20px;
   }
 }

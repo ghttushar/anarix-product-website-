@@ -42,13 +42,15 @@ function McpDiagram() {
         </text>
 
         {/* spindle */}
-        <path d="M490,104 V250 M510,104 V250" className="mcp-line" />
-        <path d="M500,104 V250" className="mcp-pulse mcp-pulse--up" />
+        <path d="M490,104 V232 M510,104 V232" className="mcp-line" />
+        <path d="M500,104 V232" className="mcp-pulse mcp-pulse--up" />
 
-        {/* hub */}
-        <path d="M380,262 L400,250 H620 L600,262 Z" className="mcp-face" />
-        <path d="M600,262 L620,250 V306 L600,318 Z" className="mcp-face mcp-face--side" />
+        {/* hub: Aan drops into the socket on top and powers every root */}
+        <path d="M380,262 L420,230 H640 L600,262 Z" className="mcp-face" />
+        <path d="M600,262 L640,230 V286 L600,318 Z" className="mcp-face mcp-face--side" />
         <rect x="380" y="262" width="220" height="56" rx="4" className="mcp-hub" />
+        <ellipse cx="510" cy="246" rx="34" ry="9" className="mcp-socket" />
+        <ellipse cx="510" cy="246" rx="20" ry="5" className="mcp-socket mcp-socket--in" />
         <text x="490" y="296" textAnchor="middle" className="mcp-hub-label">
           ANARIX MCP
         </text>
@@ -76,7 +78,16 @@ function McpDiagram() {
         </text>
       </svg>
       {/* Aan's dock: the hub of the plate */}
-      <div className="mcp-dock" data-dock data-size="62" data-state="cube" data-bubble="Connected to 3 AIs." aria-hidden="true" />
+      <div
+        className="mcp-dock"
+        style={{ left: "51%", top: `${(218 / 560) * 100}%` }}
+        data-dock
+        data-size="62"
+        data-size-sm="40"
+        data-state="cube"
+        data-bubble="Connected to 3 AIs."
+        aria-hidden="true"
+      />
     </div>
   );
 }

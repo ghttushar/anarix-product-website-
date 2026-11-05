@@ -1,51 +1,67 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CountUp, FeatureSection, Station, usePowered } from "./shared";
-import { AanMascot } from "../aan/AanMascot";
+import { FeatureSection, MachineStage, usePowered } from "./shared";
+import { Gearworks, NeuralBrain, RadarCpu, Refinery } from "../machines/Machines";
+import { Live, Spark, Ticker, useSeries } from "@/lib/live";
 
-/* ---------------------------------------------------------------- Signals */
-const SIGNALS = [
-  { tone: "coral", what: "Sales −18%", item: "Kitchen Knife Set", where: "Amazon", at: "03:12", tag: "Buy Box lost" },
-  { tone: "blue", what: "ACoS +9.4 pts", item: "Spring Sale campaign", where: "Walmart", at: "05:40", tag: "Bid war" },
-  { tone: "ink", what: "9 days of stock", item: "Bamboo Cutting Board", where: "Shopify", at: "06:05", tag: "Reorder" },
-];
+const reduced = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function SignalsStation() {
+/* =============================================================== Signals */
+// Modelled on the product's Signal card: value at risk, priority chips,
+// What happened / Root cause, business impact, Aan's analysis, action bar.
+function SignalsStage() {
   const [ref, powered] = usePowered<HTMLDivElement>();
   return (
     <div ref={ref}>
-      <Station title="Signals" meta="Kitchen Co." dock={{ state: "cube", bubble: "3 changes worth your time." }}>
-        <ul className="sig-feed">
-          {SIGNALS.map((s, i) => (
-            <li key={s.item} className={`sig sig--${s.tone} pw-in`} style={{ "--i": i } as React.CSSProperties}>
-              <span className="sig__dot" />
-              <span className="sig__main">
-                <span className="sig__what">{s.what}</span>
-                <span className="sig__item">{s.item}</span>
-              </span>
-              <span className="sig__tag">{s.tag}</span>
-              <span className="sig__meta">
-                {s.where} · {s.at}
-              </span>
-            </li>
-          ))}
-        </ul>
-        <div className="why pw-in" style={{ "--i": 3 } as React.CSSProperties}>
-          <p className="why__label">Why it changed</p>
-          <p className="why__text">
-            A third-party seller undercut you at <b>$24.99</b> at 02:58. Your Buy Box share fell from <b>96%</b> to <b>31%</b>.
-          </p>
-          <div className="why__actions">
-            <span className="chip chip--solid">Match price</span>
-            <span className="chip">Raise bid 15%</span>
-            <span className="chip">Ignore</span>
+      <MachineStage machine={<RadarCpu />} label="Signal card from Anarix Signals">
+        <article className={`card signal ${powered ? "is-good" : ""}`}>
+          <header className="signal__head">
+            <span className="pill pill--risk">High</span>
+            <span className="pill pill--outline">Advertising</span>
+            <span className="pill pill--muted">Amazon · US</span>
+            <span className="signal__time">03:12</span>
+          </header>
+          <div className="signal__value">
+            <Live powered={powered} bad={-135.97} good={1651} decimals={0} prefix="$" signed tone="sign" jitter={0.015} />
+            <span className="signal__value-k">{powered ? "protected" : "ad sales at risk"}</span>
           </div>
-        </div>
-        <p className="station__foot">
-          <span>Watching</span> <CountUp to={1248} powered={powered} /> <span>signals across 3 marketplaces</span>
+          <h3 className="signal__title">Critical advertising eligibility alert</h3>
+          <p className="signal__sub">ASIN B0CSHBTCC6 · Sampler, Decaf 40 Count</p>
+          <dl className="signal__why">
+            <div>
+              <dt>What happened</dt>
+              <dd>Ad eligibility lost on Jul 18, the 2nd time in 30 days.</dd>
+            </div>
+            <div>
+              <dt>Root cause</dt>
+              <dd>Cost to Amazon is too high for an $18.69 retail price.</dd>
+            </div>
+          </dl>
+          <div className="signal__aan">
+            <span className="signal__aan-k">✦ Aan&apos;s analysis</span>
+            {powered ? (
+              <span className="signal__aan-v">
+                Cut unit cost by $1.20 to restore eligibility ·{" "}
+                <b>
+                  <Live powered={powered} bad={0} good={95} jitter={0.02} suffix="%" />
+                </b>{" "}
+                confidence
+              </span>
+            ) : (
+              <span className="skel skel--line" />
+            )}
+          </div>
+          <footer className="signal__actions">
+            <span className={`btn-ui btn-ui--primary ${powered ? "is-done" : ""}`}>{powered ? "✓ Executed: Analyze listing" : "Execute: Analyze listing"}</span>
+            <span className="btn-ui">Modify</span>
+            <span className="btn-ui">Assign</span>
+          </footer>
+        </article>
+        <p className="stage__foot">
+          <span className="dot-live" /> <Ticker powered={powered} from={1248} rate={4} /> signals watched across 3 marketplaces
         </p>
-      </Station>
+      </MachineStage>
     </div>
   );
 }
@@ -63,80 +79,74 @@ export function SignalsSection() {
         </>
       }
       body="What moved, why, and what to do. Across every account."
-      bullets={["Spend, sales, rank, price and stock, watched 24/7", "Every alert comes with its cause", "One feed for Amazon, Walmart and Shopify"]}
+      proof={["Every alert comes with its root cause", "One feed for Amazon, Walmart and Shopify"]}
       media={{ kind: "video", label: "Signals walkthrough" }}
-      station={<SignalsStation />}
+      stage={<SignalsStage />}
     />
   );
 }
 
-/* ---------------------------------------------------------- Profitability */
-const WATERFALL = [
-  { k: "Sales", v: 225400, kind: "pos" },
-  { k: "Fees", v: -61300, kind: "neg" },
-  { k: "Ads", v: -38100, kind: "neg" },
-  { k: "COGS", v: -71000, kind: "neg" },
-  { k: "Returns", v: -6790, kind: "neg" },
-  { k: "Profit", v: 48210, kind: "total" },
+/* ========================================================= Profitability */
+// Modelled on the product's Profitability date cards.
+const PROFIT = [
+  { k: "GMV", bad: 4521.97, good: 5234.87, prefix: "$", d: 0 },
+  { k: "Orders", bad: 28, good: 34, d: 0 },
+  { k: "Auth sales", bad: 3842.5, good: 4567.23, prefix: "$", d: 0 },
+  { k: "Ad cost", bad: 312.45, good: 287.9, prefix: "$", d: 0 },
+  { k: "Units", bad: 45, good: 52, d: 0 },
+  { k: "Est. payout", bad: 2890, good: 3450, prefix: "$", d: 0 },
 ];
 
-function ProfitStation() {
+function ProfitStage() {
   const [ref, powered] = usePowered<HTMLDivElement>();
-  const max = 225400;
-  let run = 0;
+  const series = useSeries(powered);
   return (
     <div ref={ref}>
-      <Station title="Profitability" meta="Last 30 days" dock={{ state: "cube", bubble: "Profit is up 8.4% this week." }}>
-        <div className="kpis">
-          <div className="kpi pw-in" style={{ "--i": 0 } as React.CSSProperties}>
-            <span className="kpi__label">Net profit</span>
-            <span className="kpi__value">
-              <CountUp to={48210} prefix="$" powered={powered} />
+      <MachineStage machine={<Refinery />} label="Profitability date card from Anarix Profitability">
+        <article className={`card profit ${powered ? "is-good" : ""}`}>
+          <header className="profit__head">
+            <span className="profit__date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+              Nov 05, 2026
             </span>
-            <span className="kpi__delta kpi__delta--up">+8.4%</span>
-          </div>
-          <div className="kpi pw-in" style={{ "--i": 1 } as React.CSSProperties}>
-            <span className="kpi__label">Margin</span>
-            <span className="kpi__value">
-              <CountUp to={21.4} decimals={1} suffix="%" powered={powered} />
+            <span className="pill pill--muted">Walmart · US</span>
+          </header>
+          <div className="profit__hero">
+            <div>
+              <p className="profit__k">Net profit</p>
+              <p className="profit__v">
+                <Live powered={powered} bad={1246} good={1568} prefix="$" jitter={0.025} />
+              </p>
+            </div>
+            <span className="profit__delta">
+              <Live powered={powered} bad={-20.6} good={25.9} decimals={1} suffix="%" signed tone="sign" jitter={0.05} />
             </span>
-            <span className="kpi__delta kpi__delta--up">+1.9 pts</span>
+            <Spark pts={series} className="profit__spark" />
           </div>
-          <div className="kpi pw-in" style={{ "--i": 2 } as React.CSSProperties}>
-            <span className="kpi__label">TACoS</span>
-            <span className="kpi__value">
-              <CountUp to={8.2} decimals={1} suffix="%" powered={powered} />
-            </span>
-            <span className="kpi__delta kpi__delta--down">−0.6 pts</span>
-          </div>
-        </div>
-        <div className="fall" role="img" aria-label="Profit waterfall: sales $225,400 minus fees, ads, COGS and returns leaves $48,210 profit">
-          {WATERFALL.map((w, i) => {
-            const start = w.kind === "total" ? 0 : w.kind === "pos" ? 0 : run + w.v;
-            const len = Math.abs(w.v);
-            if (w.kind === "pos") run = w.v;
-            else if (w.kind === "neg") run += w.v;
-            return (
-              <div key={w.k} className={`fall__row fall__row--${w.kind}`} style={{ "--i": i } as React.CSSProperties}>
-                <span className="fall__k">{w.k}</span>
-                <span className="fall__track">
-                  <span
-                    className="fall__bar"
-                    style={{ left: `${(start / max) * 100}%`, width: `${(len / max) * 100}%` } as React.CSSProperties}
-                  />
-                </span>
-                <span className="fall__v">
-                  {w.v < 0 ? "−" : ""}${Math.abs(w.v / 1000).toFixed(1)}k
-                </span>
+          <p className="profit__margin">
+            Margin{" "}
+            <b>
+              <Live powered={powered} bad={27.5} good={30} decimals={1} suffix="%" jitter={0.02} />
+            </b>
+          </p>
+          <dl className="profit__grid">
+            {PROFIT.map((m) => (
+              <div key={m.k}>
+                <dt>{m.k}</dt>
+                <dd>
+                  <Live powered={powered} bad={m.bad} good={m.good} prefix={m.prefix} decimals={m.d} jitter={0.03} />
+                </dd>
               </div>
-            );
-          })}
-        </div>
-        <svg className="spark" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0,58 C30,56 50,50 80,52 S130,40 160,42 S210,30 240,34 S300,18 330,20 S380,8 400,6" className="spark__line" />
-          <path d="M0,58 C30,56 50,50 80,52 S130,40 160,42 S210,30 240,34 S300,18 330,20 S380,8 400,6 V70 H0Z" className="spark__area" />
-        </svg>
-      </Station>
+            ))}
+          </dl>
+        </article>
+        <p className="stage__foot">
+          <span className="dot-live" /> Fees, ads and COGS stripped out. Updated daily.
+        </p>
+      </MachineStage>
     </div>
   );
 }
@@ -155,52 +165,83 @@ export function ProfitSection() {
         </>
       }
       body="Every fee, ad dollar and return. One P&L."
-      bullets={["Product-level P&L, updated daily", "Fees, ads, returns and COGS included", "Amazon, Walmart and Shopify side by side"]}
-      media={{ kind: "image", label: "Profit dashboard" }}
-      station={<ProfitStation />}
+      proof={["Product-level P&L, updated daily", "Amazon, Walmart and Shopify side by side"]}
+      media={{ kind: "image", label: "Profitability dashboard" }}
+      stage={<ProfitStage />}
     />
   );
 }
 
-/* ------------------------------------------------------------------ Rules */
+/* ================================================================= Rules */
+// Modelled on the product's Applied Rules table + "Create Rules with AI".
 const RULES = [
-  { name: "Pause keywords with $50+ spend and 0 sales", scope: "All campaigns", runs: "Hourly" },
-  { name: "Cap daily budget at 120% of plan", scope: "Walmart", runs: "Every 15 min" },
-  { name: "Match price if undercut by less than 5%", scope: "Top 40 SKUs", runs: "Live" },
-  { name: "Ask me before any change over $500", scope: "Everything", runs: "Approval" },
+  { name: "Auto-Pause Low CTR", type: "Campaign", scope: "22 campaigns", runs: 312 },
+  { name: "Budget Cap Protection", type: "Budget", scope: "15 campaigns", runs: 1204 },
+  { name: "High ACOS Bid Reducer", type: "Keyword", scope: "142 keywords", runs: 846 },
+  { name: "Inventory Sync Rule", type: "Inventory", scope: "189 products", runs: 97 },
 ];
 
-function RulesStation() {
-  const [ref] = usePowered<HTMLDivElement>();
+const LOG = [
+  "02:14 · Paused “chef knife 8 inch”. $86 saved.",
+  "02:41 · Cut bid 12% on 9 high-ACOS keywords.",
+  "03:05 · Capped Spring Sale at 120% of plan.",
+  "03:30 · Paused 4 ads on out-of-stock SKUs.",
+];
+
+function RulesStage() {
+  const [ref, powered] = usePowered<HTMLDivElement>();
+  const [log, setLog] = useState(0);
+  useEffect(() => {
+    if (!powered || reduced()) return;
+    const id = window.setInterval(() => setLog((l) => (l + 1) % LOG.length), 2600);
+    return () => window.clearInterval(id);
+  }, [powered]);
   return (
     <div ref={ref}>
-      <Station title="Rules" meta="12 active" dock={{ state: "cube", bubble: "12 rules running. All quiet." }}>
-        <ul className="rules">
-          {RULES.map((r, i) => (
-            <li key={r.name} className="rule" style={{ "--i": i } as React.CSSProperties}>
-              <span className="toggle" aria-hidden="true">
-                <span className="toggle__knob" />
-              </span>
-              <span className="rule__main">
-                <span className="rule__name">{r.name}</span>
-                <span className="rule__meta">
-                  {r.scope} · {r.runs}
+      <MachineStage machine={<Gearworks />} label="Applied Rules table from Anarix Rules">
+        <article className={`card rules ${powered ? "is-good" : ""}`}>
+          <div className="rules__ai">
+            <span className="rules__ai-k">✦ Create rules with AI</span>
+            <span className="rules__ai-input">Pause keywords with high ACOS and low conversions</span>
+          </div>
+          <div className="rules__table" role="table">
+            <div className="rules__row rules__row--head" role="row">
+              <span role="columnheader">Rule</span>
+              <span role="columnheader">Applies to</span>
+              <span role="columnheader">Actions</span>
+              <span role="columnheader">Status</span>
+            </div>
+            {RULES.map((r, i) => (
+              <div key={r.name} className="rules__row" role="row" style={{ "--i": i } as React.CSSProperties}>
+                <span role="cell" className="rules__name">
+                  {r.name}
+                  <small>{r.type}</small>
                 </span>
-              </span>
-            </li>
-          ))}
-        </ul>
-        <div className="log pw-in" style={{ "--i": 5 } as React.CSSProperties}>
-          <span className="log__check" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 6 9 17l-5-5" />
-            </svg>
-          </span>
-          <span className="log__text">
-            <b>02:14</b> Paused &ldquo;chef knife 8 inch&rdquo;. $86 spent, 0 sales.
-          </span>
-        </div>
-      </Station>
+                <span role="cell" className="rules__scope">
+                  {r.scope}
+                </span>
+                <span role="cell" className="rules__runs">
+                  {powered ? <Ticker powered={powered} from={r.runs} rate={2} every={1400 + i * 300} /> : "—"}
+                </span>
+                <span role="cell">
+                  <span className="status">
+                    <span className="status__off">Paused</span>
+                    <span className="status__on">Active</span>
+                  </span>
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="rules__log" aria-live="polite">
+            <span className="rules__check" aria-hidden="true">
+              ✓
+            </span>
+            <span key={log} className="rules__log-t">
+              {powered ? LOG[log] : "No rules running. Nothing is being watched."}
+            </span>
+          </p>
+        </article>
+      </MachineStage>
     </div>
   );
 }
@@ -218,112 +259,115 @@ export function RulesSection() {
         </>
       }
       body="Pause waste. Guard budgets. Answer price moves. 24/7."
-      bullets={["Start from templates or write your own", "Every action logged, every time", "Approval mode for the big moves"]}
-      media={{ kind: "video", label: "Building a rule" }}
-      station={<RulesStation />}
+      proof={["Describe a rule in plain words", "Every action logged, big moves need approval"]}
+      media={{ kind: "video", label: "Building a rule with AI" }}
+      stage={<RulesStage />}
     />
   );
 }
 
-/* -------------------------------------------------------------------- Aan */
-const QUESTION = "Why did ROAS drop on Walmart last week?";
+/* =================================================================== Aan */
+// Modelled on the product's Ask Aan chat + morning Brief.
+const AWAY = [
+  { t: "Reordered inventory on 3 at-risk SKUs", v: "+$6,200", ok: true },
+  { t: "Paused spend on an underperforming SKU", v: "+$1,150 saved", ok: true },
+  { t: "Price parity violation across the catalog", v: "−$42,600 at risk", ok: false },
+];
 
-function AanStation() {
+function AanStage() {
   const [ref, powered] = usePowered<HTMLDivElement>();
-  const [typed, setTyped] = useState(0);
-  const [phase, setPhase] = useState<"idle" | "typing" | "loading" | "thinking" | "answer">("idle");
+  const [phase, setPhase] = useState<"idle" | "asked" | "answer">("idle");
 
   useEffect(() => {
-    const send = (state: string | null) =>
-      window.dispatchEvent(new CustomEvent("aan:override", { detail: { stop: "aan", state } }));
+    const send = (state: string | null) => window.dispatchEvent(new CustomEvent("aan:override", { detail: { stop: "aan", state } }));
     if (!powered) {
-      setTyped(0);
       setPhase("idle");
       send(null);
       return;
     }
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setTyped(QUESTION.length);
+    if (reduced()) {
       setPhase("answer");
       return;
     }
-    const timers: number[] = [];
-    setPhase("typing");
-    send("circle"); // listening while you type
-    for (let k = 1; k <= QUESTION.length; k++) timers.push(window.setTimeout(() => setTyped(k), 300 + k * 28));
-    const sent = 300 + QUESTION.length * 28 + 250;
-    timers.push(window.setTimeout(() => (setPhase("loading"), send("bar")), sent));
-    timers.push(window.setTimeout(() => (setPhase("thinking"), send("cube")), sent + 900));
-    timers.push(window.setTimeout(() => (setPhase("answer"), send("circle")), sent + 1900));
-    return () => timers.forEach(clearTimeout);
+    setPhase("asked");
+    send("bar");
+    const a = window.setTimeout(() => send("cube"), 800);
+    const b = window.setTimeout(() => {
+      setPhase("answer");
+      send("circle");
+    }, 1700);
+    return () => {
+      clearTimeout(a);
+      clearTimeout(b);
+    };
   }, [powered]);
-
-  const status =
-    phase === "loading" ? "Reading 7 days of Walmart data…" : phase === "thinking" ? "Comparing campaigns…" : phase === "answer" ? "Answered in 2.1s" : "Listening";
 
   return (
     <div ref={ref}>
-      <Station title="Ask Aan" meta="Walmart" dark dock={{ state: "circle", bubble: "Ask me anything.", size: 64 }}>
-        <div className="chat">
-          <div className="chat__status">
-            <span className={`chat__pulse chat__pulse--${phase}`} />
-            {status}
-          </div>
-          {phase !== "idle" && (
-            <p className="chat__msg chat__msg--you">
-              {QUESTION.slice(0, typed)}
-              {phase === "typing" && <span className="caret" />}
-            </p>
-          )}
-          {(phase === "loading" || phase === "thinking") && (
-            <div className="chat__msg chat__msg--aan chat__msg--wait">
-              <AanMascot state={phase === "loading" ? "bar" : "cube"} size={22} satellite={false} glow={false} shadow={false} />
+      <MachineStage machine={<NeuralBrain />} label="Ask Aan chat from Anarix">
+        <article className="card chat">
+          {phase === "idle" && <p className="chat__empty">Ask Aan anything about your accounts.</p>}
+          {phase !== "idle" && <p className="chat__you">What changed overnight?</p>}
+          {phase === "asked" && (
+            <p className="chat__thinking">
               <span className="dots">
                 <i />
                 <i />
                 <i />
               </span>
-            </div>
+              Reading 3 marketplaces…
+            </p>
           )}
           {phase === "answer" && (
-            <>
-              <div className="chat__msg chat__msg--aan chat__answer">
-                <p>
-                  ROAS fell from <b>4.1</b> to <b>3.2</b>. Two causes:
-                </p>
-                <ol>
-                  <li>&ldquo;Spring Sale&rdquo; lost 38% of impressions to a new competitor.</li>
-                  <li>CPC rose 22% on &ldquo;bamboo cutting board&rdquo;.</li>
-                </ol>
-                <p>Moving $400/day to Sponsored Brands should win back about 0.5 ROAS.</p>
+            <div className="chat__brief">
+              <p className="chat__hello">Good morning. Here&apos;s where things stand.</p>
+              <div className="tiles">
+                <div className="tile tile--risk">
+                  <span>Critical alerts</span>
+                  <b>
+                    <Live powered={powered} bad={7} good={3} jitter={0} />
+                  </b>
+                </div>
+                <div className="tile tile--risk">
+                  <span>At risk</span>
+                  <b>
+                    <Live powered={powered} bad={-128.4} good={-42.6} decimals={1} prefix="$" suffix="k" jitter={0.03} />
+                  </b>
+                </div>
+                <div className="tile tile--gain">
+                  <span>Verified gain</span>
+                  <b>
+                    <Live powered={powered} bad={0} good={13.3} decimals={1} prefix="$" suffix="k" signed jitter={0.04} />
+                  </b>
+                </div>
+                <div className="tile">
+                  <span>Meetings today</span>
+                  <b>2</b>
+                </div>
               </div>
-              <div className="report">
-                <span className="report__icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                    <path d="M3 3v18h18" />
-                    <path d="m7 15 4-4 3 3 5-6" />
-                  </svg>
-                </span>
-                <span className="report__main">
-                  <span className="report__title">Walmart ROAS review</span>
-                  <span className="report__meta">7 days · 4 charts · 2 actions</span>
-                </span>
-                <span className="chip chip--solid">Open report</span>
-              </div>
-            </>
+              <p className="chat__k">While you were away</p>
+              <ul className="away">
+                {AWAY.map((a, i) => (
+                  <li key={a.t} style={{ "--i": i } as React.CSSProperties}>
+                    <span className={`away__chip ${a.ok ? "is-ok" : "is-review"}`}>{a.ok ? "Handled" : "Needs review"}</span>
+                    <span className="away__t">{a.t}</span>
+                    <span className={`away__v ${a.ok ? "is-ok" : "is-review"}`}>{a.v}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
-          <div className="chat__input">
+          <div className="chat__composer">
             <span>Ask Aan anything…</span>
             <span className="chat__send" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 19V5" />
                 <path d="m5 12 7-7 7 7" />
               </svg>
             </span>
           </div>
-        </div>
-      </Station>
+        </article>
+      </MachineStage>
     </div>
   );
 }
@@ -343,9 +387,9 @@ export function AanSection() {
         </>
       }
       body="Plain answers. Real numbers. Reports in seconds."
-      bullets={["Knows your account history", "Shows the numbers behind every answer", "Turns one question into a full report"]}
+      proof={["Knows your account history", "Shows the numbers behind every answer"]}
       media={{ kind: "video", label: "Ask Aan demo" }}
-      station={<AanStation />}
+      stage={<AanStage />}
     />
   );
 }

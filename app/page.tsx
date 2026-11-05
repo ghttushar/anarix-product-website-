@@ -34,12 +34,6 @@ export default function Home() {
                   Meet Aan
                 </a>
               </div>
-              <p className="hero__meta">
-                <span>Signals</span>
-                <span>Profitability</span>
-                <span>Rules</span>
-                <span>MCP</span>
-              </p>
             </div>
             <LazySusan />
           </div>

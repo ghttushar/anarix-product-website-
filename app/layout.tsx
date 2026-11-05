@@ -6,6 +6,7 @@ import "../components/aan/traveler.css";
 import "../components/chrome/chrome.css";
 import "../components/hero/hero.css";
 import "../components/sections/sections.css";
+import "../components/machines/machines.css";
 import "../components/night/night.css";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-space-grotesk" });

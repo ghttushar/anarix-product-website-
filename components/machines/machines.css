@@ -1,0 +1,393 @@
+/* ------------------------------------------------------------------
+   Machines — dormant hairline art that powers up when Aan docks
+------------------------------------------------------------------- */
+.mx {
+  --mline: color-mix(in srgb, var(--ink) 26%, transparent);
+  --mline-soft: color-mix(in srgb, var(--ink) 12%, transparent);
+  --mface: var(--panel-solid);
+  position: relative;
+  width: 100%;
+}
+
+.mx-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.mx-dock {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* faces & lines */
+.mx-face {
+  fill: var(--mface);
+  stroke: var(--mline);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  transition: stroke 0.6s var(--ease-out), fill 0.6s var(--ease-out);
+}
+
+.mx-face--l {
+  fill: color-mix(in srgb, var(--mface) 94%, var(--ink));
+}
+
+.mx-face--r {
+  fill: color-mix(in srgb, var(--mface) 88%, var(--ink));
+}
+
+.mx-etch,
+.mx-pin {
+  fill: none;
+  stroke: var(--mline-soft);
+  stroke-width: 1;
+}
+
+.mx-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  fill: var(--ink-2);
+}
+
+.mx-label--sm {
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  fill: var(--ink-3);
+}
+
+.mx-label--accent {
+  fill: var(--ink);
+  font-weight: 500;
+}
+
+.mx-port {
+  fill: var(--mface);
+  stroke: var(--mline);
+  stroke-width: 1.2;
+  transition: stroke 0.5s;
+}
+
+.mx-trace {
+  fill: none;
+  stroke: var(--mline);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  transition: stroke 0.6s var(--ease-out);
+}
+
+.mx-packet {
+  fill: var(--coral);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.mx-packets--out .mx-packet {
+  fill: var(--blue);
+}
+
+.mx-socket {
+  fill: none;
+  stroke: var(--mline);
+  stroke-width: 1.4;
+  stroke-dasharray: 3 4;
+  transition: stroke 0.5s, fill 0.5s;
+}
+
+.mx-socket--in {
+  stroke-dasharray: none;
+}
+
+.mx-socket--fill {
+  fill: var(--mface);
+  stroke-dasharray: 3 4;
+}
+
+.mx-ring {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 1.4;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* powered ---------------------------------------------------------- */
+[data-powered="true"] .mx-trace {
+  stroke: color-mix(in srgb, var(--blue) 55%, transparent);
+}
+
+[data-powered="true"] .mx-port {
+  stroke: color-mix(in srgb, var(--coral) 70%, transparent);
+}
+
+[data-powered="true"] .mx-packet {
+  opacity: 1;
+}
+
+[data-powered="true"] .mx-socket {
+  stroke: var(--coral);
+  stroke-dasharray: none;
+}
+
+[data-powered="true"] .mx-socket--in,
+[data-powered="true"] .mx-socket--fill {
+  fill: color-mix(in srgb, var(--coral) 14%, var(--mface));
+}
+
+[data-powered="true"] .mx-ring {
+  animation: mx-ripple 2.6s var(--ease-out) infinite;
+}
+
+[data-powered="true"] .mx-ring--1 {
+  animation-delay: 0.85s;
+}
+
+[data-powered="true"] .mx-ring--2 {
+  animation-delay: 1.7s;
+}
+
+@keyframes mx-ripple {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+/* CPU */
+[data-powered="true"] .mx-die {
+  fill: color-mix(in srgb, var(--blue) 8%, var(--mface));
+  stroke: color-mix(in srgb, var(--blue) 60%, transparent);
+}
+
+[data-powered="true"] .mx--cpu .mx-face--t:not(.mx-die) {
+  stroke: color-mix(in srgb, var(--blue) 40%, transparent);
+}
+
+[data-powered="true"] .mx-etch {
+  stroke: color-mix(in srgb, var(--blue) 25%, transparent);
+}
+
+/* refinery */
+.mx-pipe {
+  fill: none;
+  stroke: var(--mline-soft);
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+.mx-flow {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 8 12;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+[data-powered="true"] .mx-flow {
+  opacity: 0.85;
+  animation: mx-flow 0.9s linear infinite;
+}
+
+[data-powered="true"] .mx-flow--late {
+  stroke: #1f9d6b;
+}
+
+@keyframes mx-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.mx-level {
+  transition: transform 1.8s var(--ease-out);
+}
+
+.mx-level--sales {
+  transform: translateY(48px);
+}
+
+.mx-level--sales .mx-liquid {
+  fill: color-mix(in srgb, var(--blue) 18%, transparent);
+}
+
+.mx-level--profit {
+  transform: translateY(92px);
+}
+
+.mx-level--profit .mx-liquid {
+  fill: color-mix(in srgb, var(--coral) 30%, transparent);
+  transition: fill 1.2s;
+}
+
+[data-powered="true"] .mx-level--sales {
+  transform: translateY(6px);
+}
+
+[data-powered="true"] .mx-level--profit {
+  transform: translateY(26px);
+  animation: mx-bob 3.2s ease-in-out 2s infinite;
+}
+
+[data-powered="true"] .mx-level--profit .mx-liquid {
+  fill: rgba(31, 157, 107, 0.28);
+}
+
+@keyframes mx-bob {
+  0%,
+  100% {
+    transform: translateY(26px);
+  }
+  50% {
+    transform: translateY(16px);
+  }
+}
+
+.mx-drip {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 2 10;
+  opacity: 0;
+}
+
+[data-powered="true"] .mx-drip {
+  opacity: 0.8;
+  animation: mx-drip 0.8s linear infinite;
+}
+
+[data-powered="true"] .mx-filter--1 .mx-drip {
+  animation-delay: 0.25s;
+}
+
+[data-powered="true"] .mx-filter--2 .mx-drip {
+  animation-delay: 0.5s;
+}
+
+@keyframes mx-drip {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+[data-powered="true"] .mx--refinery .mx-face--t {
+  stroke: color-mix(in srgb, var(--blue) 40%, transparent);
+}
+
+/* gears */
+.mx-gear__back {
+  fill: color-mix(in srgb, var(--ink) 7%, transparent);
+  stroke: var(--mline-soft);
+  stroke-width: 1;
+}
+
+.mx-gear__spin {
+  transform-box: view-box;
+  animation: mx-spin var(--dur) linear infinite;
+  animation-play-state: paused;
+}
+
+.mx-gear__spin.is-rev {
+  animation-direction: reverse;
+}
+
+[data-powered="true"] .mx-gear__spin {
+  animation-play-state: running;
+}
+
+[data-powered="true"] .mx-gear__face {
+  stroke: color-mix(in srgb, var(--blue) 60%, transparent);
+}
+
+[data-powered="true"] .mx-gear--main .mx-gear__face {
+  stroke: var(--coral);
+  fill: color-mix(in srgb, var(--coral) 6%, var(--mface));
+}
+
+.mx-gear__label {
+  fill: var(--ink-2);
+}
+
+@keyframes mx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* brain */
+.mx-brain {
+  stroke-width: 1.3;
+}
+
+.mx-synapse {
+  stroke: var(--mline-soft);
+  stroke-width: 1;
+}
+
+.mx-neuron {
+  fill: var(--mline);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+[data-powered="true"] .mx-brain {
+  stroke: color-mix(in srgb, var(--blue) 50%, transparent);
+}
+
+[data-powered="true"] .mx-synapse {
+  animation: mx-synapse 2.4s ease-in-out infinite;
+}
+
+[data-powered="true"] .mx-neuron {
+  animation: mx-neuron 2.4s ease-in-out infinite;
+}
+
+@keyframes mx-neuron {
+  0%,
+  70%,
+  100% {
+    fill: color-mix(in srgb, var(--blue) 55%, transparent);
+    transform: scale(1);
+  }
+  20% {
+    fill: var(--coral);
+    transform: scale(1.7);
+  }
+}
+
+@keyframes mx-synapse {
+  0%,
+  70%,
+  100% {
+    stroke: color-mix(in srgb, var(--blue) 22%, transparent);
+  }
+  20% {
+    stroke: color-mix(in srgb, var(--coral) 70%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-gear__spin,
+  .mx-ring,
+  .mx-neuron,
+  .mx-synapse,
+  .mx-flow,
+  .mx-drip {
+    animation: none !important;
+  }
+  .mx-packets {
+    display: none;
+  }
+}

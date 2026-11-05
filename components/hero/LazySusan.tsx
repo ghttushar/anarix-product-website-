@@ -182,6 +182,7 @@ export function LazySusan() {
         onKeyDown={onKeyDown}
       >
         {/* MCP spindle + base, drawn behind the plate */}
+        <div className="susan__shadow" aria-hidden="true" />
         <svg className="susan__spindle" viewBox="0 0 240 260" aria-hidden="true">
           <path d="M112,0 V196 M128,0 V196" className="spindle-line" />
           <ellipse cx="120" cy="196" rx="8" ry="3" className="spindle-line" />
@@ -200,6 +201,12 @@ export function LazySusan() {
             <div className="susan__edge susan__edge--3" />
             <div className="susan__edge susan__edge--2" />
             <svg className="susan__top" viewBox="0 0 1000 1000" aria-hidden="true">
+              <defs>
+                <radialGradient id="plate-grad" cx="45%" cy="40%" r="65%">
+                  <stop offset="0%" stopColor="var(--plate-hi)" />
+                  <stop offset="100%" stopColor="var(--plate-lo)" />
+                </radialGradient>
+              </defs>
               <circle cx="500" cy="500" r="496" className="plate-fill" />
               <circle cx="500" cy="500" r="496" className="plate-line" />
               <circle cx="500" cy="500" r="462" className="plate-line plate-line--soft" />
@@ -213,10 +220,10 @@ export function LazySusan() {
                 const d = `M${P(r, a0)} L${P(R, a0)} A${R},${R} 0 0 1 ${P(R, a1)} L${P(r, a1)} A${r},${r} 0 0 0 ${P(r, a0)}Z`;
                 return <path key={s.id} d={d} className={`plate-wedge ${i === active ? "is-active" : ""}`} />;
               })}
-              {Array.from({ length: 72 }).map((_, k) => {
-                const a = (k * 5 * Math.PI) / 180;
-                const long = k % 6 === 0;
-                const r0 = long ? 470 : 478;
+              {Array.from({ length: 36 }).map((_, k) => {
+                const a = (k * 10 * Math.PI) / 180;
+                const long = k % 3 === 0;
+                const r0 = long ? 472 : 480;
                 const [x1, y1] = pc(r0, a);
                 const [x2, y2] = pc(490, a);
                 return <line key={k} x1={x1} y1={y1} x2={x2} y2={y2} className="plate-tick" />;
@@ -271,19 +278,9 @@ export function LazySusan() {
         </div>
       </div>
 
-      <div className="susan__caption" aria-live="polite">
-        <p className="eyebrow">
-          0{active + 1} / 04 · {cur.label}
-        </p>
-        <p className="susan__line">{cur.line}</p>
-        <button className="susan__jump" onClick={() => scrollToSection(cur.id)}>
-          Jump to {cur.label}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-            <path d="M12 5v14" />
-            <path d="m19 12-7 7-7-7" />
-          </svg>
-        </button>
-      </div>
+      <p className="sr-only" aria-live="polite">
+        {cur.label}: {cur.line}
+      </p>
 
       <div className="susan__tabs" role="tablist" aria-label="Jump to a section">
         {SECTORS.map((s, i) => (
@@ -294,24 +291,17 @@ export function LazySusan() {
             className={`susan__tab ${i === active ? "is-active" : ""}`}
             onClick={() => {
               markInteracted();
-              goTo(i);
-              window.setTimeout(() => scrollToSection(s.id), 420);
+              if (i === active) scrollToSection(s.id);
+              else {
+                goTo(i);
+                window.setTimeout(() => scrollToSection(s.id), 420);
+              }
             }}
           >
-            <span className="susan__tab-num">0{i + 1}</span>
-            {s.label}
+            <span className="susan__tab-label">{s.label}</span>
+            <span className="susan__tab-line">{s.line}</span>
           </button>
         ))}
-        <button
-          className="susan__tab susan__tab--mcp"
-          onClick={() => {
-            markInteracted();
-            scrollToSection("mcp");
-          }}
-        >
-          <span className="susan__tab-num">↓</span>
-          MCP
-        </button>
       </div>
     </div>
   );

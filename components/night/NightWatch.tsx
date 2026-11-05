@@ -112,7 +112,9 @@ export function NightWatch() {
       el.style.setProperty("--d", d.toFixed(3));
       el.style.setProperty("--p", p.toFixed(4));
       el.style.setProperty("--sun", (1 - smooth(20, 140, m) + smooth(700, 780, m)).toFixed(3));
-      el.dataset.surface = d > 0.5 ? "dark" : "light";
+      // in dark mode the scene inverts (light at night), so the rendered surface flips too
+      const darkTheme = document.documentElement.dataset.theme === "dark";
+      el.dataset.surface = (darkTheme ? d < 0.5 : d > 0.5) ? "dark" : "light";
 
       // Aan walks the path
       let k = 0;
