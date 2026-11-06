@@ -1,6 +1,6 @@
 "use client";
 
-import { DetailRow, MediaSlot, usePowered } from "./shared";
+import { DetailRow, Hl, MediaSlot, Reveal, usePowered } from "./shared";
 
 const LEFT = [
   { name: "Amazon", x: 110 },
@@ -94,12 +94,21 @@ function McpDiagram() {
 
 export function McpSection() {
   return (
-    <section id="mcp" data-stop="mcp" className="mcp">
+    <section id="mcp" data-stop="mcp" data-surface="light" className="mcp chapter chapter--light">
       <div className="container">
-        <div className="mcp__head">
-          <p className="eyebrow">MCP · The spindle under everything</p>
-          <h2 className="display h2">Your data. Any AI.</h2>
-          <p className="lede">Plug Anarix into Claude, ChatGPT or Gemini. The same numbers, wherever you work.</p>
+        <div className="chapter__statement">
+          <Reveal className="chapter__head">
+            <p className="chapter__label">
+              <span>05</span>MCP
+            </p>
+            <h2 className="display h2 chapter__title">Your data. Any AI.</h2>
+          </Reveal>
+          <Reveal className="chapter__prose" delay={120}>
+            <p>
+              Anarix MCP plugs your marketplace data into <Hl>Claude, ChatGPT, Gemini or your own agent</Hl>. Every answer
+              uses <Hl>the same live numbers as your dashboard</Hl>, wherever you work.
+            </p>
+          </Reveal>
         </div>
         <McpDiagram />
         <DetailRow items={[{ title: "Live, structured data", text: "Sales, ads, inventory and profit, served as clean tools any AI can call." }, { title: "Works where you work", text: "Use it inside Claude, ChatGPT, Gemini or your own agent." }, { title: "Same numbers everywhere", text: "One source of truth, so every AI answer matches your Anarix dashboard." }]} />

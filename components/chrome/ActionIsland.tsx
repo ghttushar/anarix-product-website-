@@ -22,7 +22,7 @@ type Msg = { from: "aan" | "you"; text: string };
 
 export function ActionIsland() {
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [msgs, setMsgs] = useState<Msg[]>([{ from: "aan", text: "Hi, I'm Aan. Ask me anything about Anarix." }]);
   const [aanState, setAanState] = useState<AanState>("diamond");
   const [hover, setHover] = useState(false);
@@ -38,7 +38,7 @@ export function ActionIsland() {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("anarix-theme");
+      const saved = localStorage.getItem("anarix-theme-v2");
       if (saved === "dark" || saved === "light") setTheme(saved);
     } catch {}
   }, []);
@@ -46,7 +46,7 @@ export function ActionIsland() {
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     try {
-      localStorage.setItem("anarix-theme", theme);
+      localStorage.setItem("anarix-theme-v2", theme);
     } catch {}
   }, [theme]);
 

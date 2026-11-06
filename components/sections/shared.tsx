@@ -83,60 +83,75 @@ export function MachineStage({ machine, children, label }: { machine: ReactNode;
   );
 }
 
-/** feature section: copy on one side, machine + product UI on the other, media strip below */
+/** highlighted phrase inside a grey statement paragraph (Sarla-style emphasis) */
+export function Hl({ children }: { children: ReactNode }) {
+  return <span className="hl">{children}</span>;
+}
+
+/**
+ * A feature chapter in two beats:
+ *  A — statement: big headline + large grey prose with highlighted phrases
+ *  B — proof: capability prose beside the product UI and its isometric scene,
+ *      then an inset media frame
+ */
 export function FeatureSection({
   id,
+  index,
   eyebrow,
   title,
-  body,
-  proof,
+  statement,
   details = [],
   media,
   stage,
   reverse = false,
   dark = false,
+  light = false,
 }: {
   id: string;
+  index: string;
   eyebrow: string;
   title: ReactNode;
-  body: string;
-  proof: string[];
+  statement: ReactNode;
   details?: { title: string; text: string }[];
   media: { kind: "video" | "image"; label: string };
   stage: ReactNode;
   reverse?: boolean;
   dark?: boolean;
+  light?: boolean;
 }) {
   return (
     <section
       id={id}
       data-stop={id}
-      data-surface={dark ? "dark" : undefined}
-      className={`feature ${reverse ? "feature--reverse" : ""} ${dark ? "feature--dark" : ""}`}
+      data-surface={dark ? "dark" : light ? "light" : undefined}
+      className={`feature chapter ${reverse ? "feature--reverse" : ""} ${dark ? "feature--dark" : ""} ${light ? "chapter--light" : ""}`}
     >
       <div className="container">
+        <div className="chapter__statement">
+          <Reveal className="chapter__head">
+            <p className="chapter__label">
+              <span>{index}</span>
+              {eyebrow}
+            </p>
+            <h2 className="display h2 chapter__title">{title}</h2>
+          </Reveal>
+          <Reveal className="chapter__prose" delay={120}>
+            <p>{statement}</p>
+          </Reveal>
+        </div>
+
         <div className="feature__grid">
           <Reveal className="feature__copy">
-            <p className="eyebrow">{eyebrow}</p>
-            <h2 className="display h2 feature__title">{title}</h2>
-            <p className="lede feature__body">{body}</p>
-            {details.length > 0 && (
-              <div className="feature__more">
-                {details.map((d) => (
-                  <p key={d.title}>
-                    <strong>{d.title}.</strong> {d.text}
-                  </p>
-                ))}
+            {details.map((d) => (
+              <div key={d.title} className="cap">
+                <h3 className="cap__title">{d.title}</h3>
+                <p className="cap__text">{d.text}</p>
               </div>
-            )}
-            <ul className="feature__proof">
-              {proof.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
+            ))}
           </Reveal>
           <div className="feature__stage">{stage}</div>
         </div>
+
         <Reveal className="feature__media">
           <MediaSlot {...media} />
         </Reveal>
@@ -145,15 +160,14 @@ export function FeatureSection({
   );
 }
 
-/** three capability cards: what Aan does in this part of the product */
+/** capability prose row (MCP) */
 export function DetailRow({ items }: { items: { title: string; text: string }[] }) {
   return (
-    <div className="details">
+    <div className="caps-row">
       {items.map((d, i) => (
-        <Reveal key={d.title} className="detail" delay={i * 90}>
-          <span className="detail__n">0{i + 1}</span>
-          <h3 className="detail__title">{d.title}</h3>
-          <p className="detail__text">{d.text}</p>
+        <Reveal key={d.title} className="cap" delay={i * 90}>
+          <h3 className="cap__title">{d.title}</h3>
+          <p className="cap__text">{d.text}</p>
         </Reveal>
       ))}
     </div>

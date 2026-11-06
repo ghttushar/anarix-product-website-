@@ -9,6 +9,7 @@ import "../components/sections/sections.css";
 import "../components/machines/machines.css";
 import "../components/night/night.css";
 import "../components/readability.css";
+import "../components/premium.css";
 
 // Fraunces (display) + Inter (body): the Anarix website design system
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-fraunces" });
@@ -34,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       className={`${fraunces.variable} ${plexMono.variable} ${inter.variable}`}
       suppressHydrationWarning
     >

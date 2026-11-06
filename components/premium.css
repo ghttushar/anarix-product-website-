@@ -1,0 +1,475 @@
+/* ------------------------------------------------------------------
+   Premium layer (Sarla-level restraint). Loaded last; overrides the
+   earlier section styles. Same fonts (Fraunces + Inter) and the same
+   Anarix colour tokens — only scale, rhythm, density and emphasis change.
+------------------------------------------------------------------- */
+
+/* ---------- type scale ---------- */
+.h1 {
+  font-size: clamp(52px, 5.6vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.h2 {
+  font-size: clamp(42px, 4.6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+}
+
+.lede {
+  font-size: clamp(18px, 1.55vw, 23px);
+  line-height: 1.5;
+}
+
+/* grey prose, highlighted phrases in full ink */
+.hl {
+  color: var(--ink);
+}
+
+/* ---------- light chapters: the existing light tokens, scoped ---------- */
+html[data-theme="dark"] .chapter--light {
+  --h-background: 228 25% 97%;
+  --h-foreground: 209 22% 14%;
+  --h-card: 0 0% 100%;
+  --h-primary: 230 65% 57%;
+  --h-muted: 228 20% 94%;
+  --h-muted-fg: 215 14% 42%;
+  --h-accent: 230 65% 95%;
+  --h-border: 228 20% 90%;
+  --h-lavender: 230 40% 96%;
+  --bg: hsl(var(--h-background));
+  --ink: hsl(var(--h-foreground));
+  --ink-2: hsl(var(--h-muted-fg));
+  --ink-3: hsl(var(--h-muted-fg) / 0.75);
+  --line: hsl(var(--h-border));
+  --line-soft: hsl(var(--h-border) / 0.6);
+  --panel: hsl(var(--h-card));
+  --panel-solid: hsl(var(--h-card));
+  --panel-border: hsl(var(--h-border));
+  --skel: hsl(var(--h-muted));
+  --shadow-soft: 0 2px 8px -2px hsl(230 65% 57% / 0.08);
+  --shadow-medium: 0 4px 16px -4px hsl(230 65% 57% / 0.12);
+  --shadow-strong: 0 8px 32px -8px hsl(230 65% 57% / 0.18);
+  --gain: hsl(230 65% 57%);
+  --risk: hsl(355 75% 58%);
+  color: var(--ink);
+}
+
+.chapter--light {
+  margin: 0 16px;
+  border-radius: 40px;
+  background-color: hsl(var(--h-background));
+}
+
+html:not([data-theme="dark"]) .chapter--light {
+  background-color: hsl(var(--h-muted) / 0.5);
+}
+
+/* ---------- chapters ---------- */
+.feature,
+.mcp {
+  padding: 200px 0 180px;
+}
+
+.chapter__statement {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 80px;
+  align-items: end;
+  min-height: 62vh;
+  padding-bottom: 140px;
+}
+
+.chapter__head {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.chapter__label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}
+
+.chapter__label span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid hsl(var(--h-border));
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.chapter__title {
+  margin: 0;
+}
+
+.chapter__prose p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(21px, 1.95vw, 29px);
+  font-weight: 400;
+  line-height: 1.38;
+  letter-spacing: -0.012em;
+  color: var(--ink-2);
+}
+
+/* beat B: capabilities as quiet ruled prose */
+.feature__grid {
+  gap: 96px;
+}
+
+.feature__copy {
+  top: 160px;
+  gap: 0;
+  padding-top: 0;
+}
+
+.cap {
+  padding: 26px 0;
+  border-top: 1px solid hsl(var(--h-border));
+}
+
+.cap:last-child {
+  border-bottom: 1px solid hsl(var(--h-border));
+}
+
+.cap__title {
+  margin: 0 0 8px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+
+.cap__text {
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.caps-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+  margin-top: 96px;
+}
+
+.caps-row .cap:last-child {
+  border-bottom: 0;
+}
+
+.feature__media {
+  margin-top: 140px;
+}
+
+/* inset media, one radius */
+.media {
+  border-radius: 24px;
+  border: 0;
+  background:
+    radial-gradient(80% 120% at 0% 0%, hsl(var(--h-primary) / 0.14), transparent 60%),
+    radial-gradient(70% 100% at 100% 100%, hsl(var(--h-coral) / 0.08), transparent 60%),
+    hsl(var(--h-card));
+  box-shadow: none;
+}
+
+.card {
+  border-radius: 24px;
+}
+
+/* ---------- hero ---------- */
+.hero__grid {
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: 32px;
+  min-height: calc(100svh - 80px);
+}
+
+.hero__title {
+  margin-bottom: 32px;
+}
+
+.hero__lede {
+  max-width: 27em;
+  margin-bottom: 40px;
+  color: var(--ink-2);
+}
+
+.hero__ctas {
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 0;
+}
+
+.hero__link {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1px solid hsl(var(--h-border));
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+
+.hero__link:hover {
+  border-color: var(--ink);
+}
+
+/* ---------- mission line ---------- */
+.mission {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 0;
+}
+
+.mission__text {
+  margin: 0;
+  max-width: 17em;
+  font-size: clamp(36px, 4.4vw, 66px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink-3);
+}
+
+/* ---------- fact carousel ---------- */
+.facts {
+  padding: 40px 0 160px;
+}
+
+.facts__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.facts__track::-webkit-scrollbar {
+  display: none;
+}
+
+.fact {
+  flex: 0 0 calc((100% - 40px) / 3);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid hsl(var(--h-border));
+  background: hsl(var(--h-card));
+}
+
+.fact__k {
+  margin: 0;
+  font-size: clamp(56px, 5vw, 80px);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.fact__t {
+  margin: 0;
+  max-width: 18em;
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.facts__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: fit-content;
+  margin: 28px auto 0;
+  padding: 6px;
+  border-radius: 999px;
+  background: hsl(var(--h-card));
+  border: 1px solid hsl(var(--h-border));
+}
+
+.facts__arrow {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--ink);
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.facts__arrow:hover {
+  background: hsl(var(--h-muted));
+}
+
+.facts__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.facts__dots {
+  display: flex;
+  gap: 8px;
+}
+
+.facts__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: hsl(var(--h-muted-fg) / 0.35);
+  transition: background-color 0.25s, transform 0.25s;
+}
+
+.facts__dot.is-on {
+  background: var(--ink);
+  transform: scale(1.2);
+}
+
+/* ---------- film ---------- */
+.film {
+  padding: 120px 0 200px;
+}
+
+.film__head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 56px;
+}
+
+.film__head h2,
+.film__head p {
+  margin: 0;
+}
+
+/* ---------- closing ---------- */
+.closing {
+  padding: 220px 0 240px;
+}
+
+.closing__title {
+  font-size: clamp(72px, 12vw, 184px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.closing__inner .chapter__label {
+  justify-content: center;
+}
+
+/* ---------- quieter nav ---------- */
+.nav {
+  padding: 10px 20px;
+  transition: background-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), backdrop-filter 0.4s;
+}
+
+.nav:not(.is-scrolled) {
+  background-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ---------- footer: big rounded top, always dark ---------- */
+.footer {
+  --ink: hsl(228 20% 94%);
+  --ink-2: hsl(215 12% 60%);
+  --ink-3: hsl(215 12% 60% / 0.75);
+  --line-soft: hsl(209 25% 18%);
+  margin-top: 0;
+  padding: 96px 0 140px;
+  border-top: 0;
+  border-radius: 48px 48px 0 0;
+  background: hsl(209 28% 11%);
+  color: var(--ink-2);
+}
+
+.footer__brand {
+  color: var(--ink);
+}
+
+/* ---------- motion: slow single reveals ---------- */
+.reveal {
+  transform: translateY(28px);
+  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1023px) {
+  .chapter__statement,
+  .film__head {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    min-height: 0;
+    padding-bottom: 88px;
+  }
+
+  .feature,
+  .mcp {
+    padding: 120px 0;
+  }
+
+  .caps-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 64px;
+  }
+
+  .fact {
+    flex-basis: 78%;
+    min-height: 260px;
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .hero__ctas {
+    justify-content: center;
+  }
+
+  .mission {
+    min-height: 80vh;
+  }
+
+  .feature__media {
+    margin-top: 80px;
+  }
+
+  .chapter--light {
+    margin: 0 8px;
+    border-radius: 28px;
+  }
+
+  .footer {
+    border-radius: 32px 32px 0 0;
+  }
+}
+
+/* light chapters win over the older #profitability / #mcp tint */
+html[data-theme="dark"] #profitability.chapter--light,
+html[data-theme="dark"] #mcp.chapter--light {
+  background-color: hsl(var(--h-background));
+}
+
+html:not([data-theme="dark"]) #profitability.chapter--light,
+html:not([data-theme="dark"]) #mcp.chapter--light {
+  background-color: hsl(var(--h-muted) / 0.5);
+}

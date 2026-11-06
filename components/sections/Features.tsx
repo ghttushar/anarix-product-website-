@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FeatureSection, MachineStage, usePowered } from "./shared";
+import { FeatureSection, Hl, MachineStage, usePowered } from "./shared";
 import { NeuralCore, ProfitRefinery, RulesFactory, SignalsBoard } from "../machines/Machines";
 import { Live, Spark, Ticker, useSeries } from "@/lib/live";
 
@@ -70,6 +70,7 @@ export function SignalsSection() {
   return (
     <FeatureSection
       id="signals"
+      index="01"
       eyebrow="Signals"
       title={
         <>
@@ -78,8 +79,12 @@ export function SignalsSection() {
           9am answer.
         </>
       }
-      body="What moved, why, and what to do. Across every account."
-      proof={["Every alert comes with its root cause", "One feed for Amazon, Walmart and Shopify"]}
+      statement={
+        <>
+          Signals watches <Hl>every price, Buy Box, budget and stock level</Hl> across Amazon, Walmart and Shopify. When
+          something moves, Aan tells you <Hl>what changed, why it matters and what to do</Hl>, before it costs you.
+        </>
+      }
       details={[{ title: "Root cause, not just an alert", text: "Every signal explains what moved and why: price, Buy Box, ad eligibility, stock or spend." }, { title: "Ranked by money at risk", text: "The biggest dollar impact rises to the top, so the first fix is always the one that matters most." }, { title: "Fix it from the alert", text: "Execute, modify or assign Aan's suggested action without opening another tool." }]}
       media={{ kind: "video", label: "Signals walkthrough" }}
       stage={<SignalsStage />}
@@ -156,6 +161,8 @@ export function ProfitSection() {
   return (
     <FeatureSection
       id="profitability"
+      index="02"
+      light
       reverse
       eyebrow="Profitability"
       title={
@@ -165,8 +172,12 @@ export function ProfitSection() {
           Profit doesn&apos;t.
         </>
       }
-      body="Every fee, ad dollar and return. One P&L."
-      proof={["Product-level P&L, updated daily", "Amazon, Walmart and Shopify side by side"]}
+      statement={
+        <>
+          Sales look great until fees, ads, refunds and COGS take their share. Anarix shows{" "}
+          <Hl>true profit on every product, every day</Hl>, so you scale <Hl>what actually makes money</Hl>.
+        </>
+      }
       details={[{ title: "True product-level P&L", text: "Fees, ad spend, refunds and COGS on every SKU, not just top-line revenue." }, { title: "Daily, not month-end", text: "See yesterday's profit this morning and catch margin leaks while they're still small." }, { title: "Every marketplace, one view", text: "Amazon, Walmart and Shopify side by side, so you know where you actually make money." }]}
       media={{ kind: "image", label: "Profitability dashboard" }}
       stage={<ProfitStage />}
@@ -252,6 +263,7 @@ export function RulesSection() {
   return (
     <FeatureSection
       id="rules"
+      index="03"
       eyebrow="Rules"
       title={
         <>
@@ -260,8 +272,12 @@ export function RulesSection() {
           On autopilot.
         </>
       }
-      body="Pause waste. Guard budgets. Answer price moves. 24/7."
-      proof={["Describe a rule in plain words", "Every action logged, big moves need approval"]}
+      statement={
+        <>
+          Write how you run your accounts <Hl>in plain words</Hl>. Aan turns it into rules that run{" "}
+          <Hl>every hour of every day</Hl>, allowing good spend, stopping waste and <Hl>logging every decision</Hl>.
+        </>
+      }
       details={[{ title: "Write rules in plain words", text: "Describe what you want and Aan builds the conditions, scope and schedule for you." }, { title: "Allowed or stopped, with a reason", text: "Every campaign and keyword passes the gate, and every decision is logged." }, { title: "You stay in control", text: "Approval mode holds any change above your limit until you say yes." }]}
       media={{ kind: "video", label: "Building a rule with AI" }}
       stage={<RulesStage />}
@@ -379,6 +395,7 @@ export function AanSection() {
   return (
     <FeatureSection
       id="aan"
+      index="04"
       dark
       reverse
       eyebrow="Aan · Anarix Analytical Neural"
@@ -389,8 +406,12 @@ export function AanSection() {
           Get the why.
         </>
       }
-      body="Plain answers. Real numbers. Reports in seconds."
-      proof={["Knows your account history", "Shows the numbers behind every answer"]}
+      statement={
+        <>
+          Aan is the AI inside Anarix. Ask the way you would ask your best account manager and get{" "}
+          <Hl>a plain answer with the numbers behind it</Hl>, then <Hl>a report, a rule or a fix</Hl> in one click.
+        </>
+      }
       details={[{ title: "Knows your history", text: "Aan remembers past launches, promos and price changes when it explains a result." }, { title: "Shows its work", text: "Every answer comes with the numbers and sources behind it, so you can check it." }, { title: "Turns answers into action", text: "Build a report, draft a rule or fix an alert straight from the conversation." }]}
       media={{ kind: "video", label: "Ask Aan demo" }}
       stage={<AanStage />}

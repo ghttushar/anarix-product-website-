@@ -17,7 +17,9 @@ export function ClosingSection() {
             <path d="M16,22 V32 A84,20 0 0 0 184,32 V22" />
           </svg>
         </div>
-        <p className="eyebrow">Our promise</p>
+        <p className="chapter__label">
+          <span>06</span>Our promise
+        </p>
         <h2 className="display closing__title">AI for good.</h2>
         <p className="lede closing__lede">Built to give you your nights back.</p>
         <div className="closing__ctas">
