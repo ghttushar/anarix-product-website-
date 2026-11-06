@@ -62,15 +62,20 @@ export default function Home() {
         {/* product film slot */}
         <section className="film" aria-label="Product film">
           <div className="container">
-            <Reveal className="film__head">
-              <h2 className="display h2">Ninety seconds with Aan.</h2>
-              <p className="lede">
-                Every hero gets a debut. <Hl>This one watches your stores</Hl> while you sleep.
-              </p>
-            </Reveal>
-            <Reveal>
-              <FilmPlayer />
-            </Reveal>
+            <div className="film__layout">
+              <Reveal className="film__head">
+                <h2 className="display h2">Aan&apos;s debut.</h2>
+                <p className="lede">
+                  Every hero gets a debut. <Hl>This one watches your stores</Hl> while you sleep.
+                </p>
+                <a className="film__more" href="/platform/film/aan-90s.mp4">
+                  Watch the 90-second cut →
+                </a>
+              </Reveal>
+              <Reveal>
+                <FilmPlayer />
+              </Reveal>
+            </div>
           </div>
         </section>
 

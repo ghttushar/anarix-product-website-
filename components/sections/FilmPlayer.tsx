@@ -5,10 +5,9 @@ import { useEffect, useRef, useState } from "react";
 const BASE = "/platform/film";
 
 /**
- * "Ninety seconds with Aan". Plays muted while in view (unless the visitor
- * prefers reduced motion), pauses when scrolled away; the sound button
- * unmutes and restarts so the score lands from the first braam.
- * Narrow screens get the vertical cut.
+ * "Aan's debut", the vertical reel. Plays muted while in view (unless the
+ * visitor prefers reduced motion), pauses when scrolled away; the sound
+ * button unmutes and restarts so Aan's first line lands.
  */
 export function FilmPlayer() {
   const ref = useRef<HTMLVideoElement>(null);
@@ -48,11 +47,10 @@ export function FilmPlayer() {
         loop
         controls={!muted}
         preload="metadata"
-        poster={`${BASE}/poster.jpg`}
-        aria-label="Ninety seconds with Aan: Aan, the AI that watches your stores, makes its debut"
+        poster={`${BASE}/debut-poster.jpg`}
+        aria-label="Aan's debut: Aan, the AI that watches your stores, introduces himself"
       >
-        <source src={`${BASE}/aan-90s-vertical.mp4`} type="video/mp4" media="(max-width: 640px)" />
-        <source src={`${BASE}/aan-90s.mp4`} type="video/mp4" />
+        <source src={`${BASE}/aan-debut.mp4`} type="video/mp4" />
       </video>
       {muted && (
         <button type="button" className="filmplayer__sound" onClick={withSound}>

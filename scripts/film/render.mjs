@@ -3,7 +3,11 @@
 // CSS animation and SMIL timeline to it, so each frame is deterministic.
 //
 //   FILM_TOOLS=<dir with puppeteer-core + ffmpeg-static> \
-//   node scripts/film/render.mjs <16x9|9x16> <out.mp4> <score.wav> [baseUrl]
+//   node scripts/film/render.mjs <16x9|9x16> <out.mp4> <score.wav|-> [baseUrl] [route]
+//
+// route: "film" (the 90 s cut, default) or "film/debut" (always 9x16).
+// Pass "-" for the audio to render a silent master (the Instagram cut, where
+// the trend sound is added in-app).
 //
 // The tools are kept out of package.json on purpose (ffmpeg is ~80 MB).
 import { spawn } from "node:child_process";
@@ -16,7 +20,8 @@ const require = createRequire(path.join(tools, "noop.js"));
 const puppeteer = require("puppeteer-core");
 const ffmpeg = require("ffmpeg-static");
 
-const [, , ar = "16x9", out = "film.mp4", wav = "score.wav", base = "http://localhost:3100"] = process.argv;
+const [, , ar = "16x9", out = "film.mp4", wav = "score.wav", base = "http://localhost:3100", route = "film"] = process.argv;
+const silent = wav === "-";
 const FPS = 30;
 const browserPath = process.env.FILM_BROWSER ?? "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
 const view = ar === "9x16" ? { width: 540, height: 960, deviceScaleFactor: 2 } : { width: 1920, height: 1080, deviceScaleFactor: 1 };
@@ -25,7 +30,7 @@ const browser = await puppeteer.launch({ executablePath: browserPath, headless: 
 const page = await browser.newPage();
 await page.setViewport(view);
 page.on("pageerror", (e) => console.error("page error:", e.message));
-await page.goto(`${base}/platform/film?ar=${ar}`, { waitUntil: "networkidle0", timeout: 120000 });
+await page.goto(`${base}/platform/${route}?ar=${ar}`, { waitUntil: "networkidle0", timeout: 120000 });
 await page.waitForFunction(() => typeof window.__seek === "function");
 await page.evaluate(() => document.fonts.ready);
 const duration = await page.evaluate(() => window.__duration);
@@ -36,11 +41,11 @@ const enc = spawn(
   [
     "-y", "-loglevel", "error",
     "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
-    "-i", wav,
+    ...(silent ? [] : ["-i", wav]),
     "-c:v", "libx264", "-preset", "slow", "-crf", "21", "-maxrate", "2400k", "-bufsize", "4800k",
     "-pix_fmt", "yuv420p", "-profile:v", "high", "-movflags", "+faststart",
-    "-c:a", "aac", "-b:a", "160k",
-    "-shortest", out,
+    ...(silent ? ["-an"] : ["-c:a", "aac", "-b:a", "160k", "-shortest"]),
+    out,
   ],
   { stdio: ["pipe", "inherit", "inherit"] },
 );

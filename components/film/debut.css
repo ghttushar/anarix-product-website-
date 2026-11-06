@@ -1,0 +1,173 @@
+/* "Aan's debut": the trend's look, shot for shot. */
+html.is-film,
+html.is-film body {
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+html.is-film body::before {
+  display: none;
+}
+
+nextjs-portal {
+  display: none !important;
+}
+
+.film-viewport {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;
+}
+
+.dt-stage {
+  --didone: var(--font-didone), "Bodoni Moda", "Didot", serif;
+  --red: #e3121b;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #000;
+  transform-origin: center;
+  font-family: var(--font-body);
+}
+
+.dt-set {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.dt-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: 50% 38%;
+}
+
+.dt-preload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- the montage bands ---------- */
+.dt-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background: #0b0a0b;
+}
+
+.dt-band__pan {
+  position: absolute;
+  inset: 0 -12%;
+}
+
+.dt-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.dt-flash__w {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  transform: translateY(-50%) scaleX(0.82);
+  text-align: center;
+  font-family: var(--didone);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--red);
+}
+
+/* ---------- words ---------- */
+.dt-word {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  font-family: var(--didone);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--red);
+  white-space: nowrap;
+}
+
+.dt-word span {
+  display: inline-block;
+  flex-shrink: 0;
+  transform-origin: 50% 50%;
+}
+
+.dt-stamp {
+  top: 4.5%;
+  z-index: 5;
+}
+
+.dt-end {
+  z-index: 5;
+}
+
+.dt-end--top {
+  top: 1.5%;
+}
+
+.dt-end--bottom {
+  bottom: 1%;
+}
+
+.dt-cap {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.dt-cap--open {
+  top: 49%;
+  font-weight: 800;
+  font-size: 41px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: #ff1f1f;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.dt-cap--twist {
+  top: 49.5%;
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 1.12;
+  color: #fbf35a;
+  -webkit-text-stroke: 1.2px rgba(0, 0, 0, 0.75);
+  paint-order: stroke fill;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.dt-white {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  background: #fff;
+  pointer-events: none;
+}

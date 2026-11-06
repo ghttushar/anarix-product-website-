@@ -331,3 +331,9 @@ A 16:9 frame, 24px radius, on film-ink-deep, with a white pill sound button bott
 - **Don't** show Aan docked in circle, bar or cube form, or recolor it.
 - **Don't** use the film's twist yellow, stamp scaleX condensing or grain on the site; they belong to the film.
 - **Don't** add uppercase tracked eyebrow pills above headings; chapters are named by the numbered chapter label.
+
+## Film: "Aan's debut" (provenance)
+
+- Route `/film/debut` renders the trend-recreation reel shot for shot (`components/film/Debut.tsx`, timings in `components/film/debut-timeline.ts`); stamps use Bodoni Moda 500 in `#e3121b`, loaded only on that route.
+- The 14 photographic stills in `public/film/debut/*.jpg` were generated with Figma AI image generation (gpt-image-2.5-flare) for this film, from prompts describing Aan's coral diamond head on a black-turtleneck figure; working file: "Aan's Debut · film stills" in the Anarix Figma team. The woman in `office.jpg` is generated and does not depict a real person.
+- `public/film/aan-debut.mp4` carries an original synthesized score (`scripts/film/debut-score.mjs`) and Windows speech voices (`scripts/film/voice.mjs`). `public/film/aan-debut-instagram.mp4` is the silent master, timed frame for frame to the trend so the trend sound can be added in Instagram.
