@@ -15,7 +15,7 @@ const RIGHT = [
 
 const root = (x: number) => `M500,318 C500,400 ${x},380 ${x},470`;
 
-function McpDiagram() {
+export function McpDiagram() {
   const [ref] = usePowered<HTMLDivElement>();
   return (
     <div ref={ref} className="mcp-diagram">

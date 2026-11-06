@@ -1,0 +1,672 @@
+/* ------------------------------------------------------------------
+   "Ninety seconds with Aan" — film stages.
+   Brand fonts and tokens; the trend's grammar: near-black rooms, a pale
+   seamless backdrop, giant condensed serif words stamped in coral-red.
+------------------------------------------------------------------- */
+html.is-film,
+html.is-film body {
+  margin: 0;
+  overflow: hidden;
+  background: #050608;
+}
+
+html.is-film body::before {
+  display: none;
+}
+
+.film-viewport {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #050608;
+}
+
+.film-stage {
+  --stamp: hsl(355 84% 60%);
+  --ink-deep: hsl(209 30% 6%);
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--ink-deep);
+  container-type: size;
+  transform-origin: center;
+  font-family: var(--font-body);
+}
+
+.film-cam {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 46%;
+}
+
+.fs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ---------- dark room: Aan at the desk, lit from below ---------- */
+.fs--room {
+  background:
+    radial-gradient(60% 55% at 50% 58%, hsl(230 40% 16%) 0%, transparent 70%),
+    radial-gradient(120% 90% at 50% 120%, hsl(355 50% 14% / 0.6), transparent 60%),
+    var(--ink-deep);
+}
+
+.fs-room__floor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fs-room__floor polyline {
+  fill: none;
+  stroke: hsl(230 40% 70% / 0.07);
+  stroke-width: 1;
+}
+
+.fs-room__desk .t {
+  fill: hsl(209 25% 14%);
+}
+
+.fs-room__desk .l {
+  fill: hsl(209 28% 9%);
+}
+
+.fs-room__desk .r {
+  fill: hsl(209 30% 7%);
+}
+
+.fs-room__desk polygon {
+  stroke: hsl(230 40% 70% / 0.12);
+  stroke-width: 1;
+}
+
+.fs-room__aan {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fs-room__underlight {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 46%;
+  height: 34%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, hsl(355 84% 66% / 0.22), transparent);
+  filter: blur(20px);
+  mix-blend-mode: screen;
+}
+
+/* ---------- pale seamless backdrop ---------- */
+.fs--seam {
+  background:
+    radial-gradient(70% 60% at 50% 42%, hsl(228 20% 96%) 0%, hsl(228 12% 86%) 62%, hsl(228 10% 74%) 100%),
+    hsl(228 12% 86%);
+}
+
+.sil {
+  position: absolute;
+}
+
+.sil__body {
+  position: absolute;
+  inset: 15%;
+  border-radius: 18%;
+  transform: rotate(45deg);
+  background: radial-gradient(circle at 60% 30%, hsl(209 22% 18%), hsl(209 30% 6%) 70%);
+  box-shadow:
+    inset -10px -10px 30px hsl(0 0% 100% / 0.05),
+    0 40px 80px -30px hsl(209 40% 4% / 0.7);
+}
+
+.sil__eye {
+  position: absolute;
+  top: 52%;
+  width: 7%;
+  height: 7%;
+  margin: -3.5% 0 0 -3.5%;
+  border-radius: 50%;
+  background: hsl(355 90% 72%);
+  box-shadow: 0 0 18px 4px hsl(355 90% 66% / 0.7);
+}
+
+.sil__floor {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: -4%;
+  height: 7%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, hsl(209 40% 4% / 0.45), transparent);
+}
+
+.fs-close {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- coins ---------- */
+.fs--dark {
+  background:
+    radial-gradient(70% 60% at 50% 50%, hsl(230 40% 14%) 0%, transparent 70%),
+    var(--ink-deep);
+}
+
+.fs-coins {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.coin__side {
+  fill: hsl(230 55% 60%);
+  stroke: hsl(230 60% 40% / 0.6);
+  stroke-width: 1;
+}
+
+.coin__top {
+  fill: hsl(230 75% 82%);
+  stroke: hsl(230 60% 50% / 0.5);
+  stroke-width: 1;
+}
+
+.fs-coins__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(40% 40% at 50% 48%, hsl(230 80% 70% / 0.18), transparent 70%);
+}
+
+/* ---------- machines ---------- */
+.fs--machine .fs-machine__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(48% 50% at 50% 44%, hsl(230 70% 60% / 0.16), transparent 72%);
+}
+
+.fs-machine__art {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+}
+
+.film-stage--9x16 .fs-machine__art {
+  top: 38%;
+}
+
+.fs-machine__art .mx {
+  --panel-solid: hsl(209 28% 12%);
+  --ink: hsl(228 20% 94%);
+  --ink-2: hsl(215 12% 64%);
+  --ink-3: hsl(215 12% 52%);
+}
+
+.fs-machine__art .mx-label {
+  font-size: 15px;
+}
+
+.mx-dock--film {
+  display: grid;
+  place-items: center;
+}
+
+.fs-mcp-aan {
+  position: absolute;
+  left: 51%;
+  top: 38.9%;
+  transform: translate(-50%, -55%);
+}
+
+.fs-card {
+  position: absolute;
+  right: 6%;
+  bottom: 9%;
+  max-width: 34%;
+}
+
+.film-stage--9x16 .fs-card {
+  left: 6%;
+  right: 6%;
+  bottom: 12%;
+  max-width: none;
+}
+
+.fcard {
+  padding: 22px 26px;
+  border-radius: 22px;
+  background: hsl(209 28% 11% / 0.92);
+  border: 1px solid hsl(209 25% 22%);
+  box-shadow: 0 30px 60px -30px hsl(0 0% 0% / 0.8);
+  color: hsl(228 20% 94%);
+}
+
+.fcard.is-good {
+  border-color: hsl(230 70% 65% / 0.5);
+  box-shadow: 0 30px 60px -30px hsl(0 0% 0% / 0.8), 0 0 40px -10px hsl(230 70% 65% / 0.4);
+}
+
+.fcard.is-bad {
+  border-color: hsl(355 84% 66% / 0.55);
+}
+
+.fcard__k {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: hsl(215 12% 66%);
+}
+
+.fcard__v {
+  margin: 0;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.fcard.is-good .fcard__v {
+  color: hsl(230 85% 78%);
+}
+
+.fcard.is-bad .fcard__v {
+  color: hsl(355 84% 70%);
+}
+
+.fcard__d {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.fcard__row {
+  margin: 0 0 6px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  font-size: 19px;
+  color: hsl(228 20% 88%);
+}
+
+.fcard__row span {
+  color: hsl(355 84% 72%);
+  font-variant-numeric: tabular-nums;
+}
+
+.fcard__chips {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+}
+
+.fchip {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid hsl(209 25% 26%);
+  font-size: 20px;
+  font-weight: 600;
+  color: hsl(215 12% 52%);
+}
+
+.fchip.is-on {
+  border-color: hsl(230 70% 65%);
+  background: hsl(230 70% 65% / 0.16);
+  color: hsl(228 20% 96%);
+}
+
+.fcard--chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 460px;
+}
+
+.film-stage--9x16 .fcard--chat {
+  min-width: 0;
+}
+
+.fbubble {
+  margin: 0;
+  max-width: 92%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+.fbubble--you {
+  align-self: flex-end;
+  background: hsl(230 65% 57%);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.fbubble--aan {
+  align-self: flex-start;
+  background: hsl(209 25% 18%);
+  border-bottom-left-radius: 6px;
+}
+
+.fcaret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -3px;
+  background: currentColor;
+}
+
+/* vertical: smaller UI text inside the 540px stage (rendered at 2x) */
+.film-stage--9x16 .fcard {
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+.film-stage--9x16 .fcard__k {
+  font-size: 12px;
+}
+
+.film-stage--9x16 .fcard__v {
+  font-size: 28px;
+}
+
+.film-stage--9x16 .fcard__d {
+  font-size: 15px;
+}
+
+.film-stage--9x16 .fcard__row,
+.film-stage--9x16 .fbubble {
+  font-size: 13px;
+}
+
+.film-stage--9x16 .fchip {
+  font-size: 13px;
+  padding: 6px 10px;
+}
+
+.film-stage--9x16 .fs-machine__art .mx-label {
+  font-size: 15px;
+}
+
+/* ---------- night ---------- */
+.fs--night .night {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 440vh;
+}
+
+.fs--night .night__sticky {
+  height: 100cqh;
+}
+
+/* ---------- stats / twist / end ---------- */
+.fs--stats {
+  background:
+    radial-gradient(60% 60% at 50% 50%, hsl(355 50% 14% / 0.7), transparent 70%),
+    var(--ink-deep);
+}
+
+.fs--twist {
+  background: hsl(228 25% 95%);
+}
+
+.fs-twist__wall {
+  position: absolute;
+  inset: 0 0 34% 0;
+  background: linear-gradient(hsl(228 25% 96%), hsl(228 20% 91%));
+}
+
+.fs-twist__desk {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  background: linear-gradient(hsl(30 18% 72%), hsl(30 16% 62%));
+  border-top: 6px solid hsl(30 18% 80%);
+}
+
+.fs-twist__aan {
+  position: absolute;
+  left: 50%;
+  top: 66%;
+}
+
+.fend {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  color: var(--stamp);
+  transform: scaleX(0.62);
+  font-size: 30cqh;
+}
+
+.film-stage--9x16 .fend {
+  font-size: 24cqw;
+  transform: scaleX(0.7);
+}
+
+.fend--top {
+  top: 4%;
+}
+
+.fend--bottom {
+  bottom: 6%;
+}
+
+.film-stage--9x16 .fend--top {
+  top: 12%;
+}
+
+.film-stage--9x16 .fend--bottom {
+  bottom: 14%;
+}
+
+.fend__aan {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+}
+
+.fend__url {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2.4%;
+  margin: 0;
+  text-align: center;
+  font-size: 2.6cqh;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: hsl(209 22% 20%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.fend__url.is-on {
+  opacity: 1;
+}
+
+.film-stage--9x16 .fend__url {
+  bottom: 6%;
+  font-size: 2.2cqh;
+}
+
+/* ---------- stamped words + captions ---------- */
+.fstamp {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6%;
+  z-index: 5;
+  text-align: center;
+  pointer-events: none;
+}
+
+.film-stage--9x16 .fstamp {
+  top: 15%;
+}
+
+.fstamp.has-sub {
+  top: 34%;
+}
+
+.fstamp__w {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  color: var(--stamp);
+  transform-origin: 50% 50%;
+  text-shadow: 0 6px 30px hsl(355 90% 30% / 0.35);
+}
+
+.fstamp.on-light .fstamp__w {
+  text-shadow: none;
+}
+
+.fstamp__sub {
+  margin: 0.4em 0 0;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: hsl(228 20% 92%);
+}
+
+.fcap {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  z-index: 6;
+  margin: 0;
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.fcap--open {
+  top: 60%;
+  color: hsl(355 90% 62%);
+  text-shadow: 0 2px 10px hsl(0 0% 0% / 0.6);
+}
+
+.film-stage--9x16 .fcap--open {
+  top: 58%;
+}
+
+.fcap--twist {
+  top: 74%;
+  color: #ffe45c;
+  text-shadow:
+    0 0 3px #000,
+    0 0 3px #000,
+    0 2px 6px #000;
+}
+
+/* ---------- cinematic finish ---------- */
+.film-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: radial-gradient(110% 90% at 50% 50%, transparent 55%, hsl(209 40% 3% / 0.55) 100%);
+}
+
+.film-vignette.is-light {
+  background: radial-gradient(110% 90% at 50% 50%, transparent 60%, hsl(228 15% 40% / 0.25) 100%);
+}
+
+.film-stage[data-scene="twist"] .film-vignette {
+  display: none;
+}
+
+.film-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- framing fixes after the first scrub ---------- */
+nextjs-portal {
+  display: none !important;
+}
+
+.fs-machine__art--mcp .mcp-diagram {
+  max-width: none;
+  width: 100%;
+}
+
+.fs--night .night__grid {
+  zoom: 1.28;
+}
+
+.film-stage--9x16 .fs--night .night__grid {
+  zoom: 1;
+}
+
+/* impact flash on every stamped word */
+.film-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  background: hsl(355 90% 70%);
+  mix-blend-mode: screen;
+}
+
+.fs-machine__art {
+  top: 47%;
+}
+
+.fs-machine__art--mcp {
+  top: 40%;
+}
+
+.fs-card--mcp {
+  left: 50%;
+  right: auto;
+  bottom: 6%;
+  transform: translateX(-50%);
+  max-width: none;
+}
+
+.film-stage--9x16 .fs-card--mcp {
+  left: 6%;
+  right: 6%;
+  transform: none;
+}
+
+/* center the word itself, so a long word overflows evenly before scaleX */
+.fstamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fstamp__w {
+  width: max-content;
+}
+
+.film-stage--9x16 .fs-machine__art {
+  top: 42%;
+}

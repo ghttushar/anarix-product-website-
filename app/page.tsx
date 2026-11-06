@@ -2,7 +2,8 @@ import { Nav } from "@/components/chrome/Nav";
 import { ActionIsland } from "@/components/chrome/ActionIsland";
 import { AanTraveler } from "@/components/aan/AanTraveler";
 import { LazySusan } from "@/components/hero/LazySusan";
-import { Hl, MediaSlot, Reveal } from "@/components/sections/shared";
+import { Hl, Reveal } from "@/components/sections/shared";
+import { FilmPlayer } from "@/components/sections/FilmPlayer";
 import { FactCarousel } from "@/components/sections/FactCarousel";
 import { AanSection, ProfitSection, RulesSection, SignalsSection } from "@/components/sections/Features";
 import { McpSection } from "@/components/sections/McpSection";
@@ -64,11 +65,11 @@ export default function Home() {
             <Reveal className="film__head">
               <h2 className="display h2">Ninety seconds with Aan.</h2>
               <p className="lede">
-                One account, one day, <Hl>every decision Aan made and why</Hl>.
+                Every hero gets a debut. <Hl>This one watches your stores</Hl> while you sleep.
               </p>
             </Reveal>
             <Reveal>
-              <MediaSlot kind="video" label="Platform overview film · 90s" ratio="16 / 9" />
+              <FilmPlayer />
             </Reveal>
           </div>
         </section>

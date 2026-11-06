@@ -1,6 +1,11 @@
 "use client";
 
+import { createContext, useContext } from "react";
 import { isoBox, isoCircle, isoCylinder, makeIso, pts, type Pt } from "@/lib/iso";
+import { AanMascot } from "../aan/AanMascot";
+
+/** when true (the film), each dock renders Aan itself instead of waiting for the traveler */
+export const FilmAanContext = createContext(false);
 
 /**
  * Isometric scenes that sit *behind* each product UI card. Each scene is a
@@ -38,6 +43,13 @@ function Cyl({ iso, x, y, r, h, z = 0, className = "" }: { iso: Iso; x: number; 
 }
 
 function Dock({ at, bubble, state = "cube", size = 56, sizeSm = 40 }: { at: Pt; bubble: string; state?: string; size?: number; sizeSm?: number }) {
+  const film = useContext(FilmAanContext);
+  if (film)
+    return (
+      <div className="mx-dock mx-dock--film" style={pct(at)} aria-hidden="true">
+        <AanMascot state="diamond" size={size * 1.25} gaze={[0.2, 0.3]} />
+      </div>
+    );
   return <div className="mx-dock" style={pct(at)} data-dock data-size={size} data-size-sm={sizeSm} data-state={state} data-bubble={bubble} aria-hidden="true" />;
 }
 

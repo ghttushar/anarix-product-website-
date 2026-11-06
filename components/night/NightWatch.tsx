@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { FilmAanContext } from "../machines/Machines";
+import { AanMascot } from "../aan/AanMascot";
 
 /**
  * The Night Watch. Scroll scrubs a clock from 6:00pm to 7:00am over a sticky
@@ -118,6 +120,7 @@ export function NightWatch() {
   const dock = useRef<HTMLDivElement>(null);
   const spot = useRef<SVGEllipseElement>(null);
   const [minute, setMinute] = useState(0);
+  const film = useContext(FilmAanContext);
 
   useEffect(() => {
     const el = section.current!;
@@ -377,7 +380,9 @@ export function NightWatch() {
               );
             })}
 
-            <div ref={dock} className="nw-dock" data-dock data-size="54" data-state="diamond" data-bubble="On watch." aria-hidden="true" />
+            <div ref={dock} className="nw-dock" data-dock data-size="54" data-state="diamond" data-bubble="On watch." aria-hidden="true">
+              {film && <AanMascot state="diamond" size={60} gaze={[0, 0.4]} />}
+            </div>
 
             <div className={`brief ${morning ? "is-on" : ""}`}>
               <p className="brief__k">Morning brief · 7:00 AM</p>

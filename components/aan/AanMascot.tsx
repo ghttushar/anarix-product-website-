@@ -27,6 +27,7 @@ export function AanMascot({
   glow = true,
   shadow = true,
   progress,
+  gaze,
   className = "",
 }: {
   state?: AanState;
@@ -37,6 +38,8 @@ export function AanMascot({
   shadow?: boolean;
   /** bar fill 0–100; omitted = looping work animation */
   progress?: number;
+  /** fixed eye direction (-1..1 each axis); disables pointer tracking */
+  gaze?: [number, number];
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -60,6 +63,12 @@ export function AanMascot({
   useEffect(() => {
     const el = ref.current;
     if (!el || tiny) return;
+    if (gaze) {
+      const eye = Math.max(1, u * 0.05);
+      el.style.setProperty("--gx", `${(gaze[0] * eye).toFixed(2)}px`);
+      el.style.setProperty("--gy", `${(gaze[1] * eye).toFixed(2)}px`);
+      return;
+    }
     return subscribePointer((x, y) => {
       const r = el.getBoundingClientRect();
       if (!r.width) return;
@@ -81,7 +90,7 @@ export function AanMascot({
         el.style.setProperty("--pt", `${(rel * 10).toFixed(2)}deg`);
       } else el.style.setProperty("--pt", "0deg");
     });
-  }, [u, tiny]);
+  }, [u, tiny, gaze?.[0], gaze?.[1]]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // random blinks (faster while listening)
   useEffect(() => {

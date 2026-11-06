@@ -473,3 +473,67 @@ html:not([data-theme="dark"]) #profitability.chapter--light,
 html:not([data-theme="dark"]) #mcp.chapter--light {
   background-color: hsl(var(--h-muted) / 0.5);
 }
+
+/* ---------- the film player ---------- */
+.filmplayer {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+  background: hsl(209 30% 6%);
+}
+
+.filmplayer__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: hsl(209 30% 6%);
+}
+
+.filmplayer__sound {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: hsl(0 0% 100% / 0.92);
+  color: hsl(209 30% 10%);
+  font: 600 15px/1 var(--font-body);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s;
+}
+
+.filmplayer__sound:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.filmplayer__sound:focus-visible {
+  outline: 2px solid hsl(var(--h-primary));
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .filmplayer {
+    aspect-ratio: 9 / 16;
+    width: min(100%, calc(82svh * 9 / 16));
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
+  .filmplayer__sound {
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+  }
+
+  .filmplayer__sound:hover {
+    transform: translateX(-50%) translateY(-1px);
+  }
+}
