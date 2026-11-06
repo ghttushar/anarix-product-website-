@@ -334,6 +334,6 @@ A 16:9 frame, 24px radius, on film-ink-deep, with a white pill sound button bott
 
 ## Film: "Aan's debut" (provenance)
 
-- Route `/film/debut` renders the trend-recreation reel shot for shot (`components/film/Debut.tsx`, timings in `components/film/debut-timeline.ts`); stamps use Bodoni Moda 500 in `#e3121b`, loaded only on that route.
-- The 14 photographic stills in `public/film/debut/*.jpg` were generated with Figma AI image generation (gpt-image-2.5-flare) for this film, from prompts describing Aan's coral diamond head on a black-turtleneck figure; working file: "Aan's Debut · film stills" in the Anarix Figma team. The woman in `office.jpg` is generated and does not depict a real person.
-- `public/film/aan-debut.mp4` carries an original synthesized score (`scripts/film/debut-score.mjs`) and Windows speech voices (`scripts/film/voice.mjs`). `public/film/aan-debut-instagram.mp4` is the silent master, timed frame for frame to the trend so the trend sound can be added in Instagram.
+- Route `/film/debut` renders the reel in the villain-debut trend's grammar with a positive script (Aan, your 24/7 account manager) (`components/film/Debut.tsx`, timings in `components/film/debut-timeline.ts`); stamps use Bodoni Moda 500 in `#e3121b`, loaded only on that route.
+- The 13 photographic stills in `public/film/debut/*.jpg` were generated with Figma AI image generation (gpt-image-2.5-flare) for this film, from prompts describing Aan's coral diamond head on a black-turtleneck figure; working file: "Aan's Debut · film stills" in the Anarix Figma team.
+- `public/film/aan-debut.mp4` carries an original synthesized score (`scripts/film/debut-score.mjs`) and Aan's sentence-level voice-over from the Windows speech engine (`scripts/film/voice.mjs`), whose word timings (`components/film/debut-voice.json`) drive the stamped words. `public/film/aan-debut-instagram.mp4` is the silent master for Instagram.

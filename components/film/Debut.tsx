@@ -4,6 +4,8 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
 import { flushSync } from "react-dom";
 import {
   BAND_ENTRIES,
+  DEBUT_WORD,
+  WHITE_IN,
   BAND_FLASHES,
   DEBUT_DURATION,
   DEBUT_STAMPS,
@@ -29,7 +31,6 @@ const STILL: Partial<Record<DebutScene, { src: string; pos?: string; shift?: num
   crossed: { src: "crossed.jpg" },
   standSmall: { src: "stand-full.jpg" },
   chin: { src: "chin.jpg" },
-  office: { src: "office.jpg" },
   end: { src: "end.jpg", shift: 4 },
 };
 
@@ -100,7 +101,7 @@ function Caption({ t }: { t: number }) {
   const c = debutCaptionAt(t);
   if (!c) return null;
   return (
-    <div className={`dt-cap dt-cap--${c.kind}`}>
+    <div className="dt-cap dt-cap--open">
       {c.lines.map((l, i) => (
         <span key={i}>{l}</span>
       ))}
@@ -172,8 +173,9 @@ export function Debut() {
   }
 
   const stamp = debutStampAt(t);
-  // through white: the last silhouette washes out, the bright office fades in
-  const white = t >= 18.85 && t < 19.07 ? (t - 18.85) / 0.22 : t >= 19.07 && t < 20.0 ? (t < 19.35 ? 1 : 1 - (t - 19.35) / 0.65) : 0;
+  // through white: the last silhouette washes out, the DEBUT card comes up out of it
+  const end = DEBUT_WORD - 0.28;
+  const white = t >= WHITE_IN && t < end ? (t - WHITE_IN) / (end - WHITE_IN) : t >= end && t < end + 0.35 ? 1 - (t - end) / 0.35 : 0;
 
   return (
     <div className="film-viewport">
@@ -185,7 +187,11 @@ export function Debut() {
         {shot.scene === "end" && (
           <>
             <FitWord text="AAN'S" size={H * 0.22} maxW={W * 0.9} base={0.7} className="dt-end dt-end--top" />
-            {t >= 24.75 && <FitWord text="DEBUT" size={H * 0.22} maxW={W * 0.9} base={0.7} className="dt-end dt-end--bottom" />}
+            {t >= DEBUT_WORD && <FitWord text="DEBUT" size={H * 0.22} maxW={W * 0.9} base={0.7} className="dt-end dt-end--bottom" />}
+            <p className={`dt-tagline ${t >= DEBUT_WORD + 1.1 ? "is-on" : ""}`}>
+              Your 24/7 e-commerce account manager
+              <span>anarix.ai/platform</span>
+            </p>
           </>
         )}
         <Caption t={t} />
@@ -193,7 +199,7 @@ export function Debut() {
       </div>
       {/* keep every still decoded so frame seeks never wait on the network */}
       <div className="dt-preload" aria-hidden="true">
-        {["desk", "stand-chin", "closeup", "couch", "side", "couch-side", "band-eye", "band-cash", "band-shoes", "crossed", "stand-full", "chin", "office", "end"].map((n) => (
+        {["desk", "stand-chin", "closeup", "couch", "side", "couch-side", "band-eye", "band-cash", "band-shoes", "crossed", "stand-full", "chin", "end"].map((n) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img key={n} src={`${SRC}/${n}.jpg`} alt="" />
         ))}

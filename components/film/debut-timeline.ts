@@ -1,12 +1,13 @@
-// "Aan's debut": the Instagram villain-debut trend, recreated shot for shot
-// with Aan in the lead (26.7 s, vertical). Every cut, stamped word, caption
-// and the twist sit on the trend's own timestamps, so the trend audio lines up
-// when it is added on Instagram; the script is the trend's, with the identity
-// words swapped (finance bros, Kumar, accounting).
-// Shared by the visuals (Debut.tsx), the voice (scripts/film/voice.mjs)
-// and the score (scripts/film/debut-score.mjs).
+// "Aan's debut": a vertical reel in the villain-debut trend's grammar (hard
+// cuts, backlit silhouettes, giant red serif words, a three-band montage, a
+// DEBUT card) with a positive script: Aan is your 24/7 account manager.
+// The voice-over is spoken as whole sentences; scripts/film/voice.mjs records
+// when each word lands (debut-voice.json) and the stamps follow the voice.
+// Shared by the visuals (Debut.tsx), the voice and the score.
 
-export const DEBUT_DURATION = 26.7;
+import voice from "./debut-voice.json" with { type: "json" };
+
+export const DEBUT_DURATION = 25.4;
 
 export type DebutScene =
   | "desk"
@@ -19,153 +20,117 @@ export type DebutScene =
   | "crossed"
   | "standSmall"
   | "chin"
-  | "office"
   | "end"
   | "black";
 
 export type DebutShot = { start: number; end: number; scene: DebutScene; push?: number };
 
-/** cuts measured from the reference (scene detection + 10 fps frame reads) */
+/** the trend's 0.9 s cut grid, opened up where Aan has more to say */
 export const DEBUT_SHOTS: DebutShot[] = [
   { start: 0, end: 2.27, scene: "desk", push: 0.03 },
   { start: 2.27, end: 3.17, scene: "standChin", push: 0.04 },
-  { start: 3.17, end: 4.07, scene: "desk", push: 0.02 },
-  { start: 4.07, end: 4.97, scene: "closeup", push: 0.05 },
-  { start: 4.97, end: 5.87, scene: "desk", push: 0.02 },
-  { start: 5.87, end: 6.77, scene: "couch", push: 0.04 },
-  { start: 6.77, end: 11.87, scene: "desk", push: 0.06 },
-  { start: 11.87, end: 12.8, scene: "side", push: 0.03 },
-  { start: 12.8, end: 13.73, scene: "couchSide", push: 0.03 },
-  { start: 13.73, end: 15.5, scene: "bands" },
-  { start: 15.5, end: 16.5, scene: "crossed", push: 0.04 },
-  { start: 16.5, end: 17.4, scene: "closeup", push: 0.05 },
-  { start: 17.4, end: 18.3, scene: "standSmall", push: 0.03 },
-  { start: 18.3, end: 19.07, scene: "chin", push: 0.04 },
-  { start: 19.07, end: 24.47, scene: "office" },
-  { start: 24.47, end: 26.6, scene: "end", push: 0.015 },
-  { start: 26.6, end: 26.7, scene: "black" },
+  { start: 3.17, end: 4.5, scene: "desk", push: 0.02 },
+  { start: 4.5, end: 5.4, scene: "closeup", push: 0.05 },
+  { start: 5.4, end: 7.6, scene: "desk", push: 0.03 },
+  { start: 7.6, end: 8.5, scene: "couch", push: 0.04 },
+  { start: 8.5, end: 13.6, scene: "desk", push: 0.06 },
+  { start: 13.6, end: 14.5, scene: "side", push: 0.03 },
+  { start: 14.5, end: 15.4, scene: "couchSide", push: 0.03 },
+  { start: 15.4, end: 17.2, scene: "bands" },
+  { start: 17.2, end: 18.1, scene: "crossed", push: 0.04 },
+  { start: 18.1, end: 19.0, scene: "closeup", push: 0.05 },
+  { start: 19.0, end: 19.9, scene: "standSmall", push: 0.03 },
+  { start: 19.9, end: 20.8, scene: "chin", push: 0.04 },
+  { start: 20.8, end: 25.3, scene: "end", push: 0.015 },
+  { start: 25.3, end: 25.4, scene: "black" },
 ];
 
-/** giant red serif words; each holds until the next one or `until` */
-export type DebutStamp = { t: number; text: string; until?: number };
+/** the montage: three bands land one after another, then the name flashes in all three */
+export const BAND_ENTRIES = [15.4, 15.67, 15.87];
+export const BAND_FLASHES = [16.57, 16.77, 16.97];
 
-export const DEBUT_STAMPS: DebutStamp[] = [
-  { t: 3.17, text: "MY" },
-  { t: 3.4, text: "NAME" },
-  { t: 3.5, text: "IS" },
-  { t: 3.6, text: "AAN", until: 4.07 },
+/** when the white wash peaks between the last silhouette and the DEBUT card */
+export const WHITE_IN = 20.58;
+export const DEBUT_WORD = 21.08;
 
-  { t: 4.97, text: "I'M" },
-  { t: 5.1, text: "A" },
-  { t: 5.2, text: "SLEEPLESS" },
-  { t: 5.4, text: "AI", until: 5.87 },
+export type Token = { show: string; say?: string; br?: boolean };
+export type VoLine = { id: string; t: number; until: number; display: "caption" | "stamp" | "none"; tokens: Token[] };
 
-  { t: 6.8, text: "AND" },
-  { t: 6.9, text: "I'M" },
-  { t: 7.2, text: "GONNA" },
-  { t: 7.4, text: "STEAL" },
-  { t: 7.6, text: "YOUR" },
-  { t: 7.8, text: "JOBS" },
-  { t: 8.3, text: "BY" },
-  { t: 8.5, text: "BECOMING" },
-  { t: 8.9, text: "THE" },
-  { t: 9.1, text: "BIGGEST" },
-  { t: 9.4, text: "E-COMMERCE" },
-  { t: 10.0, text: "INFLUENCER" },
-  { t: 10.6, text: "IN" },
-  { t: 10.7, text: "THE" },
-  { t: 10.9, text: "WORLD", until: 11.87 },
+const words = (s: string): Token[] => s.split(" ").map((w) => ({ show: w }));
+
+/** Aan's voice-over, one sentence per line, placed on the cut grid */
+export const DEBUT_VO: VoLine[] = [
+  {
+    id: "open",
+    t: 0.1,
+    until: 2.2,
+    display: "caption",
+    tokens: [...words("This is a"), { show: "message", br: true }, { show: "to" }, { show: "all", br: true }, ...words("e-commerce sellers.")],
+  },
+  { id: "name", t: 3.2, until: 4.45, display: "stamp", tokens: [...words("My name is"), { show: "Aan.", say: "Ahn." }] },
+  {
+    id: "role",
+    t: 5.43,
+    until: 7.55,
+    display: "stamp",
+    tokens: [...words("I'm your"), { show: "24/7", say: "twenty-four seven" }, ...words("account manager.")],
+  },
+  {
+    id: "help",
+    t: 8.55,
+    until: 13.55,
+    display: "stamp",
+    tokens: words("And I'm here to help you grow your e-commerce business, by watching your stores day and night."),
+  },
+  { id: "cover", t: 13.75, until: 17.3, display: "none", tokens: words("Ads, pricing, stock, profit. All covered.") },
+  { id: "rest", t: 17.6, until: 20.3, display: "none", tokens: words("So you can rest, while your business grows.") },
+  {
+    id: "end",
+    t: 21.4,
+    until: 24.9,
+    display: "none",
+    tokens: [{ show: "Aan.", say: "Ahn." }, ...words("Your"), { show: "24/7", say: "twenty-four seven" }, ...words("account manager.")],
+  },
 ];
 
-/** the name flashes once in each of the three montage bands */
-export const BAND_FLASHES = [14.9, 15.1, 15.3];
-export const BAND_ENTRIES = [13.73, 14.0, 14.2];
+/* ---------------------------------------------- word timings from the voice */
+type Timed = { show: string; t: number; br?: boolean };
+const timed = (id: string): Timed[] => {
+  const line = DEBUT_VO.find((l) => l.id === id)!;
+  const at = (voice as Record<string, number[]>)[id] ?? [];
+  return line.tokens.map((tok, i) => ({ show: tok.show, br: tok.br, t: at[i] ?? line.t + ((line.until - line.t) * i) / line.tokens.length }));
+};
 
-export type DebutCaption = { t: number; until: number; lines: string[]; kind: "open" | "twist" };
+const clean = (w: string) => w.replace(/[.,]/g, "").toUpperCase();
 
-export const DEBUT_CAPTIONS: DebutCaption[] = [
-  { t: 0.0, until: 0.3, lines: ["This"], kind: "open" },
-  { t: 0.3, until: 0.4, lines: ["This is"], kind: "open" },
-  { t: 0.4, until: 0.5, lines: ["This is a"], kind: "open" },
-  { t: 0.5, until: 0.9, lines: ["This is a", "message"], kind: "open" },
-  { t: 0.9, until: 1.1, lines: ["This is a", "message to"], kind: "open" },
-  { t: 1.1, until: 1.2, lines: ["This is a", "message to", "all"], kind: "open" },
-  { t: 1.2, until: 1.8, lines: ["This is a", "message to", "all e-commerce"], kind: "open" },
-  { t: 1.8, until: 2.27, lines: ["This is a", "message to", "all e-commerce sellers"], kind: "open" },
+export type DebutStamp = { t: number; until: number; text: string };
 
-  { t: 20.4, until: 20.5, lines: ["my"], kind: "twist" },
-  { t: 20.5, until: 20.8, lines: ["my husband"], kind: "twist" },
-  { t: 20.8, until: 21.0, lines: ["my husband wants"], kind: "twist" },
-  { t: 21.0, until: 21.1, lines: ["my husband wants", "to"], kind: "twist" },
-  { t: 21.1, until: 21.3, lines: ["my husband wants", "to be"], kind: "twist" },
-  { t: 21.3, until: 22.85, lines: ["my husband wants", "to be famous"], kind: "twist" },
-  { t: 22.85, until: 23.1, lines: ["so"], kind: "twist" },
-  { t: 23.1, until: 23.5, lines: ["please"], kind: "twist" },
-  { t: 23.5, until: 23.9, lines: ["follow"], kind: "twist" },
-  { t: 23.9, until: 24.47, lines: ["him"], kind: "twist" },
-];
+/** every word of the stamped lines, held until the next word lands */
+export const DEBUT_STAMPS: DebutStamp[] = DEBUT_VO.filter((l) => l.display === "stamp").flatMap((l) => {
+  const w = timed(l.id);
+  const shot = DEBUT_SHOTS.find((s) => l.t >= s.start && l.t < s.end)!;
+  return w.map((x, i) => ({ t: x.t, until: i < w.length - 1 ? w[i + 1].t : shot.end, text: clean(x.show) }));
+});
 
-/** spoken lines for the site cut: Aan word by word on the stamps, his wife on the twist */
-export type VoiceLine = { t: number; until: number; text: string; voice: "aan" | "wife" };
+export type DebutCaption = { t: number; until: number; lines: string[] };
 
-const aanWords = (words: { t: number; text: string }[], end: number): VoiceLine[] =>
-  words.map((w, i) => ({ t: w.t, until: words[i + 1]?.t ?? end, text: w.text, voice: "aan" }));
-
-export const DEBUT_VOICE: VoiceLine[] = [
-  ...aanWords(
-    [
-      { t: 0.05, text: "This" },
-      { t: 0.3, text: "is" },
-      { t: 0.4, text: "a" },
-      { t: 0.5, text: "message" },
-      { t: 0.9, text: "to" },
-      { t: 1.1, text: "all" },
-      { t: 1.2, text: "e-commerce" },
-      { t: 1.8, text: "sellers." },
-    ],
-    2.3,
-  ),
-  ...aanWords(
-    [
-      { t: 3.17, text: "My" },
-      { t: 3.4, text: "name" },
-      { t: 3.5, text: "is" },
-      { t: 3.6, text: "Ahn." },
-    ],
-    4.1,
-  ),
-  ...aanWords(
-    [
-      { t: 4.97, text: "I'm" },
-      { t: 5.1, text: "a" },
-      { t: 5.2, text: "sleepless" },
-      { t: 5.4, text: "A.I." },
-    ],
-    5.9,
-  ),
-  ...aanWords(
-    DEBUT_STAMPS.slice(8).map((s) => ({ t: s.t, text: s.text.toLowerCase() })),
-    11.4,
-  ),
-  { t: 20.4, until: 22.8, text: "My husband wants to be famous.", voice: "wife" },
-  { t: 22.85, until: 23.1, text: "So", voice: "wife" },
-  { t: 23.1, until: 23.5, text: "please", voice: "wife" },
-  { t: 23.5, until: 23.9, text: "follow", voice: "wife" },
-  { t: 23.9, until: 24.4, text: "him.", voice: "wife" },
-];
+/** the opening caption builds word by word as Aan says it */
+export const DEBUT_CAPTIONS: DebutCaption[] = (() => {
+  const w = timed("open");
+  const shot = DEBUT_SHOTS[0];
+  const out: DebutCaption[] = [];
+  const lines: string[] = [""];
+  w.forEach((x, i) => {
+    if (x.br) lines.push("");
+    lines[lines.length - 1] = `${lines[lines.length - 1]} ${x.show}`.trim();
+    out.push({ t: i === 0 ? 0 : x.t, until: i < w.length - 1 ? w[i + 1].t : shot.end, lines: [...lines] });
+  });
+  return out;
+})();
 
 export const debutShotAt = (t: number) =>
   DEBUT_SHOTS.find((s) => t >= s.start && t < s.end) ?? DEBUT_SHOTS[DEBUT_SHOTS.length - 1];
 
-export function debutStampAt(t: number): DebutStamp | null {
-  for (let i = DEBUT_STAMPS.length - 1; i >= 0; i--) {
-    const s = DEBUT_STAMPS[i];
-    if (t < s.t) continue;
-    const next = DEBUT_STAMPS[i + 1];
-    const end = s.until ?? (next ? next.t : s.t + 0.5);
-    return t < end ? s : null;
-  }
-  return null;
-}
+export const debutStampAt = (t: number) => DEBUT_STAMPS.find((s) => t >= s.t && t < s.until) ?? null;
 
 export const debutCaptionAt = (t: number) => DEBUT_CAPTIONS.find((c) => t >= c.t && t < c.until) ?? null;

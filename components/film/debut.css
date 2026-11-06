@@ -171,3 +171,37 @@ nextjs-portal {
   background: #fff;
   pointer-events: none;
 }
+
+/* the end card's promise, under Aan's feet */
+.dt-tagline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 69.5%;
+  z-index: 5;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: #1d1b1f;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dt-tagline span {
+  font-weight: 500;
+  font-size: 14px;
+  color: #4a464d;
+}
+
+.dt-tagline.is-on {
+  opacity: 1;
+  transform: none;
+}
