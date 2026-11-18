@@ -8,3 +8,9 @@ next-env.d.ts
 .DS_Store
 npm-debug.log*
 .claude/
+
+# one-screen QA output
+qa-out/
+
+# Impeccable decision-page server state
+.impeccable/questions/

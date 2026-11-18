@@ -19,5 +19,6 @@
         "reason": "Copied from the reference site's .text-gradient-primary (anarix-website-final-state hero); user asked to match that site's component style"
       }
     ]
-  }
+  },
+  "buildPath": "code"
 }

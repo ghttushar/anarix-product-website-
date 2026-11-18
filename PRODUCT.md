@@ -13,6 +13,8 @@ Brands and sellers on Amazon, Walmart and Shopify, and the teams or agencies run
 Anarix is an e-commerce operations platform. Its AI, **Aan** ("Anarix Analytical Neural"), watches every account around the clock, explains what changed and why, and acts. It catches problems before they cost money and tells the seller what it did. Success means sellers sleep through the 11pm check and wake up to problems already handled.
 
 ## Positioning
+**Aan is your 24/7 e-commerce account manager that helps you grow** (owner, 2026-11). The site leads with this, never with "influencer" or job-replacement language.
+
 Aan, the AI inside Anarix, watches every account 24/7 through **Signals** (what moved and why), **Profitability** (true product-level P&L) and **Rules** (plain-language automation that allows good spend and stops waste). It explains each change and acts on it. **Anarix MCP** plugs the same live marketplace data into any AI client: Claude, ChatGPT, Gemini or a custom agent.
 
 ## Operating Context

@@ -1,0 +1,283 @@
+/*
+  City Nocturne world, Phase 0 prototype (moves to app/styles/tokens.css in Phase 1).
+  Dark is the night street; light is the same street by day. Hues stay on the
+  brand's 230 periwinkle and 355 coral; greys stay blue-slate.
+*/
+.world {
+  --sky: hsl(228 46% 14%);
+  --line: hsl(228 38% 80% / 0.55);
+  --line-strong: hsl(228 40% 90% / 0.92);
+  --lit: hsl(230 70% 65% / 0.5);
+  --ink: hsl(228 20% 94%);
+  --ink-2: hsl(228 22% 74%);
+  --accent: hsl(230 75% 72%);
+  --accent-solid: hsl(230 65% 57%);
+  --risk: #f46d76;
+  --risk-ink: hsl(355 84% 74%);
+  --rule: hsl(228 34% 30%);
+  --card: hsl(228 38% 18%);
+  --card-line: hsl(228 30% 30%);
+  --bubble-bg: hsl(228 25% 97%);
+  --bubble-ink: hsl(228 40% 14%);
+  --dur-draw: 1400ms;
+  --stagger: 90ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --inset-top: 84px;
+  --inset-bottom: 90px;
+  background: var(--sky);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+:global(html[data-theme="light"]) .world {
+  --sky: hsl(230 60% 97%);
+  --line: hsl(209 22% 14% / 0.5);
+  --line-strong: hsl(209 22% 14% / 0.88);
+  --lit: hsl(230 65% 57% / 0.22);
+  --ink: hsl(209 22% 14%);
+  --ink-2: hsl(215 16% 38%);
+  --accent: hsl(230 65% 50%);
+  --risk-ink: hsl(355 70% 50%);
+  --rule: hsl(228 22% 86%);
+  --card: #fff;
+  --card-line: hsl(228 22% 88%);
+  --bubble-bg: hsl(209 22% 14%);
+  --bubble-ink: #fff;
+}
+
+.world ::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------ one screen */
+.screen {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: var(--inset-top) 1fr var(--inset-bottom);
+  overflow: clip;
+}
+
+.container {
+  width: min(1280px, 100% - 48px);
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------ type */
+.h1 {
+  margin: 0;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, min(6vw, 9.4svh), 6rem);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+}
+
+.h1 span {
+  display: block;
+}
+
+.on {
+  color: var(--accent);
+}
+
+.h2 {
+  margin: 0;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2rem, min(4.2vw, 7svh), 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.lede,
+.statement {
+  margin: clamp(12px, 2.4svh, 24px) 0 0;
+  max-width: 42ch;
+  font-size: clamp(1.0625rem, min(1.4vw, 2.5svh), 1.375rem);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.lede b,
+.statement b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: clamp(16px, 3.2svh, 32px);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--accent-solid);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 160ms var(--ease-out);
+}
+
+.primary:hover {
+  background: hsl(230 65% 52%);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  text-decoration-color: color-mix(in srgb, var(--ink) 40%, transparent);
+  transition: color 160ms var(--ease-out), text-decoration-color 160ms var(--ease-out);
+}
+
+.link:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.link svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.primary:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ------------------------------------------------------------------ hero */
+.heroBody {
+  grid-row: 2;
+  display: grid;
+  min-height: 0;
+}
+
+.heroCopy {
+  grid-area: 1 / 1;
+  align-self: start;
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(8px, 4.5svh, 56px);
+}
+
+.heroStreet {
+  grid-area: 1 / 1;
+  align-self: end;
+  --street-h: 40svh;
+}
+
+/* -------------------------------------------------------- product screen */
+.productBody {
+  grid-row: 2;
+  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  align-items: center;
+}
+
+.productCopy {
+  grid-column: 1 / span 5;
+}
+
+.points {
+  margin: clamp(16px, 3svh, 32px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.points li {
+  padding: clamp(10px, 1.6svh, 14px) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.points b {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.points span {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.productVisual {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: 18px;
+}
+
+.sample {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+/* density tier: short screens keep every idea but drop the second line */
+@media (max-height: 800px) {
+  .points span {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .productBody {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .productCopy,
+  .productVisual {
+    grid-column: 1;
+  }
+
+  .points span {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroStreet {
+    --street-h: 30svh;
+    overflow: hidden;
+  }
+
+  .heroStreet > div > div {
+    width: calc(var(--street-h) * 1600 / 420);
+    margin: 0;
+    transform: translateX(calc(50vw - 38%));
+  }
+
+  .points,
+  .productVisual > [data-optional] {
+    display: none;
+  }
+}

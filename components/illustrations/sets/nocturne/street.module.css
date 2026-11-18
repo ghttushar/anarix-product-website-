@@ -1,0 +1,137 @@
+/* The street keeps its drawing's proportions; the screen decides its width. */
+.street {
+  position: relative;
+  width: 100%;
+  --stroke: 1.7;
+}
+
+.box {
+  position: relative;
+  aspect-ratio: 1600 / 420;
+  width: min(100%, calc(var(--street-h, 40svh) * 1600 / 420));
+  margin-inline: auto;
+}
+
+.box > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lane {
+  stroke: var(--line);
+  stroke-dasharray: 22 24;
+  opacity: 0.7;
+  transition: opacity 600ms var(--ease-out) 1.6s;
+}
+
+:global(html[data-js]) .street[data-play="false"] .lane {
+  opacity: 0;
+  transition: none;
+}
+
+/* the window that needs Aan turns coral once Aan reaches it */
+.alert {
+  transition:
+    stroke-dashoffset var(--dur-draw) var(--ease-out) calc(var(--i, 0) * var(--stagger)),
+    opacity 1ms linear calc(var(--i, 0) * var(--stagger)),
+    stroke 400ms var(--ease-out) var(--alert-delay, 3.6s) !important;
+}
+
+.street[data-play="true"] .alert {
+  stroke: var(--risk);
+}
+
+/* Aan's patrol: dots appear just behind Aan as Aan walks */
+.dot {
+  fill: var(--risk);
+  stroke: none;
+  opacity: 0.85;
+  transition: opacity 160ms linear;
+  transition-delay: calc(var(--walk-start, 2s) + var(--k) * var(--walk-dur, 1.6s));
+}
+
+:global(html[data-js]) .street[data-play="false"] .dot {
+  opacity: 0;
+  transition: none;
+}
+
+.track {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translateX(0);
+  transition: transform var(--walk-dur, 1.6s) cubic-bezier(0.45, 0, 0.2, 1) var(--walk-start, 2s);
+}
+
+:global(html[data-js]) .street[data-play="false"] .track {
+  transform: translateX(var(--from));
+  transition: none;
+}
+
+.aan {
+  position: absolute;
+  transform: translateX(-50%);
+  line-height: 0;
+}
+
+/* on the street Aan stands still: no idle float (eyes and blinks stay) */
+.aan :global(.aan__float) {
+  animation: none;
+}
+
+.bubble {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 14px;
+  border-bottom-right-radius: 4px;
+  background: var(--bubble-bg);
+  color: var(--bubble-ink);
+  font: 600 13px/1.3 var(--font-inter), system-ui, sans-serif;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px -12px hsl(228 50% 4% / 0.6);
+  opacity: 1;
+  /* the bubble opens to Aan's left, so the window Aan is looking after stays clear */
+  transform: translateX(calc(-100% + 10px));
+  transition: opacity 320ms var(--ease-out) calc(var(--walk-start, 2s) + var(--walk-dur, 1.6s) + 0.25s);
+}
+
+:global(html[data-js]) .street[data-play="false"] .bubble {
+  opacity: 0;
+  transition: none;
+}
+
+@media (max-width: 640px) {
+  .bubble {
+    width: max-content;
+    max-width: min(220px, 44vw);
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .dot,
+  .bubble,
+  .lane,
+  .alert {
+    transition: opacity 200ms linear !important;
+  }
+
+  :global(html[data-js]) .street[data-play="false"] .track {
+    transform: none;
+  }
+
+  :global(html[data-js]) .street[data-play="false"] .dot,
+  :global(html[data-js]) .street[data-play="false"] .bubble,
+  :global(html[data-js]) .street[data-play="false"] .lane {
+    opacity: 1;
+  }
+
+  .alert {
+    stroke: var(--risk);
+  }
+}

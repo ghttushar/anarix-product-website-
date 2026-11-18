@@ -1,0 +1,92 @@
+/*
+  Line-art language (docs/redesign/02-principles.md):
+  - one hairline weight per drawing, set to land near 1.4px at its usual size;
+  - every stroke draws itself once, in reading order, when its screen arrives;
+  - strokes only start hidden when script is present to draw them and motion
+    is allowed, so no-script and reduced-motion visitors see the art drawn.
+  - a drawn stroke is marked with the .d class (plus pathLength="1"). Never
+    select on [pathLength]: the CSS build lowercases it and Chrome then skips
+    restyling those SVG children when the screen starts playing.
+*/
+.art {
+  display: block;
+  overflow: visible;
+  fill: none;
+  stroke: var(--line);
+  stroke-width: var(--stroke, 1.5);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* note: no non-scaling-stroke here; with it Chrome measures the dash pattern
+   in screen pixels and pathLength-based drawing breaks. Each drawing sets a
+   stroke width that lands near 1.4px at its usual size instead. */
+.art .d {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 0;
+  /* longhands on purpose: the CSS build mangles a var()-based shorthand that is
+     followed by a longhand, leaving an invalid transition */
+  transition-property: stroke-dashoffset, opacity;
+  transition-duration: var(--dur-draw, 1.4s), 1ms;
+  transition-timing-function: var(--ease-out, ease-out), linear;
+  transition-delay: calc(var(--i, 0) * var(--stagger, 90ms)), calc(var(--i, 0) * var(--stagger, 90ms));
+}
+
+:global(html[data-js]) .art:not([data-play="true"]) .d {
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transition: none;
+}
+
+/* solid shapes that hide whatever is drawn behind them, in the ground colour */
+.body {
+  fill: var(--sky);
+}
+
+/* lit windows fill in after the line work has drawn */
+.win {
+  fill: var(--lit);
+  fill-opacity: 0;
+  transition: fill-opacity 600ms var(--ease-out);
+  transition-delay: var(--lit-delay, 1.8s);
+}
+
+.art[data-play="true"] .lit {
+  fill-opacity: 1;
+}
+
+/* words on the drawing are type, never paths */
+.label {
+  fill: var(--line-strong);
+  stroke: none;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  opacity: 1;
+  transition: opacity 500ms var(--ease-out);
+  transition-delay: var(--label-delay, 1.2s);
+}
+
+:global(html[data-js]) .art:not([data-play="true"]) .label {
+  opacity: 0;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art .d,
+  .win,
+  .label {
+    transition: opacity 200ms linear !important;
+    transition-delay: 0s !important;
+  }
+
+  :global(html[data-js]) .art:not([data-play="true"]) .d,
+  :global(html[data-js]) .art:not([data-play="true"]) .label {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  .art .lit {
+    fill-opacity: 1;
+  }
+}
