@@ -1,0 +1,5 @@
+/* the last light goes out once Aan is at the door */
+:global([data-arrived="true"]) .lastLight {
+  fill-opacity: 0 !important;
+  transition: fill-opacity 900ms var(--ease-arrive) 400ms !important;
+}

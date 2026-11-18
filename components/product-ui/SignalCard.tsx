@@ -22,7 +22,7 @@ export function SignalCard({ handled }: { handled: boolean }) {
       </header>
 
       <p className={s.value}>
-        <CountUp from={-136} to={1651} play={handled} format={money} width={7} className={s.figure} />
+        <CountUp from={-136} to={1651} play={handled} format={money} width={6} className={s.figure} />
         <span className={s.valueK}>
           <span className={s.k1}>ad sales at risk</span>
           <span className={s.k2}>protected</span>

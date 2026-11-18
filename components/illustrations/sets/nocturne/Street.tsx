@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AanDock } from "@/components/aan/v2/AanDock";
 import { useScreen } from "@/components/layout/Screen";
 import art from "../../lineart.module.css";
+import { useHairline } from "./kit";
 import s from "./street.module.css";
 
 /*
@@ -88,6 +89,7 @@ export function Street({ stop = "hero", bubble, className }: { stop?: string; bu
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
+  useHairline(box, W);
   const aanSize = Math.round(Math.max(30, Math.min(72, frame.h * 0.13)));
   const walkDx = Math.round(((WALK_FROM - AAN_X) / W) * frame.w);
 

@@ -202,3 +202,12 @@ html[data-theme="light"] .nocturne {
   --bubble-bg: hsl(209 22% 14%);
   --bubble-ink: #fff;
 }
+
+/* the page behind the street (overscroll, the gap under the footer) */
+html:has(.nocturne) body {
+  background-color: hsl(228 46% 14%);
+}
+
+html[data-theme="light"]:has(.nocturne) body {
+  background-color: hsl(230 60% 97%);
+}

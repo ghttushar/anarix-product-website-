@@ -1,0 +1,52 @@
+.term {
+  padding: 0;
+  overflow: hidden;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--card-line);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--card-line);
+}
+
+.bar span {
+  margin-left: 6px;
+}
+
+.body {
+  display: grid;
+  gap: 8px;
+  padding: clamp(12px, 2svh, 18px);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.you,
+.tool {
+  margin: 0;
+}
+
+.you {
+  color: var(--ink);
+}
+
+.tool {
+  color: var(--accent);
+}
+
+.out {
+  color: var(--ink-2);
+}

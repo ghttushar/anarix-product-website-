@@ -1,0 +1,146 @@
+/* Shared parts of the product UI cards (modelled on anarix-insight-engine). */
+.card {
+  position: relative;
+  padding: clamp(16px, 2.4svh, 22px);
+  border: 1px solid var(--card-line);
+  border-radius: 20px;
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--font-body);
+  box-shadow: 0 24px 48px -32px hsl(228 60% 4% / 0.7);
+  transition: border-color var(--dur-ui) var(--ease-arrive);
+}
+
+.card[data-state="handled"] {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--card-line));
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border: 1px solid var(--card-line);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pillMuted {
+  color: var(--ink-2);
+}
+
+.meta {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.k {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.figure {
+  font-size: clamp(28px, 4.2svh, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.gain {
+  color: var(--accent);
+}
+
+.cost {
+  color: var(--risk-ink);
+}
+
+.rule {
+  margin: clamp(12px, 2svh, 16px) 0 0;
+  padding-top: clamp(12px, 2svh, 16px);
+  border-top: 1px solid var(--card-line);
+}
+
+/* two labels sharing one cell, so a swap never reflows the card */
+.swap {
+  display: inline-grid;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  transition: opacity 240ms var(--ease-arrive);
+}
+
+.swap > :last-child {
+  opacity: 0;
+}
+
+.card[data-state="handled"] .swap > :first-child {
+  opacity: 0;
+}
+
+.card[data-state="handled"] .swap > :last-child {
+  opacity: 1;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.btnPrimary {
+  border-color: transparent;
+  background: var(--accent-solid);
+  color: #fff;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+
+/* things that arrive with the moment, from an already present layout slot */
+.later {
+  transition: opacity var(--dur-ui) var(--ease-arrive);
+}
+
+:global(html[data-js]) .card:not([data-state="handled"]) .later {
+  opacity: 0;
+}
+
+@media (max-width: 640px), (max-height: 800px) {
+  .card [data-optional] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .later {
+    transition-duration: 200ms;
+  }
+}

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AanDock } from "@/components/aan/v2/AanDock";
 import { useScreen } from "@/components/layout/Screen";
 import art from "../../lineart.module.css";
+import { useHairline } from "./kit";
 import s from "./shoprow.module.css";
 
 /*
@@ -26,6 +27,7 @@ export function ShopRow({ stop = "signals", bubble }: { stop?: string; bubble?: 
   const { inView: play, arrived } = useScreen();
   const box = useRef<HTMLDivElement>(null);
   const [aanSize, setAanSize] = useState(40);
+  useHairline(box, W);
 
   useEffect(() => {
     const el = box.current;

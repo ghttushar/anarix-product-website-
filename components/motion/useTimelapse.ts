@@ -14,6 +14,7 @@ export function useTimelapse({
   duration,
   holds = [],
   holdMs = 900,
+  step: stateStep = 1,
   onFrame,
 }: {
   from: number;
@@ -21,6 +22,8 @@ export function useTimelapse({
   duration: number;
   holds?: number[];
   holdMs?: number;
+  /** React state granularity in minutes (frames still go to onFrame) */
+  step?: number;
   onFrame?: (minute: number) => void;
 }) {
   const [minute, setMinuteState] = useState(from);
@@ -30,11 +33,14 @@ export function useTimelapse({
   const frame = useRef(onFrame);
   frame.current = onFrame;
 
-  const set = useCallback((m: number) => {
-    clock.current.m = m;
-    frame.current?.(m);
-    setMinuteState((prev) => (Math.round(prev) === Math.round(m) ? prev : m));
-  }, []);
+  const set = useCallback(
+    (m: number, force = false) => {
+      clock.current.m = m;
+      frame.current?.(m);
+      setMinuteState((prev) => (force || Math.floor(prev / stateStep) !== Math.floor(m / stateStep) ? m : prev));
+    },
+    [stateStep],
+  );
 
   const step = useCallback(
     (now: number) => {
@@ -48,11 +54,13 @@ export function useTimelapse({
       let m = c.m + ((to - from) / duration) * dt;
       const hold = holds.find((h) => h > c.m && h <= m);
       if (hold !== undefined) {
-        m = hold;
         c.holdUntil = now + holdMs;
+        set(hold, true);
+        raf.current = requestAnimationFrame(step);
+        return;
       }
       if (m >= to) {
-        set(to);
+        set(to, true);
         setPlaying(false);
         return;
       }
@@ -63,7 +71,7 @@ export function useTimelapse({
   );
 
   const play = useCallback(() => {
-    if (clock.current.m >= to) set(from);
+    if (clock.current.m >= to) set(from, true);
     clock.current.last = 0;
     clock.current.holdUntil = 0;
     setPlaying(true);
@@ -74,7 +82,7 @@ export function useTimelapse({
   const seek = useCallback(
     (m: number) => {
       setPlaying(false);
-      set(Math.max(from, Math.min(to, m)));
+      set(Math.max(from, Math.min(to, m)), true);
     },
     [from, to, set],
   );

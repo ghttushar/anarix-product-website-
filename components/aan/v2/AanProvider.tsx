@@ -14,6 +14,8 @@ import s from "./aan-v2.module.css";
     while idle. It glides between docks (450–700ms) and stays a diamond.
   - A dock may declare an entry walk (the hero street): on first arrival Aan
     walks in along the street instead of appearing.
+  - A dock can move within its screen (the Night Watch patrol): Aan walks
+    along the ground to the new spot instead of hopping.
   - Reduced motion: Aan fades out and back in at the new dock.
 */
 export type AanEntry = { dx: number; delay: number; duration: number };
@@ -26,6 +28,10 @@ export type DockInfo = {
   bubble?: string;
   side: "left" | "right";
   entry?: AanEntry;
+  /** where in its screen the dock currently is; a change means Aan moves */
+  at?: string;
+  /** how Aan moves when the dock moves within its screen */
+  travel?: "fly" | "walk";
 };
 
 type Api = { register: (d: DockInfo) => () => void };
@@ -40,9 +46,14 @@ export function AanProvider({ children }: { children: ReactNode }) {
   const docks = useRef(new Map<string, DockInfo>());
   const [version, bump] = useReducer((x: number) => x + 1, 0);
   const [active, setActive] = useState<string | null>(null);
+  const lastAt = useRef(new Map<string, string | undefined>());
+  const [moveTick, setMoveTick] = useState(0);
 
   const register = useCallback((d: DockInfo) => {
+    const prev = lastAt.current.get(d.stop);
+    lastAt.current.set(d.stop, d.at);
     docks.current.set(d.stop, d);
+    if (prev !== undefined && prev !== d.at) setMoveTick((t) => t + 1);
     bump();
     return () => {
       if (docks.current.get(d.stop) === d) docks.current.delete(d.stop);
@@ -70,13 +81,13 @@ export function AanProvider({ children }: { children: ReactNode }) {
     <Ctx.Provider value={api}>
       <div ref={stage} className={s.stage}>
         {children}
-        <Traveler stage={stage} docks={docks} active={active} version={version} />
+        <Traveler stage={stage} docks={docks} active={active} version={version} moveTick={moveTick} />
       </div>
     </Ctx.Provider>
   );
 }
 
-function Traveler({ stage, docks, active, version }: { stage: RefObject<HTMLDivElement | null>; docks: RefObject<Map<string, DockInfo>>; active: string | null; version: number }) {
+function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObject<HTMLDivElement | null>; docks: RefObject<Map<string, DockInfo>>; active: string | null; version: number; moveTick: number }) {
   const node = useRef<HTMLDivElement>(null);
   const pos = useRef<Pos | null>(null);
   const anim = useRef<Animation | null>(null);
@@ -90,6 +101,7 @@ function Traveler({ stage, docks, active, version }: { stage: RefObject<HTMLDivE
       if (!st || !d.el.isConnected) return null;
       const sr = st.getBoundingClientRect();
       const r = d.el.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) return null; // its drawing is hidden at this size
       const size = window.innerWidth <= 640 && d.sizeSm ? d.sizeSm : d.size;
       return { x: r.left + r.width / 2 - sr.left, y: r.bottom - sr.top, size };
     },
@@ -102,7 +114,12 @@ function Traveler({ stage, docks, active, version }: { stage: RefObject<HTMLDivE
     const d = docks.current.get(active);
     if (!d) return;
     const to = measure(d);
-    if (!to) return;
+    if (!to) {
+      // no drawing to stand in (hidden on small screens): Aan stays put and
+      // the screen's moment plays without waiting for it
+      d.section?.dispatchEvent(new CustomEvent("aan:arrive", { detail: { stop: d.stop } }));
+      return;
+    }
     const el = node.current;
     const from = pos.current;
     if (from && Math.abs(from.x - to.x) < 1 && Math.abs(from.y - to.y) < 1) return;
@@ -127,6 +144,10 @@ function Traveler({ stage, docks, active, version }: { stage: RefObject<HTMLDivE
     } else if (!from) {
       frames = [{ opacity: 0 }, { opacity: 1 }];
       timing = { duration: 320, easing: "ease-out" };
+    } else if (d.travel === "walk" && Math.abs(to.y - from.y) < 4) {
+      // along the same street: walk, no hop
+      frames = [{ transform: place({ ...from, size: to.size }) }, { transform: place(to) }];
+      timing = { duration: Math.min(1100, Math.max(420, Math.abs(to.x - from.x) * 2.4)), easing: "cubic-bezier(0.45, 0, 0.25, 1)" };
     } else {
       // far jumps start just outside the viewport rather than streaking across the page
       const vh = window.innerHeight;
@@ -150,11 +171,12 @@ function Traveler({ stage, docks, active, version }: { stage: RefObject<HTMLDivE
     a.finished
       .then(() => {
         d.section?.dispatchEvent(new CustomEvent("aan:arrive", { detail: { stop: d.stop } }));
+        window.dispatchEvent(new CustomEvent("aan:dock", { detail: d.stop })); // nav highlights where Aan is
         bubbleTimer = window.setTimeout(() => setBubbleOn(true), 250);
       })
       .catch(() => {});
     return () => window.clearTimeout(bubbleTimer);
-  }, [active, reduced, measure, docks]);
+  }, [active, reduced, measure, docks, moveTick]);
 
   // keep Aan on its dock when layout changes (resize, fonts, dock size); no animation
   useEffect(() => {
@@ -162,9 +184,11 @@ function Traveler({ stage, docks, active, version }: { stage: RefObject<HTMLDivE
     if (!st) return;
     const settle = () => {
       if (!active || !node.current) return;
-      if (anim.current && anim.current.playState === "running") return;
       const d = docks.current.get(active);
       if (!d) return;
+      // what Aan says can change without Aan moving (the Night Watch at dawn)
+      setLook((l) => (l && (l.bubble !== d.bubble || l.side !== d.side) ? { ...l, bubble: d.bubble, side: d.side } : l));
+      if (anim.current && anim.current.playState === "running") return;
       const to = measure(d);
       if (!to) return;
       pos.current = to;
@@ -181,11 +205,36 @@ function Traveler({ stage, docks, active, version }: { stage: RefObject<HTMLDivE
     return () => ro.disconnect();
   }, [active, version, measure, docks, stage]);
 
+  // what Aan says can change while Aan stays put (the Night Watch at dawn)
+  useEffect(() => {
+    if (!active) return;
+    const d = docks.current.get(active);
+    if (d) setLook((l) => (l && (l.bubble !== d.bubble || l.side !== d.side) ? { ...l, bubble: d.bubble, side: d.side } : l));
+  }, [active, version, docks]);
+
+  // the bubble opens to the dock's side unless that would run off screen
+  const bubble = useRef<HTMLParagraphElement>(null);
+  const [side, setSide] = useState<"left" | "right">("left");
+  useLayoutEffect(() => {
+    const b = bubble.current;
+    if (!b || !look) return;
+    let next = look.side;
+    if (bubbleOn) {
+      b.dataset.side = next;
+      const r = b.getBoundingClientRect();
+      const vw = document.documentElement.clientWidth;
+      if (r.right > vw - 8) next = "left";
+      else if (r.left < 8) next = "right";
+    }
+    b.dataset.side = next;
+    setSide(next);
+  }, [bubbleOn, look]);
+
   return (
     <div ref={node} className={s.traveler} data-aan-traveler aria-hidden="true" style={{ opacity: look ? undefined : 0, "--size": `${look?.size ?? 48}px` } as CSSProperties}>
       {look && <AanMascot state="diamond" size={look.size} glow={false} shadow={false} />}
       {look?.bubble && (
-        <p className={s.bubble} data-side={look.side} data-on={bubbleOn ? "true" : "false"}>
+        <p ref={bubble} className={s.bubble} data-side={side} data-on={bubbleOn ? "true" : "false"}>
           {look.bubble}
         </p>
       )}

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e141a",
+  themeColor: "#131a34",
 };
 
 // Runs before first paint: applies a saved theme (no dark flash for visitors

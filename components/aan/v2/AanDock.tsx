@@ -16,6 +16,8 @@ export function AanDock({
   bubble,
   side = "left",
   entry,
+  at,
+  travel = "walk",
   style,
 }: {
   stop: string;
@@ -27,6 +29,10 @@ export function AanDock({
   side?: "left" | "right";
   /** first arrival walks in from dx px away (the hero street) */
   entry?: AanEntry;
+  /** the dock's current spot in its screen; change it to move Aan */
+  at?: string;
+  /** how Aan gets to a moved dock */
+  travel?: "fly" | "walk";
   style?: CSSProperties;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -47,8 +53,10 @@ export function AanDock({
       bubble,
       side,
       entry: dx !== undefined ? { dx, delay: delay ?? 0, duration: duration ?? 1200 } : undefined,
+      at,
+      travel,
     });
-  }, [registry, stop, size, sizeSm, bubble, side, dx, delay, duration]);
+  }, [registry, stop, size, sizeSm, bubble, side, dx, delay, duration, at, travel]);
 
   return <span ref={ref} className={s.dock} data-aan-dock={stop} style={{ ...style, width: size, height: size }} aria-hidden="true" />;
 }

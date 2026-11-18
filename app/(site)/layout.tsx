@@ -1,16 +1,21 @@
-// The marketing site. Until the Phase 2 swap it still loads the legacy styles
-// the current homepage is built on; new screens use app/styles + CSS modules.
-import "../styles/legacy-globals.css";
+// The marketing site: one night street (City Nocturne). Every page sits on the
+// same sky, under the same nav, with one travelling Aan and the Ask Aan island.
 import "@/components/aan/aan.css";
-import "@/components/aan/traveler.css";
 import "@/components/chrome/chrome.css";
-import "@/components/hero/hero.css";
-import "@/components/sections/sections.css";
-import "@/components/machines/machines.css";
-import "@/components/night/night.css";
-import "@/components/readability.css";
-import "@/components/premium.css";
+import { Nav } from "@/components/chrome/Nav";
+import { Footer } from "@/components/chrome/Footer";
+import { ActionIsland } from "@/components/chrome/ActionIsland";
+import { AanProvider } from "@/components/aan/v2/AanProvider";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <div className="nocturne">
+      <Nav />
+      <AanProvider>
+        <main>{children}</main>
+      </AanProvider>
+      <Footer />
+      <ActionIsland />
+    </div>
+  );
 }

@@ -482,3 +482,19 @@ a.nav__switch-opt:hover {
     transform: none;
   }
 }
+
+/* quieter nav (owner's request): no pill until the page scrolls */
+.nav {
+  padding: 10px 20px;
+  transition:
+    background-color 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    backdrop-filter 0.4s;
+}
+
+.nav:not(.is-scrolled) {
+  background-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}

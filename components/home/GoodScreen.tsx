@@ -1,0 +1,32 @@
+import { Screen } from "@/components/layout/Screen";
+import { Reveal } from "@/components/motion/Reveal";
+import { HomeAtNight } from "@/components/illustrations/sets/nocturne/HomeAtNight";
+import { good } from "@/content/home";
+import h from "./home.module.css";
+
+/* 4 · AI for good. Right after the night it describes: the point of all that
+   watching is that you get to sleep. */
+export function GoodScreen() {
+  return (
+    <Screen id="ai-for-good" hasDock bodyClassName={`l-container l-grid ${h.split}`} label="AI for good">
+      <div className={h.copy}>
+        <h2 className="t-h2">
+          {good.title}
+          <br />
+          <span className={h.goodLine}>{good.line}</span>
+        </h2>
+        <ul className={h.commitments}>
+          {good.commitments.map((c, i) => (
+            <Reveal as="li" key={c.title} order={i + 1}>
+              <b>{c.title}</b>
+              <span>{c.text}</span>
+            </Reveal>
+          ))}
+        </ul>
+      </div>
+      <div className={`${h.visual} ${h.goodArt}`}>
+        <HomeAtNight bubble={good.bubble} />
+      </div>
+    </Screen>
+  );
+}
