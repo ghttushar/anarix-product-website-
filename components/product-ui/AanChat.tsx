@@ -15,9 +15,9 @@ const A = "CPC rose 22% on “bamboo cutting board” while conversions held fla
 export function AanChat({ handled }: { handled: boolean }) {
   return (
     <article className={`${u.card} ${s.chat}`} data-ui data-state={handled ? "handled" : "open"} aria-hidden="true">
-      <p className={s.you}>{Q}</p>
+      <p className={s.you} data-part="1">{Q}</p>
       <div className={s.aan}>
-        <span className={s.aanHead}>
+        <span className={s.aanHead} data-part="2">
           <AanMascot state="diamond" size={16} glow={false} shadow={false} />
           Aan
         </span>
@@ -26,7 +26,7 @@ export function AanChat({ handled }: { handled: boolean }) {
           <span className={u.pill}>Ads · Walmart</span>
           <span className={u.pill}>Yesterday vs 7-day average</span>
         </p>
-        <p className={`${s.actions} ${u.later}`}>
+        <p className={`${s.actions} ${u.later}`} data-part="3">
           <span className={`${u.btn} ${u.btnPrimary}`}>Draft the rule</span>
           <span className={u.btn}>Build a report</span>
         </p>

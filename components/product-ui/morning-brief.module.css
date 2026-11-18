@@ -1,0 +1,49 @@
+.k {
+  margin-top: clamp(12px, 2svh, 16px);
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.list svg {
+  transform: translateY(2px);
+}
+
+.needs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--card-line);
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.worth {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.figure {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--accent);
+}

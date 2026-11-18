@@ -67,7 +67,7 @@ export function Tree({ x, base, s = 1 }: { x: number; base: number; s?: number }
 /** a word on the drawing: type, never paths */
 export function Label({ x, y, children, size = 13, anchor = "middle", className }: { x: number; y: number; children: ReactNode; size?: number; anchor?: "start" | "middle" | "end"; className?: string }) {
   return (
-    <text x={x} y={y} textAnchor={anchor} fontSize={size} className={`${art.label} ${className ?? ""}`}>
+    <text x={x} y={y} textAnchor={anchor} fontSize={size} className={`${art.label} ${className ?? ""}`} style={{ "--fs": `${size}px` } as CSSProperties}>
       {children}
     </text>
   );

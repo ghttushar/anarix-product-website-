@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AnarixLogo } from "./Logo";
 import f from "./footer.module.css";
 
@@ -7,12 +8,12 @@ const COLS = [
   {
     h: "Platform",
     links: [
-      ["Aan", "#aan"],
-      ["Signals", "#signals"],
-      ["Profitability", "#profitability"],
-      ["Rules", "#rules"],
-      ["MCP", "#mcp"],
-      ["The Night Watch", "#night-watch"],
+      ["Aan", "/aan"],
+      ["Signals", "/signals"],
+      ["Profitability", "/profitability"],
+      ["Rules", "/rules"],
+      ["MCP", "/mcp"],
+      ["The Night Watch", "/#night-watch"],
     ],
   },
   {
@@ -48,9 +49,7 @@ export function Footer() {
             <p className={f.h}>{c.h}</p>
             <ul>
               {c.links.map(([label, href]) => (
-                <li key={label}>
-                  <a href={href}>{label}</a>
-                </li>
+                <li key={label}>{href.startsWith("/") ? <Link href={href}>{label}</Link> : <a href={href}>{label}</a>}</li>
               ))}
             </ul>
           </nav>

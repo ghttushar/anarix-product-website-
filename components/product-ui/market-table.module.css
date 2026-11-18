@@ -1,0 +1,74 @@
+.table {
+  margin-top: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr 1.2fr;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  border-top: 1px solid var(--card-line);
+  font-size: 14px;
+}
+
+.headRow {
+  min-height: 34px;
+  border-top: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.totalRow {
+  color: var(--ink-2);
+}
+
+.name {
+  font-weight: 600;
+}
+
+.totalRow .name {
+  font-weight: 500;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.profit {
+  color: var(--accent);
+}
+
+/* the margin, also as a hairline bar drawn to scale (full width = 40%) */
+.margin {
+  display: grid;
+  gap: 6px;
+}
+
+.margin i {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(var(--w));
+  transform-origin: left;
+  transition: transform 900ms var(--ease-arrive) 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .margin i {
+    transition-duration: 1ms;
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .row > :nth-child(2) {
+    display: none;
+  }
+}

@@ -1,0 +1,24 @@
+/* a step's strokes settle into periwinkle (or show the problem in coral) once
+   Aan has reached it */
+.on,
+.off {
+  transition:
+    stroke-dashoffset var(--dur-draw) var(--ease-arrive) calc(var(--i, 0) * var(--stagger)),
+    opacity 1ms linear calc(var(--i, 0) * var(--stagger)),
+    stroke 500ms var(--ease-arrive) 300ms !important;
+}
+
+.glyph[data-reached="true"] .on {
+  stroke: var(--accent);
+}
+
+.glyph[data-reached="true"] .off {
+  stroke: var(--risk);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .on,
+  .off {
+    transition: opacity 200ms linear !important;
+  }
+}

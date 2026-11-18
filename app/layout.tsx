@@ -8,6 +8,8 @@ const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], var
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.anarix.ai"),
+  alternates: { canonical: "/platform" },
   title: "Anarix Platform · One AI. Every marketplace. Always on.",
   description:
     "Aan, the AI inside Anarix, watches your Amazon, Walmart and Shopify accounts 24/7: Signals, Profitability, Rules and MCP, so you can sleep through the 11pm check.",

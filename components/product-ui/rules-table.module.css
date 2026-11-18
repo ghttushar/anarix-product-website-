@@ -84,9 +84,13 @@
   color: var(--ink-2);
 }
 
-@media (max-width: 640px), (max-height: 800px) {
+@media (max-width: 640px) {
   .row {
     grid-template-columns: minmax(0, 1.6fr) 56px 64px;
+  }
+
+  .scopeCol {
+    display: none;
   }
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ComponentType } from "react";
+import Link from "next/link";
 import { Screen, useScreen } from "@/components/layout/Screen";
 import { ShopRow } from "@/components/illustrations/sets/nocturne/ShopRow";
 import { ProfitRoad } from "@/components/illustrations/sets/nocturne/ProfitRoad";
@@ -64,9 +65,6 @@ function Visual({ p }: { p: ProductCopy }) {
 /* 5–9 · One product per screen: claim, statement, three ruled points, and the
    product proving it beside a drawing of how it works. */
 export function ProductScreen({ p }: { p: ProductCopy }) {
-  // dedicated pages arrive in Phase 3; until then the link only shows when it
-  // leads somewhere other than this screen
-  const explore = p.link.href.startsWith("/");
   return (
     <Screen id={p.id} hasDock bodyClassName={`l-container l-grid ${h.split}`} label={p.title.join(" ")}>
       <div className={h.copy}>
@@ -86,13 +84,11 @@ export function ProductScreen({ p }: { p: ProductCopy }) {
             </li>
           ))}
         </ul>
-        {explore && (
-          <div className="c-actions">
-            <a className="c-link" href={p.link.href}>
-              {p.link.label} <Arrow />
-            </a>
-          </div>
-        )}
+        <div className="c-actions">
+          <Link className="c-link" href={p.link.href}>
+            {p.link.label} <Arrow />
+          </Link>
+        </div>
       </div>
       <Visual p={p} />
     </Screen>

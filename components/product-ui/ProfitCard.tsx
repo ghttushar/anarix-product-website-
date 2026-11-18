@@ -30,7 +30,7 @@ export function ProfitCard({ handled }: { handled: boolean }) {
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-          Nov 05, 2026
+          Yesterday
         </span>
         <span className={`${u.pill} ${u.pillMuted}`}>Walmart · US</span>
         <span className={u.meta}>Daily</span>

@@ -1,30 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnarixLogo } from "./Logo";
 
 const SERVICES = "https://www.anarix.ai";
 
-// Homepage anchors for now; these become /platform/<page> as sub-pages ship.
-const LINKS = [
-  { label: "Aan", href: "#aan" },
-  { label: "Signals", href: "#signals" },
-  { label: "Profitability", href: "#profitability" },
-  { label: "Rules", href: "#rules" },
-  { label: "MCP", href: "#mcp" },
-  { label: "Contact Us", href: `${SERVICES}/contact-us` },
+// The product pages, then Contact (on the services site).
+const PAGES = [
+  { label: "Aan", href: "/aan" },
+  { label: "Signals", href: "/signals" },
+  { label: "Profitability", href: "/profitability" },
+  { label: "Rules", href: "/rules" },
+  { label: "MCP", href: "/mcp" },
 ];
+const CONTACT = { label: "Contact Us", href: `${SERVICES}/contact-us` };
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
+  const [docked, setDocked] = useState<string>("");
+  const path = usePathname();
+  // a product page is active by its route; on the homepage, by where Aan is
+  const isActive = (href: string) => (path === "/" ? docked === href.slice(1) : path === href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    const onDock = (e: Event) => setActive((e as CustomEvent<string>).detail);
+    const onDock = (e: Event) => setDocked((e as CustomEvent<string>).detail);
     window.addEventListener("aan:dock", onDock);
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -36,9 +41,9 @@ export function Nav() {
     <header className="chrome chrome--nav nav-wrap">
       <nav className={`nav ${scrolled ? "is-scrolled" : ""}`} aria-label="Primary">
         <div className="nav__brand">
-          <a href="#top" className="nav__logo" aria-label="Anarix Platform home">
+          <Link href="/" className="nav__logo" aria-label="Anarix Platform home">
             <AnarixLogo height={22} />
-          </a>
+          </Link>
           <div className="nav__switch" role="group" aria-label="Anarix sites">
             <a href={SERVICES} className="nav__switch-opt">
               Services
@@ -50,16 +55,16 @@ export function Nav() {
         </div>
 
         <div className="nav__menu">
-          {LINKS.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className={`nav__link ${active && l.href === `#${active}` ? "is-active" : ""}`}
-            >
+          {PAGES.map((l) => (
+            <Link key={l.label} href={l.href} className={`nav__link ${isActive(l.href) ? "is-active" : ""}`} aria-current={path === l.href ? "page" : undefined}>
               {l.label}
               <span className="nav__underline" />
-            </a>
+            </Link>
           ))}
+          <a href={CONTACT.href} className="nav__link">
+            {CONTACT.label}
+            <span className="nav__underline" />
+          </a>
         </div>
 
         <div className="nav__actions">
@@ -103,11 +108,14 @@ export function Nav() {
           <a href={SERVICES} className="nav__mobile-link">
             Services site ↗
           </a>
-          {LINKS.map((l) => (
-            <a key={l.label} href={l.href} className="nav__mobile-link" onClick={() => setOpen(false)}>
+          {PAGES.map((l) => (
+            <Link key={l.label} href={l.href} className="nav__mobile-link" aria-current={path === l.href ? "page" : undefined} onClick={() => setOpen(false)}>
               {l.label}
-            </a>
+            </Link>
           ))}
+          <a href={CONTACT.href} className="nav__mobile-link">
+            {CONTACT.label}
+          </a>
           <a href="https://app.anarix.ai/" className="nav__mobile-link">
             Sign In
           </a>

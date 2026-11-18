@@ -23,7 +23,7 @@ const AAN_X = 112;
 /** a stroke that draws itself: pathLength 1 + the draw class */
 const d = (cls?: string) => ({ pathLength: 1, className: cls ? `${art.d} ${cls}` : art.d });
 
-export function ShopRow({ stop = "signals", bubble }: { stop?: string; bubble?: string }) {
+export function ShopRow({ stop = "signals", bubble, lead = true }: { stop?: string; bubble?: string; /** draw the line down to an alert beneath */ lead?: boolean }) {
   const { inView: play, arrived } = useScreen();
   const box = useRef<HTMLDivElement>(null);
   const [aanSize, setAanSize] = useState(40);
@@ -65,8 +65,12 @@ export function ShopRow({ stop = "signals", bubble }: { stop?: string; bubble?: 
           </text>
         ))}
         {/* from the window that moved, down to the alert */}
-        <line {...d(s.leader)} x1={xs[CHANGED] + WIN.w} y1={WIN.y + WIN.h} x2={xs[CHANGED] + WIN.w} y2={H + 16} />
-        <circle cx={xs[CHANGED] + WIN.w} cy={H + 18} r={3} className={s.leaderEnd} />
+        {lead && (
+          <>
+            <line {...d(s.leader)} x1={xs[CHANGED] + WIN.w} y1={WIN.y + WIN.h} x2={xs[CHANGED] + WIN.w} y2={H + 16} />
+            <circle cx={xs[CHANGED] + WIN.w} cy={H + 18} r={3} className={s.leaderEnd} />
+          </>
+        )}
       </svg>
       <AanDock stop={stop} size={aanSize} bubble={bubble} side="left" style={{ left: `${(AAN_X / W) * 100}%`, bottom: `${((H - BASE) / H) * 100}%` }} />
     </div>

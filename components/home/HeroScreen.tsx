@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Screen } from "@/components/layout/Screen";
 import { Street } from "@/components/illustrations/sets/nocturne/Street";
 import { hero } from "@/content/home";
@@ -10,9 +11,7 @@ export function HeroScreen() {
     <Screen id="top" hasDock bodyClassName={h.heroBody} label="Anarix platform">
       <div className={`l-container ${h.heroCopy}`}>
         <h1 className="t-display">
-          <span>{hero.title[0]}</span>
-          <span>{hero.title[1]}</span>
-          <span className="t-accent">{hero.title[2]}</span>
+          <span>{hero.title[0]}</span> <span>{hero.title[1]}</span> <span className="t-accent">{hero.title[2]}</span>
         </h1>
         <p className="t-statement">
           <Ink text={hero.lede} />
@@ -21,9 +20,9 @@ export function HeroScreen() {
           <a className="c-cta" href={hero.primary.href}>
             {hero.primary.label}
           </a>
-          <a className="c-link" href={hero.secondary.href}>
+          <Link className="c-link" href={hero.secondary.href}>
             {hero.secondary.label}
-          </a>
+          </Link>
         </div>
       </div>
       <div className={h.heroStreet} data-bleed>

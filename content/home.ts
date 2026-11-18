@@ -6,7 +6,7 @@ export const hero = {
   title: ["One AI.", "Every marketplace.", "Always on."],
   lede: "Aan is your **24/7 e-commerce account manager**. It watches your Amazon, Walmart and Shopify accounts around the clock and acts before problems cost you.",
   primary: { label: "Book a demo", href: "https://www.anarix.ai/contact-us" },
-  secondary: { label: "Meet Aan", href: "#meet-aan" },
+  secondary: { label: "Meet Aan", href: "/aan" },
   bubble: "I'm Aan. The Guardian of your Business!",
 };
 
@@ -63,7 +63,7 @@ export const products: ProductCopy[] = [
       { title: "Ranked by money at risk", text: "The biggest dollar impact rises to the top." },
       { title: "Fix it from the alert", text: "Execute, modify or assign without opening another tool." },
     ],
-    link: { label: "Explore Signals", href: "#signals" },
+    link: { label: "Explore Signals", href: "/signals" },
     bubble: "Found it. Here's why.",
   },
   {
@@ -75,7 +75,7 @@ export const products: ProductCopy[] = [
       { title: "Daily, not month-end", text: "See yesterday's profit this morning." },
       { title: "Every marketplace, one view", text: "Amazon, Walmart and Shopify side by side." },
     ],
-    link: { label: "Explore Profitability", href: "#profitability" },
+    link: { label: "Explore Profitability", href: "/profitability" },
     bubble: "Counting every fee.",
   },
   {
@@ -87,7 +87,7 @@ export const products: ProductCopy[] = [
       { title: "Every decision logged", text: "Allowed or stopped, always with a reason." },
       { title: "Approval above your limit", text: "Big changes wait until you say yes." },
     ],
-    link: { label: "Explore Rules", href: "#rules" },
+    link: { label: "Explore Rules", href: "/rules" },
     bubble: "Good spend in. Waste out.",
   },
   {
@@ -99,7 +99,7 @@ export const products: ProductCopy[] = [
       { title: "Shows its work", text: "Every answer comes with its numbers and sources." },
       { title: "Turns answers into action", text: "A report, a rule or a fix, straight from the chat." },
     ],
-    link: { label: "Meet Aan", href: "#aan" },
+    link: { label: "Meet Aan", href: "/aan" },
     bubble: "Thinking with your data.",
   },
   {
@@ -111,7 +111,7 @@ export const products: ProductCopy[] = [
       { title: "Works where you work", text: "Inside Claude, ChatGPT, Gemini or your own agent." },
       { title: "Same numbers everywhere", text: "Every AI answer matches your Anarix dashboard." },
     ],
-    link: { label: "Explore MCP", href: "#mcp" },
+    link: { label: "Explore MCP", href: "/mcp" },
     bubble: "Plugged in.",
   },
 ];

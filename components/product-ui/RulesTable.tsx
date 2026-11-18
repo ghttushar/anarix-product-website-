@@ -18,7 +18,7 @@ const RULES = [
 export function RulesTable({ handled }: { handled: boolean }) {
   return (
     <article className={u.card} data-ui data-state={handled ? "handled" : "open"} aria-hidden="true">
-      <div className={s.ai}>
+      <div className={s.ai} data-part="1">
         <span className={s.aiK}>Create rules with AI</span>
         <span className={s.aiInput}>Pause keywords with high ACOS and low conversions</span>
       </div>
@@ -26,19 +26,21 @@ export function RulesTable({ handled }: { handled: boolean }) {
       <div className={s.table} role="table">
         <div className={`${s.row} ${s.headRow}`} role="row">
           <span role="columnheader">Rule</span>
-          <span role="columnheader" data-optional>
+          <span role="columnheader" className={s.scopeCol} data-part="3">
             Applies to
           </span>
-          <span role="columnheader">Runs</span>
+          <span role="columnheader" data-part="4">
+            Runs
+          </span>
           <span role="columnheader">Status</span>
         </div>
         {RULES.map((r, i) => (
           <div key={r.name} className={s.row} role="row" style={{ "--i": i } as CSSProperties} data-optional={i === 2 ? true : undefined}>
-            <span role="cell" className={s.name}>
+            <span role="cell" className={s.name} data-part={i === 0 ? "2" : undefined}>
               {r.name}
               <small>{r.type}</small>
             </span>
-            <span role="cell" className={s.scope} data-optional>
+            <span role="cell" className={`${s.scope} ${s.scopeCol}`}>
               {r.scope}
             </span>
             <span role="cell" className={s.runs}>
@@ -54,7 +56,7 @@ export function RulesTable({ handled }: { handled: boolean }) {
         ))}
       </div>
 
-      <p className={`${s.log} ${u.rule}`}>
+      <p className={`${s.log} ${u.rule}`} data-part="5">
         <svg className={`${u.icon} ${u.gain}`} viewBox="0 0 16 16" aria-hidden="true">
           <path d="M3.5 8.5l3 3 6-7" />
         </svg>
