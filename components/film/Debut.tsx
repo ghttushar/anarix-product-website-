@@ -12,57 +12,33 @@ import {
   debutCaptionAt,
   debutShotAt,
   debutStampAt,
-  type DebutScene,
 } from "./debut-timeline";
+import { BandEye, BandProfit, BandStores, Scene, STAGE_H as H, STAGE_W as W } from "./DebutScenes";
 
-// Stage in CSS px; rendered at DPR 2 → 1080 × 1920.
-const W = 540;
-const H = 960;
+// Stage in CSS px; rendered at DPR 2 → 1080 × 1920. Every shot is drawn
+// (DebutScenes.tsx): the vector Aan in the City Nocturne line-art world.
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-const SRC = "/platform/film/debut";
-
-/** one photographic still per shot (generated for this film; see DESIGN.md provenance) */
-const STILL: Partial<Record<DebutScene, { src: string; pos?: string; shift?: number }>> = {
-  desk: { src: "desk.jpg" },
-  standChin: { src: "stand-chin.jpg" },
-  couch: { src: "couch.jpg" },
-  side: { src: "side.jpg" },
-  couchSide: { src: "couch-side.jpg" },
-  crossed: { src: "crossed.jpg" },
-  standSmall: { src: "stand-full.jpg" },
-  chin: { src: "chin.jpg" },
-  end: { src: "end.jpg", shift: 4 },
-};
-
-function Still({ src, pos = "50% 50%", scale = 1, shift = 0 }: { src: string; pos?: string; scale?: number; shift?: number }) {
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className="dt-still" src={`${SRC}/${src}`} alt="" style={{ objectPosition: pos, transform: `translateY(${shift}%) scale(${scale})` }} />
-  );
-}
 
 /* --------------------------------------------------------------- montage */
 function Bands({ t }: { t: number }) {
   const bh = H / 3;
-  const drift = t - 13.73;
+  const drift = t - BAND_ENTRIES[0];
   return (
     <div className="dt-set">
-      <Still src="couch-side.jpg" scale={1.04} />
+      <Scene name="couchSide" zoom={1.04} />
       {t >= BAND_ENTRIES[0] && (
         <div className="dt-band" style={{ top: 0, height: bh }}>
-          <Still src="band-eye.jpg" pos="70% 50%" scale={1.18 + drift * 0.03} />
+          <BandEye drift={drift} />
         </div>
       )}
       {t >= BAND_ENTRIES[1] && (
         <div className="dt-band" style={{ top: bh, height: bh }}>
-          <Still src="band-cash.jpg" pos="50% 50%" scale={1.1 + Math.sin(drift * 9) * 0.012} />
+          <BandProfit drift={t - BAND_ENTRIES[1]} />
         </div>
       )}
       {t >= BAND_ENTRIES[2] && (
         <div className="dt-band" style={{ top: bh * 2, height: bh }}>
-          <div className="dt-band__pan" style={{ transform: `translateX(${-drift * 14}px)` }}>
-            <Still src="band-shoes.jpg" pos="45% 60%" scale={1.12} />
-          </div>
+          <BandStores drift={t - BAND_ENTRIES[2]} />
         </div>
       )}
       {BAND_FLASHES.map((f) =>
@@ -129,7 +105,6 @@ export function Debut() {
     w.__duration = DEBUT_DURATION;
     w.__seek = async (s: number) => {
       flushSync(() => setT(s));
-      await Promise.all([...document.images].map((img) => (img.complete ? null : img.decode().catch(() => null))));
       await new Promise((r) => requestAnimationFrame(() => r(null)));
       sync(s);
       await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(() => r(null))));
@@ -165,15 +140,11 @@ export function Debut() {
 
   let scene: ReactNode = null;
   if (shot.scene === "bands") scene = <Bands t={t} />;
-  else if (shot.scene === "closeup") scene = <Still src="closeup.jpg" pos="50% 30%" scale={zoom} />;
   else if (shot.scene === "black") scene = <div className="dt-set" style={{ background: "#000" }} />;
-  else {
-    const s = STILL[shot.scene];
-    if (s) scene = <Still src={s.src} pos={s.pos} scale={zoom} shift={s.shift} />;
-  }
+  else scene = <Scene name={shot.scene} zoom={zoom} />;
 
   const stamp = debutStampAt(t);
-  // through white: the last silhouette washes out, the DEBUT card comes up out of it
+  // through white: the last shot washes out, the DEBUT card comes up out of it
   const end = DEBUT_WORD - 0.28;
   const white = t >= WHITE_IN && t < end ? (t - WHITE_IN) / (end - WHITE_IN) : t >= end && t < end + 0.35 ? 1 - (t - end) / 0.35 : 0;
 
@@ -196,13 +167,6 @@ export function Debut() {
         )}
         <Caption t={t} />
         {white > 0 && <div className="dt-white" style={{ opacity: clamp(white) }} />}
-      </div>
-      {/* keep every still decoded so frame seeks never wait on the network */}
-      <div className="dt-preload" aria-hidden="true">
-        {["desk", "stand-chin", "closeup", "couch", "side", "couch-side", "band-eye", "band-cash", "band-shoes", "crossed", "stand-full", "chin", "end"].map((n) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img key={n} src={`${SRC}/${n}.jpg`} alt="" />
-        ))}
       </div>
     </div>
   );

@@ -48,10 +48,10 @@ export function FilmPlayer() {
         loop
         controls={!muted}
         preload="metadata"
-        poster={`${BASE}/aan-90s-vertical-poster.jpg`}
+        poster={`${BASE}/aan-debut-poster.jpg`}
         aria-label="Aan's debut: Aan, the AI account manager that watches your stores, introduces itself"
       >
-        <source src={`${BASE}/aan-90s-vertical.mp4`} type="video/mp4" />
+        <source src={`${BASE}/aan-debut.mp4`} type="video/mp4" />
       </video>
       {muted && (
         <button type="button" className={f.sound} onClick={withSound}>
