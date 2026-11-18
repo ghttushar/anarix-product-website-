@@ -1,339 +1,426 @@
 ---
 name: Anarix Platform
-description: Dark-first marketing site and brand film for Aan, the always-on AI inside Anarix.
+description: City Nocturne. A line-drawn night street of storefronts that Aan, your 24/7 e-commerce account manager, walks and keeps.
 colors:
-  periwinkle: "hsl(230 65% 57%)"
-  periwinkle-night: "hsl(230 70% 65%)"
-  periwinkle-glow: "hsl(230 75% 65%)"
-  periwinkle-wash: "hsl(230 65% 95%)"
-  coral: "hsl(355 84% 70%)"
-  coral-deep: "hsl(355 70% 60%)"
+  periwinkle-solid: "hsl(230 65% 57%)"
+  periwinkle-solid-hover-night: "hsl(230 65% 52%)"
+  periwinkle-day: "hsl(230 65% 50%)"
+  periwinkle-night: "hsl(230 75% 72%)"
+  periwinkle-chrome-night: "hsl(230 70% 65%)"
+  lit-night: "hsl(230 70% 65% / 0.5)"
+  lit-day: "hsl(230 65% 57% / 0.22)"
+  on-accent: "#fff"
   aan-coral: "#f46d76"
   aan-coral-light: "#f88a93"
   aan-coral-deep: "#f05e6a"
-  gain-night: "hsl(230 64% 52%)"
-  risk-night: "hsl(355 84% 72%)"
-  gain-day: "hsl(230 80% 39%)"
-  risk-day: "hsl(355 75% 58%)"
-  night-deep: "hsl(209 30% 8%)"
-  night: "hsl(209 28% 11%)"
-  night-muted: "hsl(209 25% 16%)"
-  night-border: "hsl(209 25% 18%)"
-  night-ink: "hsl(228 20% 94%)"
-  night-ink-2: "hsl(215 12% 60%)"
-  day-bg: "hsl(228 25% 97%)"
-  day-card: "hsl(0 0% 100%)"
-  day-muted: "hsl(228 20% 94%)"
-  day-border: "hsl(228 20% 90%)"
-  day-ink: "hsl(209 22% 14%)"
-  day-ink-2: "hsl(215 14% 42%)"
-  film-ink-deep: "hsl(209 30% 6%)"
-  film-letterbox: "#050608"
-  film-seamless: "hsl(228 12% 86%)"
-  film-stamp: "hsl(355 84% 60%)"
-  film-caption-yellow: "#ffe45c"
+  risk-ink-night: "hsl(355 84% 74%)"
+  risk-ink-day: "hsl(355 70% 50%)"
+  film-stamp-red: "#e3121b"
+  sky-night: "hsl(228 46% 14%)"
+  line-night: "hsl(228 38% 80% / 0.55)"
+  line-strong-night: "hsl(228 40% 90% / 0.92)"
+  ink-night: "hsl(228 20% 94%)"
+  ink-2-night: "hsl(228 22% 74%)"
+  rule-night: "hsl(228 34% 30%)"
+  card-night: "hsl(228 38% 18%)"
+  card-line-night: "hsl(228 30% 30%)"
+  bubble-bg-night: "hsl(228 25% 97%)"
+  bubble-ink-night: "hsl(228 40% 14%)"
+  sky-day: "hsl(230 60% 97%)"
+  line-day: "hsl(209 22% 14% / 0.5)"
+  line-strong-day: "hsl(209 22% 14% / 0.88)"
+  ink-day: "hsl(209 22% 14%)"
+  ink-2-day: "hsl(215 16% 38%)"
+  rule-day: "hsl(228 22% 86%)"
+  card-day: "#fff"
+  card-line-day: "hsl(228 22% 88%)"
+  bubble-bg-day: "hsl(209 22% 14%)"
+  bubble-ink-day: "#fff"
+  chrome-card-day: "hsl(0 0% 100%)"
+  chrome-card-night: "hsl(209 28% 11%)"
+  chrome-fg-day: "hsl(209 22% 14%)"
+  chrome-fg-night: "hsl(228 20% 94%)"
+  chrome-muted-fg-day: "hsl(215 14% 42%)"
+  chrome-muted-fg-night: "hsl(215 12% 60%)"
+  chrome-muted-day: "hsl(228 20% 94%)"
+  chrome-muted-night: "hsl(209 25% 16%)"
+  chrome-border-day: "hsl(228 20% 90%)"
+  chrome-border-night: "hsl(209 25% 18%)"
+  chrome-accent-day: "hsl(230 65% 95%)"
+  chrome-accent-night: "hsl(230 40% 20%)"
 typography:
-  display-closing:
-    fontFamily: "Fraunces, Georgia, serif"
-    fontSize: "clamp(72px, 12vw, 184px)"
-    fontWeight: 600
-    lineHeight: 0.92
-    letterSpacing: "-0.04em"
   display:
     fontFamily: "Fraunces, Georgia, serif"
-    fontSize: "clamp(52px, 5.6vw, 88px)"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "-0.03em"
-  headline:
-    fontFamily: "Fraunces, Georgia, serif"
-    fontSize: "clamp(42px, 4.6vw, 72px)"
+    fontSize: "clamp(2.5rem, min(6vw, 9.4svh), 6rem)"
     fontWeight: 600
     lineHeight: 1.02
     letterSpacing: "-0.028em"
+  display-page:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(2.5rem, min(4.6vw, 8svh), 4.5rem)"
+    fontWeight: 600
+    lineHeight: 1.02
+    letterSpacing: "-0.028em"
+  headline:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(2rem, min(4.2vw, 7svh), 4rem)"
+    fontWeight: 600
+    lineHeight: 1.04
+    letterSpacing: "-0.024em"
   statement:
     fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "clamp(21px, 1.95vw, 29px)"
-    fontWeight: 400
-    lineHeight: 1.38
-    letterSpacing: "-0.012em"
-  lede:
-    fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "clamp(18px, 1.55vw, 23px)"
+    fontSize: "clamp(1.0625rem, min(1.4vw, 2.5svh), 1.375rem)"
     fontWeight: 400
     lineHeight: 1.5
-  title:
-    fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "20px"
-    fontWeight: 500
-    lineHeight: 1.3
-    letterSpacing: "-0.012em"
   body:
     fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.6
-  label:
+  cta:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 600
+  point-title:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 600
+  point-text:
     fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "14px"
-    fontWeight: 500
-    letterSpacing: "0.02em"
-  micro-label:
+    fontWeight: 400
+    lineHeight: 1.45
+  label:
     fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "11px"
+    fontSize: "13px"
+    fontWeight: 600
+    lineHeight: 1.3
+  drawing-label:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "13px"
     fontWeight: 600
     letterSpacing: "0.06em"
-  film-stamp:
-    fontFamily: "Fraunces, Georgia, serif"
+  ui-label:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "12px"
+    fontWeight: 600
+  caption:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "12px"
+    fontWeight: 400
+  ui-figure:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "clamp(28px, 4.2svh, 36px)"
     fontWeight: 700
-    lineHeight: 0.86
-    letterSpacing: "-0.015em"
+    letterSpacing: "-0.02em"
+    fontFeature: "tnum"
+  figure:
+    fontFamily: "IBM Plex Mono, ui-monospace, monospace"
+    fontSize: "12px"
+    fontWeight: 500
+    fontFeature: "tnum"
 rounded:
-  bubble-tail: "6px"
+  bubble-tail: "4px"
   focus: "8px"
-  bubble: "18px"
-  film-card: "22px"
-  card: "24px"
-  chapter: "40px"
-  footer: "48px"
-  pill: "9999px"
+  ui-button: "10px"
+  bubble: "14px"
+  card: "20px"
+  pill: "999px"
 spacing:
+  s-1: "4px"
+  s-2: "8px"
+  s-3: "12px"
+  s-4: "16px"
+  s-5: "24px"
+  s-6: "32px"
+  s-7: "48px"
+  s-8: "64px"
+  s-9: "96px"
+  gap-s: "clamp(12px, 2svh, 20px)"
+  gap-m: "clamp(16px, 3svh, 32px)"
+  gap-l: "clamp(24px, 5svh, 56px)"
   gutter: "24px"
-  card-pad: "22px"
-  fact-pad: "32px"
-  cap-gap: "48px"
-  statement-gap: "80px"
-  grid-gap: "96px"
-  chapter-top: "200px"
-  chapter-bottom: "180px"
-  container: "1280px"
+  inset-top: "84px"
+  inset-bottom: "90px"
+  measure: "1280px"
 components:
   button-primary:
-    backgroundColor: "{colors.periwinkle}"
-    textColor: "{colors.day-card}"
-    typography: "{typography.body}"
+    backgroundColor: "{colors.periwinkle-solid}"
+    textColor: "{colors.on-accent}"
+    typography: "{typography.cta}"
     rounded: "{rounded.pill}"
-    padding: "0 32px"
+    padding: "0 24px"
     height: "48px"
-  button-secondary:
-    backgroundColor: "transparent"
-    textColor: "{colors.night-ink}"
+  button-primary-hover-night:
+    backgroundColor: "{colors.periwinkle-solid-hover-night}"
+  button-primary-hover-day:
+    backgroundColor: "{colors.periwinkle-day}"
+  text-link-night:
+    textColor: "{colors.ink-night}"
+    typography: "{typography.cta}"
+    height: "44px"
+  text-link-day:
+    textColor: "{colors.ink-day}"
+    typography: "{typography.cta}"
+    height: "44px"
+  ui-card-night:
+    backgroundColor: "{colors.card-night}"
+    textColor: "{colors.ink-night}"
+    rounded: "{rounded.card}"
+    padding: "clamp(16px, 2.4svh, 22px)"
+  ui-card-day:
+    backgroundColor: "{colors.card-day}"
+    textColor: "{colors.ink-day}"
+    rounded: "{rounded.card}"
+    padding: "clamp(16px, 2.4svh, 22px)"
+  ui-pill:
+    typography: "{typography.ui-label}"
     rounded: "{rounded.pill}"
-    padding: "0 32px"
-    height: "48px"
-  card:
-    backgroundColor: "{colors.night}"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.card}"
-    padding: "{spacing.card-pad}"
-  fact-card:
-    backgroundColor: "{colors.night}"
-    rounded: "{rounded.card}"
-    padding: "{spacing.fact-pad}"
-  chapter-light:
-    backgroundColor: "{colors.day-bg}"
-    textColor: "{colors.day-ink}"
-    rounded: "{rounded.chapter}"
-  nav:
-    backgroundColor: "{colors.night}"
-    textColor: "{colors.night-ink}"
+    padding: "3px 9px"
+  ui-button:
+    typography: "{typography.label}"
+    rounded: "{rounded.ui-button}"
+    padding: "7px 12px"
+  ui-button-primary:
+    backgroundColor: "{colors.periwinkle-solid}"
+    textColor: "{colors.on-accent}"
+    typography: "{typography.label}"
+    rounded: "{rounded.ui-button}"
+    padding: "7px 12px"
+  speech-bubble-night:
+    backgroundColor: "{colors.bubble-bg-night}"
+    textColor: "{colors.bubble-ink-night}"
+    typography: "{typography.label}"
+    rounded: "{rounded.bubble}"
+    padding: "8px 14px"
+  speech-bubble-day:
+    backgroundColor: "{colors.bubble-bg-day}"
+    textColor: "{colors.bubble-ink-day}"
+    typography: "{typography.label}"
+    rounded: "{rounded.bubble}"
+    padding: "8px 14px"
+  callout-number:
+    textColor: "{colors.ink-night}"
+    typography: "{typography.figure}"
+    rounded: "{rounded.pill}"
+    size: "22px"
+  nav-scrolled-night:
+    backgroundColor: "{colors.chrome-card-night}"
+    textColor: "{colors.chrome-fg-night}"
     rounded: "{rounded.pill}"
     padding: "10px 20px"
-  film-sound-button:
-    backgroundColor: "hsl(0 0% 100% / 0.92)"
-    textColor: "hsl(209 30% 10%)"
+  nav-scrolled-day:
+    backgroundColor: "{colors.chrome-card-day}"
+    textColor: "{colors.chrome-fg-day}"
     rounded: "{rounded.pill}"
-    padding: "12px 20px"
-  film-card:
-    backgroundColor: "hsl(209 28% 11% / 0.92)"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.film-card}"
-    padding: "22px 26px"
-  film-chip-on:
-    backgroundColor: "hsl(230 70% 65% / 0.16)"
-    textColor: "hsl(228 20% 96%)"
+    padding: "10px 20px"
+  chrome-button-primary-night:
+    backgroundColor: "{colors.periwinkle-chrome-night}"
+    textColor: "{colors.on-accent}"
     rounded: "{rounded.pill}"
-    padding: "8px 16px"
+    padding: "0 24px"
+    height: "40px"
+  chrome-button-primary-day:
+    backgroundColor: "{colors.periwinkle-solid}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.pill}"
+    padding: "0 24px"
+    height: "40px"
+  action-island-night:
+    backgroundColor: "{colors.chrome-card-night}"
+    textColor: "{colors.chrome-fg-night}"
+    rounded: "{rounded.pill}"
+    padding: "8px 12px"
 ---
 
 # Design System: Anarix Platform
 
 ## Overview
 
-**Creative North Star: "The Night Shift"**
+**Creative North Star: "City Nocturne"**
 
-The platform site is a dark room where one small coral creature keeps watch. The page loads in the dark theme (`data-theme="dark"` on `<html>`), and the night palette is the default ground: deep blue-black slate, pale ink, periwinkle as the single working accent, coral reserved for Aan and for risk. Two chapters (Profitability and MCP) re-scope the light tokens and sit as rounded, inset "daylight" panels inside the dark page, so the scroll reads as night with lit rooms in it. The Night Watch diorama turns this into a story: in dark mode its night goes light, so contrast always marks the hours Aan is on duty.
+The platform site is one night street, drawn in a single hairline. Storefronts for Amazon, Walmart and Shopify stand along it with a few windows lit, and Aan, the coral mascot and the visitor's 24/7 e-commerce account manager, walks it. The whole site sits inside one `.nocturne` scope: in the dark theme (the default, set on `<html data-theme="dark">` before first paint) the street is a deep periwinkle-navy night; in the light theme the same street is drawn in slate ink by day. Every screen is the same sky, the same ink, the same line weight.
 
-The typographic voice is the services site's, unchanged: Fraunces at large optical sizes for statements, Inter for everything a person reads. Density is low and the rhythm is slow (200px chapter tops, 1.1s reveals). Content is set as prose and ruled lists, not as tiles. Product UI cards lead each feature; small isometric machines follow them and power up when Aan docks.
+Pages are made of screens, and a screen holds one idea: a Fraunces headline, one statement in grey Inter with its key phrases lifted to full ink, then either a line drawing that explains a mechanism or the real product card proving it, and at most three hairline-ruled points. There are no tiles, no badges, no section labels above headings. Motion has one job, cause and effect: a drawing draws itself when its screen arrives, Aan docks in it, and then one thing turns periwinkle (what Aan handled) or coral (what was going wrong), and the product card settles into its handled state. Nothing loops, glows or decorates.
 
-The 90s brand film ("Ninety seconds with Aan") is the same world shot as a villain-debut trailer: near-black rooms, a pale seamless backdrop, giant condensed Fraunces words stamped in coral-red, hard cuts, and a deadpan twist in plain yellow captions. It reuses the site's machines, Night Watch and Aan rather than inventing new assets.
+Two pieces of chrome are not part of the world and do not follow its rules: the nav and the Ask Aan action island are a 1:1 port of the services site (www.anarix.ai) and stay at parity with it, including their pill shapes, glass, soft shadows and lift-on-hover buttons.
 
 **Key Characteristics:**
-- Dark-first; light exists as scoped chapters, never as a global flip.
-- Two hue families only: periwinkle (230) and coral (355) over blue-slate neutrals (209/215/228). No green.
-- Fraunces 600 display with tight negative tracking; Inter for body, labels and numbers.
-- Prose and hairline-ruled lists instead of boxed feature grids.
-- Aan, a coral diamond with eyes, is the only character and the only warm object on most screens.
-- Isometric line-art machines, small, placed after the UI card at the outer edge.
+- One `.nocturne` world in two lights: a night street (dark, default) and the same street by day (light). Theme is a whole-page switch saved in `localStorage` (`anarix-theme-v2`), never a lit panel inside a dark page.
+- Two hues only, periwinkle (230) and coral (355), over slate and navy neutrals. No green anywhere.
+- Fraunces 600 speaks, Inter explains, IBM Plex Mono measures (figures only).
+- Monoline line art at one 1.4px hairline, drawn on once per page view, with coral for what goes wrong and periwinkle for what Aan handled.
+- One idea per screen: each section is exactly one viewport between an 84px nav inset and a 90px island inset.
+- Proximity and hairline rules group content; the only boxes are product UI cards, because in the product they are cards.
+- Aan is the unchanged brand mascot, docks as a diamond, and is the warmest object on every screen.
 
 ## Colors
 
-A cool blue-slate night with one periwinkle working accent and one coral that belongs to Aan and to risk.
+A periwinkle-navy night (or a pale periwinkle day) inked in slate, with one periwinkle working accent and one coral that belongs to Aan and to risk.
 
 ### Primary
-- **Periwinkle** (`--h-primary`, hsl(230 65% 57%); dark theme hsl(230 70% 65%)): primary buttons, focus rings (2px, 3px offset), powered-state card borders, the "you" chat bubble, `::selection` at 18% alpha, the dot grid at 18% alpha. It is also the positive/gain color.
-- **Periwinkle Glow** (`--h-glow`, hsl(230 75% 65%)): the second stop of the primary gradient and `--blue-2`; glow shadows on powered cards.
-- **Periwinkle Wash** (`--h-accent`, hsl(230 65% 95%); dark hsl(230 40% 20%)): soft accent fills.
+- **Working Periwinkle** (`--accent-solid`, periwinkle-solid): the filled primary button in both themes, the primary button inside product cards, the Night Watch scrubber fill, and the "you" bubble in the Ask Aan chat. Its hover deepens (periwinkle-solid-hover-night in the dark theme, periwinkle-day in the light).
+- **Handled Periwinkle** (`--accent`, periwinkle-night in dark, periwinkle-day in light): the readable periwinkle. It is what a stroke turns when Aan has handled it, positive figures in product cards (`gain`), the active step or callout, hover color on text links and FAQ summaries, focus rings inside the world, and the third line of the hero headline.
+- **Chrome Periwinkle** (periwinkle-chrome-night in dark, periwinkle-solid in light): the services-site primary used by the nav and island chrome and by the global `:focus-visible` ring and `::selection` (18% alpha).
+- **Lit Window** (`--lit`, lit-night / lit-day): the fill of lit windows after the line work has drawn, and the Night Watch dawn that lifts the sky in the last hour.
 
 ### Secondary
-- **Signal Coral** (`--h-coral`, hsl(355 84% 70%); dark 355 84% 72%) and **Coral Deep** (`--coral-deep`, hsl(355 70% 60%)): negative/risk values, the conduit packet that runs from machine to card, faint coral radial in media backgrounds (8% alpha).
-- **Aan Coral** (#f46d76, light #f88a93, deep #f05e6a): hard-coded in `AanMascot.tsx` as `CORAL`. The mascot's body gradient, aura (rgba(244,109,118,0.32)), progress fill and ripple. Do not reuse it for UI chrome.
+- **Aan Coral** (`--risk`, aan-coral, the same in both themes): Aan's body, and in drawings the stroke that turns coral when Aan reaches the problem (the moved listing, the stop mark, the wasted spend, an alerting place on the patrol). aan-coral-light and aan-coral-deep exist only inside the mascot's body gradient (`AanMascot.tsx`).
+- **Risk Ink** (`--risk-ink`, risk-ink-night / risk-ink-day): coral text that must be read, such as costs and money at risk in product cards and coral words on drawings. It is lighter at night and deeper by day so it holds contrast.
 
-### Tertiary (film only)
-- **Stamp Red** (`--stamp`, hsl(355 84% 60%)): the giant stamped words and end card. A deeper coral than Signal Coral so it holds on both near-black and the pale seamless.
-- **Twist Yellow** (#ffe45c): only the deadpan twist captions, with a hard black outline shadow. Scoped to `.fcap--twist`; not part of the site palette.
+### Tertiary
+- **Film Stamp Red** (film-stamp-red): only on the `/film/debut` route, for the Bodoni stamps. It never appears on site pages.
 
 ### Neutral
-- **Night Deep** (`--night-deep`, hsl(209 30% 8%)): dark-theme page background.
-- **Night** (`--night`, hsl(209 28% 11%)): dark cards, the always-dark footer, Aan's speech bubble.
-- **Night Muted / Border** (hsl(209 25% 16%) / hsl(209 25% 18%)): skeletons and hairlines on dark.
-- **Night Ink** (hsl(228 20% 94%)) and **Night Ink 2** (hsl(215 12% 60%)): primary and secondary text on dark; `--ink-3` is Ink 2 at 75%.
-- **Day Background** (hsl(228 25% 97%)), **Day Card** (white), **Day Muted** (hsl(228 20% 94%)), **Day Border** (hsl(228 20% 90%)): the light-chapter surfaces.
-- **Day Ink** (hsl(209 22% 14%)) and **Day Ink 2** (hsl(215 14% 42%)): text in light chapters.
-- **Film Ink Deep** (hsl(209 30% 6%)), **Letterbox** (#050608), **Seamless Grey** (hsl(228 12% 86%) with a radial from hsl(228 20% 96%) to hsl(228 10% 74%)): the film's two stages.
+- **Night Sky / Day Sky** (`--sky`, sky-night / sky-day): the ground of every page and the fill of solid shapes in drawings that hide what is behind them. The browser theme color matches (`#131a34` dark, `#f3f4fc` light).
+- **Line / Line Strong** (`--line`, `--line-strong`): the drawing ink. Line is the structure stroke; Line Strong is for words on drawings, the moon, leader lines and callout borders.
+- **Ink / Ink 2** (`--ink`, `--ink-2`): primary text, and the grey of statements, ruled-point descriptions, captions and the footer.
+- **Rule** (`--rule`): every hairline between list rows, the proof row, the footer and the film player border.
+- **Card / Card Line** (`--card`, `--card-line`): product UI card surface and its 1px border, pills and inner rules.
+- **Bubble** (`--bubble-bg`, `--bubble-ink`): Aan's speech bubble inverts the theme, pale on the night street and slate ink by day.
+- **Chrome neutrals** (chrome-card, chrome-fg, chrome-muted-fg, chrome-muted, chrome-border, chrome-accent, each with a day and night value): the services-site chrome palette, used only by the nav, the island and the Ask Aan panel.
 
 ### Named Rules
-**The No Green Rule.** Positive is periwinkle, negative is coral, everywhere: `--gain`/`--risk` in every theme scope, the film's `is-good`/`is-bad` cards, chips, coins and charts. Even a class named `sf--green` is filled hsl(230 60% 62%). No hue between roughly 60 and 180 enters the palette.
+**The No Green Rule.** Positive is periwinkle, negative is coral, in every card, drawing and theme. No hue between roughly 60 and 180 enters the site.
 
-**The Two Hues Rule.** Every chromatic value in the build sits at hue 230 (periwinkle) or 355 (coral). Neutrals are blue-slate (209, 215, 228). The one exception is the film's twist yellow, and it stays in the film.
+**The Coral Is Aan's Rule.** Coral is Aan, or it is something going wrong. It is never a button, a heading, a link or decoration, and Aan stays the warmest, most saturated object on any screen.
 
-**The Aan Owns Coral Rule.** On any screen, the warmest, most saturated object is Aan. Coral elsewhere is data (risk) or a faint radial tint, never a button or a heading fill.
+**The One Street Rule.** Theme is the whole street at a different hour. Colors change only through the `.nocturne` scope (dark values, and `html[data-theme="light"] .nocturne`); no section re-scopes itself into the other theme.
 
 ## Typography
 
-**Display Font:** Fraunces (loaded at 400/600/700, `font-optical-sizing: auto`, fallback Georgia, serif)
-**Body Font:** Inter (400/500/600/700, fallback system-ui, sans-serif)
-**Mono:** IBM Plex Mono (400/500) is loaded for code, ASINs and numbers only.
+**Display Font:** Fraunces (600; 400 and 700 also loaded; fallback Georgia, serif)
+**Body Font:** Inter (400, 500, 600, 700; fallback system-ui, sans-serif)
+**Label/Mono Font:** IBM Plex Mono (400, 500; fallback ui-monospace, monospace), for figures only
 
-**Character:** A soft, high-contrast serif at poster scale against a neutral grotesk at reading scale. The serif carries the claim; Inter carries everything you have to read.
+**Character:** A soft, high-contrast serif carries every claim at poster scale; a neutral grotesk carries everything a person has to read. Mono appears only where something is counted or timed.
 
 ### Hierarchy
-- **Closing display** (600, clamp(72px, 12vw, 184px), 0.92, -0.04em): the closing statement only.
-- **Display / H1** (600, clamp(52px, 5.6vw, 88px), 1, -0.03em): hero headline.
-- **Headline / H2** (600, clamp(42px, 4.6vw, 72px), 1.02, -0.028em): chapter titles. The mission line is set at clamp(36px, 4.4vw, 66px), 1.1, -0.025em, in `--ink-3`.
-- **Statement** (Inter 400, clamp(21px, 1.95vw, 29px), 1.38, -0.012em): the paragraph that answers each chapter title, in `--ink-2`, with key phrases lifted to full ink via highlight spans.
-- **Lede** (Inter 400, clamp(18px, 1.55vw, 23px), 1.5): hero lede, max 27em.
-- **Title** (Inter 500, 20px, -0.012em): capability titles in ruled lists. Body under them is 16.5px / 1.6.
-- **Body** (Inter 400, 16px, 1.6).
-- **Label** (Inter 500, 14px, 0.02em): chapter labels, preceded by a 36px pill holding the tabular chapter number.
-- **Micro-label** (Inter 600, 11px, 0.06em, sentence case): card field labels (KPI, rule headers). Metadata lines are 12.5px. This is the floor.
+- **Display** (Fraunces 600, fluid by width and height and capped at 96px, line-height 1.02): the homepage hero h1, set as three short lines, the last in Handled Periwinkle. Product pages use **Display Page** (capped at 72px) for their hero h1 and closing title, balanced.
+- **Headline** (Fraunces 600, capped at 64px, line-height 1.04, balanced): one per screen, at most two short lines. The homepage mission line and proof figures are set in Fraunces 600 between Headline and Statement size.
+- **Statement** (Inter 400, 17px to 22px fluid, line-height 1.5, max 42ch): the one paragraph under each headline, in Ink 2, with its key phrases in full Ink at 500 weight.
+- **Body** (Inter 400, 16px, line-height 1.6): running text, FAQ answers at 15px / 1.55 with a 56ch measure.
+- **Point title / Point text** (Inter 600 15px; Inter 400 14px, line-height 1.45, Ink 2): the two lines of a ruled point. Commitments and depth items step up to 16px / 14.5px.
+- **CTA** (Inter 600, 15px): filled buttons and text links.
+- **Label** (Inter 600, 13px, line-height 1.3): Aan's speech bubble, footer column heads, UI buttons. **Drawing label** is the same face at 13px with 0.06em tracking, as SVG text, never paths, and never below 11px on screen.
+- **UI label / Caption** (Inter 600 / 400, 12px): pills and field labels in product cards; the "Sample data" note under each card.
+- **UI figure** (Inter 700, 28px to 36px, -0.02em, tabular): the headline number inside a product card.
+- **Figure** (IBM Plex Mono 500, 12px, tabular): times in the Night Watch log, card metadata, step numbers and anatomy callout numbers.
 
 ### Named Rules
-**The Grey Prose, Ink Phrase Rule.** Long statements are set in `--ink-2`; only the phrases that carry the argument switch to `--ink`. Emphasis is contrast, not weight or color.
+**The Grey Prose, Ink Phrase Rule.** Statements are Ink 2; only the phrases that carry the argument switch to full Ink. Emphasis is contrast, not color or size.
 
-**The Readable Label Rule.** Labels are Inter at 11px or larger with at least 600 weight, at 0.8 foreground alpha or the muted-fg token. Monospace is for code, ASINs and figures, never for UI labels.
+**The Mono Measures Rule.** IBM Plex Mono is for numbers that count or time something, always with tabular numerals. It is never used for labels, headings or UI text.
+
+**The Fraunces Ceiling Rule.** Display type is fluid by both width and height (`min(vw, svh)`) and never exceeds 96px; headlines never exceed 64px. Type shrinks on short screens before a screen is allowed to grow.
 
 ## Layout
 
-A 1280px container with 24px gutters. Chapters are tall and slow: 200px top / 180px bottom padding (120px below 1023px). Each chapter opens with a two-column statement (title left, prose right, 80px gap, bottom-aligned, min-height 62vh, 140px below), then a 96px-gap grid of sticky copy beside the product stage, then a three-column ruled capability row (48px gaps, 96px above). The hero is 1.12fr / 0.88fr filling `100svh - 80px`; the mission line is a full-viewport single sentence.
+The page is a stack of screens. A screen is exactly one viewport (`min-height: 100svh`) split into three rows: the nav inset (84px), the content, and the island inset (90px). Content lives in a 1280px measure with 24px gutters (16px below 400px wide) on a 12-column grid with a 24px column gap. Only below 620px of height may a screen grow taller than the viewport; anywhere else, growth is a bug fixed by editing copy.
 
-**Stage order:** the product UI card comes first (max 520px, aligned to the inner edge), then the isometric machine (82% width, max 480px, 28px below, pushed to the outer edge). Reversed features mirror the edges. A 2px conduit with a coral packet links them when powered.
+The homepage is ten screens in fixed order: hero street, mission with proof, the Night Watch time-lapse, AI for good, five product screens (Signals, Profitability, Rules, Ask Aan, MCP), and Meet Aan with the film. Copy sits on the left (columns 1 to 5, or 1 to 6 on close screens) and the visual on the right (columns 7 to 12). On product screens the visual is the line drawing with the product card beneath it and a "Sample data" caption under the card. The hero street bleeds across the full width along the bottom of the screen.
 
-The fact carousel is a horizontal scroll-snap track of three 340px-tall cards with a pill pager. The footer is always dark with a 48px top radius.
+Product pages (`/platform/[product]`) are the same grid and rhythm: a hero with the product's landmark drawn large on the ground line, How it works (three steps on one continuous drawn line), Anatomy (the product card with up to five numbered leader-line callouts), one or two depth screens, Questions (exclusive `<details>` with hairline rules), and a close with the open door.
 
-Breakpoints: 1023px (everything stacks to one column, chapters inset 8px with 28px radius, footer radius 32px) and 640px (film player goes 9:16, stage machine 92%).
+**Density tiers.** Spacing is the 4px scale (4 to 96px) plus three fluid gaps that tighten on short screens first. Below 800px of height, optional items (`data-optional`: third ruled points, secondary card rows, statement extras) hide; below 760px gaps and the mission line tighten further. Below 900px wide everything stacks to one column and dense lists collapse (the Night Watch log becomes a single "now" line; anatomy callouts become a numbered list under the card). Below 640px the drawings on product screens and the ruled points hide, leaving headline, statement, card and link.
+
+Breakpoints: 400px, 640px, 900px wide (1100px for the chrome's desktop menu); 620px, 760px, 800px tall.
 
 ## Elevation & Depth
 
-A hybrid: soft periwinkle-tinted shadows in light chapters, black shadows in the dark theme, and tonal layering (night-deep page, night card) doing most of the work. Media frames are flat (`box-shadow: none`) and get depth from two faint radials, periwinkle top-left and coral bottom-right. Glass appears only on the scrolled nav (`blur(12px)` over card at 80%).
+The world is flat. Depth comes from drawing order and from solid sky-colored shapes that hide the lines behind them, not from shading. The only shadows inside the world are two soft, dark, downward drops: one under product UI cards so they read as real objects on the street, and one under Aan's speech bubble. Glass (backdrop blur) and the periwinkle-tinted soft/medium/strong shadow scale belong to the chrome alone.
 
 ### Shadow Vocabulary
-- **Soft** (`0 2px 8px -2px hsl(var(--h-primary) / 0.08)`; dark `hsl(0 0% 0% / 0.3)`): nav at rest.
-- **Medium** (`0 4px 16px -4px … / 0.12`; dark `/ 0.4`): cards at rest, scrolled nav.
-- **Strong** (`0 8px 32px -8px … / 0.18`; dark `/ 0.5`): card hover, primary button hover.
-- **Glow** (`0 0 24px -4px hsl(var(--h-primary) / 0.25)`): added to cards when their machine is powered.
+- **Card drop** (`box-shadow: 0 24px 48px -32px hsl(228 60% 4% / 0.7)`): every product UI card.
+- **Bubble drop** (`box-shadow: 0 8px 20px -12px hsl(228 50% 4% / 0.6)`): Aan's speech bubble.
+- **Chrome soft / medium / strong** (`0 2px 8px -2px`, `0 4px 16px -4px`, `0 8px 32px -8px` in periwinkle at 0.08 / 0.12 / 0.18 alpha by day, black at 0.3 / 0.4 / 0.5 by night): the scrolled nav, chrome buttons and the Ask Aan panel, at services-site parity.
 
 ### Named Rules
-**The Powered Glow Rule.** Glow is a state, not a decoration: a card earns the periwinkle border (35% alpha) and glow only when Aan has docked and its machine is powered.
+**The Flat Street Rule.** Nothing in the world glows, shades or blurs. A handled state is shown by a stroke changing color, never by a halo. The one soft light is the Night Watch dawn, a `--lit` wash rising from the bottom of the sky in the last hour of the night, because the drawing is about the night ending.
 
 ## Shapes
 
-Generous, consistent rounding. Pills (9999px) for every button, chip, nav bar and pager; 24px for cards, fact cards, media and the film player; 40px for the inset light chapters (28px mobile); 48px for the footer's top corners. Chat bubbles are 18px with a 6px tail corner on the speaker's side. Aan's own geometry is the exception that defines the brand: a 45-degree diamond with an 18% corner radius.
+Line art is monoline: round caps, round joins, no fills except the sky color (to occlude) and the lit-window wash. UI follows the product: product cards at 20px, buttons inside cards at 10px, pills fully round (999px), the speech bubble at 14px with a 4px corner on the side its tail points from. Callout numbers are 22px circles. Focus rings are 2px periwinkle outlines with an 8px radius globally (6px on list rows, 4px in the footer). Aan's own geometry is the brand exception: a square rotated 45 degrees with an 18% corner radius.
 
 ## Components
 
 ### Buttons
-- **Shape:** full pill (9999px), 48px tall, 32px side padding, Inter 600 16px.
-- **Primary:** white on periwinkle, with a white shine sweep (18% alpha) crossing on hover.
-- **Hover / Active:** lift 2px and strong shadow, 0.2s; active returns to 0 and scales to 0.97.
-- **Secondary:** transparent with a 1px border token, border moves to periwinkle at 40% on hover.
-- **Text link:** Inter 500 16px with a 1px underline in the border token that darkens to ink on hover.
+Quiet and solid: one filled pill per screen, everything else is a link.
+- **Shape:** full pill (999px), at least 48px tall, 24px side padding, Inter 600 15px.
+- **Primary:** white on Working Periwinkle. Hover deepens the fill over 160ms; no lift, no shine, no shadow.
+- **Text link (secondary):** Ink, 44px tall target, a 1px underline at 40% ink offset 6px, with an optional 16px stroke arrow. Hover turns text and underline Handled Periwinkle.
+- **Focus:** 2px Handled Periwinkle outline, 4px offset.
+- **Control pill:** the Night Watch play/replay is a 44px outlined pill (Rule border, Inter 600 14px) whose border turns periwinkle on hover.
 
-### Cards
-- **Corner Style:** 24px.
-- **Background:** card token (night in dark, white in light chapters); 1px border token; 22px padding.
-- **Shadow Strategy:** medium at rest, strong on hover, glow when powered.
-- **Content:** labelled values and short sentences, gain/risk in periwinkle/coral.
+### Ruled lists
+The site's default container. Each row is separated by a 1px Rule hairline on top, 10px to 14px fluid padding, a 15px/600 title over a 14px Ink 2 line. Used for product points, commitments, proof figures, the Night Watch log, anatomy parts and the FAQ. The proof row is three figures (Fraunces 600) with one-line explanations, each under a hairline, never in tiles.
 
-### Chapter labels
-A 36px bordered pill containing the tabular chapter number, then the chapter name in Inter 500 14px `--ink-2`. This is how sections are named; it replaces uppercase tracked kickers.
+### Product UI cards
+- **Corner Style:** 20px.
+- **Background:** Card with a 1px Card Line border and the card drop shadow.
+- **Internal Padding:** 16px to 22px, fluid by height.
+- **Parts:** outlined pills (12px/600), monospace metadata at the right of the header, a UI figure in periwinkle for gain or Risk Ink for cost, inner 1px rules, 10px-radius buttons (primary filled in Working Periwinkle).
+- **State:** each card settles once into `data-state="handled"`: its border mixes 45% toward periwinkle, labels swap in place without reflow, and late rows fade in from reserved slots.
+- **Labelling:** every card is captioned "Sample data", "Sample conversation" or "Sample session" in 12px Ink 2 directly beneath it. Cards are `aria-hidden`; the copy beside them carries the meaning.
 
 ### Navigation
-A floating pill (max 1280px, 16px from the top) that is transparent until scrolled, then becomes card at 80% with a 12px backdrop blur and medium shadow. Over dark surfaces it switches to the night chrome tokens.
+A 1:1 port of the services site nav. A full-width bar (max 1280px, 16px from the top, 10px 20px padding) that is transparent with no shadow until the page scrolls, by the owner's request; then it becomes a pill of chrome card at 80% with a 12px backdrop blur and soft (resting) or medium (scrolled) shadow. Inter 500 14px links in chrome muted-fg turn to chrome fg on hover with a 2px periwinkle underline that scales in. A Services | Platform switcher sits by the logo from 640px; the desktop menu and actions appear from 1100px. Its look must track www.anarix.ai, not this document.
+
+### Ask Aan action island
+A 1:1 port of the services site island: a fixed pill with a 1px periwinkle border at 60%, chrome card at 95% with a 12px blur, a drag grip, a 36px "Ask Aan" button carrying a 28px Aan, and icon actions including the theme toggle. It opens a 360px, 20px-radius chat panel with 14px bubbles (Aan's on chrome muted, the visitor's on periwinkle) and outlined suggestion chips. Its look must track the services site.
 
 ### Aan (signature)
-The coral mascot, `AanMascot`. State is shape:
-- **diamond** (idle / speaking): a square rotated 45 degrees, 18% radius (30% on hover above 40px), two near-black eyes (#1a0608) that track the cursor; speaking adds a coral ripple ring.
-- **circle** (listening): 50% radius, faster blinks.
-- **bar** (working): a translucent coral pill (1.8u by 0.34u) with a coral progress fill.
-- **cube** (thinking): 16% radius, spins over 5s with a counter-rotating liquid swirl, eyes closed.
+The coral mascot (`AanMascot`), ported unchanged from the product. State is shape: diamond (idle, speaking), circle (listening), bar (working), cube (thinking). The body is a coral radial gradient with a sheen and a faint periwinkle inner ring; its eyes follow the pointer and it blinks.
 
-The body is a radial gradient from light to base to deep coral with a top sheen and a faint periwinkle inner ring; a blurred coral aura and a floating ground shadow sit beneath. It floats on a 7s loop and morphs between states with a spring (`cubic-bezier(0.34, 1.3, 0.64, 1)`, 0.6s). Below 24px it becomes a flat coral chip with no eyes or aura. All loops stop under reduced motion.
+On the site there is one travelling Aan per page. It walks into the hero street, then flies to a dock reserved inside each screen's drawing as that screen crosses the middle of the viewport, and lands there before the screen's moment plays. Docked Aan is a diamond, with no aura glow, no ground shadow and no float. Its speech bubble (28 characters or fewer, Inter 600 13px) fades in on landing and opens away from what Aan is looking after. Aan docks in drawings, never on product UI. The depth screen on the Ask Aan page is the one place the four shapes appear side by side, standing on one drawn ground line, to explain them.
 
-**The Docked Diamond Rule.** Wherever Aan sits docked on the site (every `AanMascot` placement in the build passes `state="diamond"`, including the traveler that docks at each machine), it is the diamond. The other states are reserved for in-product moments that show work happening.
-
-### Isometric machines (signature)
-Dormant line-art boxes and cylinders (`.mx`) built from three faces mixed from the panel color toward ink (100% / 93% / 85%) with 1px strokes at 24% ink. When Aan docks, fills and strokes transition over 0.7s to their powered colors: periwinkle for flow and gain, coral for cost and risk, never green. Labels inside the SVG use the readable-label scale (Inter 600 13px, small labels 11.5px 700). Machines are always secondary to the UI: at most 480px wide and placed after the card.
-
-**The Beside, Never Behind Rule.** An isometric scene never sits under a UI card or copy. It follows the card, aligned to the outer edge, at no more than 82% of the stage width.
+### Line drawings (signature)
+Every drawing explains a mechanism: the street of storefronts, the shop row where one window moved (Signals), the road that steps down from sales to profit (Profitability), the gate that lets good spend through (Rules), the corner where a question becomes an answer (Ask Aan), the pole with cables to every AI client (MCP), the patrolled town (Night Watch), the home at night (AI for good), the open door (close), and the cutaway landmarks and step glyphs on product pages.
+- **Stroke:** one hairline per drawing, held at 1.4px on screen at any size by `useHairline` (not `non-scaling-stroke`, which breaks the draw-on).
+- **Draw-on:** each stroke has `pathLength="1"` and draws once over 1400ms in reading order, 90ms apart, when its screen arrives. Lit windows fill in after the lines; words fade in after that.
+- **The moment:** after Aan docks, marked strokes turn Handled Periwinkle (what Aan handled) or Aan Coral (what was wrong), and strokes reserved for the outcome draw in. Dotted guides fade rather than draw.
+- **Words:** live SVG text in Inter 600 with 0.06em tracking, in Line Strong, never below 11px on screen.
+- **Gating:** strokes start hidden only when script is running and motion is allowed; without script or with reduced motion the drawing is simply there.
 
 ### Night Watch (signature)
-A 440vh scroll-driven diorama with a sticky viewport. A `--d` variable from 0 to 1 mixes every color (ink, line, the three box faces, ground, background) between day and night with `color-mix`. In dark mode the mixes are reversed so the scene goes light at night; stars invert, lamps and windows glow warm (rgba(255,196,92)) or periwinkle as it darkens.
+A 13-second time-lapse from 6:00 PM to 7:00 AM that plays once when its screen arrives. A Fraunces clock with tabular numerals, a ruled event log with Plex Mono times (the current row in full ink with a periwinkle time), a play/replay pill and a hairline scrubber (3px track, periwinkle fill, 16px ink thumb) the visitor controls. The moon crosses the sky, stars fade, places on the patrol turn coral while something is wrong and periwinkle once handled, and the dawn lifts the sky at the end. No scroll pinning.
 
 ### Film player
-A 16:9 frame, 24px radius, on film-ink-deep, with a white pill sound button bottom-left (Inter 600 15px). Below 640px it becomes 9:16, 20px radius, sized to 82svh, button centred.
+The close screen holds a 9:16 player (20px radius, 1px Rule border, near-black ground) sized to the content height, with a pale pill "Watch with sound" button (44px, Inter 600 14px) centred at the bottom. It plays muted only when in view and never autoplays under reduced motion.
 
-### The film's look ("Ninety seconds with Aan")
-- **Stages:** near-black rooms (film-ink-deep with a periwinkle radial at centre and a dark coral radial below), Aan lit from below by a blurred coral underlight; a pale seamless backdrop for silhouettes (a dark diamond silhouette with one glowing coral eye); a twist set with a pale wall over a warm desk.
-- **Stamps:** Fraunces 700, line-height 0.86, horizontally condensed with `scaleX(0.62)` (0.7 on the end card in 9:16), in stamp red with a soft red-black text shadow on dark and none on light. Each lands with a brief scale overshoot, a coral screen-blend flash and a camera kick.
-- **Captions:** the opening line types in coral (hsl(355 90% 62%)) under Aan; twist captions are plain twist yellow with a black outline. Captions are Inter, sized from frame height (4.2% and 5%).
-- **UI in film:** dark glass cards (22px radius, 92% night, black drop shadow), periwinkle for good and coral for bad, pill chips, chat bubbles with a 6px tail.
-- **Finish:** a radial vignette (light variant on the seamless, none on the twist) and a 6% fractal-noise grain over everything.
-- **End card:** stamped words top and bottom with Aan centred and the URL fading in beneath in Inter 600.
+### Motion
+Tokens: micro 160ms (hover, press, focus), UI 320ms (state changes in cards), reveal 700ms with at most a 16px rise, draw 1400ms, flight 600ms, stagger 90ms. Everything that arrives eases on `cubic-bezier(0.16, 1, 0.3, 1)`; Aan's travel eases on `cubic-bezier(0.65, 0, 0.35, 1)`. Under reduced motion, draw, flight and stagger drop to 0, reveals become 200ms fades, and every screen shows its final, handled state. Animations pause on screens that are out of view.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep Fraunces + Inter and the services-site HSL tokens exactly as defined in `app/globals.css`; change scale and rhythm, not values.
-- **Do** encode positive as periwinkle (`--gain`) and negative as coral (`--risk`) in every theme scope.
-- **Do** set feature content as a statement paragraph plus hairline-ruled capability lists (26px padding, 1px border-token rules).
-- **Do** light a chapter by re-scoping the light tokens inside `.chapter--light` with a 40px radius and 16px inset, rather than flipping the page theme.
-- **Do** place the UI card first and the isometric machine after it at the outer edge, max 480px.
-- **Do** dock Aan as the diamond, and keep its coral the warmest thing on screen.
-- **Do** use `--ease-out` (`cubic-bezier(0.22, 1, 0.36, 1)`) for reveals (1.1s, 28px rise) and state fades, and honor reduced motion.
-- **Do** keep labels in Inter at 11px or larger, 600 weight or heavier.
+- **Do** keep Fraunces + Inter and the periwinkle, coral and ink tokens exactly as defined in `app/styles/tokens.css`; use IBM Plex Mono only for figures.
+- **Do** put every page inside the `.nocturne` scope and take colors from its tokens (`--sky`, `--line`, `--ink`, `--accent`, `--risk`), so both the night and day streets work.
+- **Do** build each section as one `Screen`: one headline, one statement, one visual, at most three ruled points, inside the 84px and 90px insets.
+- **Do** group with space first and a 1px Rule hairline second; box only the product UI, because it is a card in the product.
+- **Do** caption every product card "Sample data" (or "Sample conversation" / "Sample session") and label any illustrative number as such.
+- **Do** limit proof figures to $1.2B GMV, 500+ brands and 12.8% TACoS, set in a ruled row.
+- **Do** draw new illustrations in one 1.4px hairline via `useHairline`, with `pathLength="1"` draw-on, words as live text, and Aan Coral for what goes wrong and Handled Periwinkle for what Aan handled.
+- **Do** reserve an `AanDock` inside the drawing for Aan, with a bubble of 28 characters or fewer, and dock Aan as the diamond.
+- **Do** design the reduced-motion state on purpose: final states shown, 200ms fades kept.
+- **Do** keep the nav and Ask Aan island at parity with www.anarix.ai, including the transparent-until-scroll nav.
 
 ### Don't:
-- **Don't** use green, teal or any hue outside periwinkle and coral for status, charts or decoration.
-- **Don't** put an isometric scene behind a UI card or text, or let it outgrow the card it supports.
-- **Don't** set UI labels in tiny monospace; IBM Plex Mono is for code, ASINs and figures.
-- **Don't** break content into grids of boxed tiles where a paragraph or ruled list will do.
-- **Don't** show Aan docked in circle, bar or cube form, or recolor it.
-- **Don't** use the film's twist yellow, stamp scaleX condensing or grain on the site; they belong to the film.
-- **Don't** add uppercase tracked eyebrow pills above headings; chapters are named by the numbered chapter label.
+- **Don't** use green, teal or any hue outside periwinkle (230) and coral (355) for status, charts or decoration.
+- **Don't** put a label, eyebrow, kicker or numbered pill above a headline; the headline carries its own weight.
+- **Don't** use gradient text, glows, halos, shine sweeps or hover lifts on the site; the chrome's glass and lift are services-site parity, not a pattern to copy.
+- **Don't** set figures as big-number tiles or hero-metric templates; figures live in ruled rows or inside product cards.
+- **Don't** lay content out as grids of boxed tiles where a ruled list will do.
+- **Don't** let a screen grow past one viewport above 620px of height; cut copy or hide `data-optional` items instead.
+- **Don't** redraw, recolor or restyle Aan, dock it on product UI, or show it docked as circle, bar or cube.
+- **Don't** add idle loops, parallax, scroll pinning or scroll-scrubbing; motion follows cause and effect, once.
+- **Don't** fabricate customers, testimonials, logos or prices, or show an unlabelled number in product UI.
+- **Don't** use coral for buttons, headings, links or decoration.
+- **Don't** bring the film's stamp red, Bodoni or grain onto site pages.
 
 ## Film: "Aan's debut" (provenance)
 
 - Route `/film/debut` renders the reel in the villain-debut trend's grammar with a positive script (Aan, your 24/7 account manager) (`components/film/Debut.tsx`; cuts laid out from the voice in `components/film/debut-timeline.ts`); stamps use Bodoni Moda 500 in `#e3121b`, loaded only on that route.
 - Every shot is drawn in code (`components/film/DebutScenes.tsx`): City Nocturne line art and the real vector Aan (`AanMascot`). The film ships no raster imagery; the earlier photographic stills were removed. `public/film/aan-debut-poster.jpg` is a frame of the film's end card.
 - `public/film/aan-debut.mp4` carries an original synthesized score (`scripts/film/debut-score.mjs`; the bed ducks under the voice; master normalised to -14 LUFS) and Aan's voice-over from the Windows speech engine, Microsoft Mark, softened with SSML prosody (`scripts/film/voice-winrt.mjs`). The engine's word-boundary cues (`components/film/debut-voice.json`) set each line's length and drive the stamped words. The name is written plainly as "Aan" and spoken as one syllable. `public/film/aan-debut-instagram.mp4` is the silent master for Instagram.
+- The homepage close screen plays this film in its 9:16 player (`components/home/FilmPlayer.tsx`). The earlier 90-second film route is retired.
