@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { flushSync } from "react-dom";
 import { AanMascot } from "../aan/AanMascot";
-import { FilmAanContext, NeuralCore, ProfitRefinery, RulesFactory, SignalsBoard } from "../machines/Machines";
-import { McpDiagram } from "../sections/McpSection";
-import { NightWatch } from "../night/NightWatch";
-import { isoBox, isoCylinder, makeIso, pts } from "@/lib/iso";
+import { FilmAanContext, NeuralCore, ProfitRefinery, RulesFactory, SignalsBoard } from "./legacy/Machines";
+import { McpDiagram } from "./legacy/McpDiagram";
+import { NightWatch } from "./legacy/NightWatch";
+import { isoBox, isoCylinder, makeIso, pts } from "./legacy/iso";
 import { BEATS, DURATION, STAMPS, captionAt, shotAt, stampAt, type Shot } from "./timeline";
 
 type Ratio = "16x9" | "9x16";

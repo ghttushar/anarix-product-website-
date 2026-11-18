@@ -1,0 +1,66 @@
+/* the page-coordinate frame Aan travels in */
+.stage {
+  position: relative;
+}
+
+.traveler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-aan, 420);
+  width: var(--size);
+  height: var(--size);
+  line-height: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* docked Aan stands still: eyes and blinks only, no idle float */
+.traveler :global(.aan__float) {
+  animation: none;
+}
+
+.dock {
+  position: absolute;
+  display: block;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: var(--bubble-bg, #fff);
+  color: var(--bubble-ink, #1d252d);
+  font: 600 13px/1.3 var(--font-body);
+  white-space: nowrap;
+  box-shadow: 0 8px 20px -12px hsl(228 50% 4% / 0.6);
+  opacity: 0;
+  transition: opacity var(--dur-ui, 320ms) var(--ease-arrive, ease-out);
+}
+
+/* the bubble opens away from what Aan is looking after */
+.bubble[data-side="left"] {
+  right: 30%;
+  border-bottom-right-radius: 4px;
+}
+
+.bubble[data-side="right"] {
+  left: 30%;
+  border-bottom-left-radius: 4px;
+}
+
+.bubble[data-on="true"] {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .bubble {
+    width: max-content;
+    max-width: min(220px, 44vw);
+    white-space: normal;
+  }
+}

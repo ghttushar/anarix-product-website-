@@ -36,19 +36,23 @@ export function ActionIsland() {
     return () => window.removeEventListener("aan:open-chat", openChat);
   }, []);
 
+  // the before-paint script in app/layout.tsx already applied the saved theme;
+  // adopt it first, and only write back once adopted (never flash dark)
+  const [adopted, setAdopted] = useState(false);
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("anarix-theme-v2");
-      if (saved === "dark" || saved === "light") setTheme(saved);
-    } catch {}
+    const t = document.documentElement.dataset.theme;
+    if (t === "dark" || t === "light") setTheme(t);
+    setAdopted(true);
   }, []);
 
   useEffect(() => {
+    if (!adopted) return;
     document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#0e141a" : "#F5F6FA");
     try {
       localStorage.setItem("anarix-theme-v2", theme);
     } catch {}
-  }, [theme]);
+  }, [theme, adopted]);
 
   const ask = (q: string, a: string) => {
     setMsgs((m) => [...m, { from: "you", text: q }]);

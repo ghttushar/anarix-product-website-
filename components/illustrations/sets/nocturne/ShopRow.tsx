@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { AanMascot } from "@/components/aan/AanMascot";
+import { AanDock } from "@/components/aan/v2/AanDock";
+import { useScreen } from "@/components/layout/Screen";
 import art from "../../lineart.module.css";
 import s from "./shoprow.module.css";
 
 /*
   Signals: many listings, one change. Six shop windows across the three
-  marketplaces; Aan walks the row and stops at the one window that moved.
-  A leader line runs from that window down to the alert beneath the drawing.
+  marketplaces; Aan lands at the one window that moved, the window turns coral
+  and a leader line runs from it down to the alert beneath the drawing.
   viewBox 640 × 170, baseline y = 146.
 */
 const W = 640;
@@ -21,7 +22,8 @@ const AAN_X = 112;
 /** a stroke that draws itself: pathLength 1 + the draw class */
 const d = (cls?: string) => ({ pathLength: 1, className: cls ? `${art.d} ${cls}` : art.d });
 
-export function ShopRow({ play }: { play: boolean }) {
+export function ShopRow({ stop = "signals", bubble }: { stop?: string; bubble?: string }) {
+  const { inView: play, arrived } = useScreen();
   const box = useRef<HTMLDivElement>(null);
   const [aanSize, setAanSize] = useState(40);
 
@@ -40,7 +42,7 @@ export function ShopRow({ play }: { play: boolean }) {
   ];
 
   return (
-    <div ref={box} className={s.row} data-play={play ? "true" : "false"}>
+    <div ref={box} className={s.row} data-play={play ? "true" : "false"} data-arrived={arrived ? "true" : "false"}>
       <svg className={art.art} viewBox={`0 0 ${W} ${H}`} data-play={play ? "true" : "false"} role="img" aria-label="Six shop windows across Amazon, Walmart and Shopify. Aan stops at the one Amazon window that changed, and a line leads from it to the alert.">
         <g style={{ "--i": 0 } as CSSProperties}>
           <line {...d()} x1={-40} y1={BASE} x2={W + 40} y2={BASE} />
@@ -64,11 +66,7 @@ export function ShopRow({ play }: { play: boolean }) {
         <line {...d(s.leader)} x1={xs[CHANGED] + WIN.w} y1={WIN.y + WIN.h} x2={xs[CHANGED] + WIN.w} y2={H + 16} />
         <circle cx={xs[CHANGED] + WIN.w} cy={H + 18} r={3} className={s.leaderEnd} />
       </svg>
-      <div className={s.track} style={{ "--from": `${((-30 - AAN_X) / W) * 100}%` } as CSSProperties} aria-hidden="true">
-        <div className={s.aan} style={{ left: `${(AAN_X / W) * 100}%`, bottom: `${((H - BASE) / H) * 100}%` }}>
-          <AanMascot state="diamond" size={aanSize} glow={false} shadow={false} />
-        </div>
-      </div>
+      <AanDock stop={stop} size={aanSize} bubble={bubble} side="left" style={{ left: `${(AAN_X / W) * 100}%`, bottom: `${((H - BASE) / H) * 100}%` }} />
     </div>
   );
 }

@@ -1,0 +1,204 @@
+/* Brand tokens: values unchanged from the Anarix website system (moved from
+   app/globals.css). New scale, motion, inset and world tokens follow. */
+:root {
+  /* reference HSL tokens (light) */
+  --h-background: 228 25% 97%;
+  --h-foreground: 209 22% 14%;
+  --h-card: 0 0% 100%;
+  --h-primary: 230 65% 57%;
+  --h-muted: 228 20% 94%;
+  --h-muted-fg: 215 14% 42%;
+  --h-accent: 230 65% 95%;
+  --h-accent-fg: 230 65% 35%;
+  --h-border: 228 20% 90%;
+  --h-coral: 355 84% 70%;
+  --h-glow: 230 75% 65%;
+  --h-lavender: 230 40% 96%;
+
+  --shadow-soft: 0 2px 8px -2px hsl(var(--h-primary) / 0.08);
+  --shadow-medium: 0 4px 16px -4px hsl(var(--h-primary) / 0.12);
+  --shadow-strong: 0 8px 32px -8px hsl(var(--h-primary) / 0.18);
+  --shadow-glow: 0 0 24px -4px hsl(var(--h-primary) / 0.25);
+
+  /* semantic aliases used across the site */
+  --coral: hsl(var(--h-coral));
+  --coral-deep: hsl(355 70% 60%);
+  --blue: hsl(var(--h-primary));
+  --blue-2: hsl(var(--h-glow));
+  --night: hsl(209 28% 11%); /* reference .section-dark */
+  --night-deep: hsl(209 30% 8%);
+
+  --bg: hsl(var(--h-background));
+  --ink: hsl(var(--h-foreground));
+  --ink-2: hsl(var(--h-muted-fg));
+  --ink-3: hsl(var(--h-muted-fg) / 0.75);
+  --line: hsl(var(--h-border));
+  --line-soft: hsl(var(--h-border) / 0.6);
+  --panel: hsl(var(--h-card));
+  --panel-solid: hsl(var(--h-card));
+  --panel-border: hsl(var(--h-border));
+  --shadow-panel: var(--shadow-medium);
+  --skel: hsl(var(--h-muted));
+  --accent-soft: hsl(var(--h-accent));
+  --lavender: hsl(var(--h-lavender));
+
+  /* nav + island chrome (same system) */
+  --c-card: 0 0% 100%;
+  --c-primary: 230 65% 57%;
+  --c-primary-fg: 0 0% 100%;
+  --c-fg: 209 22% 14%;
+  --c-muted-fg: 215 14% 42%;
+  --c-muted: 228 20% 94%;
+  --c-border: 228 20% 90%;
+  --c-accent: 230 65% 95%;
+  --c-shadow-soft: 0 2px 8px -2px hsl(230 65% 57% / 0.08);
+  --c-shadow-medium: 0 4px 16px -4px hsl(230 65% 57% / 0.12);
+  --c-shadow-strong: 0 8px 32px -8px hsl(230 65% 57% / 0.18);
+
+  --font-display: var(--font-fraunces), "Fraunces", Georgia, serif;
+  --font-body: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  --font-chrome: var(--font-inter), Inter, system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --container: 1280px;
+}
+
+/* Dark theme (island toggle) — reference `.dark .website-scope` */
+html[data-theme="dark"] {
+  --h-background: 209 30% 8%;
+  --h-foreground: 228 20% 94%;
+  --h-card: 209 28% 11%;
+  --h-primary: 230 70% 65%;
+  --h-muted: 209 25% 16%;
+  --h-muted-fg: 215 12% 60%;
+  --h-accent: 230 40% 20%;
+  --h-accent-fg: 230 70% 85%;
+  --h-border: 209 25% 18%;
+  --h-coral: 355 84% 72%;
+  --h-glow: 230 80% 75%;
+  --h-lavender: 230 30% 14%;
+  --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+  --shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
+  --shadow-strong: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+  --shadow-glow: 0 0 24px -4px hsl(var(--h-primary) / 0.3);
+}
+
+/* chrome over dark surfaces / dark theme */
+html[data-theme="dark"] .chrome,
+html[data-nav="dark"] .chrome--nav,
+html[data-island="dark"] .chrome--island {
+  --c-card: 209 28% 11%;
+  --c-primary: 230 70% 65%;
+  --c-fg: 228 20% 94%;
+  --c-muted-fg: 215 12% 60%;
+  --c-muted: 209 25% 16%;
+  --c-border: 209 25% 18%;
+  --c-accent: 230 40% 20%;
+  --c-shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+  --c-shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
+  --c-shadow-strong: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+}
+
+/* ------------------------------------------------------------------
+   Redesign scales (docs/redesign/02-principles.md, 05-motion.md).
+   New names only, so the legacy homepage is untouched until the swap.
+------------------------------------------------------------------- */
+:root {
+  /* type: fluid by width and by height, capped (display never above 96px) */
+  --fs-display: clamp(2.5rem, min(6vw, 9.4svh), 6rem);
+  --fs-h2: clamp(2rem, min(4.2vw, 7svh), 4rem);
+  --fs-statement: clamp(1.0625rem, min(1.4vw, 2.5svh), 1.375rem);
+  --fs-body: 1rem;
+  --fs-label: 0.8125rem;
+
+  /* space: 4px base, plus gaps that tighten on short screens first */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --gap-s: clamp(12px, 2svh, 20px);
+  --gap-m: clamp(16px, 3svh, 32px);
+  --gap-l: clamp(24px, 5svh, 56px);
+
+  /* one screen = nav inset + content + island inset */
+  --inset-top: 84px;
+  --inset-bottom: 90px;
+  --content-h: calc(100svh - var(--inset-top) - var(--inset-bottom));
+  --measure: 1280px;
+
+  /* motion */
+  --dur-micro: 160ms;
+  --dur-ui: 320ms;
+  --dur-reveal: 700ms;
+  --dur-draw: 1400ms;
+  --dur-flight: 600ms;
+  --stagger: 90ms;
+  --ease-arrive: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-travel: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --z-aan: 420;
+  --z-island: 450;
+  --z-nav: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-draw: 0ms;
+    --dur-flight: 0ms;
+    --dur-reveal: 200ms;
+    --stagger: 0ms;
+  }
+}
+
+/* ------------------------------------------------------------------
+   City Nocturne world: the night street in dark, the same street by day
+   in light. Hues stay on periwinkle 230 and coral 355; greys stay slate.
+   Scoped to .nocturne so it never leaks into the legacy homepage.
+------------------------------------------------------------------- */
+.nocturne {
+  --sky: hsl(228 46% 14%);
+  --line: hsl(228 38% 80% / 0.55);
+  --line-strong: hsl(228 40% 90% / 0.92);
+  --lit: hsl(230 70% 65% / 0.5);
+  --ink: hsl(228 20% 94%);
+  --ink-2: hsl(228 22% 74%);
+  --accent: hsl(230 75% 72%);
+  --accent-solid: hsl(230 65% 57%);
+  --accent-solid-hover: hsl(230 65% 52%);
+  --risk: #f46d76;
+  --risk-ink: hsl(355 84% 74%);
+  --rule: hsl(228 34% 30%);
+  --card: hsl(228 38% 18%);
+  --card-line: hsl(228 30% 30%);
+  --bubble-bg: hsl(228 25% 97%);
+  --bubble-ink: hsl(228 40% 14%);
+  --ease-out: var(--ease-arrive);
+  background: var(--sky);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+html[data-theme="light"] .nocturne {
+  --sky: hsl(230 60% 97%);
+  --line: hsl(209 22% 14% / 0.5);
+  --line-strong: hsl(209 22% 14% / 0.88);
+  --lit: hsl(230 65% 57% / 0.22);
+  --ink: hsl(209 22% 14%);
+  --ink-2: hsl(215 16% 38%);
+  --accent: hsl(230 65% 50%);
+  --accent-solid: hsl(230 65% 57%);
+  --accent-solid-hover: hsl(230 65% 50%);
+  --risk-ink: hsl(355 70% 50%);
+  --rule: hsl(228 22% 86%);
+  --card: #fff;
+  --card-line: hsl(228 22% 88%);
+  --bubble-bg: hsl(209 22% 14%);
+  --bubble-ink: #fff;
+}

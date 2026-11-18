@@ -1,0 +1,28 @@
+/* A screen is one viewport: nav inset, content, island inset. */
+.screen {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: var(--inset-top) minmax(0, 1fr) var(--inset-bottom);
+  overflow: clip;
+}
+
+.body {
+  grid-row: 2;
+  min-height: 0;
+  display: grid;
+}
+
+/* below about 620px tall (landscape phones, heavy zoom) a screen may grow
+   rather than clip; everywhere else growing is a QA failure */
+@media (max-height: 620px) {
+  .screen {
+    min-height: auto;
+    grid-template-rows: var(--inset-top) auto var(--s-6);
+  }
+}
+
+/* nothing animates while its screen is off view */
+.screen[data-inview="false"] * {
+  animation-play-state: paused;
+}

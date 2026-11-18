@@ -13,7 +13,7 @@
         "rule": "gradient-text",
         "value": "*",
         "files": [
-          "app/globals.css"
+          "app/styles/legacy-globals.css"
         ],
         "createdAt": "2026-11-05T17:42:12.558Z",
         "reason": "Copied from the reference site's .text-gradient-primary (anarix-website-final-state hero); user asked to match that site's component style"

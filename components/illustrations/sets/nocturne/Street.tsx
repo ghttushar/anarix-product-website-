@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { AanMascot } from "@/components/aan/AanMascot";
-import { useInView } from "@/components/motion/useInView";
+import { AanDock } from "@/components/aan/v2/AanDock";
+import { useScreen } from "@/components/layout/Screen";
 import art from "../../lineart.module.css";
 import s from "./street.module.css";
 
 /*
   The street that never closes: the three marketplaces as storefronts, the ad
-  billboard, the warehouse and the towers of the city behind. Aan walks the
-  patrol line to the one store that needs him.
+  billboard, the warehouse and the towers of the city behind. On first arrival
+  Aan walks the patrol line to the one store that needs him; the dotted trail
+  follows the walk, and the store's window turns coral when Aan reaches it.
   viewBox 1600 × 420, street baseline at y = 380. The baseline and the lane
   run far past the viewBox so the street is full-bleed at any width.
 */
@@ -19,7 +20,7 @@ const BASE = 380;
 const AAN_X = 606; // in front of the Shopify display window
 const WALK_FROM = 40;
 
-const g =(i: number) => ({ style: { "--i": i } as CSSProperties });
+const g = (i: number) => ({ style: { "--i": i } as CSSProperties });
 /** a stroke that draws itself: pathLength 1 + the draw class */
 const d = (cls?: string) => ({ pathLength: 1, className: cls ? `${art.d} ${cls}` : art.d });
 
@@ -73,25 +74,34 @@ function Store({ x, w, h, name, awning, children }: { x: number; w: number; h: n
   );
 }
 
-export function Street({ bubble, className }: { bubble?: string; className?: string }) {
-  const [ref, inView] = useInView<HTMLDivElement>({ threshold: 0.3 });
+export function Street({ stop = "hero", bubble, className }: { stop?: string; bubble?: string; className?: string }) {
+  const { inView, arrived, walk } = useScreen();
   const box = useRef<HTMLDivElement>(null);
-  const [aanSize, setAanSize] = useState(48);
+  const [frame, setFrame] = useState({ w: 1200, h: 315 });
 
-  // Aan scales with the drawing: about 13% of the street's height
+  // Aan scales with the drawing (about 13% of the street's height); the walk
+  // distance follows the drawing's width
   useEffect(() => {
     const el = box.current;
     if (!el) return;
-    const ro = new ResizeObserver(([e]) => setAanSize(Math.round(Math.max(30, Math.min(72, e.contentRect.height * 0.13)))));
+    const ro = new ResizeObserver(([e]) => setFrame({ w: e.contentRect.width, h: e.contentRect.height }));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
+  const aanSize = Math.round(Math.max(30, Math.min(72, frame.h * 0.13)));
+  const walkDx = Math.round(((WALK_FROM - AAN_X) / W) * frame.w);
 
   const dots = [];
   for (let x = WALK_FROM + 22; x < AAN_X - 26; x += 16) dots.push(x);
 
   return (
-    <div ref={ref} className={`${s.street} ${className ?? ""}`} data-play={inView ? "true" : "false"}>
+    <div
+      className={`${s.street} ${className ?? ""}`}
+      data-play={inView ? "true" : "false"}
+      data-walking={walk.on ? "true" : "false"}
+      data-arrived={arrived ? "true" : "false"}
+      style={{ "--walk-delay": `${walk.delay}ms`, "--walk-dur": `${walk.duration}ms` } as CSSProperties}
+    >
       <div ref={box} className={s.box}>
         <svg className={art.art} viewBox={`0 0 ${W} ${H}`} data-play={inView ? "true" : "false"} role="img" aria-label="A street of storefronts at night: Amazon, Walmart and Shopify stores, an ad billboard, a warehouse with a truck, and towers behind. Aan stands at the Shopify store.">
           {/* the street itself */}
@@ -187,17 +197,14 @@ export function Street({ bubble, className }: { bubble?: string; className?: str
           ))}
         </svg>
 
-        {/* Aan walks in along the street; the track moves, Aan stays the mascot */}
-        <div className={s.track} style={{ "--from": `${((WALK_FROM - AAN_X) / W) * 100}%` } as CSSProperties} aria-hidden="true">
-          <div className={s.aan} style={{ left: `${(AAN_X / W) * 100}%`, bottom: `${((H - BASE) / H) * 100}%` }}>
-            <AanMascot state="diamond" size={aanSize} glow={false} shadow={false} />
-          </div>
-        </div>
-        {bubble && (
-          <p className={s.bubble} style={{ left: `${(AAN_X / W) * 100}%`, bottom: `calc(${((H - BASE) / H) * 100}% + ${aanSize + 10}px)` }}>
-            {bubble}
-          </p>
-        )}
+        <AanDock
+          stop={stop}
+          size={aanSize}
+          bubble={bubble}
+          side="left"
+          entry={{ dx: walkDx, delay: 1900, duration: 1600 }}
+          style={{ left: `${(AAN_X / W) * 100}%`, bottom: `${((H - BASE) / H) * 100}%` }}
+        />
       </div>
     </div>
   );

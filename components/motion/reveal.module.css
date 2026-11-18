@@ -1,0 +1,18 @@
+.reveal {
+  transition-property: opacity, transform;
+  transition-duration: var(--dur-reveal, 700ms);
+  transition-timing-function: var(--ease-arrive, ease-out);
+  transition-delay: calc(var(--order, 0) * var(--stagger, 90ms));
+}
+
+:global(html[data-js]) .reveal[data-shown="false"] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html[data-js]) .reveal[data-shown="false"] {
+    transform: none;
+  }
+}

@@ -2,9 +2,6 @@
   position: relative;
   aspect-ratio: 640 / 170;
   width: 100%;
-  --walk-start: 0.9s;
-  --walk-dur: 0.9s;
-  --found: 1.9s;
 }
 
 .row > svg {
@@ -17,12 +14,12 @@
 /* the one window that moved turns coral when Aan reaches it */
 .changed {
   transition:
-    stroke-dashoffset var(--dur-draw) var(--ease-out) calc(var(--i, 0) * var(--stagger)),
+    stroke-dashoffset var(--dur-draw) var(--ease-arrive) calc(var(--i, 0) * var(--stagger)),
     opacity 1ms linear calc(var(--i, 0) * var(--stagger)),
-    stroke 320ms var(--ease-out) var(--found) !important;
+    stroke 320ms var(--ease-arrive) !important;
 }
 
-.row[data-play="true"] .changed {
+.row[data-arrived="true"] .changed {
   stroke: var(--risk);
 }
 
@@ -30,72 +27,35 @@
   stroke: var(--risk);
 }
 
+/* from the window down to the alert, drawn once Aan has found it */
 .leader {
   stroke: var(--risk);
   stroke-dasharray: 1 1;
   transition:
-    stroke-dashoffset 500ms var(--ease-out) var(--found),
-    opacity 1ms linear var(--found) !important;
+    stroke-dashoffset 500ms var(--ease-arrive) 150ms,
+    opacity 1ms linear 150ms !important;
 }
 
-:global(html[data-js]) .row[data-play="false"] .leader {
+:global(html[data-js]) .row[data-arrived="false"] .leader {
   stroke-dashoffset: 1;
+  opacity: 0;
 }
 
 .leaderEnd {
   fill: var(--risk);
   stroke: none;
-  transition: opacity 200ms linear calc(var(--found) + 0.45s);
+  transition: opacity 200ms linear 600ms;
 }
 
-:global(html[data-js]) .row[data-play="false"] .leaderEnd {
+:global(html[data-js]) .row[data-arrived="false"] .leaderEnd {
   opacity: 0;
   transition: none;
-}
-
-.track {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  transition: transform var(--walk-dur) cubic-bezier(0.45, 0, 0.2, 1) var(--walk-start);
-}
-
-:global(html[data-js]) .row[data-play="false"] .track {
-  transform: translateX(var(--from));
-  transition: none;
-}
-
-.aan {
-  position: absolute;
-  transform: translateX(-50%);
-  line-height: 0;
-}
-
-.aan :global(.aan__float) {
-  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .changed,
   .leader,
-  .leaderEnd,
-  .track {
+  .leaderEnd {
     transition: opacity 200ms linear !important;
-  }
-
-  :global(html[data-js]) .row[data-play="false"] .track {
-    transform: none;
-  }
-
-  :global(html[data-js]) .row[data-play="false"] .leader {
-    stroke-dashoffset: 0;
-  }
-
-  :global(html[data-js]) .row[data-play="false"] .leaderEnd {
-    opacity: 1;
-  }
-
-  .changed {
-    stroke: var(--risk);
   }
 }

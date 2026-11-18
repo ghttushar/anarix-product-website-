@@ -1,15 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
-import "./globals.css";
-import "../components/aan/aan.css";
-import "../components/aan/traveler.css";
-import "../components/chrome/chrome.css";
-import "../components/hero/hero.css";
-import "../components/sections/sections.css";
-import "../components/machines/machines.css";
-import "../components/night/night.css";
-import "../components/readability.css";
-import "../components/premium.css";
+import "./styles/index.css";
 
 // Fraunces (display) + Inter (body): the Anarix website design system
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-fraunces" });
