@@ -1,7 +1,8 @@
-import "@/components/film/legacy/styles/index.css";
+// The film route ("Aan's debut", /film/debut) renders the reel frame by frame
+// for scripts/film/render.mjs. It needs only Aan's own styles; the stage and
+// its scenes bring their own (components/film/debut.css).
+import "@/components/aan/aan.css";
 
-// The film routes render against a frozen copy of the site's original CSS
-// (see components/film/legacy), so the site can change without changing them.
 export default function FilmLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

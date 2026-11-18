@@ -1,11 +1,10 @@
-// Renders /platform/film frame by frame into an MP4 with the synthesized score.
+// Renders "Aan's debut" (/platform/film/debut) frame by frame into an MP4 with its score.
 // The page exposes window.__seek(t), which sets the film clock and pins every
 // CSS animation and SMIL timeline to it, so each frame is deterministic.
 //
 //   FILM_TOOLS=<dir with puppeteer-core + ffmpeg-static> \
-//   node scripts/film/render.mjs <16x9|9x16> <out.mp4> <score.wav|-> [baseUrl] [route]
+//   node scripts/film/render.mjs 9x16 <out.mp4> <score.wav|-> [baseUrl] [route]
 //
-// route: "film" (the 90 s cut, default) or "film/debut" (always 9x16).
 // Pass "-" for the audio to render a silent master (the Instagram cut, where
 // the trend sound is added in-app).
 //
@@ -20,7 +19,7 @@ const require = createRequire(path.join(tools, "noop.js"));
 const puppeteer = require("puppeteer-core");
 const ffmpeg = require("ffmpeg-static");
 
-const [, , ar = "16x9", out = "film.mp4", wav = "score.wav", base = "http://localhost:3100", route = "film"] = process.argv;
+const [, , ar = "9x16", out = "aan-debut.mp4", wav = "debut-score.wav", base = "http://localhost:3000", route = "film/debut"] = process.argv;
 const silent = wav === "-";
 const FPS = 30;
 const browserPath = process.env.FILM_BROWSER ?? "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";

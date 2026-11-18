@@ -1,4 +1,4 @@
-// Golden frames for the film routes, so site changes can be proven not to
+// Golden frames for the film route (Aan's debut), so site changes can be proven not to
 // touch the films. Captures every `--step` seconds via window.__seek, or
 // compares a fresh capture against a saved set.
 //
@@ -20,11 +20,10 @@ const browserPath = process.env.FILM_BROWSER ?? "C:/Program Files (x86)/Microsof
 const base = opt.base ?? "http://localhost:3000";
 const step = Number(opt.step ?? 2);
 
-const cuts = [
-  { name: "film-16x9", url: "/platform/film?ar=16x9", view: { width: 1920, height: 1080, deviceScaleFactor: 0.5 } },
-  { name: "film-9x16", url: "/platform/film?ar=9x16", view: { width: 540, height: 960, deviceScaleFactor: 1 } },
+const ALL_CUTS = [
   { name: "debut", url: "/platform/film/debut", view: { width: 540, height: 960, deviceScaleFactor: 1 } },
 ];
+const cuts = ALL_CUTS.filter((c) => !opt.only || c.name === opt.only);
 
 const browser = await puppeteer.launch({ executablePath: browserPath, headless: true, args: ["--hide-scrollbars"] });
 
