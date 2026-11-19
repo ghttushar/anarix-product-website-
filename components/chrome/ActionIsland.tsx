@@ -48,7 +48,7 @@ export function ActionIsland() {
   useEffect(() => {
     if (!adopted) return;
     document.documentElement.dataset.theme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#131a34" : "#f3f4fc");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#0e151b" : "#f3f4fc");
     try {
       localStorage.setItem("anarix-theme-v2", theme);
     } catch {}

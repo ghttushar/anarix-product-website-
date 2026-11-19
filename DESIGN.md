@@ -16,14 +16,14 @@ colors:
   risk-ink-night: "hsl(355 84% 74%)"
   risk-ink-day: "hsl(355 70% 50%)"
   film-stamp-red: "#e3121b"
-  sky-night: "hsl(228 46% 14%)"
+  sky-night: "#0e151b"
   line-night: "hsl(228 38% 80% / 0.55)"
   line-strong-night: "hsl(228 40% 90% / 0.92)"
   ink-night: "hsl(228 20% 94%)"
-  ink-2-night: "hsl(228 22% 74%)"
-  rule-night: "hsl(228 34% 30%)"
-  card-night: "hsl(228 38% 18%)"
-  card-line-night: "hsl(228 30% 30%)"
+  ink-2-night: "#8d97a5"
+  rule-night: "#222e39"
+  card-night: "#141c24"
+  card-line-night: "#222e39"
   bubble-bg-night: "hsl(228 25% 97%)"
   bubble-ink-night: "hsl(228 40% 14%)"
   sky-day: "hsl(230 60% 97%)"
@@ -239,7 +239,7 @@ components:
 
 **Creative North Star: "City Nocturne"**
 
-The platform site is one night street, drawn in a single hairline. Storefronts for Amazon, Walmart and Shopify stand along it with a few windows lit, and Aan, the coral mascot and the visitor's 24/7 e-commerce account manager, walks it. The whole site sits inside one `.nocturne` scope: in the dark theme (the default, set on `<html data-theme="dark">` before first paint) the street is a deep periwinkle-navy night; in the light theme the same street is drawn in slate ink by day. Every screen is the same sky, the same ink, the same line weight.
+The platform site is one night street, drawn in a single hairline. Storefronts for Amazon, Walmart and Shopify stand along it with a few windows lit, and Aan, the coral mascot and the visitor's 24/7 e-commerce account manager, walks it. The whole site sits inside one `.nocturne` scope: in the dark theme (the default, set on `<html data-theme="dark">` before first paint) the street is a deep slate night, the same `#0e151b` as the services site (www.anarix.ai); in the light theme the same street is drawn in slate ink by day. Every screen is the same sky, the same ink, the same line weight.
 
 Pages are made of screens, and a screen holds one idea: a Fraunces headline, one statement in grey Inter with its key phrases lifted to full ink, then either a line drawing that explains a mechanism or the real product card proving it, and at most three hairline-ruled points. There are no tiles, no badges, no section labels above headings. Motion has one job, cause and effect: a drawing draws itself when its screen arrives, Aan docks in it, and then one thing turns periwinkle (what Aan handled) or coral (what was going wrong), and the product card settles into its handled state. Nothing loops, glows or decorates.
 
@@ -256,7 +256,7 @@ Two pieces of chrome are not part of the world and do not follow its rules: the 
 
 ## Colors
 
-A periwinkle-navy night (or a pale periwinkle day) inked in slate, with one periwinkle working accent and one coral that belongs to Aan and to risk.
+A slate night matched to the services site (or a pale periwinkle day) inked in slate, with one periwinkle working accent and one coral that belongs to Aan and to risk.
 
 ### Primary
 - **Working Periwinkle** (`--accent-solid`, periwinkle-solid): the filled primary button in both themes, the primary button inside product cards, the Night Watch scrubber fill, and the "you" bubble in the Ask Aan chat. Its hover deepens (periwinkle-solid-hover-night in the dark theme, periwinkle-day in the light).
@@ -272,7 +272,7 @@ A periwinkle-navy night (or a pale periwinkle day) inked in slate, with one peri
 - **Film Stamp Red** (film-stamp-red): only on the `/film/debut` route, for the Bodoni stamps. It never appears on site pages.
 
 ### Neutral
-- **Night Sky / Day Sky** (`--sky`, sky-night / sky-day): the ground of every page and the fill of solid shapes in drawings that hide what is behind them. The browser theme color matches (`#131a34` dark, `#f3f4fc` light).
+- **Night Sky / Day Sky** (`--sky`, sky-night / sky-day): the ground of every page and the fill of solid shapes in drawings that hide what is behind them. The browser theme color matches (`#0e151b` dark, `#f3f4fc` light).
 - **Line / Line Strong** (`--line`, `--line-strong`): the drawing ink. Line is the structure stroke; Line Strong is for words on drawings, the moon, leader lines and callout borders.
 - **Ink / Ink 2** (`--ink`, `--ink-2`): primary text, and the grey of statements, ruled-point descriptions, captions and the footer.
 - **Rule** (`--rule`): every hairline between list rows, the proof row, the footer and the film player border.

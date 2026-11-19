@@ -217,7 +217,7 @@
       "sky-night": {
         "role": "neutral",
         "displayName": "Night Sky",
-        "canonical": "hsl(228 46% 14%)",
+        "canonical": "#0e151b",
         "tonalRamp": [
           "hsl(228 46% 15%)",
           "hsl(228 46% 25%)",
@@ -277,7 +277,7 @@
       "ink-2-night": {
         "role": "neutral",
         "displayName": "Ink 2 (night)",
-        "canonical": "hsl(228 22% 74%)",
+        "canonical": "#8d97a5",
         "tonalRamp": [
           "hsl(228 22% 15%)",
           "hsl(228 22% 25%)",
@@ -292,7 +292,7 @@
       "rule-night": {
         "role": "neutral",
         "displayName": "Rule (night)",
-        "canonical": "hsl(228 34% 30%)",
+        "canonical": "#222e39",
         "tonalRamp": [
           "hsl(228 34% 15%)",
           "hsl(228 34% 25%)",
@@ -307,7 +307,7 @@
       "card-night": {
         "role": "neutral",
         "displayName": "Card (night)",
-        "canonical": "hsl(228 38% 18%)",
+        "canonical": "#141c24",
         "tonalRamp": [
           "hsl(228 38% 15%)",
           "hsl(228 38% 25%)",
@@ -322,7 +322,7 @@
       "card-line-night": {
         "role": "neutral",
         "displayName": "Card Line (night)",
-        "canonical": "hsl(228 30% 30%)",
+        "canonical": "#222e39",
         "tonalRamp": [
           "hsl(228 30% 15%)",
           "hsl(228 30% 25%)",
@@ -881,7 +881,7 @@
       "refersTo": "point-title",
       "description": "The default container: rows separated by one hairline, a title over a grey line. Never a row of cards.",
       "html": "<ul class=\"ds-points\"><li><b>Finds the one change</b><span>Across every listing, every marketplace.</span></li><li><b>Explains why</b><span>In plain words, with the numbers behind it.</span></li><li><b>Acts within your rules</b><span>And tells you what it did.</span></li></ul>",
-      "css": ".ds-points{margin:0;list-style:none;max-width:420px;padding:8px 16px;background:hsl(228 46% 14%);color:hsl(228 20% 94%);font-family:Inter,system-ui,sans-serif}.ds-points li{padding:12px 0;border-top:1px solid hsl(228 34% 30%)}.ds-points b{display:block;font-size:15px;font-weight:600}.ds-points span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:hsl(228 22% 74%)}"
+      "css": ".ds-points{margin:0;list-style:none;max-width:420px;padding:8px 16px;background:#0e151b;color:hsl(228 20% 94%);font-family:Inter,system-ui,sans-serif}.ds-points li{padding:12px 0;border-top:1px solid #222e39}.ds-points b{display:block;font-size:15px;font-weight:600}.ds-points span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#8d97a5}"
     },
     {
       "name": "Product UI Card",
@@ -889,7 +889,7 @@
       "refersTo": "ui-card-night",
       "description": "The only box on the site: a product card on the night street, captioned as sample data, settling into a handled state.",
       "html": "<div class=\"ds-wrap\"><article class=\"ds-card\" tabindex=\"0\"><div class=\"ds-head\"><span class=\"ds-pill\">Signals</span><span class=\"ds-pill ds-muted\">Amazon</span><span class=\"ds-meta\">11:04 PM</span></div><p class=\"ds-k\">Revenue at risk</p><p class=\"ds-fig\">&minus;$136</p><div class=\"ds-rule\"><span class=\"ds-btn ds-primary\">Execute</span></div></article><p class=\"ds-sample\">Sample data</p></div>",
-      "css": ".ds-wrap{background:hsl(228 46% 14%);padding:24px;font-family:Inter,system-ui,sans-serif}.ds-card{max-width:360px;padding:22px;border:1px solid hsl(228 30% 30%);border-radius:20px;background:hsl(228 38% 18%);color:hsl(228 20% 94%);box-shadow:0 24px 48px -32px hsl(228 60% 4% / 0.7);transition:border-color 320ms cubic-bezier(0.16,1,0.3,1)}.ds-card:hover,.ds-card:focus-visible{outline:none;border-color:color-mix(in srgb,hsl(230 75% 72%) 45%,hsl(228 30% 30%))}.ds-head{display:flex;align-items:center;gap:6px}.ds-pill{padding:3px 9px;border:1px solid hsl(228 30% 30%);border-radius:999px;font-size:12px;font-weight:600}.ds-muted{color:hsl(228 22% 74%)}.ds-meta{margin-left:auto;font:12px 'IBM Plex Mono',ui-monospace,monospace;color:hsl(228 22% 74%)}.ds-k{margin:16px 0 0;font-size:12px;font-weight:600;color:hsl(228 22% 74%)}.ds-fig{margin:4px 0 0;font-size:36px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:hsl(355 84% 74%)}.ds-rule{margin-top:16px;padding-top:16px;border-top:1px solid hsl(228 30% 30%)}.ds-btn{display:inline-flex;padding:7px 12px;border-radius:10px;font-size:13px;font-weight:600}.ds-primary{background:hsl(230 65% 57%);color:#fff}.ds-sample{margin:8px 0 0;font-size:12px;color:hsl(228 22% 74%)}"
+      "css": ".ds-wrap{background:#0e151b;padding:24px;font-family:Inter,system-ui,sans-serif}.ds-card{max-width:360px;padding:22px;border:1px solid #222e39;border-radius:20px;background:#141c24;color:hsl(228 20% 94%);box-shadow:0 24px 48px -32px hsl(228 60% 4% / 0.7);transition:border-color 320ms cubic-bezier(0.16,1,0.3,1)}.ds-card:hover,.ds-card:focus-visible{outline:none;border-color:color-mix(in srgb,hsl(230 75% 72%) 45%,#222e39)}.ds-head{display:flex;align-items:center;gap:6px}.ds-pill{padding:3px 9px;border:1px solid #222e39;border-radius:999px;font-size:12px;font-weight:600}.ds-muted{color:#8d97a5}.ds-meta{margin-left:auto;font:12px 'IBM Plex Mono',ui-monospace,monospace;color:#8d97a5}.ds-k{margin:16px 0 0;font-size:12px;font-weight:600;color:#8d97a5}.ds-fig{margin:4px 0 0;font-size:36px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:hsl(355 84% 74%)}.ds-rule{margin-top:16px;padding-top:16px;border-top:1px solid #222e39}.ds-btn{display:inline-flex;padding:7px 12px;border-radius:10px;font-size:13px;font-weight:600}.ds-primary{background:hsl(230 65% 57%);color:#fff}.ds-sample{margin:8px 0 0;font-size:12px;color:#8d97a5}"
     },
     {
       "name": "UI Pill",
@@ -897,7 +897,7 @@
       "refersTo": "ui-pill",
       "description": "Outlined pill inside product cards for source, marketplace and status.",
       "html": "<span class=\"ds-chip\">Walmart</span> <span class=\"ds-chip ds-chip-on\">Active</span>",
-      "css": ".ds-chip{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid hsl(228 30% 30%);border-radius:999px;background:hsl(228 38% 18%);color:hsl(228 20% 94%);font:600 12px/1.4 Inter,system-ui,sans-serif;transition:border-color 160ms}.ds-chip:hover{border-color:hsl(230 75% 72%)}.ds-chip-on{color:hsl(230 75% 72%)}"
+      "css": ".ds-chip{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid #222e39;border-radius:999px;background:#141c24;color:hsl(228 20% 94%);font:600 12px/1.4 Inter,system-ui,sans-serif;transition:border-color 160ms}.ds-chip:hover{border-color:hsl(230 75% 72%)}.ds-chip-on{color:hsl(230 75% 72%)}"
     },
     {
       "name": "Aan Speech Bubble",
@@ -905,7 +905,7 @@
       "refersTo": "speech-bubble-night",
       "description": "What docked Aan says: 28 characters or fewer, inverting the theme, tail corner on the side it opens from.",
       "html": "<div class=\"ds-stage\"><p class=\"ds-bubble\">Found it. Here&rsquo;s why.</p><span class=\"ds-aan\" aria-hidden=\"true\"></span></div>",
-      "css": ".ds-stage{position:relative;height:120px;background:hsl(228 46% 14%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px}.ds-aan{width:30px;height:30px;border-radius:18%;transform:rotate(45deg);background:radial-gradient(circle at 35% 30%,#f88a93,#f46d76 55%,#f05e6a)}.ds-bubble{position:absolute;bottom:64px;left:50%;margin:0;padding:8px 14px;border-radius:14px;border-bottom-left-radius:4px;background:hsl(228 25% 97%);color:hsl(228 40% 14%);font:600 13px/1.3 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px hsl(228 50% 4% / 0.6)}"
+      "css": ".ds-stage{position:relative;height:120px;background:#0e151b;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px}.ds-aan{width:30px;height:30px;border-radius:18%;transform:rotate(45deg);background:radial-gradient(circle at 35% 30%,#f88a93,#f46d76 55%,#f05e6a)}.ds-bubble{position:absolute;bottom:64px;left:50%;margin:0;padding:8px 14px;border-radius:14px;border-bottom-left-radius:4px;background:hsl(228 25% 97%);color:hsl(228 40% 14%);font:600 13px/1.3 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px hsl(228 50% 4% / 0.6)}"
     },
     {
       "name": "Line Drawing",
@@ -913,7 +913,7 @@
       "refersTo": "drawing-label",
       "description": "A storefront in the one 1.4px hairline: sky-filled body, a lit window, live type, the window that went wrong in coral (hover shows it handled).",
       "html": "<svg class=\"ds-art\" viewBox=\"0 0 220 140\" role=\"img\"><title>A storefront at night</title><path d=\"M10 130H210\"/><rect class=\"ds-body\" x=\"40\" y=\"40\" width=\"140\" height=\"90\"/><path d=\"M34 40h152l-10-16H44z\"/><rect class=\"ds-lit\" x=\"56\" y=\"58\" width=\"22\" height=\"26\"/><rect x=\"99\" y=\"58\" width=\"22\" height=\"26\"/><rect class=\"ds-warn\" x=\"142\" y=\"58\" width=\"22\" height=\"26\"/><rect x=\"96\" y=\"96\" width=\"28\" height=\"34\"/><text x=\"110\" y=\"35\" text-anchor=\"middle\">Amazon</text></svg>",
-      "css": ".ds-art{display:block;width:260px;background:hsl(228 46% 14%);fill:none;stroke:hsl(228 38% 80% / 0.55);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.ds-body{fill:hsl(228 46% 14%)}.ds-lit{fill:hsl(230 70% 65% / 0.5)}.ds-warn{stroke:#f46d76;transition:stroke 400ms cubic-bezier(0.16,1,0.3,1)}.ds-art:hover .ds-warn{stroke:hsl(230 75% 72%)}.ds-art text{fill:hsl(228 40% 90% / 0.92);stroke:none;font:600 11px Inter,system-ui,sans-serif;letter-spacing:0.06em}"
+      "css": ".ds-art{display:block;width:260px;background:#0e151b;fill:none;stroke:hsl(228 38% 80% / 0.55);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.ds-body{fill:#0e151b}.ds-lit{fill:hsl(230 70% 65% / 0.5)}.ds-warn{stroke:#f46d76;transition:stroke 400ms cubic-bezier(0.16,1,0.3,1)}.ds-art:hover .ds-warn{stroke:hsl(230 75% 72%)}.ds-art text{fill:hsl(228 40% 90% / 0.92);stroke:none;font:600 11px Inter,system-ui,sans-serif;letter-spacing:0.06em}"
     },
     {
       "name": "Navigation (scrolled)",
