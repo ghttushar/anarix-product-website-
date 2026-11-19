@@ -1,5 +1,0 @@
-/* words on a hero drawing never render below 11px on screen: --stroke holds
-   the viewBox units per 1.4px, so 11px = --stroke × 7.86 units */
-.legible :global(text) {
-  font-size: max(var(--fs, 13px), calc(var(--stroke, 1.5) * 7.86px));
-}

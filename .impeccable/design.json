@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-18T20:13:42.152Z",
+  "generatedAt": "2026-11-19T12:43:22.916Z",
   "title": "Design System: Anarix Platform",
   "extensions": {
     "colorMeta": {
@@ -219,14 +219,14 @@
         "displayName": "Night Sky",
         "canonical": "#0e151b",
         "tonalRamp": [
-          "hsl(228 46% 15%)",
-          "hsl(228 46% 25%)",
-          "hsl(228 46% 35%)",
-          "hsl(228 46% 45%)",
-          "hsl(228 46% 55%)",
-          "hsl(228 46% 65%)",
-          "hsl(228 46% 80%)",
-          "hsl(228 46% 95%)"
+          "hsl(208 32% 15%)",
+          "hsl(208 32% 25%)",
+          "hsl(208 32% 35%)",
+          "hsl(208 32% 45%)",
+          "hsl(208 32% 55%)",
+          "hsl(208 32% 65%)",
+          "hsl(208 32% 80%)",
+          "hsl(208 32% 95%)"
         ]
       },
       "line-night": {
@@ -279,14 +279,14 @@
         "displayName": "Ink 2 (night)",
         "canonical": "#8d97a5",
         "tonalRamp": [
-          "hsl(228 22% 15%)",
-          "hsl(228 22% 25%)",
-          "hsl(228 22% 35%)",
-          "hsl(228 22% 45%)",
-          "hsl(228 22% 55%)",
-          "hsl(228 22% 65%)",
-          "hsl(228 22% 80%)",
-          "hsl(228 22% 95%)"
+          "hsl(215 12% 15%)",
+          "hsl(215 12% 25%)",
+          "hsl(215 12% 35%)",
+          "hsl(215 12% 45%)",
+          "hsl(215 12% 55%)",
+          "hsl(215 12% 65%)",
+          "hsl(215 12% 80%)",
+          "hsl(215 12% 95%)"
         ]
       },
       "rule-night": {
@@ -294,14 +294,14 @@
         "displayName": "Rule (night)",
         "canonical": "#222e39",
         "tonalRamp": [
-          "hsl(228 34% 15%)",
-          "hsl(228 34% 25%)",
-          "hsl(228 34% 35%)",
-          "hsl(228 34% 45%)",
-          "hsl(228 34% 55%)",
-          "hsl(228 34% 65%)",
-          "hsl(228 34% 80%)",
-          "hsl(228 34% 95%)"
+          "hsl(209 25% 15%)",
+          "hsl(209 25% 25%)",
+          "hsl(209 25% 35%)",
+          "hsl(209 25% 45%)",
+          "hsl(209 25% 55%)",
+          "hsl(209 25% 65%)",
+          "hsl(209 25% 80%)",
+          "hsl(209 25% 95%)"
         ]
       },
       "card-night": {
@@ -309,14 +309,14 @@
         "displayName": "Card (night)",
         "canonical": "#141c24",
         "tonalRamp": [
-          "hsl(228 38% 15%)",
-          "hsl(228 38% 25%)",
-          "hsl(228 38% 35%)",
-          "hsl(228 38% 45%)",
-          "hsl(228 38% 55%)",
-          "hsl(228 38% 65%)",
-          "hsl(228 38% 80%)",
-          "hsl(228 38% 95%)"
+          "hsl(210 29% 15%)",
+          "hsl(210 29% 25%)",
+          "hsl(210 29% 35%)",
+          "hsl(210 29% 45%)",
+          "hsl(210 29% 55%)",
+          "hsl(210 29% 65%)",
+          "hsl(210 29% 80%)",
+          "hsl(210 29% 95%)"
         ]
       },
       "card-line-night": {
@@ -324,14 +324,14 @@
         "displayName": "Card Line (night)",
         "canonical": "#222e39",
         "tonalRamp": [
-          "hsl(228 30% 15%)",
-          "hsl(228 30% 25%)",
-          "hsl(228 30% 35%)",
-          "hsl(228 30% 45%)",
-          "hsl(228 30% 55%)",
-          "hsl(228 30% 65%)",
-          "hsl(228 30% 80%)",
-          "hsl(228 30% 95%)"
+          "hsl(209 25% 15%)",
+          "hsl(209 25% 25%)",
+          "hsl(209 25% 35%)",
+          "hsl(209 25% 45%)",
+          "hsl(209 25% 55%)",
+          "hsl(209 25% 65%)",
+          "hsl(209 25% 80%)",
+          "hsl(209 25% 95%)"
         ]
       },
       "bubble-bg-night": {
@@ -881,7 +881,7 @@
       "refersTo": "point-title",
       "description": "The default container: rows separated by one hairline, a title over a grey line. Never a row of cards.",
       "html": "<ul class=\"ds-points\"><li><b>Finds the one change</b><span>Across every listing, every marketplace.</span></li><li><b>Explains why</b><span>In plain words, with the numbers behind it.</span></li><li><b>Acts within your rules</b><span>And tells you what it did.</span></li></ul>",
-      "css": ".ds-points{margin:0;list-style:none;max-width:420px;padding:8px 16px;background:#0e151b;color:hsl(228 20% 94%);font-family:Inter,system-ui,sans-serif}.ds-points li{padding:12px 0;border-top:1px solid #222e39}.ds-points b{display:block;font-size:15px;font-weight:600}.ds-points span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#8d97a5}"
+      "css": ".ds-points{margin:0;list-style:none;max-width:420px;padding:8px 16px;background:hsl(228 46% 14%);color:hsl(228 20% 94%);font-family:Inter,system-ui,sans-serif}.ds-points li{padding:12px 0;border-top:1px solid hsl(228 34% 30%)}.ds-points b{display:block;font-size:15px;font-weight:600}.ds-points span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:hsl(228 22% 74%)}"
     },
     {
       "name": "Product UI Card",
@@ -889,7 +889,7 @@
       "refersTo": "ui-card-night",
       "description": "The only box on the site: a product card on the night street, captioned as sample data, settling into a handled state.",
       "html": "<div class=\"ds-wrap\"><article class=\"ds-card\" tabindex=\"0\"><div class=\"ds-head\"><span class=\"ds-pill\">Signals</span><span class=\"ds-pill ds-muted\">Amazon</span><span class=\"ds-meta\">11:04 PM</span></div><p class=\"ds-k\">Revenue at risk</p><p class=\"ds-fig\">&minus;$136</p><div class=\"ds-rule\"><span class=\"ds-btn ds-primary\">Execute</span></div></article><p class=\"ds-sample\">Sample data</p></div>",
-      "css": ".ds-wrap{background:#0e151b;padding:24px;font-family:Inter,system-ui,sans-serif}.ds-card{max-width:360px;padding:22px;border:1px solid #222e39;border-radius:20px;background:#141c24;color:hsl(228 20% 94%);box-shadow:0 24px 48px -32px hsl(228 60% 4% / 0.7);transition:border-color 320ms cubic-bezier(0.16,1,0.3,1)}.ds-card:hover,.ds-card:focus-visible{outline:none;border-color:color-mix(in srgb,hsl(230 75% 72%) 45%,#222e39)}.ds-head{display:flex;align-items:center;gap:6px}.ds-pill{padding:3px 9px;border:1px solid #222e39;border-radius:999px;font-size:12px;font-weight:600}.ds-muted{color:#8d97a5}.ds-meta{margin-left:auto;font:12px 'IBM Plex Mono',ui-monospace,monospace;color:#8d97a5}.ds-k{margin:16px 0 0;font-size:12px;font-weight:600;color:#8d97a5}.ds-fig{margin:4px 0 0;font-size:36px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:hsl(355 84% 74%)}.ds-rule{margin-top:16px;padding-top:16px;border-top:1px solid #222e39}.ds-btn{display:inline-flex;padding:7px 12px;border-radius:10px;font-size:13px;font-weight:600}.ds-primary{background:hsl(230 65% 57%);color:#fff}.ds-sample{margin:8px 0 0;font-size:12px;color:#8d97a5}"
+      "css": ".ds-wrap{background:hsl(228 46% 14%);padding:24px;font-family:Inter,system-ui,sans-serif}.ds-card{max-width:360px;padding:22px;border:1px solid hsl(228 30% 30%);border-radius:20px;background:hsl(228 38% 18%);color:hsl(228 20% 94%);box-shadow:0 24px 48px -32px hsl(228 60% 4% / 0.7);transition:border-color 320ms cubic-bezier(0.16,1,0.3,1)}.ds-card:hover,.ds-card:focus-visible{outline:none;border-color:color-mix(in srgb,hsl(230 75% 72%) 45%,hsl(228 30% 30%))}.ds-head{display:flex;align-items:center;gap:6px}.ds-pill{padding:3px 9px;border:1px solid hsl(228 30% 30%);border-radius:999px;font-size:12px;font-weight:600}.ds-muted{color:hsl(228 22% 74%)}.ds-meta{margin-left:auto;font:12px 'IBM Plex Mono',ui-monospace,monospace;color:hsl(228 22% 74%)}.ds-k{margin:16px 0 0;font-size:12px;font-weight:600;color:hsl(228 22% 74%)}.ds-fig{margin:4px 0 0;font-size:36px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:hsl(355 84% 74%)}.ds-rule{margin-top:16px;padding-top:16px;border-top:1px solid hsl(228 30% 30%)}.ds-btn{display:inline-flex;padding:7px 12px;border-radius:10px;font-size:13px;font-weight:600}.ds-primary{background:hsl(230 65% 57%);color:#fff}.ds-sample{margin:8px 0 0;font-size:12px;color:hsl(228 22% 74%)}"
     },
     {
       "name": "UI Pill",
@@ -897,7 +897,7 @@
       "refersTo": "ui-pill",
       "description": "Outlined pill inside product cards for source, marketplace and status.",
       "html": "<span class=\"ds-chip\">Walmart</span> <span class=\"ds-chip ds-chip-on\">Active</span>",
-      "css": ".ds-chip{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid #222e39;border-radius:999px;background:#141c24;color:hsl(228 20% 94%);font:600 12px/1.4 Inter,system-ui,sans-serif;transition:border-color 160ms}.ds-chip:hover{border-color:hsl(230 75% 72%)}.ds-chip-on{color:hsl(230 75% 72%)}"
+      "css": ".ds-chip{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid hsl(228 30% 30%);border-radius:999px;background:hsl(228 38% 18%);color:hsl(228 20% 94%);font:600 12px/1.4 Inter,system-ui,sans-serif;transition:border-color 160ms}.ds-chip:hover{border-color:hsl(230 75% 72%)}.ds-chip-on{color:hsl(230 75% 72%)}"
     },
     {
       "name": "Aan Speech Bubble",
@@ -905,7 +905,7 @@
       "refersTo": "speech-bubble-night",
       "description": "What docked Aan says: 28 characters or fewer, inverting the theme, tail corner on the side it opens from.",
       "html": "<div class=\"ds-stage\"><p class=\"ds-bubble\">Found it. Here&rsquo;s why.</p><span class=\"ds-aan\" aria-hidden=\"true\"></span></div>",
-      "css": ".ds-stage{position:relative;height:120px;background:#0e151b;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px}.ds-aan{width:30px;height:30px;border-radius:18%;transform:rotate(45deg);background:radial-gradient(circle at 35% 30%,#f88a93,#f46d76 55%,#f05e6a)}.ds-bubble{position:absolute;bottom:64px;left:50%;margin:0;padding:8px 14px;border-radius:14px;border-bottom-left-radius:4px;background:hsl(228 25% 97%);color:hsl(228 40% 14%);font:600 13px/1.3 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px hsl(228 50% 4% / 0.6)}"
+      "css": ".ds-stage{position:relative;height:120px;background:hsl(228 46% 14%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px}.ds-aan{width:30px;height:30px;border-radius:18%;transform:rotate(45deg);background:radial-gradient(circle at 35% 30%,#f88a93,#f46d76 55%,#f05e6a)}.ds-bubble{position:absolute;bottom:64px;left:50%;margin:0;padding:8px 14px;border-radius:14px;border-bottom-left-radius:4px;background:hsl(228 25% 97%);color:hsl(228 40% 14%);font:600 13px/1.3 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px hsl(228 50% 4% / 0.6)}"
     },
     {
       "name": "Line Drawing",
@@ -913,7 +913,7 @@
       "refersTo": "drawing-label",
       "description": "A storefront in the one 1.4px hairline: sky-filled body, a lit window, live type, the window that went wrong in coral (hover shows it handled).",
       "html": "<svg class=\"ds-art\" viewBox=\"0 0 220 140\" role=\"img\"><title>A storefront at night</title><path d=\"M10 130H210\"/><rect class=\"ds-body\" x=\"40\" y=\"40\" width=\"140\" height=\"90\"/><path d=\"M34 40h152l-10-16H44z\"/><rect class=\"ds-lit\" x=\"56\" y=\"58\" width=\"22\" height=\"26\"/><rect x=\"99\" y=\"58\" width=\"22\" height=\"26\"/><rect class=\"ds-warn\" x=\"142\" y=\"58\" width=\"22\" height=\"26\"/><rect x=\"96\" y=\"96\" width=\"28\" height=\"34\"/><text x=\"110\" y=\"35\" text-anchor=\"middle\">Amazon</text></svg>",
-      "css": ".ds-art{display:block;width:260px;background:#0e151b;fill:none;stroke:hsl(228 38% 80% / 0.55);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.ds-body{fill:#0e151b}.ds-lit{fill:hsl(230 70% 65% / 0.5)}.ds-warn{stroke:#f46d76;transition:stroke 400ms cubic-bezier(0.16,1,0.3,1)}.ds-art:hover .ds-warn{stroke:hsl(230 75% 72%)}.ds-art text{fill:hsl(228 40% 90% / 0.92);stroke:none;font:600 11px Inter,system-ui,sans-serif;letter-spacing:0.06em}"
+      "css": ".ds-art{display:block;width:260px;background:hsl(228 46% 14%);fill:none;stroke:hsl(228 38% 80% / 0.55);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.ds-body{fill:hsl(228 46% 14%)}.ds-lit{fill:hsl(230 70% 65% / 0.5)}.ds-warn{stroke:#f46d76;transition:stroke 400ms cubic-bezier(0.16,1,0.3,1)}.ds-art:hover .ds-warn{stroke:hsl(230 75% 72%)}.ds-art text{fill:hsl(228 40% 90% / 0.92);stroke:none;font:600 11px Inter,system-ui,sans-serif;letter-spacing:0.06em}"
     },
     {
       "name": "Navigation (scrolled)",
@@ -926,7 +926,7 @@
   ],
   "narrative": {
     "northStar": "City Nocturne",
-    "overview": "The platform site is one night street, drawn in a single hairline. Storefronts for Amazon, Walmart and Shopify stand along it with a few windows lit, and Aan, the coral mascot and the visitor's 24/7 e-commerce account manager, walks it. The whole site sits inside one `.nocturne` scope: in the dark theme (the default, set on `<html data-theme=\"dark\">` before first paint) the street is a deep periwinkle-navy night; in the light theme the same street is drawn in slate ink by day. Every screen is the same sky, the same ink, the same line weight.\n\nPages are made of screens, and a screen holds one idea: a Fraunces headline, one statement in grey Inter with its key phrases lifted to full ink, then either a line drawing that explains a mechanism or the real product card proving it, and at most three hairline-ruled points. There are no tiles, no badges, no section labels above headings. Motion has one job, cause and effect: a drawing draws itself when its screen arrives, Aan docks in it, and then one thing turns periwinkle (what Aan handled) or coral (what was going wrong), and the product card settles into its handled state. Nothing loops, glows or decorates.\n\nTwo pieces of chrome are not part of the world and do not follow its rules: the nav and the Ask Aan action island are a 1:1 port of the services site (www.anarix.ai) and stay at parity with it, including their pill shapes, glass, soft shadows and lift-on-hover buttons.",
+    "overview": "The platform site is one night street, drawn in a single hairline. Storefronts for Amazon, Walmart and Shopify stand along it with a few windows lit, and Aan, the coral mascot and the visitor's 24/7 e-commerce account manager, walks it. The whole site sits inside one `.nocturne` scope: in the dark theme (the default, set on `<html data-theme=\"dark\">` before first paint) the street is a deep slate night, the same `#0e151b` as the services site (www.anarix.ai); in the light theme the same street is drawn in slate ink by day. Every screen is the same sky, the same ink, the same line weight.\n\nPages are made of screens, and a screen holds one idea: a Fraunces headline, one statement in grey Inter with its key phrases lifted to full ink, then either a line drawing that explains a mechanism or the real product card proving it, and at most three hairline-ruled points. There are no tiles, no badges, no section labels above headings. Motion has one job, cause and effect: a drawing draws itself when its screen arrives, Aan docks in it, and then one thing turns periwinkle (what Aan handled) or coral (what was going wrong), and the product card settles into its handled state. Nothing loops, glows or decorates.\n\nTwo pieces of chrome are not part of the world and do not follow its rules: the nav and the Ask Aan action island are a 1:1 port of the services site (www.anarix.ai) and stay at parity with it, including their pill shapes, glass, soft shadows and lift-on-hover buttons.",
     "keyCharacteristics": [
       "One `.nocturne` world in two lights: a night street (dark, default) and the same street by day (light). Theme is a whole-page switch saved in `localStorage` (`anarix-theme-v2`), never a lit panel inside a dark page.",
       "Two hues only, periwinkle (230) and coral (355), over slate and navy neutrals. No green anywhere.",
@@ -971,6 +971,16 @@
         "name": "The Flat Street Rule",
         "body": "Nothing in the world glows, shades or blurs. A handled state is shown by a stroke changing color, never by a halo. The one soft light is the Night Watch dawn, a `--lit` wash rising from the bottom of the sky in the last hour of the night, because the drawing is about the night ending.",
         "section": "elevation"
+      },
+      {
+        "name": "The Name First Rule",
+        "body": "A product page never opens on a slogan alone; its name is the largest type on the page.",
+        "section": "page identities"
+      },
+      {
+        "name": "The One Moment Rule",
+        "body": "One hands-on moment per page, unique to it, built from real buttons or tabs, starting in a state that already makes the point.",
+        "section": "page identities"
       }
     ],
     "dos": [

@@ -1,0 +1,248 @@
+/* Name-first heroes: five compositions, one type system. */
+
+.screen {
+  isolation: isolate;
+}
+
+.body {
+  display: grid;
+  width: min(100% - 48px, 1280px);
+  margin-inline: auto;
+}
+
+.name {
+  margin: 0;
+  padding-bottom: 0.1em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+.slogan {
+  margin: 0.4em 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.375rem, min(2.4vw, 4.2svh), 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink-2);
+}
+
+.line {
+  max-width: 40ch;
+}
+
+.art {
+  min-width: 0;
+}
+
+/* ------------------------------------------- split (Signals): close-up */
+.split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: var(--s-7);
+  align-items: center;
+}
+
+.split .name {
+  font-size: clamp(4rem, min(10vw, 17svh), 10rem);
+}
+
+/* the close-up runs off the right edge of the screen */
+.split .art {
+  justify-self: end;
+  width: min(100% + (100vw - min(100vw - 48px, 1280px)) / 2, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 0.7));
+  margin-right: calc((100vw - min(100vw - 48px, 1280px)) / -2);
+  overflow: hidden;
+}
+
+/* ------------------------------------- ledger (Profitability): stacked */
+.ledger {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: var(--s-7);
+  align-content: center;
+}
+
+.ledger .text {
+  display: contents;
+}
+
+.ledger .name {
+  grid-column: 1 / -1;
+  font-size: clamp(3.5rem, min(9.6vw, 15svh), 9.5rem);
+}
+
+.ledger .slogan {
+  grid-column: 1;
+  align-self: start;
+  margin-top: var(--s-4);
+}
+
+.ledger .more {
+  grid-column: 2;
+  margin-top: var(--s-4);
+}
+
+.ledger .more :global(.t-statement) {
+  margin-top: 0;
+}
+
+.ledger .art {
+  grid-column: 1 / -1;
+  margin-top: var(--gap-m);
+  width: min(100%, calc(32svh * 1200 / 300));
+}
+
+/* ------------------------------------ bleed (Rules): edge-to-edge belt */
+.bleed {
+  grid-template-rows: auto 1fr;
+  align-content: stretch;
+}
+
+.bleed .text {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--s-7);
+  align-items: end;
+  padding-top: clamp(8px, 3svh, 40px);
+}
+
+.bleed .name {
+  grid-row: 1 / span 2;
+  font-size: clamp(4.5rem, min(13vw, 21svh), 13rem);
+}
+
+.bleed .slogan {
+  margin: 0;
+}
+
+.bleed .more :global(.t-statement) {
+  margin-top: var(--s-3);
+}
+
+.bleed .art {
+  align-self: end;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* ------------------------------------------ portrait (Aan): mirrored */
+.portrait {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  column-gap: var(--s-8);
+  align-items: center;
+}
+
+.portrait .art {
+  grid-row: 1;
+  grid-column: 1;
+  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 0.74));
+}
+
+.portrait .text {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.portrait .name {
+  font-size: clamp(5rem, min(14vw, 24svh), 15rem);
+}
+
+/* -------------------------------------------- hub (MCP): centred plug */
+.hub {
+  place-items: center;
+}
+
+.hub .art {
+  grid-area: 1 / 1;
+  width: 100%;
+  align-self: stretch;
+  display: grid;
+  align-items: center;
+}
+
+.hub .text {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+  padding: var(--s-5) var(--s-6);
+  text-align: center;
+  background: var(--sky);
+}
+
+.hub .name {
+  font-size: clamp(4.5rem, min(12vw, 20svh), 12rem);
+}
+
+.hub .more :global(.t-statement) {
+  margin-inline: auto;
+}
+
+.hub .more :global(.c-actions) {
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------ phones */
+@media (max-width: 900px) {
+  .split,
+  .ledger,
+  .portrait {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-4);
+    align-content: center;
+  }
+
+  .ledger {
+    grid-template-rows: none;
+  }
+
+  .ledger .slogan,
+  .ledger .more,
+  .ledger .art {
+    grid-column: 1;
+  }
+
+  .portrait .art,
+  .portrait .text {
+    grid-row: auto;
+    grid-column: 1;
+  }
+
+  .portrait .art {
+    order: 2;
+    justify-self: center;
+    width: min(100%, 30svh);
+  }
+
+  .split .art {
+    justify-self: center;
+    width: min(100%, 26svh);
+    margin-right: 0;
+  }
+
+  .bleed .text {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bleed .name {
+    grid-row: auto;
+  }
+
+  .hub .text {
+    padding: var(--s-4);
+    background: none;
+  }
+
+  .hub .art {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .line {
+    font-size: 16px;
+  }
+}

@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ProductPageView } from "@/components/product-page/ProductPageView";
+import { SignalsPage } from "@/components/product-page/pages/SignalsPage";
+import { ProfitabilityPage } from "@/components/product-page/pages/ProfitabilityPage";
+import { RulesPage } from "@/components/product-page/pages/RulesPage";
+import { AanPage } from "@/components/product-page/pages/AanPage";
+import { McpPage } from "@/components/product-page/pages/McpPage";
 import { PAGES, PAGE_IDS } from "@/content/products/pages";
 import type { ProductId } from "@/content/products/types";
 
-// The five dedicated product pages, one template: /platform/aan, /signals,
-// /profitability, /rules and /mcp. Anything else is a 404.
+// The five dedicated product pages: /platform/aan, /signals, /profitability,
+// /rules and /mcp, each its own place with its own layout and hands-on
+// moment. Anything else is a 404.
+const VIEW = { signals: SignalsPage, profitability: ProfitabilityPage, rules: RulesPage, aan: AanPage, mcp: McpPage };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -30,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProductRoute({ params }: Props) {
   const page = pageFor((await params).product);
   if (!page) notFound();
+  const View = VIEW[page.id];
 
   // the questions on the page, for search results
   const faq = {
@@ -41,7 +48,7 @@ export default async function ProductRoute({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
-      <ProductPageView page={page} />
+      <View page={page} />
     </>
   );
 }

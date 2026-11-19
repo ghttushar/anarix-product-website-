@@ -16,9 +16,9 @@ const ROWS = [
 ];
 const RANK = [...ROWS].sort((a, b) => b.v - a.v);
 
-export function RankedList({ handled }: { handled: boolean }) {
+export function RankedList({ handled, bare = false }: { handled: boolean; /** an open feed, no card around it */ bare?: boolean }) {
   return (
-    <article className={u.card} data-ui data-state={handled ? "handled" : "open"} aria-hidden="true">
+    <article className={bare ? s.bare : u.card} data-ui data-state={handled ? "handled" : "open"} aria-hidden="true">
       <header className={u.head}>
         <span className={u.pill}>Today&apos;s signals</span>
         <span className={u.meta}>

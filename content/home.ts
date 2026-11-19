@@ -48,7 +48,6 @@ export type ProductCopy = {
   id: "signals" | "profitability" | "rules" | "aan" | "mcp";
   title: [string, string];
   statement: string;
-  points: { title: string; text: string }[];
   link: { label: string; href: string };
   bubble: string;
 };
@@ -57,12 +56,7 @@ export const products: ProductCopy[] = [
   {
     id: "signals",
     title: ["3am change.", "9am answer."],
-    statement: "Signals watches every price, Buy Box, budget and stock level across Amazon, Walmart and Shopify, and tells you **what changed, why it matters and what to do**.",
-    points: [
-      { title: "Root cause, not just an alert", text: "Every signal explains what moved and why." },
-      { title: "Ranked by money at risk", text: "The biggest dollar impact rises to the top." },
-      { title: "Fix it from the alert", text: "Execute, modify or assign without opening another tool." },
-    ],
+    statement: "Signals watches every price, Buy Box, budget and stock level, and tells you **what changed and why**.",
     link: { label: "Explore Signals", href: "/signals" },
     bubble: "Found it. Here's why.",
   },
@@ -70,47 +64,27 @@ export const products: ProductCopy[] = [
     id: "profitability",
     title: ["Revenue lies.", "Profit doesn't."],
     statement: "Sales look great until fees, ads, refunds and COGS take their share. See **true profit on every product, every day.**",
-    points: [
-      { title: "Product-level P&L", text: "Fees, ad spend, refunds and COGS on every SKU." },
-      { title: "Daily, not month-end", text: "See yesterday's profit this morning." },
-      { title: "Every marketplace, one view", text: "Amazon, Walmart and Shopify side by side." },
-    ],
     link: { label: "Explore Profitability", href: "/profitability" },
     bubble: "Counting every fee.",
   },
   {
     id: "rules",
     title: ["Your playbook.", "On autopilot."],
-    statement: "Write how you run your accounts **in plain words**. Aan turns it into rules that run every hour, allowing good spend and stopping waste.",
-    points: [
-      { title: "Rules in plain words", text: "Describe it; Aan builds the conditions and schedule." },
-      { title: "Every decision logged", text: "Allowed or stopped, always with a reason." },
-      { title: "Approval above your limit", text: "Big changes wait until you say yes." },
-    ],
+    statement: "Write how you run your accounts **in plain words**. Aan turns it into rules that run every hour.",
     link: { label: "Explore Rules", href: "/rules" },
     bubble: "Good spend in. Waste out.",
   },
   {
     id: "aan",
     title: ["Ask anything.", "Get the why."],
-    statement: "Ask the way you'd ask your best account manager. Get **a plain answer with the numbers behind it**, then a report, a rule or a fix in one click.",
-    points: [
-      { title: "Knows your history", text: "Launches, promos and price changes, remembered." },
-      { title: "Shows its work", text: "Every answer comes with its numbers and sources." },
-      { title: "Turns answers into action", text: "A report, a rule or a fix, straight from the chat." },
-    ],
+    statement: "Ask like you'd ask your best account manager, and get **a plain answer with the numbers behind it**.",
     link: { label: "Meet Aan", href: "/aan" },
     bubble: "Thinking with your data.",
   },
   {
     id: "mcp",
     title: ["Your data.", "Any AI."],
-    statement: "Anarix MCP plugs your live marketplace data into Claude, ChatGPT, Gemini or your own agent, with **the same numbers as your dashboard**.",
-    points: [
-      { title: "Live, structured data", text: "Sales, ads, inventory and profit as tools any AI can call." },
-      { title: "Works where you work", text: "Inside Claude, ChatGPT, Gemini or your own agent." },
-      { title: "Same numbers everywhere", text: "Every AI answer matches your Anarix dashboard." },
-    ],
+    statement: "Plug your live marketplace data into Claude, ChatGPT, Gemini or your own agent, with **the same numbers as your dashboard**.",
     link: { label: "Explore MCP", href: "/mcp" },
     bubble: "Plugged in.",
   },

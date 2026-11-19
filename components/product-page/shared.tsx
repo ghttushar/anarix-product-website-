@@ -1,31 +1,7 @@
 "use client";
 
-import { useEffect, useState, type ComponentType } from "react";
+import { useEffect, useState } from "react";
 import { useScreen } from "@/components/layout/Screen";
-import { AanCutaway, McpCutaway, ProfitCutaway, RulesCutaway, SignalsCutaway } from "@/components/illustrations/sets/nocturne/cutaways";
-import { SignalCard } from "@/components/product-ui/SignalCard";
-import { ProfitDayCard } from "@/components/product-ui/ProfitDayCard";
-import { RulesTable } from "@/components/product-ui/RulesTable";
-import { AanChat } from "@/components/product-ui/AanChat";
-import { McpTerminal } from "@/components/product-ui/McpTerminal";
-import type { ProductId } from "@/content/products/types";
-
-/** each product's landmark on the street, drawn open, and the product UI it is about */
-export const LANDMARK: Record<ProductId, ComponentType<{ stop?: string; bubble?: string }>> = {
-  aan: AanCutaway,
-  signals: SignalsCutaway,
-  profitability: ProfitCutaway,
-  rules: RulesCutaway,
-  mcp: McpCutaway,
-};
-
-export const PRODUCT_UI: Record<ProductId, ComponentType<{ handled: boolean }>> = {
-  aan: AanChat,
-  signals: SignalCard,
-  profitability: ProfitDayCard,
-  rules: RulesTable,
-  mcp: McpTerminal,
-};
 
 /** a card settles a beat after its screen's moment begins */
 export function useHandled(delay = 350) {
@@ -39,4 +15,19 @@ export function useHandled(delay = 350) {
   return handled;
 }
 
-export const talkToAan = () => window.dispatchEvent(new Event("aan:open-chat"));
+export const money = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;
+
+/** a big monospaced figure, with the comma tucked in so it doesn't leave a hole */
+export function Figure({ text }: { text: string }) {
+  const parts = text.split(",");
+  return (
+    <>
+      {parts.map((p, i) => (
+        <span key={i}>
+          {i > 0 && <span style={{ marginInline: "-0.2em" }}>,</span>}
+          {p}
+        </span>
+      ))}
+    </>
+  );
+}

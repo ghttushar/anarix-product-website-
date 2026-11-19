@@ -40,10 +40,13 @@ export function Typewriter({ text, play, cps = 46, delay = 0, className }: { tex
 
   return (
     <span className={className} style={{ display: "grid" }}>
+      <span className="sr-only">{text}</span>
       <span style={{ gridArea: "1 / 1", visibility: "hidden" }} aria-hidden="true">
         {text}
       </span>
-      <span style={{ gridArea: "1 / 1" }}>{text.slice(0, n)}</span>
+      <span style={{ gridArea: "1 / 1" }} aria-hidden="true">
+        {text.slice(0, n)}
+      </span>
     </span>
   );
 }

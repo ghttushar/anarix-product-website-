@@ -1,0 +1,277 @@
+/* MCP: technical and diagram-first. Tabs, a terminal, an equals sign. */
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, min(4.4vw, 7.4svh), 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.hint {
+  margin: var(--s-3) 0 0;
+  max-width: 40ch;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+/* ---------------------------------------------------- pick your AI */
+.moment {
+  align-self: center;
+  display: grid;
+  row-gap: var(--s-5);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tab {
+  position: relative;
+  padding: var(--s-3) var(--s-5);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink-2);
+  transition: color var(--dur-micro) var(--ease-arrive);
+}
+
+.tab::after {
+  content: "";
+  position: absolute;
+  left: var(--s-5);
+  right: var(--s-5);
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform var(--dur-ui) var(--ease-arrive);
+}
+
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--ink);
+}
+
+.tab[aria-selected="true"]::after {
+  transform: scaleX(1);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) 48px minmax(0, 1fr);
+  align-items: center;
+}
+
+/* the AI's window: a chat for the apps, a terminal for your own agent */
+.window {
+  border: 1px solid var(--card-line);
+  border-radius: 16px;
+  background: var(--card);
+  overflow: hidden;
+  animation: swap 400ms var(--ease-arrive) both;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--card-line);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--card-line);
+}
+
+.bar span {
+  margin-left: 8px;
+}
+
+.body {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-5);
+}
+
+.ask {
+  justify-self: end;
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 16px 16px 4px 16px;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  font-size: 15px;
+}
+
+.tool {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.answer {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.answer b {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.terminal .body {
+  font-family: var(--font-mono);
+}
+
+.terminal .ask {
+  justify-self: start;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  font-size: 14px;
+}
+
+.terminal .answer {
+  font-size: 15px;
+}
+
+.equals {
+  display: grid;
+  gap: 7px;
+  justify-items: center;
+}
+
+.equals i {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.tile {
+  padding: var(--s-5);
+  border: 1px solid var(--card-line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.tileK {
+  margin: 0 0 var(--s-3);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tileSub {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.tileFig {
+  margin: 6px 0;
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+@keyframes swap {
+  from {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .window {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------- what MCP is */
+.proof {
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: var(--s-8);
+  align-items: center;
+}
+
+.toolsArt {
+  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 1.3));
+}
+
+.toolsCopy .note {
+  margin-top: var(--s-3);
+}
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-3);
+  }
+
+  .equals {
+    grid-auto-flow: column;
+    justify-content: center;
+  }
+
+  .equals i {
+    width: 2px;
+    height: 16px;
+  }
+
+  .tab {
+    padding: var(--s-2) var(--s-3);
+    font-size: 14px;
+  }
+
+  .tab::after {
+    left: var(--s-3);
+    right: var(--s-3);
+  }
+
+  .body {
+    padding: var(--s-4);
+  }
+
+  .proof {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-4);
+  }
+
+  .hint {
+    display: none;
+  }
+
+  .toolsCopy .hint {
+    display: block;
+  }
+}

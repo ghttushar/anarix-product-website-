@@ -1,0 +1,230 @@
+/* The homepage's five product screens: five layouts, each a preview of its
+   own page. */
+
+.sample {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+/* ------------------------------------------------- Signals: row, then alert */
+.signals {
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: var(--s-8);
+  row-gap: var(--s-3);
+  align-items: center;
+}
+
+.sigArt {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, calc(15svh * 5.4));
+}
+
+.sigCopy {
+  grid-column: 1;
+}
+
+.sigCard {
+  grid-column: 2;
+}
+
+/* ------------------------------------------- Profitability: the ledger */
+.profit {
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: var(--s-8);
+  row-gap: var(--s-5);
+  align-items: end;
+}
+
+.profitFig {
+  display: grid;
+  margin: 0;
+  justify-items: end;
+  text-align: right;
+}
+
+.profitFig b {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, min(6vw, 10svh), 6rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+
+.profitFig span {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.profitArt {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, calc(30svh * 4));
+}
+
+/* --------------------------------------------- Rules: the belt, edge to edge */
+.rules {
+  align-self: center;
+  display: grid;
+  row-gap: var(--s-8);
+}
+
+.rulesCopy {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: var(--s-8);
+  align-items: end;
+}
+
+.rulesCopy :global(.t-statement) {
+  margin-top: 0;
+}
+
+.rulesCopy :global(.c-actions) {
+  grid-column: 2;
+  margin-top: var(--s-3);
+}
+
+.rulesBand > div {
+  width: min(100%, calc(36svh * 1600 / 330));
+  margin-inline: auto;
+}
+
+/* ------------------------------------------ Ask Aan: a conversation, mirrored */
+.aan {
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: var(--s-8);
+  align-items: center;
+}
+
+.talk {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.you {
+  justify-self: end;
+  max-width: 80%;
+  margin: 0;
+  padding: 14px 20px;
+  border-radius: 20px 20px 4px 20px;
+  background: var(--accent-solid);
+  color: #fff;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.4;
+}
+
+.reply {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: var(--s-4);
+  align-items: start;
+}
+
+.speaker {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.answer {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, min(2vw, 3.6svh), 1.75rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: var(--s-4) 0 0;
+}
+
+.sources span {
+  padding: 3px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* --------------------------------------------- MCP: the pole and terminal */
+.mcp {
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: var(--s-8);
+  align-items: center;
+}
+
+.mcpVisual {
+  display: grid;
+  gap: var(--s-4);
+}
+
+/* ------------------------------------------------------------ phones */
+@media (max-width: 900px) {
+  .signals,
+  .profit,
+  .aan,
+  .mcp,
+  .rulesCopy {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-4);
+  }
+
+  .sigCopy,
+  .sigCard,
+  .profitArt,
+  .rulesCopy :global(.c-actions) {
+    grid-column: 1;
+  }
+
+  .profitFig {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .talkCopy,
+  .mcpCopy {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .sigArt,
+  .mcpVisual > [data-optional] {
+    display: none;
+  }
+
+  .profitFig b {
+    font-size: 2.5rem;
+  }
+
+  .answer {
+    font-size: 17px;
+  }
+
+  .reply {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .speaker {
+    width: 40px;
+    height: 40px;
+  }
+}

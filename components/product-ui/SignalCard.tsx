@@ -3,43 +3,48 @@
 import { useCallback } from "react";
 import { AanMascot } from "@/components/aan/AanMascot";
 import { CountUp } from "@/components/motion/CountUp";
+import { SIGNALS, type SampleSignal } from "@/content/products/samples";
 import s from "./signal-card.module.css";
 
 /*
   The product's Signal card (anarix-insight-engine), sample data. It shows one
   calm state change: money at risk becomes money protected once Aan acts.
+  Any of the sample signals can be shown (the Signals page swaps them).
 */
-export function SignalCard({ handled }: { handled: boolean }) {
+export function SignalCard({ handled, signal = SIGNALS[0], live = false }: { handled: boolean; signal?: SampleSignal; /** read by assistive tech (the Signals page's picker) */ live?: boolean }) {
   const money = useCallback((n: number) => `${n < 0 ? "−" : "+"}$${Math.round(Math.abs(n)).toLocaleString("en-US")}`, []);
+  const sg = signal;
 
   return (
-    <article className={s.card} data-ui data-state={handled ? "handled" : "risk"} aria-hidden="true">
+    <article className={s.card} data-ui data-state={handled ? "handled" : "risk"} aria-hidden={live ? undefined : true} aria-label={live ? `${sg.store}: ${sg.title}` : undefined}>
       <header className={s.head} data-part="1">
-        <span className={`${s.pill} ${s.pillRisk}`}>High</span>
-        <span className={s.pill}>Advertising</span>
-        <span className={`${s.pill} ${s.pillMuted}`}>Amazon · US</span>
-        <span className={s.time}>03:12</span>
+        <span className={`${s.pill} ${sg.priority === "High" ? s.pillRisk : s.pillMuted}`}>{sg.priority}</span>
+        <span className={s.pill}>{sg.area}</span>
+        <span className={`${s.pill} ${s.pillMuted}`}>{sg.store} · US</span>
+        <span className={s.time}>{sg.time}</span>
       </header>
 
       <p className={s.value} data-part="2">
-        <CountUp from={-136} to={1651} play={handled} format={money} width={6} className={s.figure} />
+        <CountUp from={-sg.risk} to={sg.risk} play={handled} format={money} width={6} className={s.figure} />
         <span className={s.valueK}>
-          <span className={s.k1}>ad sales at risk</span>
+          <span className={s.k1}>at risk</span>
           <span className={s.k2}>protected</span>
         </span>
       </p>
 
-      <h3 className={s.title} data-part="3">Advertising eligibility lost</h3>
-      <p className={s.sub}>ASIN B0CSHBTCC6 · Sampler, Decaf 40 Count</p>
+      <h3 className={s.title} data-part="3">
+        {sg.title}
+      </h3>
+      <p className={s.sub}>{sg.item}</p>
 
       <dl className={s.why} data-optional>
         <div>
           <dt>What happened</dt>
-          <dd>Ad eligibility lost on Jul 18, the 2nd time in 30 days.</dd>
+          <dd>{sg.what}</dd>
         </div>
         <div>
           <dt>Root cause</dt>
-          <dd>Cost to Amazon is too high for an $18.69 retail price.</dd>
+          <dd>{sg.why}</dd>
         </div>
       </dl>
 
@@ -49,7 +54,7 @@ export function SignalCard({ handled }: { handled: boolean }) {
           Aan&apos;s analysis
         </span>
         <span className={s.aanV}>
-          Lower the cost to Amazon by $1.20 to restore eligibility · <b>95%</b> confidence
+          {sg.fix} · <b>{sg.confidence}%</b> confidence
         </span>
       </div>
 
@@ -58,8 +63,8 @@ export function SignalCard({ handled }: { handled: boolean }) {
           <svg className={s.check} viewBox="0 0 16 16" aria-hidden="true">
             <path d="M3.5 8.5l3 3 6-7" />
           </svg>
-          <span className={s.k1}>Execute: Lower cost $1.20</span>
-          <span className={s.k2}>Executed: Cost lowered</span>
+          <span className={s.k1}>Execute: {sg.action}</span>
+          <span className={s.k2}>Executed: {sg.done}</span>
         </span>
         <span className={s.btn}>Modify</span>
         <span className={s.btn} data-optional>

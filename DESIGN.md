@@ -391,6 +391,24 @@ The close screen holds a 9:16 player (20px radius, 1px Rule border, near-black g
 ### Motion
 Tokens: micro 160ms (hover, press, focus), UI 320ms (state changes in cards), reveal 700ms with at most a 16px rise, draw 1400ms, flight 600ms, stagger 90ms. Everything that arrives eases on `cubic-bezier(0.16, 1, 0.3, 1)`; Aan's travel eases on `cubic-bezier(0.65, 0, 0.35, 1)`. Under reduced motion, draw, flight and stagger drop to 0, reveals become 200ms fades, and every screen shows its final, handled state. Animations pause on screens that are out of view.
 
+## Page identities
+
+The world is shared; the pages are not. Each product page is its own place on the street, drawn from its own camera, with its own layout grammar and one hands-on moment, so a visitor always knows where they are. Every page opens on its own name (Fraunces, the biggest thing on the page, slogan under it, one action) and runs four screens: name, hands-on, proof, close. Every screen is a headline and at most one line of 20 words.
+
+| Page | Place and camera | Layout grammar | Hands-on moment | Proof | Close mark |
+|---|---|---|---|---|---|
+| **Signals** | one window bay at 3:12 AM, close up, running off the right edge (`WindowCloseup`) | a centred feed; mono timestamps; coral-forward | **Tap a store**: three shopfront buttons; the chosen store's signal card rises, at risk then fixed | the ranked list as an open feed, no card | the changed tag |
+| **Profitability** | the day's money in cross-section (`ProfitLedger`), name across the top, chart across the bottom | the ledger: ruled receipt rows, figures as type | **Take out the costs**: switch each cost on (they come off one by one if nobody taps); one bar of sales splits into costs and what is left | marketplaces side by side | a receipt |
+| **Rules** | the gatehouse on the belt, side on, edge to edge (`GatehouseBelt`) | read left to right: bands and arrows | **Say it in a sentence**: a sentence goes in, When / If / Then comes out, the gate drops what it stops | the decision log: allowed, stopped or held, each with its reason | a parcel through the gate |
+| **Aan** | Aan alone in an arched frame (`AanPortrait`), mirrored | a conversation, centred, unboxed | **Ask Aan**: the mini Aan goes circle, cube, bar while it listens, thinks and works, then answers as the diamond | the morning brief as a letter, signed by Aan | Aan |
+| **MCP** | the wiring from above, the name as the hub (`WiringMap`) | technical: tabs, a terminal, an equals sign | **Pick your AI**: Claude, ChatGPT, Gemini or your own agent; the same question gives the same $3,412 as the dashboard tile | the tool panel from above (`ToolPanel`): four sockets, every AI on one bus | a plug |
+
+The homepage's five product screens preview their pages in the same grammars: the shop row over the alert, the ledger with the profit figure set large, the belt edge to edge, Aan answering as the speaker in a conversation, the pole over the terminal.
+
+**The Name First Rule.** A product page never opens on a slogan alone; its name is the largest type on the page.
+
+**The One Moment Rule.** One hands-on moment per page, unique to it, built from real buttons or tabs, starting in a state that already makes the point.
+
 ## Do's and Don'ts
 
 ### Do:

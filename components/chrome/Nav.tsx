@@ -20,21 +20,15 @@ const CONTACT = { label: "Contact Us", href: `${SERVICES}/contact-us` };
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [docked, setDocked] = useState<string>("");
   const path = usePathname();
-  // a product page is active by its route; on the homepage, by where Aan is
-  const isActive = (href: string) => (path === "/" ? docked === href.slice(1) : path === href);
+  // a link is current only on its own page
+  const isActive = (href: string) => path === href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    const onDock = (e: Event) => setDocked((e as CustomEvent<string>).detail);
-    window.addEventListener("aan:dock", onDock);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("aan:dock", onDock);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (

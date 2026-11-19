@@ -51,3 +51,21 @@
     transition-duration: 1ms;
   }
 }
+
+/* the open feed (the Signals page): no card, bigger rows, figures as type */
+.bare .list {
+  --row: clamp(56px, 8.4svh, 76px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.bare .row {
+  border-top-color: var(--rule);
+}
+
+.bare .title {
+  font-size: clamp(15px, 1.3vw, 19px);
+}
+
+.bare .value {
+  font-size: clamp(18px, 1.8vw, 26px);
+}

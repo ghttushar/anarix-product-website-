@@ -3,55 +3,22 @@ import type { ProductId, ProductPage } from "./types";
 // The five dedicated pages, in nav order. Copy: docs/redesign/03-copy-deck.md.
 // Left out until the owner answers: data protection (Aan), COGS source
 // (Profitability), MCP setup steps, what MCP can see and change.
+// Every screen is a headline plus one line at most: the drawing or the
+// product does the explaining.
 
 const aan: ProductPage = {
   id: "aan",
   name: "Aan",
+  slogan: "Your 24/7 e‑commerce account manager.",
+  line: "The AI inside Anarix. It watches your stores, explains **what changed and why**, and acts within your rules.",
+  bubble: "Ask me anything.",
   meta: {
     title: "Aan, your 24/7 e-commerce account manager",
     description: "Aan is the AI inside Anarix. It watches your Amazon, Walmart and Shopify accounts around the clock, explains what changed and why, and acts within the rules you set.",
   },
-  hero: {
-    title: ["Your 24/7 e‑commerce", "account manager."],
-    lede: "Aan is the AI inside Anarix. It watches your Amazon, Walmart and Shopify accounts around the clock, explains **what changed and why**, and acts within the rules you set.",
-    bubble: "Ask me anything.",
-  },
-  how: {
-    title: "How Aan works.",
-    steps: [
-      { glyph: "storefront", title: "Watch", text: "Every price, Buy Box, budget, stock level and fee, across every marketplace, every hour.", bubble: "Watching every store." },
-      { glyph: "signpost", title: "Explain", text: "When something moves, Aan tells you what changed, why, and what it's worth in dollars.", bubble: "Here's what changed." },
-      { glyph: "gate", title: "Act", text: "Aan fixes what your rules allow, asks before anything above your limit, and logs every decision.", bubble: "Handled, and logged." },
-    ],
-  },
-  anatomy: {
-    title: "Ask it like a person.",
-    text: "Get a plain answer with the numbers behind it, then a report, a rule or a fix in one click.",
-    parts: [
-      { title: "Your question", text: "Ask the way you'd ask your best account manager." },
-      { title: "Shows its work", text: "Every answer comes with its numbers and sources." },
-      { title: "Turns answers into action", text: "A report, a rule or a fix, straight from the chat." },
-    ],
-    note: "Sample conversation",
-  },
-  depth: [
-    {
-      kind: "brief",
-      title: "Your morning brief.",
-      text: "Start the day with a brief: what was handled overnight, what needs you, and what it was worth.",
-    },
-    {
-      kind: "shapes",
-      title: "Aan's shapes.",
-      text: "You can always tell what Aan is doing by its shape.",
-      shapes: [
-        { state: "diamond", name: "Diamond", text: "On watch." },
-        { state: "circle", name: "Circle", text: "Listening to you." },
-        { state: "bar", name: "Bar", text: "Working on it." },
-        { state: "cube", name: "Cube", text: "Thinking it through." },
-      ],
-    },
-  ],
+  moment: { title: "Ask Aan.", hint: "Pick a question. Watch Aan listen, think, work, then answer.", note: "Sample conversation" },
+  proof: { title: "Your morning brief.", line: "What was handled overnight, what needs you, and what it was worth.", note: "Sample data" },
+  close: { title: "Meet Aan in a demo." },
   faq: [
     { q: "What is Aan?", a: "The AI inside Anarix. The name stands for Anarix Analytical Neural." },
     { q: "Which marketplaces does Aan work with?", a: "Amazon, Walmart and Shopify." },
@@ -63,38 +30,16 @@ const aan: ProductPage = {
 const signals: ProductPage = {
   id: "signals",
   name: "Signals",
+  slogan: "3am change. 9am answer.",
+  line: "Aan watches every price, Buy Box, budget and stock level, and tells you **what changed and why**.",
+  bubble: "Found it. Here's why.",
   meta: {
     title: "Signals: 3am change, 9am answer",
     description: "Signals watches every price, Buy Box, budget and stock level across Amazon, Walmart and Shopify, and tells you what changed, why it matters and what to do.",
   },
-  hero: {
-    title: ["3am change.", "9am answer."],
-    lede: "Signals watches every price, Buy Box, budget and stock level across Amazon, Walmart and Shopify. When something moves, Aan tells you **what changed, why it matters and what to do**, before it costs you.",
-    bubble: "Found it. Here's why.",
-  },
-  how: {
-    title: "From change to fix.",
-    steps: [
-      { glyph: "storefrontChanged", title: "Something moves", text: "Price, Buy Box, ad eligibility, budget and spend, or stock level, on Amazon, Walmart or Shopify.", bubble: "Something moved." },
-      { glyph: "signpost", title: "Aan finds why", text: "Every signal explains what moved and why, with the money at risk.", bubble: "Here's why." },
-      { glyph: "buttonCheck", title: "You fix it there", text: "Execute, modify or assign without opening another tool.", bubble: "Fixed from the alert." },
-    ],
-  },
-  anatomy: {
-    title: "Anatomy of a signal.",
-    text: "Everything you need to decide sits on one card.",
-    parts: [
-      { title: "Priority and area", text: "How urgent, which part of the business, which marketplace." },
-      { title: "Money at risk", text: "The dollar impact, so you know what it's worth before you open it." },
-      { title: "What happened, and why", text: "The change and its root cause, in plain words." },
-      { title: "Aan's suggested fix", text: "With Aan's confidence in it." },
-      { title: "Act from here", text: "Execute, modify or assign, without opening another tool." },
-    ],
-    note: "Sample data",
-  },
-  depth: [
-    { kind: "ranked", title: "Ranked by money at risk.", text: "The biggest dollar impact rises to the top, so the first fix is always the one that matters most." },
-  ],
+  moment: { title: "Tap a store.", hint: "Each one changed overnight. See what Aan found, and fix it from there.", note: "Sample data" },
+  proof: { title: "Biggest risk first.", line: "Signals rank themselves by money at risk, so the first fix is the one that matters most.", note: "Sample data" },
+  close: { title: "Catch the next 3am change." },
   faq: [
     { q: "What counts as a signal?", a: "A meaningful change on an account (a price, Buy Box, ad eligibility, budget or stock change) together with its root cause and the money at risk." },
     { q: "How are signals ranked?", a: "By dollar impact, highest first." },
@@ -107,43 +52,16 @@ const signals: ProductPage = {
 const profitability: ProductPage = {
   id: "profitability",
   name: "Profitability",
+  slogan: "Revenue lies. Profit doesn't.",
+  line: "Fees, ads, refunds and COGS all take their share. See **true profit on every product, every day**.",
+  bubble: "Counting every fee.",
   meta: {
     title: "Profitability: revenue lies, profit doesn't",
     description: "Sales look great until fees, ads, refunds and COGS take their share. Anarix shows true profit on every product, every day.",
   },
-  hero: {
-    title: ["Revenue lies.", "Profit doesn't."],
-    lede: "Sales look great until fees, ads, refunds and COGS take their share. Anarix shows **true profit on every product, every day**, so you scale what actually makes money.",
-    bubble: "Counting every fee.",
-  },
-  how: {
-    title: "Every cost, every day.",
-    steps: [
-      { glyph: "receipt", title: "Every cost, on every SKU", text: "Fees, ad spend, refunds and COGS, taken off every product's sales.", bubble: "Every fee counted." },
-      { glyph: "calendar", title: "Daily, not month-end", text: "See yesterday's profit this morning and catch margin leaks while they're still small.", bubble: "Yesterday, this morning." },
-      { glyph: "threeStores", title: "Every marketplace, one view", text: "Amazon, Walmart and Shopify side by side, so you know where you actually make money.", bubble: "All three, side by side." },
-    ],
-  },
-  anatomy: {
-    title: "Anatomy of the profit card.",
-    text: "Yesterday's numbers for one marketplace, every cost already taken out.",
-    parts: [
-      { title: "Net profit and its change", text: "What is really left, and how it moved from the day before." },
-      { title: "Margin", text: "Net profit as a share of sales." },
-      { title: "GMV and orders", text: "What you sold, and how many orders." },
-      { title: "Ad cost", text: "What advertising cost you that day." },
-      { title: "Estimated payout", text: "What the marketplace should pay you out." },
-    ],
-    note: "Sample data",
-  },
-  depth: [
-    {
-      kind: "markets",
-      title: "Every marketplace, one view.",
-      text: "Amazon, Walmart and Shopify side by side, so you know where you actually make money.",
-      flag: "Aan flags a margin leak while it is still small: a fee change, an ad that stopped paying, a run of refunds.",
-    },
-  ],
+  moment: { title: "Take out the costs.", hint: "Switch each cost on and watch what is really left.", note: "Sample data · one day, Walmart US" },
+  proof: { title: "Every marketplace, one view.", line: "Amazon, Walmart and Shopify side by side, so you know where you actually make money.", note: "Sample data" },
+  close: { title: "See your real profit." },
   faq: [
     { q: "What goes into profit?", a: "Fees, ad spend, refunds and COGS on every SKU." },
     { q: "How often does it update?", a: "Daily, so you see yesterday's profit this morning." },
@@ -154,43 +72,16 @@ const profitability: ProductPage = {
 const rules: ProductPage = {
   id: "rules",
   name: "Rules",
+  slogan: "Your playbook. On autopilot.",
+  line: "Write how you run your accounts **in plain words**. Aan turns it into rules that run every hour.",
+  bubble: "Good spend in. Waste out.",
   meta: {
     title: "Rules: your playbook, on autopilot",
     description: "Write how you run your accounts in plain words. Aan turns it into rules that run every hour, allowing good spend, stopping waste and logging every decision.",
   },
-  hero: {
-    title: ["Your playbook.", "On autopilot."],
-    lede: "Write how you run your accounts **in plain words**. Aan turns it into rules that run every hour of every day, allowing good spend, stopping waste and logging every decision.",
-    bubble: "Good spend in. Waste out.",
-  },
-  how: {
-    title: "From words to rules.",
-    steps: [
-      { glyph: "speech", title: "Describe it", text: "Write how you run your accounts in plain words.", bubble: "Tell me how you run it." },
-      { glyph: "conditions", title: "Aan builds it", text: "Aan turns your words into conditions, a scope and a schedule.", bubble: "Built: when, if, then." },
-      { glyph: "clock", title: "It runs every hour", text: "Every campaign and keyword passes the gate, and every decision is logged.", bubble: "Running every hour." },
-    ],
-  },
-  anatomy: {
-    title: "Anatomy of your rules.",
-    text: "Every rule shows what it covers, how often it has run and whether it is on.",
-    parts: [
-      { title: "Create rules with AI", text: "Describe the rule; Aan writes it." },
-      { title: "The rule and its type", text: "Budget, keyword or inventory." },
-      { title: "Its scope", text: "The campaigns, keywords or products it applies to." },
-      { title: "Runs and status", text: "How often it has run, and whether it is active." },
-      { title: "The decision log", text: "Every decision, with its reason." },
-    ],
-    note: "Sample data",
-  },
-  depth: [
-    {
-      kind: "rule",
-      title: "Rules in plain words.",
-      text: "Say what you want in a sentence. Aan builds the conditions, scope and schedule for you.",
-      control: "Approval mode holds any change above your limit until you say yes.",
-    },
-  ],
+  moment: { title: "Say it in a sentence.", hint: "Pick one. Aan builds the rule, and the gate starts sorting.", note: "Sample rules" },
+  proof: { title: "Every decision, with its reason.", line: "Allowed or stopped, every hour, all logged. Changes above your limit wait for your approval.", note: "Sample data" },
+  close: { title: "Hand Aan your playbook." },
   faq: [
     { q: "What can rules do?", a: "For example, cap budgets, adjust bids on high-ACOS keywords and keep inventory in sync." },
     { q: "When do rules run?", a: "Every hour of every day." },
@@ -202,42 +93,20 @@ const rules: ProductPage = {
 const mcp: ProductPage = {
   id: "mcp",
   name: "MCP",
+  slogan: "Your data. Any AI.",
+  line: "Anarix MCP plugs your marketplace data into the AI you already use, with **the same live numbers as your dashboard**.",
+  bubble: "Plugged in.",
   meta: {
     title: "Anarix MCP: your data, any AI",
     description: "Anarix MCP plugs your marketplace data into Claude, ChatGPT, Gemini or your own agent, with the same live numbers as your dashboard.",
   },
-  hero: {
-    title: ["Your data.", "Any AI."],
-    lede: "Anarix MCP plugs your marketplace data into Claude, ChatGPT, Gemini or your own agent. Every answer uses **the same live numbers as your dashboard**.",
-    bubble: "Plugged in.",
+  moment: { title: "Pick your AI.", hint: "Ask the same question anywhere. Get the same number as your dashboard.", note: "Illustrative" },
+  proof: {
+    title: "What MCP is.",
+    line: "An open standard that lets AI assistants use tools. Anarix MCP gives yours four: sales, ads, inventory and profit.",
+    note: "Illustrative",
   },
-  how: {
-    title: "How MCP works.",
-    steps: [
-      { glyph: "pole", title: "Your data, as tools", text: "Sales, ads, inventory and profit, as tools your AI can call.", bubble: "Your data, as tools." },
-      { glyph: "chat", title: "Ask where you work", text: "Inside Claude, ChatGPT, Gemini or your own agent.", bubble: "Ask in your own AI." },
-      { glyph: "sameNumber", title: "Same numbers everywhere", text: "Every AI answer matches your Anarix dashboard.", bubble: "Same numbers. Always." },
-    ],
-  },
-  anatomy: {
-    title: "MCP in use.",
-    text: "Your AI calls an Anarix tool, then answers with your numbers.",
-    parts: [
-      { title: "Your AI client", text: "Claude here; ChatGPT, Gemini or your own agent work the same way." },
-      { title: "Your question", text: "Asked in your AI, in plain words." },
-      { title: "The Anarix tool call", text: "Your AI calls an Anarix tool for the numbers." },
-      { title: "The answer", text: "Built from your live marketplace data." },
-    ],
-    note: "Illustrative session",
-  },
-  depth: [
-    {
-      kind: "same",
-      title: "Same numbers everywhere.",
-      text: "One source of truth, so every AI answer matches your Anarix dashboard.",
-      what: "MCP (the Model Context Protocol) is an open standard that lets AI assistants use tools. Anarix MCP gives your AI tools for your sales, ads, inventory and profit.",
-    },
-  ],
+  close: { title: "Plug your data into your AI." },
   faq: [
     { q: "Which AI clients work with it?", a: "Claude, ChatGPT, Gemini, or your own agent." },
     { q: "Is it the same data as my dashboard?", a: "Yes, the same live numbers." },
@@ -247,12 +116,10 @@ const mcp: ProductPage = {
 export const PAGES: Record<ProductId, ProductPage> = { aan, signals, profitability, rules, mcp };
 export const PAGE_IDS = Object.keys(PAGES) as ProductId[];
 
-/** the shared closing screen on every page */
+/** what every close offers, under its own line */
 export const pageClose = {
-  title: ["Let Aan take", "the night shift."],
   primary: { label: "Book a demo", href: "https://www.anarix.ai/contact-us" },
   secondary: "Talk to Aan",
   services: { lead: "Rather we run it for you?", label: "See Anarix Services", href: "https://www.anarix.ai" },
-  bubble: "Ready when you are.",
-  faqTitle: "Questions.",
+  faqTitle: "Questions",
 };

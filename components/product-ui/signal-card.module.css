@@ -218,3 +218,8 @@
     display: none;
   }
 }
+
+/* at risk, the card itself says so */
+.card[data-state="risk"] {
+  border-color: color-mix(in srgb, var(--risk) 55%, var(--card-line));
+}
