@@ -46,8 +46,8 @@ export function McpPole({ stop = "mcp", bubble }: { stop?: string; bubble?: stri
       <Drawing
         w={W}
         h={H}
-        label="Lines run from the Amazon, Walmart and Shopify stores into the Anarix MCP pole, and out to Claude, ChatGPT and Gemini. Aan stands at the pole."
-        dock={<AanDock stop={stop} size={size} bubble={bubble} side="right" style={{ left: `${((POLE + 30) / W) * 100}%`, bottom: `${((H - BASE) / H) * 100}%` }} />}
+        label="Lines run from the Amazon, Walmart and Shopify stores into the Anarix MCP pole, and out to Claude, ChatGPT and Gemini. Aan sits on top of the pole."
+        dock={<AanDock stop={stop} size={size} bubble={bubble} side="right" style={{ left: `${(POLE / W) * 100}%`, bottom: `${((H - 36) / H) * 100}%` }} />}
       >
         <g {...g(0)}>
           <line {...d()} x1={-40} y1={BASE} x2={W + 40} y2={BASE} />
@@ -75,7 +75,7 @@ export function McpPole({ stop = "mcp", bubble }: { stop?: string; bubble?: stri
           <line {...d()} x1={POLE - 34} y1={ARM_Y} x2={POLE + 34} y2={ARM_Y} />
           <rect {...d(`${art.body} ${fx.hot}`)} x={POLE - 22} y={80} width={44} height={30} rx={3} />
         </g>
-        <Label x={POLE} y={24} size={12}>
+        <Label x={POLE - 42} y={50} size={12} anchor="end">
           Anarix MCP
         </Label>
 

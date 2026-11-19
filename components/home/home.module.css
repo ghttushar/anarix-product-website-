@@ -343,10 +343,7 @@
   max-width: 46ch;
 }
 
-.closeDoor {
-  width: min(100%, 300px);
-  margin-top: var(--gap-l);
-}
+
 
 .services {
   margin: var(--gap-m) 0 0;
@@ -362,6 +359,7 @@
 }
 
 .closeFilm {
+  position: relative;
   --content-h: calc(100svh - var(--inset-top) - var(--inset-bottom));
   grid-column: 8 / span 5;
   justify-self: end;
@@ -401,9 +399,7 @@
     width: min(100%, calc((var(--content-h) - 400px) * 9 / 16));
   }
 
-  .closeDoor {
-    display: none;
-  }
+
 
   .proof {
     grid-template-columns: 1fr;

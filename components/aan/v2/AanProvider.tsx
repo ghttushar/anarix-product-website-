@@ -32,11 +32,16 @@ export type DockInfo = {
   at?: string;
   /** how Aan moves when the dock moves within its screen */
   travel?: "fly" | "walk";
+  /** Aan lands beneath the page content here (into the film), with no bubble */
+  tuck?: boolean;
 };
 
 type Api = { register: (d: DockInfo) => () => void };
 const Ctx = createContext<Api | null>(null);
 export const useAanRegistry = () => useContext(Ctx);
+
+/** the travelling Aan is drawn at twice its dock size (the island Aan is separate) */
+const AAN_SCALE = 2;
 
 type Pos = { x: number; y: number; size: number };
 const place = (p: Pos, scale = 1) => `translate(${(p.x - p.size / 2).toFixed(1)}px, ${(p.y - p.size).toFixed(1)}px) scale(${scale.toFixed(3)})`;
@@ -92,7 +97,7 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
   const pos = useRef<Pos | null>(null);
   const anim = useRef<Animation | null>(null);
   const reduced = useReducedMotion();
-  const [look, setLook] = useState<{ size: number; bubble?: string; side: "left" | "right" } | null>(null);
+  const [look, setLook] = useState<{ size: number; bubble?: string; side: "left" | "right"; tuck?: boolean } | null>(null);
   const [bubbleOn, setBubbleOn] = useState(false);
 
   const measure = useCallback(
@@ -102,7 +107,7 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
       const sr = st.getBoundingClientRect();
       const r = d.el.getBoundingClientRect();
       if (r.width === 0 && r.height === 0) return null; // its drawing is hidden at this size
-      const size = window.innerWidth <= 640 && d.sizeSm ? d.sizeSm : d.size;
+      const size = (window.innerWidth <= 640 && d.sizeSm ? d.sizeSm : d.size) * AAN_SCALE;
       return { x: r.left + r.width / 2 - sr.left, y: r.bottom - sr.top, size };
     },
     [stage],
@@ -126,7 +131,7 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
 
     anim.current?.cancel();
     setBubbleOn(false);
-    setLook({ size: to.size, bubble: d.bubble, side: d.side });
+    setLook({ size: to.size, bubble: d.tuck ? undefined : d.bubble, side: d.side, tuck: d.tuck });
     el.style.transform = place(to);
     el.style.opacity = "1";
 
@@ -231,7 +236,7 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
   }, [bubbleOn, look]);
 
   return (
-    <div ref={node} className={s.traveler} data-aan-traveler aria-hidden="true" style={{ opacity: look ? undefined : 0, "--size": `${look?.size ?? 48}px` } as CSSProperties}>
+    <div ref={node} className={s.traveler} data-aan-traveler data-tuck={look?.tuck ? "true" : undefined} aria-hidden="true" style={{ opacity: look ? undefined : 0, "--size": `${look?.size ?? 48}px` } as CSSProperties}>
       {look && <AanMascot state="diamond" size={look.size} glow={false} shadow={false} />}
       {look?.bubble && (
         <p ref={bubble} className={s.bubble} data-side={side} data-on={bubbleOn ? "true" : "false"}>

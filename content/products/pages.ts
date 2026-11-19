@@ -14,7 +14,6 @@ const aan: ProductPage = {
   hero: {
     title: ["Your 24/7 e‑commerce", "account manager."],
     lede: "Aan is the AI inside Anarix. It watches your Amazon, Walmart and Shopify accounts around the clock, explains **what changed and why**, and acts within the rules you set.",
-    lead: "talk",
     bubble: "Ask me anything.",
   },
   how: {
@@ -71,7 +70,6 @@ const signals: ProductPage = {
   hero: {
     title: ["3am change.", "9am answer."],
     lede: "Signals watches every price, Buy Box, budget and stock level across Amazon, Walmart and Shopify. When something moves, Aan tells you **what changed, why it matters and what to do**, before it costs you.",
-    lead: "demo",
     bubble: "Found it. Here's why.",
   },
   how: {
@@ -116,7 +114,6 @@ const profitability: ProductPage = {
   hero: {
     title: ["Revenue lies.", "Profit doesn't."],
     lede: "Sales look great until fees, ads, refunds and COGS take their share. Anarix shows **true profit on every product, every day**, so you scale what actually makes money.",
-    lead: "demo",
     bubble: "Counting every fee.",
   },
   how: {
@@ -164,7 +161,6 @@ const rules: ProductPage = {
   hero: {
     title: ["Your playbook.", "On autopilot."],
     lede: "Write how you run your accounts **in plain words**. Aan turns it into rules that run every hour of every day, allowing good spend, stopping waste and logging every decision.",
-    lead: "demo",
     bubble: "Good spend in. Waste out.",
   },
   how: {
@@ -213,7 +209,6 @@ const mcp: ProductPage = {
   hero: {
     title: ["Your data.", "Any AI."],
     lede: "Anarix MCP plugs your marketplace data into Claude, ChatGPT, Gemini or your own agent. Every answer uses **the same live numbers as your dashboard**.",
-    lead: "demo",
     bubble: "Plugged in.",
   },
   how: {

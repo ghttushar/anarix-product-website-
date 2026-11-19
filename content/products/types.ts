@@ -35,7 +35,7 @@ export type ProductPage = {
   id: ProductId;
   name: string;
   meta: { title: string; description: string };
-  hero: { title: string[]; lede: string; lead: "demo" | "talk"; bubble: string };
+  hero: { title: string[]; lede: string; bubble: string };
   how: { title: string; steps: [Step, Step, Step] };
   anatomy: { title: string; text: string; parts: { title: string; text: string }[]; note: string };
   depth: Depth[];

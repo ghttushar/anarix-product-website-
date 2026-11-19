@@ -15,6 +15,11 @@
   will-change: transform;
 }
 
+/* tucked: Aan goes in beneath the page (the film covers it) */
+.traveler[data-tuck="true"] {
+  z-index: 0;
+}
+
 /* docked Aan stands still: eyes and blinks only, no idle float */
 .traveler :global(.aan__float) {
   animation: none;

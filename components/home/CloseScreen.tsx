@@ -1,13 +1,13 @@
 "use client";
 
 import { Screen } from "@/components/layout/Screen";
-import { OpenDoor } from "@/components/illustrations/sets/nocturne/OpenDoor";
+import { AanDock } from "@/components/aan/v2/AanDock";
 import { close } from "@/content/home";
 import { FilmPlayer } from "./FilmPlayer";
 import h from "./home.module.css";
 
-/* 10 · Meet Aan. Who Aan is in plain words, the debut film beside it, and
-   the two ways in: a demo, or a question to Aan right now. */
+/* 10 · Meet Aan. Who Aan is in plain words, the debut film beside it (Aan
+   flies into it), and the two ways in: a demo, or a question to Aan now. */
 export function CloseScreen() {
   return (
     <Screen id="meet-aan" hasDock bodyClassName={`l-container l-grid ${h.split}`} label="Meet Aan">
@@ -25,12 +25,11 @@ export function CloseScreen() {
         <p className={h.services}>
           {close.services.lead} <a href={close.services.href}>{close.services.label}</a>
         </p>
-        <div className={h.closeDoor} data-optional>
-          <OpenDoor stop="close" bubble={close.bubble} />
-        </div>
       </div>
       <div className={h.closeFilm}>
         <FilmPlayer />
+        {/* Aan goes into its own film: it lands behind the player */}
+        <AanDock stop="close" size={44} tuck style={{ left: "50%", bottom: "45%" }} />
       </div>
     </Screen>
   );
