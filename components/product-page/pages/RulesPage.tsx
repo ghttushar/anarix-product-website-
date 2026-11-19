@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 import { Screen } from "@/components/layout/Screen";
-import { GatehouseBelt } from "@/components/illustrations/sets/nocturne/places";
+import { RuleGate } from "@/components/illustrations/sets/iso/RuleGate";
+import { Guardrails } from "@/components/illustrations/sets/iso/Guardrails";
+import { ProductVideo } from "@/components/media/ProductVideo";
 import type { ProductPage } from "@/content/products/types";
 import { DECISIONS, RULES } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
+import { Capabilities, HowItWorks } from "../Sections";
 import r from "./rules.module.css";
 
 /*
@@ -63,9 +66,6 @@ function SayItInASentence({ page }: { page: ProductPage }) {
           </p>
         </div>
       </div>
-      <div className={r.gate}>
-        <GatehouseBelt stop="sorting" stops={rule.stops} label={rule.stopped} sorting={rule.sentence} />
-      </div>
       <p className={r.note}>{page.moment.note}</p>
     </>
   );
@@ -96,10 +96,16 @@ function Log({ page }: { page: ProductPage }) {
 export function RulesPage({ page }: { page: ProductPage }) {
   return (
     <>
-      <NameHero page={page} layout="bleed" art={<GatehouseBelt stops={RULES[0].stops} label={RULES[0].stopped} bubble={page.bubble} />} />
-      <Screen id="say-it" hasDock bodyClassName={`l-container ${r.moment}`} label={page.moment.title}>
+      <NameHero
+        page={page}
+        layout="bleed"
+        art={<ProductVideo video={page.video} title="Rules product tour" fitRatio={900 / 560} fallback={<RuleGate stops={RULES[0].stops} label={RULES[0].stopped} rule={RULES[0].sentence} bubble={page.bubble} />} />}
+      />
+      <HowItWorks page={page} variant="aside" hasDock aside={<Guardrails stop="guard" bubble="Over your limit? It waits." />} />
+      <Screen id="say-it" bodyClassName={`l-container ${r.moment}`} label={page.moment.title}>
         <SayItInASentence page={page} />
       </Screen>
+      <Capabilities page={page} variant="grid" />
       <Screen id="decisions" bodyClassName={`l-container ${r.moment}`} label={page.proof.title}>
         <Log page={page} />
       </Screen>

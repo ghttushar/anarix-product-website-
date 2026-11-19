@@ -13,6 +13,16 @@
   display: grid;
 }
 
+/* a content section that may run taller than the viewport */
+.grow {
+  overflow: visible;
+  grid-template-rows: var(--inset-top) minmax(min-content, 1fr) var(--inset-bottom);
+}
+
+.grow .body {
+  align-content: center;
+}
+
 /* below about 620px tall (landscape phones, heavy zoom) a screen may grow
    rather than clip; everywhere else growing is a QA failure */
 @media (max-height: 620px) {

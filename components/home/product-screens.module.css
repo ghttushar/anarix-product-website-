@@ -1,5 +1,74 @@
-/* The homepage's five product screens: five layouts, each a preview of its
-   own page. */
+/* The homepage's five product screens: the words on one side (alternating),
+   a preview of the product page on the other. */
+
+.screen {
+  align-self: center;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: var(--s-8);
+  align-items: center;
+}
+
+.pair[data-side="right"] {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+
+.pair[data-side="right"] .copy {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.pair[data-side="right"] .visual {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.visual {
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------- the words */
+.kicker {
+  margin: 0 0 var(--s-3);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.points {
+  display: grid;
+  gap: var(--s-3);
+  margin: var(--gap-m) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.points li {
+  display: grid;
+  gap: 2px;
+  padding-left: var(--s-4);
+  border-left: 1px solid var(--rule);
+}
+
+.points b {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.points span {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.copy :global(.c-actions) {
+  margin-top: var(--gap-m);
+}
 
 .sample {
   margin: 8px 0 0;
@@ -7,105 +76,24 @@
   color: var(--ink-2);
 }
 
-/* ------------------------------------------------- Signals: row, then alert */
-.signals {
-  align-self: center;
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  column-gap: var(--s-8);
-  row-gap: var(--s-3);
-  align-items: center;
+/* ------------------------------------------ Signals: the board, the alert over it */
+.layered {
+  position: relative;
+  padding-bottom: 8%;
 }
 
-.sigArt {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: min(100%, calc(15svh * 5.4));
+.under {
+  width: 100%;
 }
 
-.sigCopy {
-  grid-column: 1;
+.over {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(360px, 56%);
 }
 
-.sigCard {
-  grid-column: 2;
-}
-
-/* ------------------------------------------- Profitability: the ledger */
-.profit {
-  align-self: center;
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  column-gap: var(--s-8);
-  row-gap: var(--s-5);
-  align-items: end;
-}
-
-.profitFig {
-  display: grid;
-  margin: 0;
-  justify-items: end;
-  text-align: right;
-}
-
-.profitFig b {
-  font-family: var(--font-mono);
-  font-size: clamp(3rem, min(6vw, 10svh), 6rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--accent);
-}
-
-.profitFig span {
-  margin-top: 6px;
-  font-size: 15px;
-  color: var(--ink-2);
-}
-
-.profitArt {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: min(100%, calc(30svh * 4));
-}
-
-/* --------------------------------------------- Rules: the belt, edge to edge */
-.rules {
-  align-self: center;
-  display: grid;
-  row-gap: var(--s-8);
-}
-
-.rulesCopy {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  column-gap: var(--s-8);
-  align-items: end;
-}
-
-.rulesCopy :global(.t-statement) {
-  margin-top: 0;
-}
-
-.rulesCopy :global(.c-actions) {
-  grid-column: 2;
-  margin-top: var(--s-3);
-}
-
-.rulesBand > div {
-  width: min(100%, calc(36svh * 1600 / 330));
-  margin-inline: auto;
-}
-
-/* ------------------------------------------ Ask Aan: a conversation, mirrored */
-.aan {
-  align-self: center;
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  column-gap: var(--s-8);
-  align-items: center;
-}
-
+/* ------------------------------------------ Ask Aan: a conversation */
 .talk {
   display: grid;
   gap: var(--s-5);
@@ -162,15 +150,7 @@
   color: var(--ink-2);
 }
 
-/* --------------------------------------------- MCP: the pole and terminal */
-.mcp {
-  align-self: center;
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  column-gap: var(--s-8);
-  align-items: center;
-}
-
+/* ------------------------------------------ MCP: the pole and the terminal */
 .mcpVisual {
   display: grid;
   gap: var(--s-4);
@@ -178,41 +158,35 @@
 
 /* ------------------------------------------------------------ phones */
 @media (max-width: 900px) {
-  .signals,
-  .profit,
-  .aan,
-  .mcp,
-  .rulesCopy {
+  .pair,
+  .pair[data-side="right"] {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--s-4);
+    row-gap: var(--gap-m);
   }
 
-  .sigCopy,
-  .sigCard,
-  .profitArt,
-  .rulesCopy :global(.c-actions) {
+  .pair[data-side="right"] .copy,
+  .pair[data-side="right"] .visual {
     grid-column: 1;
+    grid-row: auto;
   }
 
-  .profitFig {
-    justify-items: start;
-    text-align: left;
+  .layered {
+    padding-bottom: 0;
   }
 
-  .talkCopy,
-  .mcpCopy {
-    order: -1;
+  .under {
+    display: none;
+  }
+
+  .over {
+    position: static;
+    width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .sigArt,
   .mcpVisual > [data-optional] {
     display: none;
-  }
-
-  .profitFig b {
-    font-size: 2.5rem;
   }
 
   .answer {

@@ -21,4 +21,15 @@ export type ProductPage = {
   proof: { title: string; line: string; note: string };
   close: { title: string };
   faq: { q: string; a: string }[];
+  /** the product tour; until a recording exists the hero shows the drawing in its frame */
+  video?: { src: string; poster?: string };
+  /** how it works: a hook and three (or four) steps */
+  how: { title: string; steps: Point[] };
+  /** what it does: a hook, one intro line and six capabilities */
+  does: { title: string; intro: string; items: Point[] };
+  /** what it works with, as named groups (text only, never logos) */
+  works: { label: string; items: string[] }[];
 };
+
+/** a short title and one line under it */
+export type Point = { t: string; d: string };

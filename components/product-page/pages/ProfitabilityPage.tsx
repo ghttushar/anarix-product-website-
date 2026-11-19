@@ -2,18 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
-import { ProfitLedger } from "@/components/illustrations/sets/nocturne/places";
+import { ProfitStack } from "@/components/illustrations/sets/iso/ProfitStack";
+import { ProductVideo } from "@/components/media/ProductVideo";
 import { MarketTable } from "@/components/product-ui/MarketTable";
 import type { ProductPage } from "@/content/products/types";
 import { COSTS, SALES } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
+import { Capabilities, HowItWorks } from "../Sections";
 import { Figure, money, useHandled } from "../shared";
 import l from "./profitability.module.css";
 
 /*
-  Profitability: the ledger. A cross-section of one day's money, figures set
-  as type. Switch each cost on and watch what is really left.
+  Profitability: the ledger. One day's sales as a column; each cost lifts out
+  onto its own plinth and what stays standing is the profit. Figures set as
+  type. Switch each cost on and watch what is really left.
 */
 const ALL_ON = COSTS.map(() => true);
 
@@ -111,10 +114,16 @@ function Markets({ page }: { page: ProductPage }) {
 export function ProfitabilityPage({ page }: { page: ProductPage }) {
   return (
     <>
-      <NameHero page={page} layout="ledger" art={<ProfitLedger sales={SALES} costs={COSTS} on={ALL_ON} bubble={page.bubble} />} />
+      <NameHero
+        page={page}
+        layout="ledger"
+        art={<ProductVideo video={page.video} title="Profitability product tour" fitRatio={640 / 470} fallback={<ProfitStack sales={SALES} costs={COSTS} on={ALL_ON} bubble={page.bubble} />} />}
+      />
+      <HowItWorks page={page} variant="rail" />
       <Screen id="take-out-the-costs" bodyClassName={`l-container ${l.moment}`} label={page.moment.title}>
         <TakeOutTheCosts page={page} />
       </Screen>
+      <Capabilities page={page} variant="list" />
       <Screen id="marketplaces" bodyClassName={`l-container ${l.proof}`} label={page.proof.title}>
         <Markets page={page} />
       </Screen>

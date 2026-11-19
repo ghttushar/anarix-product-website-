@@ -49,18 +49,18 @@
   font-size: clamp(4rem, min(10vw, 17svh), 10rem);
 }
 
-/* the close-up runs off the right edge of the screen */
+.split {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
 .split .art {
-  justify-self: end;
-  width: min(100% + (100vw - min(100vw - 48px, 1280px)) / 2, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 0.7));
-  margin-right: calc((100vw - min(100vw - 48px, 1280px)) / -2);
-  overflow: hidden;
+  width: 100%;
 }
 
 /* ------------------------------------- ledger (Profitability): stacked */
 .ledger {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: auto auto 1fr;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-rows: auto auto minmax(0, 1fr);
   column-gap: var(--s-7);
   align-content: center;
 }
@@ -71,7 +71,8 @@
 
 .ledger .name {
   grid-column: 1 / -1;
-  font-size: clamp(3.5rem, min(9.6vw, 15svh), 9.5rem);
+  padding-top: var(--s-3);
+  font-size: clamp(3.5rem, min(9vw, 13svh), 9rem);
 }
 
 .ledger .slogan {
@@ -81,8 +82,10 @@
 }
 
 .ledger .more {
-  grid-column: 2;
-  margin-top: var(--s-4);
+  grid-column: 1;
+  grid-row: 3;
+  align-self: start;
+  margin-top: var(--s-2);
 }
 
 .ledger .more :global(.t-statement) {
@@ -90,9 +93,10 @@
 }
 
 .ledger .art {
-  grid-column: 1 / -1;
-  margin-top: var(--gap-m);
-  width: min(100%, calc(32svh * 1200 / 300));
+  grid-column: 2;
+  grid-row: 2 / span 2;
+  margin-top: var(--s-4);
+  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom) - 15svh - 48px) * 16 / 9));
 }
 
 /* ------------------------------------ bleed (Rules): edge-to-edge belt */
@@ -123,14 +127,15 @@
 }
 
 .bleed .art {
-  align-self: end;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  align-self: center;
+  justify-self: center;
+  margin-top: var(--gap-m);
+  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom) - 21svh - 120px) * 16 / 9));
 }
 
 /* ------------------------------------------ portrait (Aan): mirrored */
 .portrait {
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   column-gap: var(--s-8);
   align-items: center;
 }
@@ -138,7 +143,7 @@
 .portrait .art {
   grid-row: 1;
   grid-column: 1;
-  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 0.74));
+  width: 100%;
 }
 
 .portrait .text {
@@ -213,14 +218,16 @@
 
   .portrait .art {
     order: 2;
-    justify-self: center;
-    width: min(100%, 30svh);
   }
 
-  .split .art {
-    justify-self: center;
-    width: min(100%, 26svh);
-    margin-right: 0;
+  .ledger .art {
+    grid-row: auto;
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .bleed .art {
+    width: 100%;
   }
 
   .bleed .text {

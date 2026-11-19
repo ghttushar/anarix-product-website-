@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
 import { AanMascot, type AanState } from "@/components/aan/AanMascot";
-import { AanPortrait } from "@/components/illustrations/sets/nocturne/places";
+import { AanConsole } from "@/components/illustrations/sets/iso/AanConsole";
+import { ProductVideo } from "@/components/media/ProductVideo";
 import { Typewriter } from "@/components/motion/Typewriter";
 import type { ProductPage } from "@/content/products/types";
 import { QUESTIONS } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
+import { Capabilities, HowItWorks } from "../Sections";
 import a from "./aan.module.css";
 
 /*
@@ -116,10 +118,12 @@ function Brief({ page }: { page: ProductPage }) {
 export function AanPage({ page }: { page: ProductPage }) {
   return (
     <>
-      <NameHero page={page} layout="portrait" art={<AanPortrait bubble={page.bubble} />} />
+      <NameHero page={page} layout="portrait" art={<ProductVideo video={page.video} title="Aan product tour" fitRatio={560 / 500} fallback={<AanConsole bubble={page.bubble} />} />} />
+      <HowItWorks page={page} variant="row" />
       <Screen id="ask-aan" bodyClassName={`l-container ${a.centre}`} label={page.moment.title}>
         <AskAan page={page} />
       </Screen>
+      <Capabilities page={page} variant="list" />
       <Screen id="morning-brief" bodyClassName={`l-container ${a.centre}`} label={page.proof.title}>
         <Brief page={page} />
       </Screen>

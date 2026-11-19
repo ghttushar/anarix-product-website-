@@ -9,12 +9,13 @@ import h from "./name-hero.module.css";
 
 /*
   Every product page opens on its own name: the biggest thing on the page,
-  the slogan under it, one line and one action. What changes per page is
-  the composition, so no two heroes share a layout:
-  - split    (Signals): name left, a tall close-up drawing right
-  - ledger   (Profitability): name across the top, the chart across the bottom
-  - bleed    (Rules): name and slogan in one row, the belt running edge to edge
-  - portrait (Aan): Aan's portrait left, name right
+  the slogan under it, one line and one action, beside the product-tour
+  frame (which shows the page's isometric system until a recording exists).
+  What changes per page is the composition, so no two heroes share a layout:
+  - split    (Signals): name left, the frame right
+  - ledger   (Profitability): name across the top, words left, the frame right
+  - bleed    (Rules): name and slogan in one row, the frame wide beneath
+  - portrait (Aan): the frame left, name right
   - hub      (MCP): name in the middle, wires coming in from both sides
 */
 export type HeroLayout = "split" | "ledger" | "bleed" | "portrait" | "hub";

@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { Screen } from "@/components/layout/Screen";
-import { Street } from "@/components/illustrations/sets/nocturne/Street";
+import { PlatformStack } from "@/components/illustrations/sets/iso/PlatformStack";
 import { hero } from "@/content/home";
 import { Ink } from "./Ink";
 import h from "./home.module.css";
 
-/* 1 · The street that never closes. Thesis: one AI watching every store, always. */
+/* 1 · One AI over every marketplace: the words, and the platform as a stack
+   (your stores, one data layer, the tools with Aan on top). */
 export function HeroScreen() {
   return (
-    <Screen id="top" hasDock bodyClassName={h.heroBody} label="Anarix platform">
-      <div className={`l-container ${h.heroCopy}`}>
+    <Screen id="top" hasDock bodyClassName={`l-container ${h.heroBody}`} label="Anarix platform">
+      <div className={h.heroCopy}>
         <h1 className="t-display">
           <span>{hero.title[0]}</span> <span>{hero.title[1]}</span> <span className="t-accent">{hero.title[2]}</span>
         </h1>
@@ -25,8 +26,8 @@ export function HeroScreen() {
           </Link>
         </div>
       </div>
-      <div className={h.heroStreet} data-bleed>
-        <Street stop="top" bubble={hero.bubble} />
+      <div className={h.heroArt}>
+        <PlatformStack stop="top" bubble={hero.bubble} />
       </div>
     </Screen>
   );

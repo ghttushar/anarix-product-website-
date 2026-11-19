@@ -121,20 +121,6 @@
   margin-bottom: var(--s-5);
 }
 
-.mark svg {
-  width: auto;
+.mark :global(svg) {
   height: 44px;
-  fill: none;
-  stroke: var(--line-strong);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.coral {
-  stroke: var(--risk);
-}
-
-.accent {
-  stroke: var(--accent);
 }
