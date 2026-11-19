@@ -23,7 +23,7 @@ Numbers inside product UI are sample data and are labelled on the page.
 - **Aan's bubble:** I'm Aan. The Guardian of your Business! *(kept)*
 
 ### 2 · Mission + proof
-- **Statement:** We are building the guardian every seller deserves. **An AI that never sleeps, never misses a change, and never stops working for your business.** *(kept)*
+- **Statement:** We are building the guardian every seller deserves. **An AI that never misses a change and never stops working for your business.** *(kept)*
 - **Proof row** (one ruled row, all four visible):
   - **24/7**: on watch, including the hours you sleep
   - **$1.2B**: GMV driven for the brands Anarix works with
@@ -43,7 +43,7 @@ Numbers inside product UI are sample data and are labelled on the page.
 - **Controls:** Replay · scrubber labelled "Time of night"
 - **Aan's bubbles** *(kept)*:
   - 6:00 PM: Evening. I've got it from here.
-  - 9:00 PM: On watch. Sleep well.
+  - 9:00 PM: Watching every store.
   - 11:04 PM: Undercut by $3. Flagged.
   - 2:14 AM: $86, 0 sales. Paused.
   - 4:40 AM: Reorder drafted for you.
@@ -51,10 +51,10 @@ Numbers inside product UI are sample data and are labelled on the page.
 
 ### 4 · AI for good
 - **h2:** AI for good. *(kept)*
-- **Line:** Built to give you your nights back. *(kept)*
+- **Line:** Built to earn your trust. *(owner: one sleep line per page)*
 - **It shows its work.** Every action comes with the reason and the numbers behind it. *(new, from "Aan acts, then explains")*
 - **You stay in charge.** Your rules decide what Aan may do. Approval mode holds any change above your limit until you say yes. *(kept from Rules)*
-- **It gives you time back.** Problems are handled overnight and summed up in the morning, so the 11 pm check can stop. *(new, from the product purpose)*
+- **It gives you time back.** Problems are handled as they happen and summed up in one morning brief, so the constant checking can stop. *(new, from the product purpose)*
 
 ### 5 · Signals
 - **h2:** 3am change. 9am answer. *(kept)*
@@ -93,7 +93,7 @@ Numbers inside product UI are sample data and are labelled on the page.
 
 ### 10 · Meet Aan + close
 - **h2:** Meet Aan.
-- **Body:** Aan is the AI inside Anarix: an account manager that never clocks off. It reads every change across your Amazon, Walmart and Shopify accounts, explains it in plain words and acts within the rules you set. This is Aan's debut. *(new)* **[review]**
+- **Body:** Aan is the AI inside Anarix: your 24/7 account manager. It reads every change across your Amazon, Walmart and Shopify accounts, explains it in plain words and acts within the rules you set. This is Aan's debut. *(new)* **[review]**
 - **Primary:** Book a demo · **Secondary:** Talk to Aan *(opens the island chat)*
 - **Cross-link:** Rather we run it for you? See Anarix Services *(kept)*
 

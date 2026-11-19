@@ -6,7 +6,7 @@ import { Drawing, art, d, g } from "./kit";
 import h from "./home-at-night.module.css";
 
 /*
-  AI for good: your nights back. A home under the moon; when Aan arrives at the
+  AI for good. A home under the moon; when Aan arrives at the
   door, the last light goes out. The seller is asleep and Aan keeps watch.
   viewBox 420 × 240, ground at y = 224.
 */

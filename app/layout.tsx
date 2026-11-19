@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/platform" },
   title: "Anarix Platform · One AI. Every marketplace. Always on.",
   description:
-    "Aan, the AI inside Anarix, watches your Amazon, Walmart and Shopify accounts 24/7: Signals, Profitability, Rules and MCP, so you can sleep through the 11pm check.",
+    "Aan, the AI inside Anarix, watches your Amazon, Walmart and Shopify accounts 24/7: Signals, Profitability, Rules and MCP, so problems are caught before they cost you.",
   openGraph: {
     title: "Anarix Platform",
     description: "One AI. Every marketplace. Always on.",

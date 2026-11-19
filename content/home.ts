@@ -11,7 +11,7 @@ export const hero = {
 };
 
 export const mission = {
-  statement: "**We are building the guardian every seller deserves.** An AI that never sleeps, never misses a change, and never stops working for your business.",
+  statement: "**We are building the guardian every seller deserves.** An AI that never misses a change and never stops working for your business.",
   proof: [
     { figure: "$1.2B", text: "GMV driven for the brands Anarix works with" },
     { figure: "500+", text: "brands managed across Amazon and Walmart" },
@@ -25,7 +25,7 @@ export const night = {
   note: "A sample night. Figures are illustrative.",
   start: { m: 0, bubble: "Evening. I've got it from here." },
   events: [
-    { m: 180, time: "9:00 PM", text: "Lights out. Aan on watch.", at: "home", bubble: "On watch. Sleep well." },
+    { m: 180, time: "9:00 PM", text: "Lights out. Aan on watch.", at: "home", bubble: "Watching every store." },
     { m: 304, time: "11:04 PM", text: "Price undercut. Flagged.", at: "store", bubble: "Undercut by $3. Flagged." },
     { m: 494, time: "2:14 AM", text: "$86 wasted. Paused.", at: "ads", bubble: "$86, 0 sales. Paused." },
     { m: 640, time: "4:40 AM", text: "Low stock. Reorder drafted.", at: "warehouse", bubble: "Reorder drafted for you." },
@@ -35,12 +35,12 @@ export const night = {
 
 export const good = {
   title: "AI for good.",
-  line: "Built to give you your nights back.",
-  bubble: "Your nights are yours.",
+  line: "Built to earn your trust.",
+  bubble: "On your side.",
   commitments: [
     { title: "It shows its work.", text: "Every action comes with the reason and the numbers behind it." },
     { title: "You stay in charge.", text: "Your rules decide what Aan may do. Approval mode holds any change above your limit until you say yes." },
-    { title: "It gives you time back.", text: "Problems are handled overnight and summed up in the morning, so the 11 pm check can stop." },
+    { title: "It gives you time back.", text: "Problems are handled as they happen and summed up in one morning brief, so the constant checking can stop." },
   ],
 };
 
@@ -118,7 +118,7 @@ export const products: ProductCopy[] = [
 
 export const close = {
   title: "Meet Aan.",
-  body: "Aan is the AI inside Anarix: an account manager that never clocks off. It reads every change across your Amazon, Walmart and Shopify accounts, explains it in plain words and acts within the rules you set. This is Aan's debut.",
+  body: "Aan is the AI inside Anarix: your 24/7 account manager. It reads every change across your Amazon, Walmart and Shopify accounts, explains it in plain words and acts within the rules you set. This is Aan's debut.",
   primary: { label: "Book a demo", href: "https://www.anarix.ai/contact-us" },
   secondary: "Talk to Aan",
   services: { lead: "Rather we run it for you?", label: "See Anarix Services", href: "https://www.anarix.ai" },

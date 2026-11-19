@@ -4,8 +4,7 @@ import { HomeAtNight } from "@/components/illustrations/sets/nocturne/HomeAtNigh
 import { good } from "@/content/home";
 import h from "./home.module.css";
 
-/* 4 · AI for good. Right after the night it describes: the point of all that
-   watching is that you get to sleep. */
+/* 4 · AI for good: why you can trust Aan with the night it just watched. */
 export function GoodScreen() {
   return (
     <Screen id="ai-for-good" hasDock bodyClassName={`l-container l-grid ${h.split}`} label="AI for good">
