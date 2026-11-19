@@ -5,7 +5,8 @@ import { useReducedMotion } from "@/components/motion/useReducedMotion";
 import s from "./screen.module.css";
 
 /*
-  One idea, one screen. A Screen is exactly one viewport tall, its content sits
+  One idea, one screen. A Screen is one viewport tall (fit="grow" lets a
+  content section run taller when its information needs the room), its content sits
   between the nav and island insets, and it tells its children three things:
   - inView: it has arrived on screen (drawings draw themselves);
   - walk: Aan is walking or flying in (delay and duration, for trails);
@@ -32,8 +33,11 @@ export function Screen({
   children,
   style,
   label,
+  fit = "screen",
 }: {
   id: string;
+  /** "screen": exactly one viewport; "grow": at least one, taller when the content needs it */
+  fit?: "screen" | "grow";
   className?: string;
   bodyClassName?: string;
   /** true when an AanDock lives in this screen (otherwise "arrived" follows inView) */
@@ -93,7 +97,8 @@ export function Screen({
         aria-label={label}
         data-inview={inView ? "true" : "false"}
         data-arrived={arrived ? "true" : "false"}
-        className={`${s.screen} ${className ?? ""}`}
+        data-fit={fit}
+        className={`${s.screen} ${fit === "grow" ? s.grow : ""} ${className ?? ""}`}
         style={style}
       >
         <div className={`${s.body} ${bodyClassName ?? ""}`}>{children}</div>

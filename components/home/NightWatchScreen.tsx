@@ -2,15 +2,15 @@
 
 import { useCallback, useEffect, useRef, type CSSProperties } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
-import { NightTown, type NightPlace, type NightState } from "@/components/illustrations/sets/nocturne/NightTown";
+import { NightBoard, type NightPlace } from "@/components/illustrations/sets/iso/NightBoard";
 import { useTimelapse } from "@/components/motion/useTimelapse";
 import { night } from "@/content/home";
 import h from "./home.module.css";
 
 /*
   3 · The Night Watch. One night, 6 pm to 7 am, in about thirteen seconds: the
-  clock runs, Aan walks the street to each event and the building it handled
-  settles. It plays once when Aan arrives; after that it is the visitor's to
+  clock runs, Aan moves to each station as its event happens and the station
+  it handled settles. It plays once when Aan arrives; after that it is the visitor's to
   pause, scrub or replay. Reduced motion opens on the morning.
 */
 const END = 780; // minutes after 6 pm
@@ -30,6 +30,8 @@ function currentEvent(m: number) {
   for (const e of night.events) if (e.m <= m) cur = e;
   return cur;
 }
+
+type NightState = "idle" | "alert" | "handled";
 
 function placeStates(m: number): Record<NightPlace, NightState> {
   const out = { home: "idle", store: "idle", ads: "idle", warehouse: "idle" } as Record<NightPlace, NightState>;
@@ -94,7 +96,6 @@ function Watch() {
   const at: NightPlace = cur?.at ?? "home";
   const bubble = cur?.bubble ?? night.start.bubble;
   const states = placeStates(minute);
-  const lightsOn = minute < 180 || minute >= 760;
   const c = clockText(minute);
 
   return (
@@ -148,7 +149,7 @@ function Watch() {
         <p className={h.note}>{night.note}</p>
       </div>
       <div className={`${h.visual} ${h.visualWide}`}>
-        <NightTown ref={town} at={at} bubble={bubble} lightsOn={lightsOn} states={states} />
+        <NightBoard ref={town} at={at} bubble={bubble} states={states} />
       </div>
     </>
   );

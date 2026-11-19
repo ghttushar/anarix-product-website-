@@ -1,0 +1,467 @@
+/*
+  Soft Isometric Systems. Faces are tonal steps of the night (top lightest,
+  the right face darkest), edged in one hairline; colour only means something:
+  periwinkle for data, Anarix and profit, coral for risk and cost. --u is
+  viewBox units per screen pixel (set by IsoStage), so lines stay 1px and
+  type never drops under 11px.
+*/
+.stage {
+  --iso-t: #1b2530;
+  --iso-l: #141c25;
+  --iso-r: #10171e;
+  --iso-pt: #131b23;
+  --iso-pl: #10171e;
+  --iso-pr: #0d1319;
+  --iso-edge: hsl(220 32% 74% / 0.2);
+  --iso-wire: hsl(220 32% 74% / 0.26);
+  --iso-shadow: hsl(212 40% 2% / 0.32);
+  --hot-t: color-mix(in oklab, var(--accent) 36%, var(--iso-t));
+  --hot-l: color-mix(in oklab, var(--accent) 24%, var(--iso-l));
+  --hot-r: color-mix(in oklab, var(--accent) 16%, var(--iso-r));
+  --risk-t: color-mix(in oklab, var(--risk) 38%, var(--iso-t));
+  --risk-l: color-mix(in oklab, var(--risk) 26%, var(--iso-l));
+  --risk-r: color-mix(in oklab, var(--risk) 18%, var(--iso-r));
+  position: relative;
+  width: 100%;
+}
+
+:global(html[data-theme="light"]) .stage {
+  --iso-t: #ffffff;
+  --iso-l: hsl(228 30% 94%);
+  --iso-r: hsl(228 24% 88%);
+  --iso-pt: hsl(230 45% 96%);
+  --iso-pl: hsl(228 28% 91%);
+  --iso-pr: hsl(228 22% 86%);
+  --iso-edge: hsl(220 30% 28% / 0.16);
+  --iso-wire: hsl(220 30% 28% / 0.24);
+  --iso-shadow: hsl(228 40% 40% / 0.12);
+  --hot-t: color-mix(in oklab, var(--accent) 22%, var(--iso-t));
+  --hot-l: color-mix(in oklab, var(--accent) 18%, var(--iso-l));
+  --hot-r: color-mix(in oklab, var(--accent) 14%, var(--iso-r));
+  --risk-t: color-mix(in oklab, var(--risk) 26%, var(--iso-t));
+  --risk-l: color-mix(in oklab, var(--risk) 20%, var(--iso-l));
+  --risk-r: color-mix(in oklab, var(--risk) 14%, var(--iso-r));
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ----------------------------------------------------------------- blocks */
+.b {
+  --t: var(--iso-t);
+  --l: var(--iso-l);
+  --r: var(--iso-r);
+  --edge: var(--iso-edge);
+  transition:
+    opacity 700ms var(--ease-arrive) calc(var(--i, 0) * 60ms),
+    transform 1000ms var(--ease-arrive) calc(var(--i, 0) * 60ms);
+}
+
+.b[data-tone="plate"],
+.b[data-tone="quiet"] {
+  --t: var(--iso-pt);
+  --l: var(--iso-pl);
+  --r: var(--iso-pr);
+}
+
+.b[data-tone="hot"],
+.stage[data-arrived="true"] .b[data-power="hot"] {
+  --t: var(--hot-t);
+  --l: var(--hot-l);
+  --r: var(--hot-r);
+  --edge: color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+.b[data-tone="risk"],
+.stage[data-arrived="true"] .b[data-power="risk"] {
+  --t: var(--risk-t);
+  --l: var(--risk-l);
+  --r: var(--risk-r);
+  --edge: color-mix(in oklab, var(--risk) 55%, transparent);
+}
+
+/* the Anarix data layer: solid, faintly periwinkle */
+.b[data-tone="data"] {
+  --t: color-mix(in oklab, var(--accent) 9%, var(--iso-pt));
+  --l: color-mix(in oklab, var(--accent) 7%, var(--iso-pl));
+  --r: color-mix(in oklab, var(--accent) 5%, var(--iso-pr));
+  --edge: color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+.b[data-tone="glass"] {
+  --t: color-mix(in oklab, var(--accent) 10%, transparent);
+  --l: color-mix(in oklab, var(--accent) 7%, transparent);
+  --r: color-mix(in oklab, var(--accent) 4%, transparent);
+  --edge: color-mix(in oklab, var(--accent) 50%, transparent);
+}
+
+.t,
+.l,
+.r {
+  stroke: var(--edge);
+  stroke-width: calc(var(--u, 1) * 1px);
+  stroke-linejoin: round;
+  transition:
+    fill 900ms var(--ease-arrive) var(--lift, 0ms),
+    stroke 900ms var(--ease-arrive) var(--lift, 0ms);
+}
+
+.t {
+  fill: var(--t);
+}
+
+.l {
+  fill: var(--l);
+}
+
+.r {
+  fill: var(--r);
+}
+
+/* ------------------------------------------------------- lines and marks */
+.grid {
+  fill: none;
+  stroke: var(--iso-edge);
+  stroke-width: calc(var(--u, 1) * 1px);
+  opacity: 0.55;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--iso-edge);
+  stroke-width: calc(var(--u, 1) * 1px);
+  transition: stroke 900ms var(--ease-arrive);
+}
+
+.stage[data-arrived="true"] .ringHot {
+  stroke: var(--accent);
+}
+
+.shadow {
+  fill: var(--iso-shadow);
+  stroke: none;
+}
+
+/* a cable, and the one slow packet that runs it once the stage is powered */
+.cable {
+  transition: opacity 600ms var(--ease-arrive) 400ms;
+}
+
+.wire {
+  fill: none;
+  stroke: var(--iso-wire);
+  stroke-width: calc(var(--u, 1) * 1.25px);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 900ms var(--ease-arrive);
+}
+
+.stage[data-arrived="true"] .cable[data-tone="hot"] .wire {
+  stroke: color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+.stage[data-arrived="true"] .cable[data-tone="risk"] .wire {
+  stroke: color-mix(in oklab, var(--risk) 60%, transparent);
+}
+
+.packet {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: calc(var(--u, 1) * 3.2px);
+  stroke-linecap: round;
+  stroke-dasharray: 0.06 1.94;
+  stroke-dashoffset: 0.1;
+  opacity: 0;
+}
+
+.cable[data-tone="risk"] .packet {
+  stroke: var(--risk);
+}
+
+.stage[data-arrived="true"] .packet {
+  opacity: 1;
+  animation: flow var(--flow-dur, 5200ms) linear var(--flow-delay, 0ms) infinite;
+}
+
+@keyframes flow {
+  0% {
+    stroke-dashoffset: 0.1;
+  }
+
+  70%,
+  100% {
+    stroke-dashoffset: -1.04;
+  }
+}
+
+/* --------------------------------------------------------------- type */
+.label,
+.sub,
+.face {
+  stroke: none;
+  font-family: var(--font-body);
+  font-size: max(var(--fs, 13px), calc(var(--u, 1) * 11px));
+}
+
+.label {
+  fill: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.sub {
+  fill: var(--ink-2);
+  font-weight: 400;
+}
+
+.tag[data-tone="hot"] .label {
+  fill: var(--accent);
+}
+
+.tag[data-tone="risk"] .label {
+  fill: var(--risk-ink);
+}
+
+.leader {
+  fill: none;
+  stroke: var(--iso-wire);
+  stroke-width: calc(var(--u, 1) * 1px);
+}
+
+.pin {
+  fill: var(--ink-2);
+  stroke: none;
+}
+
+.tag[data-tone="hot"] .pin {
+  fill: var(--accent);
+}
+
+.tag[data-tone="risk"] .pin {
+  fill: var(--risk);
+}
+
+.face {
+  fill: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0.88;
+}
+
+.face[data-tone="hot"] {
+  fill: var(--accent);
+  opacity: 1;
+}
+
+.face[data-tone="risk"] {
+  fill: var(--risk-ink);
+  opacity: 1;
+}
+
+.face[data-tone="mono"] {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.tag {
+  transition: opacity 600ms var(--ease-arrive) calc(500ms + var(--i, 0) * 70ms);
+}
+
+/* ------------------------------------------------------------- entry */
+/* blocks settle in one after another; labels and cables follow */
+:global(html[data-js]) .stage[data-play="false"] .b {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: none;
+}
+
+:global(html[data-js]) .stage[data-play="false"] .tag,
+:global(html[data-js]) .stage[data-play="false"] .cable {
+  opacity: 0;
+  transition: none;
+}
+
+/* flat HTML laid over a stage, positioned in % of it */
+.over {
+  position: absolute;
+  transition: opacity 600ms var(--ease-arrive) 700ms;
+}
+
+:global(html[data-js]) .stage[data-play="false"] .over {
+  opacity: 0;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b,
+  .tag,
+  .cable,
+  .over,
+  .t,
+  .l,
+  .r,
+  .wire {
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  :global(html[data-js]) .stage[data-play="false"] .b {
+    transform: none;
+  }
+
+  .stage[data-arrived="true"] .packet {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* a floating callout (HTML over the stage): pin, stem, card */
+.callout {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transition: opacity 500ms var(--ease-arrive) 600ms;
+}
+
+.callout::before {
+  content: "";
+  position: absolute;
+  left: -3.5px;
+  top: -3.5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--risk);
+}
+
+.card {
+  position: absolute;
+  left: 0;
+  bottom: var(--lift);
+  display: grid;
+  gap: 3px;
+  padding: 9px 13px 10px;
+  border: 1px solid color-mix(in oklab, var(--risk) 60%, transparent);
+  border-radius: 10px;
+  background: var(--card);
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: border-color 500ms var(--ease-arrive);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: var(--lift);
+  background: color-mix(in oklab, var(--risk) 70%, transparent);
+}
+
+.callout[data-below="true"] .card {
+  top: var(--lift);
+  bottom: auto;
+}
+
+.callout[data-below="true"] .card::after {
+  top: auto;
+  bottom: 100%;
+}
+
+.card b {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.card span {
+  font-size: 12px;
+  color: var(--risk-ink);
+}
+
+.callout[data-tone="hot"]::before {
+  background: var(--accent);
+}
+
+.callout[data-tone="hot"] .card {
+  border-color: color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+.callout[data-tone="hot"] .card::after {
+  background: color-mix(in oklab, var(--accent) 70%, transparent);
+}
+
+.callout[data-tone="hot"] .card span {
+  color: var(--accent);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+:global(html[data-js]) .stage[data-play="false"] .callout {
+  opacity: 0;
+  transition: none;
+}
+
+/* small marks drawn inline (closing marks, button tiles): faces at screen
+   scale, so the hairline is a fixed 1px */
+.glyph {
+  display: inline-block;
+  height: 44px;
+  --u: 1.4;
+}
+
+.glyph .b {
+  transition: none;
+}
+
+.tile {
+  height: 34px;
+}
+
+/* a drawn stage measures itself: when it renders small, the words step
+   aside rather than crowd it (the drawing still reads as a system) */
+.sized {
+  container-type: inline-size;
+}
+
+@container (max-width: 520px) {
+  .tag,
+  .colLabel {
+    display: none;
+  }
+}
+
+@container (max-width: 420px) {
+  .face {
+    display: none;
+  }
+}
+
+@container (max-width: 380px) {
+  .callout {
+    display: none;
+  }
+}
+
+@container (max-width: 640px) {
+  .colLabel {
+    display: none;
+  }
+}
+
+/* small labels under a column of tiles */
+.colLabel {
+  fill: var(--ink-2);
+  stroke: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+}

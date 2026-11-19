@@ -1,0 +1,22 @@
+/* a cost slides out of the column onto its plinth, or back in */
+.seg {
+  transition: transform 900ms var(--ease-arrive);
+}
+
+.name {
+  transition: opacity 400ms var(--ease-arrive);
+}
+
+.name[data-out="false"] {
+  opacity: 0.42;
+}
+
+.name[data-lead="true"] text:first-child {
+  fill: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seg {
+    transition: none;
+  }
+}

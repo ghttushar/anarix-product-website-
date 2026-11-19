@@ -1,0 +1,94 @@
+/* the product-tour frame: a quiet screen on the night */
+.frame {
+  position: relative;
+  container-type: size;
+  margin: 0;
+  width: 100%;
+  border: 1px solid var(--card-line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--card) 72%, transparent);
+}
+
+.frame[data-video="true"] {
+  background: hsl(228 50% 6%);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* until the recording exists: the page's drawing, fitted inside */
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 3% 4% 12%;
+}
+
+.fit {
+  width: min(100%, calc(100cqh * 0.85 * var(--fit, 1.6)));
+}
+
+.soon {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 0 12px 0 10px;
+  border: 1px solid var(--card-line);
+  border-radius: 999px;
+  background: var(--sky);
+  color: var(--ink-2);
+  font: 500 12.5px/1 var(--font-body);
+  white-space: nowrap;
+}
+
+.soon svg {
+  width: 12px;
+  height: 12px;
+  fill: var(--accent);
+}
+
+.sound {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: hsl(228 25% 97% / 0.94);
+  color: hsl(228 40% 14%);
+  font: 600 14px/1 var(--font-body);
+  white-space: nowrap;
+  transition: background var(--dur-micro) var(--ease-arrive);
+}
+
+.sound:hover {
+  background: #fff;
+}
+
+.sound:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.sound svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

@@ -262,3 +262,33 @@ The example conversation from today's site, labelled illustrative:
 - **h2:** Let Aan take the night shift. *(new)*
 - **Actions:** Book a demo · Talk to Aan
 - **Cross-link:** Rather we run it for you? See Anarix Services
+
+## Phase 6 facts
+
+Phase 6 (2026-11-19) gave every product page "How it works", "What it does" and "Works with", gave the homepage product screens their points back, and added the homepage Product tour and Works with sections. Each claim below comes from the Anarix app prototype (`new-page-old-design/src`, written [A]) or from the owner's confirmation in chat on 2026-11-19 (written [owner]). The copy itself lives in `content/products/pages.ts` and `content/home.ts`.
+
+| Claim | Where it is used | Source |
+|---|---|---|
+| Shopify is supported | every page | [owner] (the prototype lists Amazon and Walmart only) |
+| MCP works with Gemini | MCP, Aan, home | [owner] (the prototype's MCP setup offers Claude and ChatGPT) |
+| Rules can run hourly | Rules, home | [owner] (the prototype's scheduler offers daily, weekly, monthly) |
+| Changes above a set limit wait for approval | Rules, Aan, home | [owner] |
+| 79 alert reasons in 12 groups, each mapped to an action | Signals | [A] `utils/signals/alert-reason-catalog.ts` |
+| Signal sources: Anarix monitoring, Aan, meetings, Slack, Teams, email | Signals | [A] `utils/signals/sourceRegistry.ts` |
+| Execute on chosen items, a different action on the rest; assign with a due date; snooze; share to Slack, Teams or email; undo within 30 seconds | Signals | [A] `signals/alerts/*`, `share-menu.tsx` |
+| Each fix carries confidence, risk and reversibility | Signals | [A] `utils/signals/strategies.ts` |
+| Verified over 7 days, with an impact report | Signals | [A] `signals/alerts/*` |
+| Morning brief: value at risk, opportunities, while you were away | Signals | [A] `signals/brief/signals-brief.tsx` |
+| Cost lines: referral and FBA fees, WFS fees, commission, shipping, refunds, taxes, promotions, ad spend by ad type, COGS | Profitability | [A] `enums/profitability.enums.ts` |
+| COGS: a default cost uploaded per product, applied to future inbound shipments | Profitability (answers the earlier [answer needed]) | [A] `profitability/upload-cogs-dialog` |
+| Views: dashboard, trends, P&L; 7 date presets, daily to yearly | Profitability | [A] `constants/profitability` |
+| Widgets: least profitable items, TACoS, fee watch, refunds and reimbursements | Profitability | [A] `dashboard/widgets/insights/profit.ts` |
+| Describe a rule in plain words or start from a template; Aan audits it for conflicts | Rules | [A] `rule-page-jiva-prompt`, `audit-rule` |
+| 13 rule types; scope campaigns, ad groups, products, keywords, targets; lookback 7, 14, 30 or 60 days | Rules | [A] `enums/rules.enum.ts`, `constants/rules` |
+| Aan answers with tables, charts, reports and CSV downloads, runs analysis on your data, drafts emails, tickets and images, applies campaign edits after approval | Aan | [A] `chatbot.constants.ts`, `chatbot-history-conversation.tsx` |
+| Workspace apps: Slack, Microsoft Teams, Google Workspace, Discord, Zoom Team Chat; WhatsApp alerts | Aan, home | [A] `settings-wrapper/integrations-page` |
+| MCP server mcp.anarix.ai; setup in four steps (choose, add the connector, sign in, verify); sign-in through Anarix | MCP (answers the earlier setup [answer needed]) | [A] `mcp-connect-dialog.tsx` |
+
+Still [answer needed], and still off the pages: how Aan uses and protects data, and exactly what MCP can see or change. The MCP proof line no longer claims "four tools"; the tool panel drawing is unchanged.
+
+Not used anywhere: customer and brand names or people's names from the prototype's mock data, plan prices or tiers, promo-video figures, the "1,248 signals watched" counter, "setup in 60 seconds".

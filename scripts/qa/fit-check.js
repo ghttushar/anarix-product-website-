@@ -43,7 +43,7 @@
       const vh = innerHeight;
       const r = s.getBoundingClientRect();
       const issues = [];
-      if (r.height > vh + 1) issues.push(`taller than the viewport: ${Math.round(r.height)}px > ${vh}px (${(r.height / vh).toFixed(2)} screens)`);
+      if (s.dataset.fit !== "grow" && r.height > vh + 1) issues.push(`taller than the viewport: ${Math.round(r.height)}px > ${vh}px (${(r.height / vh).toFixed(2)} screens)`);
 
       // nothing may hang outside its own screen
       let straddle = 0;
@@ -56,7 +56,10 @@
       if (straddle) issues.push(`${straddle} element(s) extend past the screen edge`);
 
       // with the screen at the top of the viewport, content must clear the chrome
-      const chrome = [document.querySelector(".nav"), document.querySelector(".island")].filter(Boolean).filter(visible);
+      // (a section that runs taller than the viewport scrolls under the island by
+      // design, so for those only the nav is checked)
+      const tall = s.dataset.fit === "grow" && r.height > vh + 1;
+      const chrome = [document.querySelector(".nav"), tall ? null : document.querySelector(".island")].filter(Boolean).filter(visible);
       const blocked = new Set();
       for (const el of contentNodes(s)) {
         if (!visible(el)) continue;

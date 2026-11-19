@@ -29,25 +29,26 @@
 /* ------------------------------------------------------------------ hero */
 .heroBody {
   display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  column-gap: var(--s-7);
+  align-items: center;
 }
 
 .heroCopy {
-  grid-area: 1 / 1;
-  align-self: start;
   position: relative;
   z-index: 1;
-  padding-top: clamp(8px, 4.5svh, 56px);
+}
+
+.heroArt {
+  justify-self: end;
+  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 780 / 660));
 }
 
 .heroCopy h1 span {
   display: block;
 }
 
-.heroStreet {
-  grid-area: 1 / 1;
-  align-self: end;
-  --street-h: 40svh;
-}
+
 
 /* --------------------------------------------------------------- mission */
 .mission {
@@ -303,7 +304,7 @@
 /* the house is the subject, but at the street's scale, not a poster's */
 .goodArt {
   justify-self: end;
-  width: min(100%, 560px);
+  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 760 / 540));
 }
 
 .commitments {
@@ -381,6 +382,17 @@
 
 /* ----------------------------------------------------------------- phone */
 @media (max-width: 900px) {
+  .heroBody {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-4);
+    align-content: center;
+  }
+
+  .heroArt {
+    justify-self: center;
+    width: min(100%, 40svh);
+  }
+
   .split {
     grid-template-columns: 1fr;
     row-gap: 20px;
@@ -417,18 +429,6 @@
 }
 
 @media (max-width: 640px) {
-  .heroStreet {
-    --street-h: 30svh;
-    overflow: hidden;
-  }
-
-  /* show Amazon through Shopify (x 50–740 of 1600), Amazon at the gutter */
-  .heroStreet > div > div {
-    width: calc((100vw - 32px) * 1600 / 690);
-    margin: 0;
-    transform: translateX(calc(16px - 3.125%));
-  }
-
   .copy :global(.c-points),
   .visual > [data-optional] {
     display: none;

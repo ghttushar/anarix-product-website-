@@ -2,13 +2,16 @@
 
 import { useState, type KeyboardEvent } from "react";
 import { Screen } from "@/components/layout/Screen";
-import { ToolPanel, WiringMap } from "@/components/illustrations/sets/nocturne/places";
+import { ToolPanel, WiringMap } from "@/components/illustrations/sets/nocturne/McpMaps";
+import { McpPole } from "@/components/illustrations/sets/nocturne/McpPole";
+import { ProductVideo } from "@/components/media/ProductVideo";
 import { Typewriter } from "@/components/motion/Typewriter";
 import type { ProductPage } from "@/content/products/types";
 import { CLIENTS, MCP_ANSWER, MCP_ASK, MCP_TOOL, type Client } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Figure } from "../shared";
 import { Close } from "../Close";
+import { Capabilities, HowItWorks } from "../Sections";
 import m from "./mcp.module.css";
 
 /*
@@ -93,7 +96,7 @@ function WhatItIs({ page }: { page: ProductPage }) {
   return (
     <>
       <div className={m.toolsArt}>
-        <ToolPanel bubble="Four tools, one source." />
+        <ToolPanel bubble="One source, any AI." />
       </div>
       <div className={m.toolsCopy}>
         <h2 className={m.title}>{page.proof.title}</h2>
@@ -108,9 +111,12 @@ export function McpPage({ page }: { page: ProductPage }) {
   return (
     <>
       <NameHero page={page} layout="hub" art={<WiringMap bubble={page.bubble} />} />
+      {/* the hero keeps its wiring map; the setup video sits with the steps */}
+      <HowItWorks page={page} variant="aside" hasDock aside={<ProductVideo video={page.video} title="MCP setup video" fitRatio={1.6} fallback={<McpPole stop="setup" bubble="Four steps." />} />} />
       <Screen id="pick-your-ai" bodyClassName={`l-container ${m.moment}`} label={page.moment.title}>
         <PickYourAi page={page} />
       </Screen>
+      <Capabilities page={page} variant="list" />
       <Screen id="what-mcp-is" hasDock bodyClassName={`l-container ${m.proof}`} label={page.proof.title}>
         <WhatItIs page={page} />
       </Screen>

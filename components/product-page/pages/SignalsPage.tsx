@@ -2,20 +2,29 @@
 
 import { useEffect, useState } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
-import { WindowCloseup, MiniStore } from "@/components/illustrations/sets/nocturne/places";
+import { SignalsBoard } from "@/components/illustrations/sets/iso/SignalsBoard";
+import { NightBoard } from "@/components/illustrations/sets/iso/NightBoard";
+import { StoreTile } from "@/components/illustrations/sets/iso/glyphs";
+import { ProductVideo } from "@/components/media/ProductVideo";
 import { SignalCard } from "@/components/product-ui/SignalCard";
 import { RankedList } from "@/components/product-ui/RankedList";
 import type { ProductPage } from "@/content/products/types";
 import { SIGNALS } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
+import { Capabilities, HowItWorks } from "../Sections";
 import { useHandled } from "../shared";
 import s from "./signals.module.css";
 
 /*
-  Signals: one shop window at 3:12 AM, close up. A feed: centred, timestamped,
-  coral where something went wrong. Tap a store, its overnight change comes up.
+  Signals: every store as a row of what can change overnight; one tile turns
+  coral and runs into the Anarix core. A feed: centred, timestamped, coral
+  where something went wrong. Tap a store, its overnight change comes up.
 */
+function HeroBoard({ page }: { page: ProductPage }) {
+  const handled = useHandled(1400);
+  return <SignalsBoard bubble={page.bubble} handled={handled} />;
+}
 function TapAStore({ page }: { page: ProductPage }) {
   const { arrived, reduced } = useScreen();
   const [pick, setPick] = useState(0);
@@ -38,7 +47,7 @@ function TapAStore({ page }: { page: ProductPage }) {
       <div className={s.stores} role="group" aria-label="Stores">
         {SIGNALS.map((sg, i) => (
           <button key={sg.store} type="button" className={s.store} aria-pressed={pick === i} onClick={() => setPick(i)}>
-            <MiniStore lit={pick === i} />
+            <StoreTile lit={pick === i} />
             <span className={s.storeName}>{sg.store}</span>
             <span className={s.storeTime}>{sg.time}</span>
             <span className={s.storeRisk}>${sg.risk.toLocaleString("en-US")} at risk</span>
@@ -75,10 +84,17 @@ function Ranked({ page }: { page: ProductPage }) {
 export function SignalsPage({ page }: { page: ProductPage }) {
   return (
     <>
-      <NameHero page={page} layout="split" art={<WindowCloseup bubble={page.bubble} />} />
+      <NameHero page={page} layout="split" art={<ProductVideo video={page.video} title="Signals product tour" fitRatio={760 / 500} fallback={<HeroBoard page={page} />} />} />
+      <HowItWorks
+        page={page}
+        variant="aside"
+        hasDock
+        aside={<NightBoard at="home" bubble="3 fixes by 7am." states={{ home: "handled", store: "handled", ads: "handled", warehouse: "handled" }} />}
+      />
       <Screen id="tap-a-store" bodyClassName={`l-container ${s.feed}`} label={page.moment.title}>
         <TapAStore page={page} />
       </Screen>
+      <Capabilities page={page} variant="grid" />
       <Screen id="ranked" bodyClassName={`l-container ${s.feed}`} label={page.proof.title}>
         <Ranked page={page} />
       </Screen>
