@@ -177,7 +177,8 @@
 }
 
 .allowed,
-.stopped {
+.stopped,
+.held {
   justify-self: start;
   padding: 2px 10px;
   border: 1px solid;
@@ -276,4 +277,10 @@
   .moment > .note {
     display: none;
   }
+}
+
+/* held for your yes: neither allowed nor stopped */
+.held {
+  border-color: var(--card-line);
+  color: var(--ink);
 }

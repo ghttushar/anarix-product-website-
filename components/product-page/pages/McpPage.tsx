@@ -3,11 +3,11 @@
 import { useState, type KeyboardEvent } from "react";
 import { Screen } from "@/components/layout/Screen";
 import { ToolPanel, WiringMap } from "@/components/illustrations/sets/nocturne/McpMaps";
-import { McpPole } from "@/components/illustrations/sets/nocturne/McpPole";
+import { McpTerminal } from "@/components/product-ui/McpTerminal";
 import { ProductVideo } from "@/components/media/ProductVideo";
 import { Typewriter } from "@/components/motion/Typewriter";
 import type { ProductPage } from "@/content/products/types";
-import { CLIENTS, MCP_ANSWER, MCP_ASK, MCP_TOOL, type Client } from "@/content/products/samples";
+import { CLIENTS, MCP_ANSWER, MCP_ASK, MCP_SERVER, MCP_SETUP, MCP_TOOL, type Client } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Figure } from "../shared";
 import { Close } from "../Close";
@@ -18,6 +18,36 @@ import m from "./mcp.module.css";
   MCP: the wiring, from above. Technical, diagram-first. Pick any AI: the same
   question gets the same number, and it matches the dashboard.
 */
+/* the self-serve way in: this AI's setup path and the server address to copy */
+function Connect({ client }: { client: Client }) {
+  const [copied, setCopied] = useState(false);
+  const copy = () => {
+    navigator.clipboard?.writeText(MCP_SERVER).then(
+      () => {
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 2000);
+      },
+      () => {},
+    );
+  };
+  return (
+    <div className={m.connect}>
+      <p className={m.connectTitle}>Connect {client === "Your agent" ? "your agent" : client}</p>
+      <ol className={m.connectSteps}>
+        {MCP_SETUP[client].map((s) => (
+          <li key={s}>{s}</li>
+        ))}
+      </ol>
+      <div className={m.server}>
+        <code>{MCP_SERVER}</code>
+        <button type="button" onClick={copy} aria-live="polite">
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function PickYourAi({ page }: { page: ProductPage }) {
   const [pick, setPick] = useState(0);
   const client: Client = CLIENTS[pick];
@@ -80,12 +110,13 @@ function PickYourAi({ page }: { page: ProductPage }) {
         </span>
         <div className={m.tile}>
           <p className={m.tileK}>Anarix dashboard</p>
-          <p className={m.tileSub}>Walmart ad spend, yesterday</p>
+          <p className={m.tileSub}>Walmart ad spend, this month</p>
           <p className={m.tileFig}>
             <Figure text={MCP_ANSWER.figure} />
           </p>
           <p className={m.tileSub}>18 campaigns</p>
         </div>
+        <Connect client={client} />
       </div>
       <p className={m.note}>{page.moment.note}</p>
     </>
@@ -96,7 +127,7 @@ function WhatItIs({ page }: { page: ProductPage }) {
   return (
     <>
       <div className={m.toolsArt}>
-        <ToolPanel bubble="One source, any AI." />
+        <ToolPanel />
       </div>
       <div className={m.toolsCopy}>
         <h2 className={m.title}>{page.proof.title}</h2>
@@ -111,15 +142,16 @@ export function McpPage({ page }: { page: ProductPage }) {
   return (
     <>
       <NameHero page={page} layout="hub" art={<WiringMap bubble={page.bubble} />} />
-      {/* the hero keeps its wiring map; the setup video sits with the steps */}
-      <HowItWorks page={page} variant="aside" hasDock aside={<ProductVideo video={page.video} title="MCP setup video" fitRatio={1.6} fallback={<McpPole stop="setup" bubble="Four steps." />} />} />
-      <Screen id="pick-your-ai" bodyClassName={`l-container ${m.moment}`} label={page.moment.title}>
-        <PickYourAi page={page} />
-      </Screen>
-      <Capabilities page={page} variant="list" />
+      {/* what MCP is comes first: most sellers have never heard of it */}
       <Screen id="what-mcp-is" hasDock bodyClassName={`l-container ${m.proof}`} label={page.proof.title}>
         <WhatItIs page={page} />
       </Screen>
+      {/* the hero keeps its wiring map; the setup video sits with the steps */}
+      <HowItWorks page={page} variant="aside" aside={<ProductVideo video={page.video} title="MCP setup video" fitRatio={1.6} fallback={<McpTerminal handled />} />} />
+      <Screen id="pick-your-ai" fit="grow" bodyClassName={`l-container ${m.moment}`} label={page.moment.title}>
+        <PickYourAi page={page} />
+      </Screen>
+      <Capabilities page={page} variant="list" />
       <Close page={page} />
     </>
   );

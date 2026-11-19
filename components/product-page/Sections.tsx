@@ -61,13 +61,7 @@ export function Capabilities({ page, variant = "grid" }: { page: ProductPage; va
         {page.works.map((g) => (
           <div key={g.label} className={x.group}>
             <dt>{g.label}</dt>
-            <dd>
-              {g.items.map((n) => (
-                <span key={n} className={x.chip}>
-                  {n}
-                </span>
-              ))}
-            </dd>
+            <dd className={x.names}>{g.items.join(", ")}</dd>
           </div>
         ))}
       </dl>

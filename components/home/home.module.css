@@ -51,47 +51,27 @@
 
 
 /* --------------------------------------------------------------- mission */
-.mission {
-  align-self: center;
-}
-
-.missionStatement {
-  margin: 0;
-  max-width: 24ch;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.75rem, min(3.6vw, 6svh), 3.75rem);
-  line-height: 1.14;
-  letter-spacing: -0.022em;
-  color: var(--ink-2);
-  text-wrap: balance;
-}
-
-.missionStatement b {
-  font-weight: 600;
-  color: var(--ink);
-}
-
+/* the three approved figures, under the hero's buttons */
 .proof {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--s-6);
-  max-width: 900px;
-  margin: var(--gap-l) 0 0;
+  gap: var(--s-5);
+  max-width: 620px;
+  margin: var(--gap-m) 0 0;
   padding: 0;
   list-style: none;
 }
 
 .proof li {
-  padding-top: var(--s-4);
+  padding-top: var(--s-3);
   border-top: 1px solid var(--rule);
 }
 
 .proof b {
   display: block;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.625rem, min(2.6vw, 4.6svh), 2.5rem);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(1.25rem, min(1.8vw, 3.2svh), 1.625rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -100,11 +80,19 @@
 .proof span {
   display: block;
   text-wrap: pretty;
-  margin-top: 6px;
-  max-width: 26ch;
-  font-size: 14.5px;
-  line-height: 1.45;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.4;
   color: var(--ink-2);
+}
+
+/* the stack's words, for phones, where its own labels step aside */
+.legend {
+  display: none;
+  margin: var(--s-2) 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
+  text-align: center;
 }
 
 /* ----------------------------------------------------------- night watch */
@@ -436,5 +424,149 @@
 
   .proof span {
     font-size: 13px;
+  }
+}
+
+/* ------------------------------------------- night watch: the morning brief */
+.visualWide {
+  position: relative;
+}
+
+.brief {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(360px, 82%);
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--card-line));
+  border-radius: 14px;
+  background: var(--card);
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 500ms var(--ease-arrive),
+    transform 500ms var(--ease-arrive);
+  pointer-events: none;
+}
+
+.brief[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.briefTitle {
+  margin: 0 0 var(--s-2);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.brief ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.brief li {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr) auto;
+  gap: var(--s-2);
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.brief time,
+.brief li b {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.brief li b {
+  color: var(--ink);
+}
+
+.briefHeld {
+  margin: var(--s-3) 0 0;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--rule);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+.briefTotal {
+  margin: var(--s-2) 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.briefTotal b {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brief {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------- trust: the permission ladder */
+.ladder {
+  display: grid;
+  margin: var(--gap-m) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ladder li {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  column-gap: var(--s-3);
+  padding: clamp(8px, 1.3svh, 12px) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.ladder li:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.rung {
+  grid-row: 1 / span 2;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  padding-top: 2px;
+}
+
+.ladder b {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ladder li > span:last-child {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+@media (max-width: 900px) {
+  .legend {
+    display: block;
+  }
+
+  .brief {
+    position: static;
+    width: 100%;
+    margin-top: var(--s-3);
+  }
+
+  .brief[data-shown="false"] {
+    display: none;
   }
 }

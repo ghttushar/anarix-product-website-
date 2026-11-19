@@ -27,11 +27,11 @@
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 3% 4% 12%;
+  padding: 4% 5%;
 }
 
 .fit {
-  width: min(100%, calc(100cqh * 0.85 * var(--fit, 1.6)));
+  width: min(100%, calc(100cqh * 0.9 * var(--fit, 1.6)));
 }
 
 .soon {

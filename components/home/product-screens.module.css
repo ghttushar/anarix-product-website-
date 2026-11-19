@@ -125,12 +125,18 @@
   height: 56px;
 }
 
+/* Aan's answer reads as a reply in the product, not a headline */
+.answerCard {
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid var(--card-line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
 .answer {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, min(2vw, 3.6svh), 1.75rem);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
   color: var(--ink);
 }
 
@@ -156,8 +162,36 @@
   gap: var(--s-4);
 }
 
+/* MCP closes the run with what Anarix plugs into, as one quiet row */
+.works {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-6);
+  margin: var(--gap-l) 0 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+}
+
+.works dt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.works dd {
+  margin: 4px 0 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
 /* ------------------------------------------------------------ phones */
 @media (max-width: 900px) {
+  .works {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-4);
+  }
+
   .pair,
   .pair[data-side="right"] {
     grid-template-columns: minmax(0, 1fr);
@@ -187,10 +221,6 @@
 @media (max-width: 640px) {
   .mcpVisual > [data-optional] {
     display: none;
-  }
-
-  .answer {
-    font-size: 17px;
   }
 
   .reply {

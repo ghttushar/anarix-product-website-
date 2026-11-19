@@ -102,8 +102,8 @@ button.row:focus-visible {
 }
 
 button.row[aria-pressed="true"] .box {
-  background: var(--risk);
-  border-color: var(--risk);
+  background: var(--accent-solid);
+  border-color: var(--accent-solid);
 }
 
 button.row[aria-pressed="true"] .box svg {
@@ -225,7 +225,12 @@ button.row[aria-pressed="false"] .cost {
   background: color-mix(in srgb, var(--risk) 22%, transparent);
 }
 
-.part[data-on="false"],
+/* a cost still inside the sales (not yet taken out) is slate; only profit is periwinkle */
+.part[data-on="false"] {
+  border: 1px solid var(--card-line);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
 .left {
   border: 1px solid var(--accent);
   background: color-mix(in srgb, var(--accent) 30%, transparent);
@@ -254,4 +259,9 @@ button.row[aria-pressed="false"] .cost {
   .left {
     transition-duration: 1ms;
   }
+}
+
+/* the margin only means something once every cost is out */
+.margin[data-shown="false"] {
+  visibility: hidden;
 }

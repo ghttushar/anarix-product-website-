@@ -1,27 +1,28 @@
 import { HeroScreen } from "@/components/home/HeroScreen";
-import { MissionScreen } from "@/components/home/MissionScreen";
 import { NightWatchScreen } from "@/components/home/NightWatchScreen";
-import { GoodScreen } from "@/components/home/GoodScreen";
+import { TrustScreen } from "@/components/home/TrustScreen";
 import { ProductScreen } from "@/components/home/ProductScreen";
 import { CloseScreen } from "@/components/home/CloseScreen";
 import { TourScreen } from "@/components/home/TourScreen";
-import { WorksWithScreen } from "@/components/home/WorksWithScreen";
-import { products } from "@/content/home";
+import { products, tour } from "@/content/home";
 
-/* The promise, its proof, the product tour, the night it keeps, why that
-   matters, five products, where it plugs in, and Aan. */
+/* The promise and its proof, one night with Aan, the products in the order a
+   seller meets them, why you can trust it, what it plugs into, and the film.
+   The product tour appears after the hero once its recording exists. */
 export default function Home() {
+  const mcp = products.find((p) => p.id === "mcp");
   return (
     <>
       <HeroScreen />
-      <MissionScreen />
-      <TourScreen />
+      {tour.video && <TourScreen />}
       <NightWatchScreen />
-      <GoodScreen />
-      {products.map((p) => (
-        <ProductScreen key={p.id} p={p} />
-      ))}
-      <WorksWithScreen />
+      {products
+        .filter((p) => p.id !== "mcp")
+        .map((p) => (
+          <ProductScreen key={p.id} p={p} />
+        ))}
+      <TrustScreen />
+      {mcp && <ProductScreen p={mcp} />}
       <CloseScreen />
     </>
   );

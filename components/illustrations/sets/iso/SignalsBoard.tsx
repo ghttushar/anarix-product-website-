@@ -98,9 +98,6 @@ export function SignalsBoard({ pick = 0, handled = false, stop = "signals", bubb
         <Tag at={[iso(186, 120, 0)[0] + 40, iso(186, 120, 0)[1] + 20]} to={iso(186, 100, P + 32)} sub="Ranked by money at risk" i={1}>
           Alerts
         </Tag>
-        <Tag at={[iso(-230, 150, 0)[0] + 8, iso(-230, 150, 0)[1] + 62]} sub="Price, Buy Box, ads, listings" i={0}>
-          Every store, every night
-        </Tag>
 
       </IsoStage>
     </div>

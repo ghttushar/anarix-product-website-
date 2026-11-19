@@ -30,7 +30,7 @@ export function RankedList({ handled, bare = false }: { handled: boolean; /** an
       </header>
       <ol className={s.list} style={{ "--rows": ROWS.length } as CSSProperties}>
         {ROWS.map((r, i) => (
-          <li key={r.t} className={s.row} style={{ "--slot": handled ? RANK.indexOf(r) : i } as CSSProperties}>
+          <li key={r.t} className={s.row} data-p={r.p} style={{ "--slot": handled ? RANK.indexOf(r) : i } as CSSProperties}>
             <span className={`${u.pill} ${r.p === "High" ? s.high : u.pillMuted}`}>{r.p}</span>
             <span className={s.title}>
               {r.t}

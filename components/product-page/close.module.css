@@ -115,12 +115,118 @@
   }
 }
 
-/* the page's own mark, small, above its closing line */
-.mark {
-  display: inline-flex;
-  margin-bottom: var(--s-5);
+/* how far Aan goes: the permission ladder, across the top of the close */
+.ladder {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin: 0 0 var(--gap-l);
+  padding: 0;
+  list-style: none;
 }
 
-.mark :global(svg) {
-  height: 44px;
+.ladder li {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule);
+}
+
+.rung {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.ladder b {
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.ladder li > span:last-child {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* the way on to the next product */
+.next {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  margin-top: var(--gap-l);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.next span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.next b {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.next svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--dur-ui) var(--ease-arrive);
+}
+
+.next:hover b {
+  color: var(--accent);
+}
+
+.next:hover svg {
+  transform: translateX(4px);
+}
+
+.next:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+@media (max-width: 1100px) {
+  .ladder {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ladder {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .ladder li {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    column-gap: var(--s-3);
+    padding: 10px 0;
+  }
+
+  .ladder .rung {
+    grid-row: 1 / span 2;
+  }
+
+  .next {
+    flex-wrap: wrap;
+  }
 }

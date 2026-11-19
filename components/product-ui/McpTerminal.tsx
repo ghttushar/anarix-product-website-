@@ -18,8 +18,8 @@ export function McpTerminal({ handled }: { handled: boolean }) {
         <span>Claude · using anarix</span>
       </header>
       <div className={s.body}>
-        <p className={s.you} data-part="2">› What did I spend on Walmart ads yesterday?</p>
-        <p className={`${s.tool} ${u.later}`} data-part="3">→ Anarix · ad spend · Walmart · yesterday</p>
+        <p className={s.you} data-part="2">› What did I spend on Walmart ads this month?</p>
+        <p className={`${s.tool} ${u.later}`} data-part="3">→ Anarix · ad spend · Walmart · this month</p>
         <span data-part="4" style={{ display: "block" }}>
           <Typewriter className={s.out} play={handled} delay={350} text="$3,412 across 18 campaigns. Top spender: Spring Sale ($890, ROAS 3.6)." />
         </span>

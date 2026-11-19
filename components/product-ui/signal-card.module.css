@@ -77,11 +77,17 @@
 .btnPrimary > .k1,
 .btnPrimary > .k2 {
   grid-area: 1 / 1;
-  transition: opacity 240ms var(--ease-out);
+  transition: opacity 200ms var(--ease-out);
 }
 
+/* the swap is sequential, never a cross-fade, so the two labels never overlap */
 .k2 {
   opacity: 0;
+  transition-delay: 0ms;
+}
+
+.card[data-state="handled"] .k2 {
+  transition-delay: 220ms;
 }
 
 .card[data-state="handled"] .k1 {
@@ -222,4 +228,23 @@
 /* at risk, the card itself says so */
 .card[data-state="risk"] {
   border-color: color-mix(in srgb, var(--risk) 55%, var(--card-line));
+}
+
+/* Execute as a real button (the Signals page) */
+button.btnPrimary {
+  font: inherit;
+  cursor: pointer;
+}
+
+button.btnPrimary:hover:not(:disabled) {
+  background: var(--accent-solid-hover);
+}
+
+button.btnPrimary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+button.btnPrimary:disabled {
+  cursor: default;
 }

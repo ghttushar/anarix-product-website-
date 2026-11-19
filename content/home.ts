@@ -5,14 +5,14 @@
 export const hero = {
   title: ["One AI.", "Every marketplace.", "Always on."],
   lede: "Aan is your **24/7 e-commerce account manager**. It watches your Amazon, Walmart and Shopify accounts around the clock and acts before problems cost you.",
-  primary: { label: "Book a demo", href: "https://www.anarix.ai/contact-us" },
+  primary: { label: "Schedule a demo", href: "https://www.anarix.ai/contact-us" },
   secondary: { label: "Meet Aan", href: "/aan" },
-  bubble: "I'm Aan. The Guardian of your Business!",
+  bubble: "I'm Aan, the guardian of your business.",
 };
 
-export const mission = {
-  statement: "**We are building the guardian every seller deserves.** An AI that watches every change and never stops working for your business.",
-  proof: [
+/** the three approved figures, under the hero's buttons */
+export const proof = {
+  items: [
     { figure: "$1.2B", text: "GMV driven for the brands Anarix works with" },
     { figure: "500+", text: "brands managed across Amazon and Walmart" },
     { figure: "12.8%", text: "average TACoS across the brands we manage" },
@@ -23,24 +23,38 @@ export const night = {
   title: "You sleep. Aan doesn't.",
   statement: "One night on one account. Aan keeps watch from close to open, handles what your rules allow and leaves you a short brief for the morning.",
   note: "A sample night. Figures are illustrative.",
-  start: { m: 0, bubble: "Evening. I've got it from here." },
+  start: { m: 0, bubble: "6:00 PM. 3 stores, all quiet." },
   events: [
-    { m: 180, time: "9:00 PM", text: "Lights out. Aan on watch.", at: "home", bubble: "Watching every store." },
+    { m: 180, time: "9:00 PM", text: "Lights out. Aan on watch.", at: "home", bubble: "9:00 PM. Nothing has changed." },
     { m: 304, time: "11:04 PM", text: "Price undercut. Flagged.", at: "store", bubble: "Undercut by $3. Flagged." },
     { m: 494, time: "2:14 AM", text: "$86 wasted. Paused.", at: "ads", bubble: "$86, 0 sales. Paused." },
-    { m: 640, time: "4:40 AM", text: "Low stock. Reorder drafted.", at: "warehouse", bubble: "Reorder drafted for you." },
-    { m: 780, time: "7:00 AM", text: "3 fixes. $1,240 saved.", at: "home", bubble: "Good morning." },
+    { m: 640, time: "4:40 AM", text: "Low stock. Reorder drafted.", at: "warehouse", bubble: "6 days of stock. Reorder drafted." },
+    { m: 780, time: "7:00 AM", text: "3 fixes. $878 protected.", at: "home", bubble: "$878 protected overnight." },
   ],
+  /** the brief Aan leaves at 7:00 AM: every line adds up to the total */
+  brief: {
+    title: "Your morning brief",
+    items: [
+      { time: "2:14 AM", text: "Paused “chef knife 8 inch”: $86 spent, no sales", v: 86 },
+      { time: "11:04 PM", text: "Flagged a $3 undercut on Shopify", v: 412 },
+      { time: "4:40 AM", text: "Drafted a reorder: 6 days of stock left", v: 380 },
+    ],
+    held: "Needs you: move $400 a day to Sponsored Brands",
+    total: "protected overnight",
+  },
 } as const;
 
-export const good = {
-  title: "AI for good.",
-  line: "Built to earn your trust.",
-  bubble: "On your side.",
-  commitments: [
-    { title: "It shows its work.", text: "Every action comes with the reason and the numbers behind it." },
-    { title: "You stay in charge.", text: "Your rules decide what Aan may do. Approval mode holds any change above your limit until you say yes." },
-    { title: "It gives you time back.", text: "Problems are handled as they happen and summed up in one morning brief, so the constant checking can stop." },
+/** why you can trust Aan with your accounts: how far it goes, step by step */
+export const trust = {
+  title: "You stay in charge.",
+  line: "Aan only goes as far as your rules allow, and every step it takes can be checked.",
+  ladder: [
+    { t: "Watches", d: "Prices, Buy Box, ads, listings and stock, on every store." },
+    { t: "Suggests", d: "A fix with its reason, its confidence and its risk." },
+    { t: "Acts within your rules", d: "Only the changes your rules allow." },
+    { t: "Waits above your limit", d: "Bigger changes hold until you say yes." },
+    { t: "Can be undone", d: "For 30 seconds after any action runs." },
+    { t: "Is checked", d: "Every fix is verified over the next 7 days." },
   ],
 };
 
@@ -106,7 +120,7 @@ export const products: ProductCopy[] = [
       { t: "Inside everything", d: "Aan is in every alert, meeting, task and rule." },
       { t: "Acts when you say yes", d: "Proposed campaign changes apply only after you approve them." },
     ],
-    link: { label: "Meet Aan", href: "/aan" },
+    link: { label: "Explore Ask Aan", href: "/aan" },
     bubble: "Thinking with your data.",
   },
   {
@@ -117,7 +131,7 @@ export const products: ProductCopy[] = [
     points: [
       { t: "Any AI", d: "Claude, ChatGPT, Gemini, or your own agent." },
       { t: "Same numbers", d: "The answer in your AI matches the tile in Anarix." },
-      { t: "Four steps to connect", d: "Choose your AI, add the connector, sign in, check it." },
+      { t: "Where you already work", d: "Answers inside the AI chat your team already has open." },
     ],
     link: { label: "Explore MCP", href: "/mcp" },
     bubble: "Plugged in.",
@@ -149,9 +163,9 @@ export const works = {
 };
 
 export const close = {
-  title: "Meet Aan.",
-  body: "Aan is the AI inside Anarix: your 24/7 account manager. It reads every change across your Amazon, Walmart and Shopify accounts, explains it in plain words and acts within the rules you set. This is Aan's debut.",
-  primary: { label: "Book a demo", href: "https://www.anarix.ai/contact-us" },
+  title: "Put Aan on watch tonight.",
+  body: "Aan reads every change across your Amazon, Walmart and Shopify accounts, explains it in plain words and acts within the rules you set. Watch its debut.",
+  primary: { label: "Schedule a demo", href: "https://www.anarix.ai/contact-us" },
   secondary: "Talk to Aan",
   services: { lead: "Rather we run it for you?", label: "See Anarix Services", href: "https://www.anarix.ai" },
   bubble: "Ready when you are.",

@@ -129,7 +129,12 @@ export const DECISIONS = [
 ];
 
 /* ------------------------------------------------------------------ Aan */
-export type SampleQA = { q: string; a: string; sources: string[]; actions: [string, string] };
+/** the receipt under an answer: two small trend lines, or ranked bars */
+export type AnswerChart =
+  | { kind: "lines"; series: { label: string; note: string; points: number[] }[] }
+  | { kind: "bars"; unit: string; items: { label: string; v: number }[] };
+
+export type SampleQA = { q: string; a: string; sources: string[]; actions: [string, string]; chart: AnswerChart };
 
 export const QUESTIONS: SampleQA[] = [
   {
@@ -137,25 +142,59 @@ export const QUESTIONS: SampleQA[] = [
     a: "CPC rose 22% on “bamboo cutting board” while conversions held flat. Move $400/day to Sponsored Brands to recover about 0.6 ROAS.",
     sources: ["Ads · Walmart", "Yesterday vs 7-day average"],
     actions: ["Draft the rule", "Build a report"],
+    chart: {
+      kind: "lines",
+      series: [
+        { label: "CPC", note: "+22%", points: [1.12, 1.1, 1.13, 1.15, 1.14, 1.21, 1.29, 1.37] },
+        { label: "ROAS", note: "−0.6", points: [3.0, 3.1, 3.0, 2.9, 3.0, 2.8, 2.6, 2.4] },
+      ],
+    },
   },
   {
     q: "Which products lost money last week?",
     a: "Three: Chef knife 8 inch (−$214), Bamboo board (−$96) and Decaf sampler (−$41). Ad spend and refunds did most of it.",
     sources: ["Profitability · All marketplaces", "Last 7 days"],
     actions: ["Show the products", "Draft a rule"],
+    chart: {
+      kind: "bars",
+      unit: "last week",
+      items: [
+        { label: "Chef knife 8 inch", v: -214 },
+        { label: "Bamboo board", v: -96 },
+        { label: "Decaf sampler", v: -41 },
+      ],
+    },
   },
   {
     q: "What should I fix first today?",
     a: "The Amazon ad eligibility signal: $1,651 at risk. Lowering the cost to Amazon by $1.20 restores it.",
     sources: ["Signals · Amazon", "Ranked by money at risk"],
     actions: ["Fix it now", "Assign it"],
+    chart: {
+      kind: "bars",
+      unit: "at risk",
+      items: [
+        { label: "Ad eligibility · Amazon", v: 1651 },
+        { label: "Buy Box · Walmart", v: 940 },
+        { label: "Undercut · Shopify", v: 412 },
+      ],
+    },
   },
 ];
 
 /* ------------------------------------------------------------------ MCP */
 export const CLIENTS = ["Claude", "ChatGPT", "Gemini", "Your agent"] as const;
 export type Client = (typeof CLIENTS)[number];
-export const MCP_ASK = "What did I spend on Walmart ads yesterday?";
-export const MCP_TOOL = "Anarix · ad spend · Walmart · yesterday";
+export const MCP_ASK = "What did I spend on Walmart ads this month?";
+export const MCP_TOOL = "Anarix · ad spend · Walmart · this month";
 export const MCP_ANSWER = { figure: "$3,412", rest: "across 18 campaigns." };
+
+/** the server every AI connects to, and how each one adds it (Anarix app, MCP connect dialog) */
+export const MCP_SERVER = "https://mcp.anarix.ai/mcp/sse";
+export const MCP_SETUP: Record<Client, string[]> = {
+  Claude: ["Settings → Connectors → Add custom connector", "Paste the server address and save", "Ask Claude to “use anarix mcp and login”, then follow the link"],
+  ChatGPT: ["Settings → MCP servers → Add server", "Paste the server address, transport “Streamable HTTP”", "Ask ChatGPT to “use anarix mcp and login”, then follow the link"],
+  Gemini: ["Add a custom MCP server in Gemini", "Paste the server address", "Ask Gemini to “use anarix mcp and login”, then follow the link"],
+  "Your agent": ["Point any MCP client at the server address", "Sign in with your Anarix account when it asks", "Check it: ask which accounts you can see"],
+};
 export const MCP_TOOLS = ["Sales", "Ads", "Inventory", "Profit"];

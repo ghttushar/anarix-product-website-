@@ -150,6 +150,22 @@ function Watch() {
       </div>
       <div className={`${h.visual} ${h.visualWide}`}>
         <NightBoard ref={town} at={at} bubble={bubble} states={states} />
+        <aside className={h.brief} data-shown={minute >= END ? "true" : "false"} aria-hidden={minute >= END ? undefined : true}>
+          <p className={h.briefTitle}>{night.brief.title}</p>
+          <ul>
+            {night.brief.items.map((it) => (
+              <li key={it.text}>
+                <time>{it.time}</time>
+                <span>{it.text}</span>
+                <b>${it.v}</b>
+              </li>
+            ))}
+          </ul>
+          <p className={h.briefHeld}>{night.brief.held}</p>
+          <p className={h.briefTotal}>
+            <b>${night.brief.items.reduce((s, it) => s + it.v, 0).toLocaleString("en-US")}</b> {night.brief.total}
+          </p>
+        </aside>
       </div>
     </>
   );

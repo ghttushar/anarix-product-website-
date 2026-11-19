@@ -269,3 +269,79 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* the steps of How it works, as a rail over the hands-on moment */
+.rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail li {
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  padding-top: var(--s-3);
+  border-top: 2px solid var(--rule);
+  transition: border-color var(--dur-ui) var(--ease-arrive);
+}
+
+.rail li[data-state="now"] {
+  border-top-color: var(--accent);
+}
+
+.rail li[data-state="done"] {
+  border-top-color: color-mix(in oklab, var(--accent) 45%, var(--rule));
+}
+
+.railNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.rail b {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.rail li[data-state="next"] b {
+  color: var(--ink-2);
+}
+
+.railD {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+@media (max-height: 800px) {
+  .railD {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .rail {
+    gap: var(--s-3);
+  }
+
+  .railD {
+    display: none;
+  }
+
+  .rail b {
+    font-size: 13px;
+  }
+}
+
+/* works-with as quiet lines of names, not chips that look like filters */
+.names {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}

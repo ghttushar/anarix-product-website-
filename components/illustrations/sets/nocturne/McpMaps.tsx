@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AanDock } from "@/components/aan/v2/AanDock";
-import { Drawing, Label, art, d, fx, g, scallops } from "./kit";
+import { Drawing, Label, art, d, fx, g } from "./kit";
 import m from "./mcp-maps.module.css";
 
 /*
@@ -52,7 +52,6 @@ export function WiringMap({ stop = "mcp", bubble }: { stop?: string; bubble?: st
           return (
             <g key={k} {...g(1)}>
               <rect {...d(art.body)} x={40} y={y - 30} width={92} height={60} />
-              <path {...d()} d={scallops(40, 132, y - 18, 6)} />
               <rect {...d(`${art.win} ${art.lit}`)} x={56} y={y - 4} width={28} height={20} />
               <path {...d()} d={`M132 ${y} C 250 ${y}, 260 ${JY + (i - 1) * 40}, ${IN} ${JY + (i - 1) * 40}`} />
             </g>
