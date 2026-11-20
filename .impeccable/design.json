@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T17:09:04.889Z",
+  "generatedAt": "2026-11-20T15:18:59.766Z",
   "title": "Design System: Anarix Platform",
   "extensions": {
     "colorMeta": {
@@ -21,23 +21,8 @@
       },
       "periwinkle-solid-hover-night": {
         "role": "primary",
-        "displayName": "Working Periwinkle, hover (night)",
+        "displayName": "Working Periwinkle, hover",
         "canonical": "hsl(230 65% 52%)",
-        "tonalRamp": [
-          "hsl(230 65% 15%)",
-          "hsl(230 65% 25%)",
-          "hsl(230 65% 35%)",
-          "hsl(230 65% 45%)",
-          "hsl(230 65% 55%)",
-          "hsl(230 65% 65%)",
-          "hsl(230 65% 80%)",
-          "hsl(230 65% 95%)"
-        ]
-      },
-      "periwinkle-day": {
-        "role": "primary",
-        "displayName": "Handled Periwinkle (day)",
-        "canonical": "hsl(230 65% 50%)",
         "tonalRamp": [
           "hsl(230 65% 15%)",
           "hsl(230 65% 25%)",
@@ -64,19 +49,19 @@
           "hsl(230 75% 95%)"
         ]
       },
-      "periwinkle-chrome-night": {
+      "periwinkle-day": {
         "role": "primary",
-        "displayName": "Chrome Periwinkle (night)",
-        "canonical": "hsl(230 70% 65%)",
+        "displayName": "Handled Periwinkle (day)",
+        "canonical": "hsl(230 65% 50%)",
         "tonalRamp": [
-          "hsl(230 70% 15%)",
-          "hsl(230 70% 25%)",
-          "hsl(230 70% 35%)",
-          "hsl(230 70% 45%)",
-          "hsl(230 70% 55%)",
-          "hsl(230 70% 65%)",
-          "hsl(230 70% 80%)",
-          "hsl(230 70% 95%)"
+          "hsl(230 65% 15%)",
+          "hsl(230 65% 25%)",
+          "hsl(230 65% 35%)",
+          "hsl(230 65% 45%)",
+          "hsl(230 65% 55%)",
+          "hsl(230 65% 65%)",
+          "hsl(230 65% 80%)",
+          "hsl(230 65% 95%)"
         ]
       },
       "lit-night": {
@@ -139,36 +124,6 @@
           "hsl(356 86% 95%)"
         ]
       },
-      "aan-coral-light": {
-        "role": "secondary",
-        "displayName": "Aan Coral Light (mascot only)",
-        "canonical": "#f88a93",
-        "tonalRamp": [
-          "hsl(355 89% 15%)",
-          "hsl(355 89% 25%)",
-          "hsl(355 89% 35%)",
-          "hsl(355 89% 45%)",
-          "hsl(355 89% 55%)",
-          "hsl(355 89% 65%)",
-          "hsl(355 89% 80%)",
-          "hsl(355 89% 95%)"
-        ]
-      },
-      "aan-coral-deep": {
-        "role": "secondary",
-        "displayName": "Aan Coral Deep (mascot only)",
-        "canonical": "#f05e6a",
-        "tonalRamp": [
-          "hsl(355 83% 15%)",
-          "hsl(355 83% 25%)",
-          "hsl(355 83% 35%)",
-          "hsl(355 83% 45%)",
-          "hsl(355 83% 55%)",
-          "hsl(355 83% 65%)",
-          "hsl(355 83% 80%)",
-          "hsl(355 83% 95%)"
-        ]
-      },
       "risk-ink-night": {
         "role": "secondary",
         "displayName": "Risk Ink (night)",
@@ -199,21 +154,6 @@
           "hsl(355 70% 95%)"
         ]
       },
-      "film-stamp-red": {
-        "role": "tertiary",
-        "displayName": "Film Stamp Red (film only)",
-        "canonical": "#e3121b",
-        "tonalRamp": [
-          "hsl(357 85% 15%)",
-          "hsl(357 85% 25%)",
-          "hsl(357 85% 35%)",
-          "hsl(357 85% 45%)",
-          "hsl(357 85% 55%)",
-          "hsl(357 85% 65%)",
-          "hsl(357 85% 80%)",
-          "hsl(357 85% 95%)"
-        ]
-      },
       "sky-night": {
         "role": "neutral",
         "displayName": "Night Sky",
@@ -227,36 +167,6 @@
           "hsl(208 32% 65%)",
           "hsl(208 32% 80%)",
           "hsl(208 32% 95%)"
-        ]
-      },
-      "line-night": {
-        "role": "neutral",
-        "displayName": "Line (night)",
-        "canonical": "hsl(228 38% 80% / 0.55)",
-        "tonalRamp": [
-          "hsl(228 38% 15%)",
-          "hsl(228 38% 25%)",
-          "hsl(228 38% 35%)",
-          "hsl(228 38% 45%)",
-          "hsl(228 38% 55%)",
-          "hsl(228 38% 65%)",
-          "hsl(228 38% 80%)",
-          "hsl(228 38% 95%)"
-        ]
-      },
-      "line-strong-night": {
-        "role": "neutral",
-        "displayName": "Line Strong (night)",
-        "canonical": "hsl(228 40% 90% / 0.92)",
-        "tonalRamp": [
-          "hsl(228 40% 15%)",
-          "hsl(228 40% 25%)",
-          "hsl(228 40% 35%)",
-          "hsl(228 40% 45%)",
-          "hsl(228 40% 55%)",
-          "hsl(228 40% 65%)",
-          "hsl(228 40% 80%)",
-          "hsl(228 40% 95%)"
         ]
       },
       "ink-night": {
@@ -336,7 +246,7 @@
       },
       "bubble-bg-night": {
         "role": "neutral",
-        "displayName": "Bubble Bg (night)",
+        "displayName": "Bubble (night)",
         "canonical": "hsl(228 25% 97%)",
         "tonalRamp": [
           "hsl(228 25% 15%)",
@@ -377,36 +287,6 @@
           "hsl(230 60% 65%)",
           "hsl(230 60% 80%)",
           "hsl(230 60% 95%)"
-        ]
-      },
-      "line-day": {
-        "role": "neutral",
-        "displayName": "Line (day)",
-        "canonical": "hsl(209 22% 14% / 0.5)",
-        "tonalRamp": [
-          "hsl(209 22% 15%)",
-          "hsl(209 22% 25%)",
-          "hsl(209 22% 35%)",
-          "hsl(209 22% 45%)",
-          "hsl(209 22% 55%)",
-          "hsl(209 22% 65%)",
-          "hsl(209 22% 80%)",
-          "hsl(209 22% 95%)"
-        ]
-      },
-      "line-strong-day": {
-        "role": "neutral",
-        "displayName": "Line Strong (day)",
-        "canonical": "hsl(209 22% 14% / 0.88)",
-        "tonalRamp": [
-          "hsl(209 22% 15%)",
-          "hsl(209 22% 25%)",
-          "hsl(209 22% 35%)",
-          "hsl(209 22% 45%)",
-          "hsl(209 22% 55%)",
-          "hsl(209 22% 65%)",
-          "hsl(209 22% 80%)",
-          "hsl(209 22% 95%)"
         ]
       },
       "ink-day": {
@@ -486,7 +366,7 @@
       },
       "bubble-bg-day": {
         "role": "neutral",
-        "displayName": "Bubble Bg (day)",
+        "displayName": "Bubble (day)",
         "canonical": "hsl(209 22% 14%)",
         "tonalRamp": [
           "hsl(209 22% 15%)",
@@ -514,261 +394,6 @@
           "hsl(0 0% 95%)"
         ]
       },
-      "iso-top-night": {
-        "role": "neutral",
-        "displayName": "Iso Top Face (night)",
-        "canonical": "#1b2530",
-        "tonalRamp": [
-          "hsl(211 28% 15%)",
-          "hsl(211 28% 25%)",
-          "hsl(211 28% 35%)",
-          "hsl(211 28% 45%)",
-          "hsl(211 28% 55%)",
-          "hsl(211 28% 65%)",
-          "hsl(211 28% 80%)",
-          "hsl(211 28% 95%)"
-        ]
-      },
-      "iso-left-night": {
-        "role": "neutral",
-        "displayName": "Iso Left Face (night)",
-        "canonical": "#141c25",
-        "tonalRamp": [
-          "hsl(212 30% 15%)",
-          "hsl(212 30% 25%)",
-          "hsl(212 30% 35%)",
-          "hsl(212 30% 45%)",
-          "hsl(212 30% 55%)",
-          "hsl(212 30% 65%)",
-          "hsl(212 30% 80%)",
-          "hsl(212 30% 95%)"
-        ]
-      },
-      "iso-right-night": {
-        "role": "neutral",
-        "displayName": "Iso Right Face (night)",
-        "canonical": "#10171e",
-        "tonalRamp": [
-          "hsl(210 30% 15%)",
-          "hsl(210 30% 25%)",
-          "hsl(210 30% 35%)",
-          "hsl(210 30% 45%)",
-          "hsl(210 30% 55%)",
-          "hsl(210 30% 65%)",
-          "hsl(210 30% 80%)",
-          "hsl(210 30% 95%)"
-        ]
-      },
-      "iso-plate-top-night": {
-        "role": "neutral",
-        "displayName": "Iso Plate Top (night)",
-        "canonical": "#131b23",
-        "tonalRamp": [
-          "hsl(210 30% 15%)",
-          "hsl(210 30% 25%)",
-          "hsl(210 30% 35%)",
-          "hsl(210 30% 45%)",
-          "hsl(210 30% 55%)",
-          "hsl(210 30% 65%)",
-          "hsl(210 30% 80%)",
-          "hsl(210 30% 95%)"
-        ]
-      },
-      "iso-plate-right-night": {
-        "role": "neutral",
-        "displayName": "Iso Plate Right (night)",
-        "canonical": "#0d1319",
-        "tonalRamp": [
-          "hsl(210 32% 15%)",
-          "hsl(210 32% 25%)",
-          "hsl(210 32% 35%)",
-          "hsl(210 32% 45%)",
-          "hsl(210 32% 55%)",
-          "hsl(210 32% 65%)",
-          "hsl(210 32% 80%)",
-          "hsl(210 32% 95%)"
-        ]
-      },
-      "iso-edge-night": {
-        "role": "neutral",
-        "displayName": "Iso Edge (night)",
-        "canonical": "hsl(220 32% 74% / 0.2)",
-        "tonalRamp": [
-          "hsl(220 32% 15%)",
-          "hsl(220 32% 25%)",
-          "hsl(220 32% 35%)",
-          "hsl(220 32% 45%)",
-          "hsl(220 32% 55%)",
-          "hsl(220 32% 65%)",
-          "hsl(220 32% 80%)",
-          "hsl(220 32% 95%)"
-        ]
-      },
-      "iso-wire-night": {
-        "role": "neutral",
-        "displayName": "Iso Wire (night)",
-        "canonical": "hsl(220 32% 74% / 0.26)",
-        "tonalRamp": [
-          "hsl(220 32% 15%)",
-          "hsl(220 32% 25%)",
-          "hsl(220 32% 35%)",
-          "hsl(220 32% 45%)",
-          "hsl(220 32% 55%)",
-          "hsl(220 32% 65%)",
-          "hsl(220 32% 80%)",
-          "hsl(220 32% 95%)"
-        ]
-      },
-      "iso-shadow-night": {
-        "role": "neutral",
-        "displayName": "Stage Ground Shadow (night)",
-        "canonical": "hsl(212 40% 2% / 0.32)",
-        "tonalRamp": [
-          "hsl(212 40% 15%)",
-          "hsl(212 40% 25%)",
-          "hsl(212 40% 35%)",
-          "hsl(212 40% 45%)",
-          "hsl(212 40% 55%)",
-          "hsl(212 40% 65%)",
-          "hsl(212 40% 80%)",
-          "hsl(212 40% 95%)"
-        ]
-      },
-      "iso-top-day": {
-        "role": "neutral",
-        "displayName": "Iso Top Face (day)",
-        "canonical": "#ffffff",
-        "tonalRamp": [
-          "hsl(0 0% 15%)",
-          "hsl(0 0% 25%)",
-          "hsl(0 0% 35%)",
-          "hsl(0 0% 45%)",
-          "hsl(0 0% 55%)",
-          "hsl(0 0% 65%)",
-          "hsl(0 0% 80%)",
-          "hsl(0 0% 95%)"
-        ]
-      },
-      "iso-left-day": {
-        "role": "neutral",
-        "displayName": "Iso Left Face (day)",
-        "canonical": "hsl(228 30% 94%)",
-        "tonalRamp": [
-          "hsl(228 30% 15%)",
-          "hsl(228 30% 25%)",
-          "hsl(228 30% 35%)",
-          "hsl(228 30% 45%)",
-          "hsl(228 30% 55%)",
-          "hsl(228 30% 65%)",
-          "hsl(228 30% 80%)",
-          "hsl(228 30% 95%)"
-        ]
-      },
-      "iso-right-day": {
-        "role": "neutral",
-        "displayName": "Iso Right Face (day)",
-        "canonical": "hsl(228 24% 88%)",
-        "tonalRamp": [
-          "hsl(228 24% 15%)",
-          "hsl(228 24% 25%)",
-          "hsl(228 24% 35%)",
-          "hsl(228 24% 45%)",
-          "hsl(228 24% 55%)",
-          "hsl(228 24% 65%)",
-          "hsl(228 24% 80%)",
-          "hsl(228 24% 95%)"
-        ]
-      },
-      "iso-plate-top-day": {
-        "role": "neutral",
-        "displayName": "Iso Plate Top (day)",
-        "canonical": "hsl(230 45% 96%)",
-        "tonalRamp": [
-          "hsl(230 45% 15%)",
-          "hsl(230 45% 25%)",
-          "hsl(230 45% 35%)",
-          "hsl(230 45% 45%)",
-          "hsl(230 45% 55%)",
-          "hsl(230 45% 65%)",
-          "hsl(230 45% 80%)",
-          "hsl(230 45% 95%)"
-        ]
-      },
-      "iso-plate-left-day": {
-        "role": "neutral",
-        "displayName": "Iso Plate Left (day)",
-        "canonical": "hsl(228 28% 91%)",
-        "tonalRamp": [
-          "hsl(228 28% 15%)",
-          "hsl(228 28% 25%)",
-          "hsl(228 28% 35%)",
-          "hsl(228 28% 45%)",
-          "hsl(228 28% 55%)",
-          "hsl(228 28% 65%)",
-          "hsl(228 28% 80%)",
-          "hsl(228 28% 95%)"
-        ]
-      },
-      "iso-plate-right-day": {
-        "role": "neutral",
-        "displayName": "Iso Plate Right (day)",
-        "canonical": "hsl(228 22% 86%)",
-        "tonalRamp": [
-          "hsl(228 22% 15%)",
-          "hsl(228 22% 25%)",
-          "hsl(228 22% 35%)",
-          "hsl(228 22% 45%)",
-          "hsl(228 22% 55%)",
-          "hsl(228 22% 65%)",
-          "hsl(228 22% 80%)",
-          "hsl(228 22% 95%)"
-        ]
-      },
-      "iso-edge-day": {
-        "role": "neutral",
-        "displayName": "Iso Edge (day)",
-        "canonical": "hsl(220 30% 28% / 0.16)",
-        "tonalRamp": [
-          "hsl(220 30% 15%)",
-          "hsl(220 30% 25%)",
-          "hsl(220 30% 35%)",
-          "hsl(220 30% 45%)",
-          "hsl(220 30% 55%)",
-          "hsl(220 30% 65%)",
-          "hsl(220 30% 80%)",
-          "hsl(220 30% 95%)"
-        ]
-      },
-      "iso-wire-day": {
-        "role": "neutral",
-        "displayName": "Iso Wire (day)",
-        "canonical": "hsl(220 30% 28% / 0.24)",
-        "tonalRamp": [
-          "hsl(220 30% 15%)",
-          "hsl(220 30% 25%)",
-          "hsl(220 30% 35%)",
-          "hsl(220 30% 45%)",
-          "hsl(220 30% 55%)",
-          "hsl(220 30% 65%)",
-          "hsl(220 30% 80%)",
-          "hsl(220 30% 95%)"
-        ]
-      },
-      "iso-shadow-day": {
-        "role": "neutral",
-        "displayName": "Stage Ground Shadow (day)",
-        "canonical": "hsl(228 40% 40% / 0.12)",
-        "tonalRamp": [
-          "hsl(228 40% 15%)",
-          "hsl(228 40% 25%)",
-          "hsl(228 40% 35%)",
-          "hsl(228 40% 45%)",
-          "hsl(228 40% 55%)",
-          "hsl(228 40% 65%)",
-          "hsl(228 40% 80%)",
-          "hsl(228 40% 95%)"
-        ]
-      },
       "video-ground": {
         "role": "neutral",
         "displayName": "Video Ground",
@@ -784,9 +409,24 @@
           "hsl(228 50% 95%)"
         ]
       },
+      "film-stamp-red": {
+        "role": "tertiary",
+        "displayName": "Film Stamp Red (film only)",
+        "canonical": "#e3121b",
+        "tonalRamp": [
+          "hsl(357 85% 15%)",
+          "hsl(357 85% 25%)",
+          "hsl(357 85% 35%)",
+          "hsl(357 85% 45%)",
+          "hsl(357 85% 55%)",
+          "hsl(357 85% 65%)",
+          "hsl(357 85% 80%)",
+          "hsl(357 85% 95%)"
+        ]
+      },
       "chrome-card-day": {
         "role": "neutral",
-        "displayName": "Chrome Card (day)",
+        "displayName": "Chrome card day",
         "canonical": "hsl(0 0% 100%)",
         "tonalRamp": [
           "hsl(0 0% 15%)",
@@ -801,7 +441,7 @@
       },
       "chrome-card-night": {
         "role": "neutral",
-        "displayName": "Chrome Card (night)",
+        "displayName": "Chrome card night",
         "canonical": "hsl(209 28% 11%)",
         "tonalRamp": [
           "hsl(209 28% 15%)",
@@ -816,7 +456,7 @@
       },
       "chrome-fg-day": {
         "role": "neutral",
-        "displayName": "Chrome Fg (day)",
+        "displayName": "Chrome fg day",
         "canonical": "hsl(209 22% 14%)",
         "tonalRamp": [
           "hsl(209 22% 15%)",
@@ -831,7 +471,7 @@
       },
       "chrome-fg-night": {
         "role": "neutral",
-        "displayName": "Chrome Fg (night)",
+        "displayName": "Chrome fg night",
         "canonical": "hsl(228 20% 94%)",
         "tonalRamp": [
           "hsl(228 20% 15%)",
@@ -846,7 +486,7 @@
       },
       "chrome-muted-fg-day": {
         "role": "neutral",
-        "displayName": "Chrome Muted Fg (day)",
+        "displayName": "Chrome muted fg day",
         "canonical": "hsl(215 14% 42%)",
         "tonalRamp": [
           "hsl(215 14% 15%)",
@@ -861,7 +501,7 @@
       },
       "chrome-muted-fg-night": {
         "role": "neutral",
-        "displayName": "Chrome Muted Fg (night)",
+        "displayName": "Chrome muted fg night",
         "canonical": "hsl(215 12% 60%)",
         "tonalRamp": [
           "hsl(215 12% 15%)",
@@ -874,39 +514,9 @@
           "hsl(215 12% 95%)"
         ]
       },
-      "chrome-muted-day": {
-        "role": "neutral",
-        "displayName": "Chrome Muted (day)",
-        "canonical": "hsl(228 20% 94%)",
-        "tonalRamp": [
-          "hsl(228 20% 15%)",
-          "hsl(228 20% 25%)",
-          "hsl(228 20% 35%)",
-          "hsl(228 20% 45%)",
-          "hsl(228 20% 55%)",
-          "hsl(228 20% 65%)",
-          "hsl(228 20% 80%)",
-          "hsl(228 20% 95%)"
-        ]
-      },
-      "chrome-muted-night": {
-        "role": "neutral",
-        "displayName": "Chrome Muted (night)",
-        "canonical": "hsl(209 25% 16%)",
-        "tonalRamp": [
-          "hsl(209 25% 15%)",
-          "hsl(209 25% 25%)",
-          "hsl(209 25% 35%)",
-          "hsl(209 25% 45%)",
-          "hsl(209 25% 55%)",
-          "hsl(209 25% 65%)",
-          "hsl(209 25% 80%)",
-          "hsl(209 25% 95%)"
-        ]
-      },
       "chrome-border-day": {
         "role": "neutral",
-        "displayName": "Chrome Border (day)",
+        "displayName": "Chrome border day",
         "canonical": "hsl(228 20% 90%)",
         "tonalRamp": [
           "hsl(228 20% 15%)",
@@ -921,7 +531,7 @@
       },
       "chrome-border-night": {
         "role": "neutral",
-        "displayName": "Chrome Border (night)",
+        "displayName": "Chrome border night",
         "canonical": "hsl(209 25% 18%)",
         "tonalRamp": [
           "hsl(209 25% 15%)",
@@ -933,161 +543,119 @@
           "hsl(209 25% 80%)",
           "hsl(209 25% 95%)"
         ]
-      },
-      "chrome-accent-day": {
-        "role": "neutral",
-        "displayName": "Chrome Accent (day)",
-        "canonical": "hsl(230 65% 95%)",
-        "tonalRamp": [
-          "hsl(230 65% 15%)",
-          "hsl(230 65% 25%)",
-          "hsl(230 65% 35%)",
-          "hsl(230 65% 45%)",
-          "hsl(230 65% 55%)",
-          "hsl(230 65% 65%)",
-          "hsl(230 65% 80%)",
-          "hsl(230 65% 95%)"
-        ]
-      },
-      "chrome-accent-night": {
-        "role": "neutral",
-        "displayName": "Chrome Accent (night)",
-        "canonical": "hsl(230 40% 20%)",
-        "tonalRamp": [
-          "hsl(230 40% 15%)",
-          "hsl(230 40% 25%)",
-          "hsl(230 40% 35%)",
-          "hsl(230 40% 45%)",
-          "hsl(230 40% 55%)",
-          "hsl(230 40% 65%)",
-          "hsl(230 40% 80%)",
-          "hsl(230 40% 95%)"
-        ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Homepage hero h1, three short lines, the last in Handled Periwinkle. Capped at 96px."
+        "purpose": "Homepage hero: three stacked lines across the 12-column grid, the third in Handled Periwinkle."
       },
       "display-name": {
         "displayName": "Display Name",
-        "purpose": "A product's own name in its hero, the largest type on the page; each hero composition sets its own clamp (9rem to 15rem caps)."
+        "purpose": "A product's own name in its hero; size varies per hero layout up to clamp(5rem, min(14vw, 24svh), 15rem)."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "One per screen, at most two short lines. Capped at 64px."
+        "purpose": "Every screen heading (.t-h2)."
       },
       "slogan": {
         "displayName": "Slogan",
-        "purpose": "The Fraunces line directly under a product name, in Ink 2."
-      },
-      "step-title": {
-        "displayName": "Step Title",
-        "purpose": "The title of each How it works step; tour chapter names in the same voice."
-      },
-      "statement": {
-        "displayName": "Statement",
-        "purpose": "The one paragraph under each headline, Ink 2 with key phrases in full Ink; max 42ch."
-      },
-      "capability-title": {
-        "displayName": "Capability Title",
-        "purpose": "Title of a What it does cell (17px)."
-      },
-      "body": {
-        "displayName": "Body",
-        "purpose": "Running text."
-      },
-      "capability-text": {
-        "displayName": "Capability Text",
-        "purpose": "Second line of a What it does cell, in Ink 2 (15.5px)."
-      },
-      "screen-point-title": {
-        "displayName": "Screen Point Title",
-        "purpose": "First line of the three points on each homepage product screen (15.5px)."
-      },
-      "cta": {
-        "displayName": "Cta",
-        "purpose": "Filled buttons and text links."
-      },
-      "point-title": {
-        "displayName": "Point Title",
-        "purpose": "First line of a ruled point."
-      },
-      "screen-point-text": {
-        "displayName": "Screen Point Text",
-        "purpose": "Second line of a homepage product-screen point, in Ink 2 (14.5px)."
-      },
-      "point-text": {
-        "displayName": "Point Text",
-        "purpose": "Second line of a ruled point, in Ink 2."
-      },
-      "chip": {
-        "displayName": "Chip",
-        "purpose": "Names in a Works-with group (13.5px)."
-      },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Aan's speech bubble, footer column heads, Works-with group names, UI buttons and callout card titles."
-      },
-      "drawing-label": {
-        "displayName": "Drawing Label",
-        "purpose": "A Tag on an isometric drawing (live SVG text, sub-line at 86% in Ink 2); never below 11px on screen."
-      },
-      "face-text": {
-        "displayName": "Face Text",
-        "purpose": "Type printed on an isometric block's face; Plex Mono 500 for figures; never below 11px on screen."
-      },
-      "ui-label": {
-        "displayName": "UI Label",
-        "purpose": "Pills and field labels inside product cards."
-      },
-      "caption": {
-        "displayName": "Caption",
-        "purpose": "The Sample data note under each card or drawing."
-      },
-      "ui-figure": {
-        "displayName": "UI Figure",
-        "purpose": "The headline number inside a product card, tabular."
+        "purpose": "The line under a product name, in Ink 2."
       },
       "figure": {
         "displayName": "Figure",
-        "purpose": "IBM Plex Mono for counted or timed numbers only: log times, card metadata, step and chapter numbers, callout numbers."
+        "purpose": "Proof figures in a ruled row, counted up by Ticker."
+      },
+      "editorial": {
+        "displayName": "Editorial",
+        "purpose": "Fraunces for the morning brief and Aan's letter only."
+      },
+      "statement": {
+        "displayName": "Statement",
+        "purpose": "Grey prose under a headline; key phrases in full Ink at 500."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default running text."
+      },
+      "point-title": {
+        "displayName": "Point Title",
+        "purpose": "Title of a ruled point."
+      },
+      "cta": {
+        "displayName": "CTA",
+        "purpose": "Primary button and secondary link labels."
+      },
+      "bubble": {
+        "displayName": "Bubble",
+        "purpose": "Aan's speech bubble, 28 characters or fewer."
+      },
+      "ui-label": {
+        "displayName": "UI Label",
+        "purpose": "Pills and labels inside product UI."
+      },
+      "index": {
+        "displayName": "Index",
+        "purpose": "Mono sequence numerals, uppercase, Ink 2 or Handled Periwinkle."
+      },
+      "frame-note": {
+        "displayName": "Frame Note",
+        "purpose": "The honest sample-data label in a ProductFrame's top bar."
       }
     },
     "shadows": [
       {
-        "name": "stage-ground",
-        "value": "fill: hsl(212 40% 2% / 0.32)",
-        "purpose": "The one soft isometric ellipse an isometric system stands on. Day: hsl(228 40% 40% / 0.12)."
+        "name": "frame-drop-night",
+        "value": "0 1px 0 hsl(0 0% 100% / 0.06) inset, 0 50px 90px -40px rgb(0 0 0 / 0.65), 0 18px 36px -24px rgb(0 0 0 / 0.5)",
+        "purpose": "ProductFrame card at night."
       },
       {
-        "name": "card-drop",
+        "name": "frame-drop-day",
+        "value": "0 50px 80px -40px hsl(230 40% 30% / 0.35), 0 18px 36px -24px hsl(230 40% 30% / 0.25)",
+        "purpose": "ProductFrame card in day theme."
+      },
+      {
+        "name": "ui-card-drop",
         "value": "0 24px 48px -32px hsl(228 60% 4% / 0.7)",
-        "purpose": "Every product UI card."
+        "purpose": "Product UI card shown without a frame."
       },
       {
-        "name": "bubble-drop",
+        "name": "bubble",
         "value": "0 8px 20px -12px hsl(228 50% 4% / 0.6)",
         "purpose": "Aan's speech bubble."
       },
       {
+        "name": "frame-floor-glow",
+        "value": "radial-gradient(closest-side, hsl(230 75% 65% / 0.28), transparent)",
+        "purpose": "Oval periwinkle glow beneath a ProductFrame (a background, not a box-shadow)."
+      },
+      {
         "name": "chrome-soft",
         "value": "0 2px 8px -2px hsl(230 65% 57% / 0.08)",
-        "purpose": "Chrome only (nav at rest, chrome primary button). Night: 0 2px 8px -2px hsl(0 0% 0% / 0.3)."
+        "purpose": "Nav and island at rest (day)."
       },
       {
         "name": "chrome-medium",
         "value": "0 4px 16px -4px hsl(230 65% 57% / 0.12)",
-        "purpose": "Chrome only (scrolled nav, mobile menu). Night: 0 4px 16px -4px hsl(0 0% 0% / 0.4)."
-      },
-      {
-        "name": "chrome-strong",
-        "value": "0 8px 32px -8px hsl(230 65% 57% / 0.18)",
-        "purpose": "Chrome only (chrome button hover, Ask Aan panel). Night: 0 8px 32px -8px hsl(0 0% 0% / 0.5)."
+        "purpose": "Nav when scrolled (day)."
       }
     ],
     "motion": [
+      {
+        "name": "ease-arrive",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one arrival curve: reveals, cards rising, trails drawing, hovers."
+      },
+      {
+        "name": "ease-travel",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Aan's flights between stops and the trail pulses."
+      },
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Aan's acts: hop, point, press, celebrate, shape morphs."
+      },
       {
         "name": "dur-micro",
         "value": "160ms",
@@ -1096,62 +664,47 @@
       {
         "name": "dur-ui",
         "value": "320ms",
-        "purpose": "State changes inside product UI; the bubble fade."
+        "purpose": "State changes inside product UI; bubble fade."
       },
       {
         "name": "dur-reveal",
         "value": "700ms",
-        "purpose": "A screen's content settling, at most a 16px rise (200ms fade under reduced motion)."
-      },
-      {
-        "name": "dur-draw",
-        "value": "1400ms",
-        "purpose": "MCP line art drawing itself (0 under reduced motion)."
-      },
-      {
-        "name": "dur-iso-settle",
-        "value": "1000ms",
-        "purpose": "An isometric block settling in (fade and 14px rise), 60ms apart in entry order."
-      },
-      {
-        "name": "dur-iso-lift",
-        "value": "900ms",
-        "purpose": "A marked face lifting toward periwinkle or coral when its stage powers on."
-      },
-      {
-        "name": "dur-packet",
-        "value": "5200ms",
-        "purpose": "One slow packet running a powered cable, resting the last 30% of each pass; stopped under reduced motion."
+        "purpose": "Blur-rise reveal (16px rise, 4px blur); 200ms fade under reduced motion."
       },
       {
         "name": "dur-flight",
         "value": "600ms",
-        "purpose": "Aan travelling between docks (0 under reduced motion)."
+        "purpose": "Aan's nominal flight; the build runs 450-700ms by distance."
       },
       {
         "name": "stagger",
         "value": "90ms",
-        "purpose": "Between strokes or items in reading order (0 under reduced motion)."
+        "purpose": "Reveal order step."
       },
       {
-        "name": "ease-arrive",
-        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Everything that arrives; also --ease-out inside .nocturne."
+        "name": "frame-rise",
+        "value": "1100ms",
+        "purpose": "ProductFrame first arrival from translateY(56px) rotateX(24deg)."
       },
       {
-        "name": "ease-travel",
-        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
-        "purpose": "Aan's travel between docks."
+        "name": "trail-draw",
+        "value": "1.8s core / 2.2s bloom, 70ms apart",
+        "purpose": "LightTrails draw-on; then a 7s breath and a 9s pulse."
       },
       {
-        "name": "ease-out-root",
-        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
-        "purpose": "Root --ease-out: chrome transitions and the body theme fade."
+        "name": "ticker",
+        "value": "650ms (1400ms hero proof), cubic ease-out",
+        "purpose": "Number roll."
+      },
+      {
+        "name": "magnetic",
+        "value": "strength 0.25, 300ms return",
+        "purpose": "Primary CTA leaning toward the pointer."
       }
     ],
     "breakpoints": [
       {
-        "name": "narrow",
+        "name": "phone-narrow",
         "value": "400px"
       },
       {
@@ -1159,40 +712,28 @@
         "value": "640px"
       },
       {
+        "name": "flat-cards",
+        "value": "760px"
+      },
+      {
         "name": "stack",
         "value": "900px"
       },
       {
-        "name": "chrome-desktop",
+        "name": "tablet",
         "value": "1100px"
       },
       {
-        "name": "short-grow",
-        "value": "max-height 620px"
-      },
-      {
-        "name": "short-tight",
-        "value": "max-height 760px"
-      },
-      {
-        "name": "short-optional",
+        "name": "short-points",
         "value": "max-height 800px"
       },
       {
-        "name": "stage-face",
-        "value": "container max-width 340px"
+        "name": "short",
+        "value": "max-height 760px"
       },
       {
-        "name": "stage-callout",
-        "value": "container max-width 380px"
-      },
-      {
-        "name": "stage-tags",
-        "value": "container max-width 520px"
-      },
-      {
-        "name": "stage-col-labels",
-        "value": "container max-width 640px"
+        "name": "grow-allowed",
+        "value": "max-height 620px"
       }
     ]
   },
@@ -1201,107 +742,91 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one filled pill per screen: white on Working Periwinkle, deepens on hover, no lift.",
+      "description": "The one filled pill per screen, magnetic, with a light streak crossing it on hover.",
       "html": "<a class=\"ds-cta\" href=\"#\">Book a demo</a>",
-      "css": ".ds-cta{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:hsl(230 65% 57%);color:#fff;font:600 15px/1 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-cta:hover{background:hsl(230 65% 52%)}.ds-cta:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:4px}"
+      "css": ".ds-cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:hsl(230 65% 57%);color:#fff;font:600 15px/1 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 160ms cubic-bezier(0.16,1,0.3,1),transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgb(255 255 255/.38) 50%,transparent 70%);transform:translateX(-120%);transition:transform 700ms cubic-bezier(0.16,1,0.3,1);pointer-events:none}.ds-cta:hover{background:hsl(230 65% 52%)}.ds-cta:hover::after{transform:translateX(120%)}.ds-cta:active{transform:scale(.97)}.ds-cta:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:4px}"
     },
     {
       "name": "Text Link",
       "kind": "button",
-      "refersTo": "text-link-night",
-      "description": "The secondary action: ink text with a quiet 1px underline and an arrow; turns periwinkle on hover.",
-      "html": "<a class=\"ds-link\" href=\"#\">See how Signals works <svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\"/></svg></a>",
-      "css": ".ds-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:hsl(228 20% 94%);font:600 15px/1 Inter,system-ui,sans-serif;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:color-mix(in srgb,hsl(228 20% 94%) 40%,transparent);transition:color 160ms cubic-bezier(0.16,1,0.3,1),text-decoration-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-link:hover{color:hsl(230 75% 72%);text-decoration-color:currentColor}.ds-link:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:4px}.ds-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}"
+      "refersTo": "link-secondary",
+      "description": "The secondary action: underlined ink that turns periwinkle.",
+      "html": "<a class=\"ds-link\" href=\"#\">See how it works <svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\"/></svg></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:hsl(228 20% 94%);font:600 15px/1 Inter,system-ui,sans-serif;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:hsl(228 20% 94%/.4);transition:color 160ms cubic-bezier(0.16,1,0.3,1),text-decoration-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-link:hover{color:hsl(230 75% 72%);text-decoration-color:currentColor}.ds-link:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:4px}.ds-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}"
+    },
+    {
+      "name": "ProductFrame",
+      "kind": "card",
+      "refersTo": "product-frame",
+      "description": "Real product UI on a slightly turned card with a breadcrumb, an honest sample-data note and a cursor spotlight.",
+      "html": "<div class=\"ds-stage\"><div class=\"ds-frame\"><div class=\"ds-bar\"><span><b>Anarix</b> <i>/</i> Signals <i>/</i> Today</span><span class=\"ds-note\">Sample data</span></div><div class=\"ds-fbody\"><div class=\"ds-row\"><span>Walmart · price undercut</span><span class=\"ds-risk\">-$2,140</span></div><div class=\"ds-row\"><span>Amazon · stock runs out Fri</span><span class=\"ds-risk\">-$1,310</span></div></div></div></div>",
+      "css": ".ds-stage{perspective:1600px;perspective-origin:50% 30%;padding:24px;background:#0e151b}.ds-frame{border-radius:16px;background:#141c24;border:1px solid #222e39;color:hsl(228 20% 94%);box-shadow:0 1px 0 hsl(0 0% 100%/.06) inset,0 50px 90px -40px rgb(0 0 0/.65),0 18px 36px -24px rgb(0 0 0/.5);transform:rotateX(2deg) rotateY(-4deg);transition:transform 500ms cubic-bezier(0.16,1,0.3,1);font-family:Inter,system-ui,sans-serif}.ds-frame:hover{transform:rotateX(1deg) rotateY(-2deg)}.ds-bar{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1px solid #222e39;font:500 .75rem/1 Inter,system-ui,sans-serif;color:#8d97a5}.ds-bar b{color:hsl(228 20% 94%);font-weight:650}.ds-bar i{font-style:normal;opacity:.45}.ds-note{font:500 .6875rem/1 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.02em;padding:4px 7px;border-radius:999px;border:1px solid #222e39}.ds-fbody{padding:18px}.ds-row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid #222e39;font-size:14px}.ds-row:first-child{border-top:0}.ds-risk{color:hsl(355 84% 74%);font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Product UI Card",
+      "kind": "card",
+      "refersTo": "product-ui-card",
+      "description": "A piece of product UI shown on its own; inside a ProductFrame it runs bare.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-head\"><span class=\"ds-pill\">Amazon</span><span class=\"ds-meta\">02:14</span></div><p class=\"ds-k\">Money at risk</p><p class=\"ds-fig\">$2,140</p></article>",
+      "css": ".ds-card{padding:clamp(16px,2.4svh,22px);border:1px solid #222e39;border-radius:20px;background:#141c24;color:hsl(228 20% 94%);font-family:Inter,system-ui,sans-serif;box-shadow:0 24px 48px -32px hsl(228 60% 4%/.7);transition:border-color 320ms cubic-bezier(0.16,1,0.3,1)}.ds-card:hover{border-color:color-mix(in srgb,hsl(230 75% 72%) 45%,#222e39)}.ds-head{display:flex;align-items:center;gap:6px}.ds-pill{padding:3px 9px;border:1px solid #222e39;border-radius:999px;font-size:12px;font-weight:600}.ds-meta{margin-left:auto;font-size:12px;color:#8d97a5}.ds-k{margin:12px 0 0;font-size:12px;font-weight:600;color:#8d97a5}.ds-fig{margin:4px 0 0;font-size:32px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:hsl(355 84% 74%)}"
     },
     {
       "name": "Ruled Points",
       "kind": "custom",
       "refersTo": "point-title",
-      "description": "The default container: rows separated by one hairline, a title over a grey line. Never a row of cards.",
-      "html": "<ul class=\"ds-points\"><li><b>Finds the one change</b><span>Across every listing, every marketplace.</span></li><li><b>Explains why</b><span>In plain words, with the numbers behind it.</span></li><li><b>Acts within your rules</b><span>And tells you what it did.</span></li></ul>",
-      "css": ".ds-points{margin:0;list-style:none;max-width:420px;padding:8px 16px;background:hsl(228 46% 14%);color:hsl(228 20% 94%);font-family:Inter,system-ui,sans-serif}.ds-points li{padding:12px 0;border-top:1px solid hsl(228 34% 30%)}.ds-points b{display:block;font-size:15px;font-weight:600}.ds-points span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:hsl(228 22% 74%)}"
+      "description": "The default list: hairline-separated rows, never boxes.",
+      "html": "<ul class=\"ds-points\"><li><b>Ranked by money</b><span>The biggest risk is always first.</span></li><li><b>Handled overnight</b><span>Inside the limits you set.</span></li></ul>",
+      "css": ".ds-points{margin:0;padding:0;list-style:none;font-family:Inter,system-ui,sans-serif;color:hsl(228 20% 94%)}.ds-points li{padding:12px 0;border-top:1px solid #222e39}.ds-points b{display:block;font-size:15px;font-weight:600}.ds-points span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:#8d97a5}"
     },
     {
-      "name": "Product UI Card",
-      "kind": "card",
-      "refersTo": "ui-card-night",
-      "description": "A product card on the night, captioned as sample data, settling into a handled state.",
-      "html": "<div class=\"ds-wrap\"><article class=\"ds-card\" tabindex=\"0\"><div class=\"ds-head\"><span class=\"ds-pill\">Signals</span><span class=\"ds-pill ds-muted\">Amazon</span><span class=\"ds-meta\">11:04 PM</span></div><p class=\"ds-k\">Revenue at risk</p><p class=\"ds-fig\">&minus;$136</p><div class=\"ds-rule\"><span class=\"ds-btn ds-primary\">Execute</span></div></article><p class=\"ds-sample\">Sample data</p></div>",
-      "css": ".ds-wrap{background:hsl(228 46% 14%);padding:24px;font-family:Inter,system-ui,sans-serif}.ds-card{max-width:360px;padding:22px;border:1px solid hsl(228 30% 30%);border-radius:20px;background:hsl(228 38% 18%);color:hsl(228 20% 94%);box-shadow:0 24px 48px -32px hsl(228 60% 4% / 0.7);transition:border-color 320ms cubic-bezier(0.16,1,0.3,1)}.ds-card:hover,.ds-card:focus-visible{outline:none;border-color:color-mix(in srgb,hsl(230 75% 72%) 45%,hsl(228 30% 30%))}.ds-head{display:flex;align-items:center;gap:6px}.ds-pill{padding:3px 9px;border:1px solid hsl(228 30% 30%);border-radius:999px;font-size:12px;font-weight:600}.ds-muted{color:hsl(228 22% 74%)}.ds-meta{margin-left:auto;font:12px 'IBM Plex Mono',ui-monospace,monospace;color:hsl(228 22% 74%)}.ds-k{margin:16px 0 0;font-size:12px;font-weight:600;color:hsl(228 22% 74%)}.ds-fig{margin:4px 0 0;font-size:36px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:hsl(355 84% 74%)}.ds-rule{margin-top:16px;padding-top:16px;border-top:1px solid hsl(228 30% 30%)}.ds-btn{display:inline-flex;padding:7px 12px;border-radius:10px;font-size:13px;font-weight:600}.ds-primary{background:hsl(230 65% 57%);color:#fff}.ds-sample{margin:8px 0 0;font-size:12px;color:hsl(228 22% 74%)}"
-    },
-    {
-      "name": "UI Pill",
+      "name": "Index Label",
       "kind": "chip",
-      "refersTo": "ui-pill",
-      "description": "Outlined pill inside product cards for source, marketplace and status.",
-      "html": "<span class=\"ds-chip\">Walmart</span> <span class=\"ds-chip ds-chip-on\">Active</span>",
-      "css": ".ds-chip{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid hsl(228 30% 30%);border-radius:999px;background:hsl(228 38% 18%);color:hsl(228 20% 94%);font:600 12px/1.4 Inter,system-ui,sans-serif;transition:border-color 160ms}.ds-chip:hover{border-color:hsl(230 75% 72%)}.ds-chip-on{color:hsl(230 75% 72%)}"
+      "refersTo": "index",
+      "description": "Mono sequence numeral beside a list rung or product screen.",
+      "html": "<span class=\"ds-index\">01</span>",
+      "css": ".ds-index{font:500 .75rem/1 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:hsl(230 75% 72%)}"
     },
     {
       "name": "Aan Speech Bubble",
       "kind": "custom",
-      "refersTo": "speech-bubble-night",
-      "description": "What docked Aan says: 28 characters or fewer, inverting the theme, tail corner on the side it opens from.",
-      "html": "<div class=\"ds-stage\"><p class=\"ds-bubble\">Found it. Here&rsquo;s why.</p><span class=\"ds-aan\" aria-hidden=\"true\"></span></div>",
-      "css": ".ds-stage{position:relative;height:120px;background:hsl(228 46% 14%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px}.ds-aan{width:30px;height:30px;border-radius:18%;transform:rotate(45deg);background:radial-gradient(circle at 35% 30%,#f88a93,#f46d76 55%,#f05e6a)}.ds-bubble{position:absolute;bottom:64px;left:50%;margin:0;padding:8px 14px;border-radius:14px;border-bottom-left-radius:4px;background:hsl(228 25% 97%);color:hsl(228 40% 14%);font:600 13px/1.3 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px hsl(228 50% 4% / 0.6)}"
+      "refersTo": "aan-bubble",
+      "description": "A fact-only line from Aan, 28 characters or fewer, inverted against the theme.",
+      "html": "<p class=\"ds-bubble\">Fees took $1,151 today.</p>",
+      "css": ".ds-bubble{display:inline-block;margin:0;padding:8px 14px;border-radius:14px;border-bottom-right-radius:4px;background:hsl(228 25% 97%);color:hsl(228 40% 14%);font:600 13px/1.3 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px hsl(228 50% 4%/.6)}"
     },
     {
-      "name": "Isometric System",
+      "name": "Aan (clay)",
       "kind": "custom",
-      "refersTo": "drawing-label",
-      "description": "A labelled system in tonal blocks: an input, the Anarix core, an outcome; hover powers it on (faces lift, the cable tints, a packet runs).",
-      "html": "<div class=\"ds-stage\" tabindex=\"0\"><svg viewBox=\"0 0 300 170\" role=\"img\" aria-label=\"A store feeds the Anarix core; one tile is at risk\"><ellipse class=\"ds-shadow\" cx=\"150\" cy=\"128\" rx=\"128\" ry=\"34\"/><g class=\"ds-b\"><polygon class=\"ds-r\" points=\"60,100 90,117 90,107 60,90\"/><polygon class=\"ds-l\" points=\"30,117 60,100 60,90 30,107\"/><polygon class=\"ds-t\" points=\"30,107 60,90 90,107 60,124\"/></g><g class=\"ds-b ds-risk\"><polygon class=\"ds-r\" points=\"120,80 150,97 150,77 120,60\"/><polygon class=\"ds-l\" points=\"90,97 120,80 120,60 90,77\"/><polygon class=\"ds-t\" points=\"90,77 120,60 150,77 120,94\"/></g><g class=\"ds-b ds-hot\"><polygon class=\"ds-r\" points=\"210,95 240,112 240,92 210,75\"/><polygon class=\"ds-l\" points=\"180,112 210,95 210,75 180,92\"/><polygon class=\"ds-t\" points=\"180,92 210,75 240,92 210,109\"/></g><path class=\"ds-wire\" d=\"M135,90 L195,100\"/><path class=\"ds-packet\" pathLength=\"1\" d=\"M135,90 L195,100\"/><text x=\"30\" y=\"150\">Your store</text><text x=\"196\" y=\"150\" class=\"ds-hotlabel\">Anarix core</text></svg></div>",
-      "css": ".ds-stage{display:inline-block;padding:16px;background:#0e151b;border-radius:18px;outline:none}.ds-stage:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:3px}.ds-stage svg{display:block;width:300px;overflow:visible}.ds-shadow{fill:hsl(212 40% 2% / 0.32)}.ds-b{--t:#1b2530;--l:#141c25;--r:#10171e;--e:hsl(220 32% 74% / 0.2)}.ds-t,.ds-l,.ds-r{stroke:var(--e);stroke-width:1;stroke-linejoin:round;transition:fill 900ms cubic-bezier(0.16,1,0.3,1),stroke 900ms cubic-bezier(0.16,1,0.3,1)}.ds-t{fill:var(--t)}.ds-l{fill:var(--l)}.ds-r{fill:var(--r)}.ds-stage:hover .ds-hot,.ds-stage:focus-visible .ds-hot{--t:color-mix(in oklab,hsl(230 75% 72%) 36%,#1b2530);--l:color-mix(in oklab,hsl(230 75% 72%) 24%,#141c25);--r:color-mix(in oklab,hsl(230 75% 72%) 16%,#10171e);--e:color-mix(in oklab,hsl(230 75% 72%) 55%,transparent)}.ds-stage:hover .ds-risk,.ds-stage:focus-visible .ds-risk{--t:color-mix(in oklab,#f46d76 38%,#1b2530);--l:color-mix(in oklab,#f46d76 26%,#141c25);--r:color-mix(in oklab,#f46d76 18%,#10171e);--e:color-mix(in oklab,#f46d76 55%,transparent)}.ds-wire{fill:none;stroke:hsl(220 32% 74% / 0.26);stroke-width:1.25;stroke-linecap:round;transition:stroke 900ms cubic-bezier(0.16,1,0.3,1)}.ds-stage:hover .ds-wire,.ds-stage:focus-visible .ds-wire{stroke:color-mix(in oklab,hsl(230 75% 72%) 60%,transparent)}.ds-packet{fill:none;stroke:hsl(230 75% 72%);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:0.06 1.94;stroke-dashoffset:0.1;opacity:0}.ds-stage:hover .ds-packet,.ds-stage:focus-visible .ds-packet{opacity:1;animation:ds-flow 5200ms linear infinite}@keyframes ds-flow{0%{stroke-dashoffset:0.1}70%,100%{stroke-dashoffset:-1.04}}.ds-stage text{fill:hsl(228 20% 94%);font:600 13px Inter,system-ui,sans-serif;letter-spacing:0.01em}.ds-stage .ds-hotlabel{fill:hsl(230 75% 72%)}@media (prefers-reduced-motion:reduce){.ds-stage .ds-packet{animation:none!important;opacity:0!important}}"
-    },
-    {
-      "name": "Drawing Callout",
-      "kind": "card",
-      "refersTo": "iso-callout-night",
-      "description": "An HTML card pinned to a point on a drawing by a stem: what changed and what it is worth.",
-      "html": "<div class=\"ds-cwrap\"><div class=\"ds-callout\" tabindex=\"0\"><div class=\"ds-ccard\"><b>Price moved on Walmart</b><span>&minus;$136 at risk</span></div></div></div>",
-      "css": ".ds-cwrap{position:relative;height:120px;width:260px;background:#0e151b}.ds-callout{position:absolute;left:50%;top:96px;width:0;height:0;outline:none}.ds-callout::before{content:'';position:absolute;left:-3.5px;top:-3.5px;width:7px;height:7px;border-radius:50%;background:#f46d76}.ds-ccard{position:absolute;left:0;bottom:30px;display:grid;gap:3px;padding:9px 13px 10px;border:1px solid color-mix(in oklab,#f46d76 60%,transparent);border-radius:10px;background:#141c24;white-space:nowrap;transform:translateX(-50%);font-family:Inter,system-ui,sans-serif;transition:border-color 500ms cubic-bezier(0.16,1,0.3,1)}.ds-ccard::after{content:'';position:absolute;left:50%;top:100%;width:1px;height:30px;background:color-mix(in oklab,#f46d76 70%,transparent)}.ds-ccard b{font-size:13px;font-weight:600;color:hsl(228 20% 94%)}.ds-ccard span{font:12px 'IBM Plex Mono',ui-monospace,monospace;color:hsl(355 84% 74%)}.ds-callout:hover .ds-ccard,.ds-callout:focus-visible .ds-ccard{border-color:#f46d76}"
-    },
-    {
-      "name": "Product Video Frame",
-      "kind": "custom",
-      "refersTo": "video-frame",
-      "description": "The 16:9 tour frame; before a recording exists it shows the page's system with a quiet coming-soon chip.",
-      "html": "<figure class=\"ds-frame\"><div class=\"ds-fallback\">the page&rsquo;s isometric system</div><figcaption class=\"ds-soon\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5 3.5v9l7.5-4.5z\"/></svg>Signals product tour &middot; coming soon</figcaption><button type=\"button\" class=\"ds-sound\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M11 5 6 9H3v6h3l5 4V5Z\"/><path d=\"M15.5 8.5a5 5 0 0 1 0 7\"/></svg>Watch with sound</button></figure>",
-      "css": ".ds-frame{position:relative;margin:0;width:420px;aspect-ratio:16/9;border:1px solid #222e39;border-radius:18px;overflow:hidden;background:color-mix(in oklab,#141c24 72%,#0e151b)}.ds-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:3% 4% 12%;color:#8d97a5;font:400 13px Inter,system-ui,sans-serif}.ds-soon{position:absolute;left:16px;bottom:14px;display:inline-flex;align-items:center;gap:8px;min-height:30px;padding:0 12px 0 10px;border:1px solid #222e39;border-radius:999px;background:#0e151b;color:#8d97a5;font:500 12.5px/1 Inter,system-ui,sans-serif;white-space:nowrap}.ds-soon svg{width:12px;height:12px;fill:hsl(230 75% 72%)}.ds-sound{position:absolute;right:16px;top:16px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:0;border-radius:999px;background:hsl(228 25% 97% / 0.94);color:hsl(228 40% 14%);font:600 14px/1 Inter,system-ui,sans-serif;cursor:pointer;transition:background 160ms cubic-bezier(0.16,1,0.3,1)}.ds-sound:hover{background:#fff}.ds-sound:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:3px}.ds-sound svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}"
-    },
-    {
-      "name": "Works-with Chip",
-      "kind": "chip",
-      "refersTo": "works-chip-night",
-      "description": "Names as type, never logos, grouped under a quiet group name.",
-      "html": "<div class=\"ds-group\"><p class=\"ds-gname\">Marketplaces</p><div class=\"ds-chips\"><span class=\"ds-chip\" tabindex=\"0\">Amazon</span><span class=\"ds-chip\" tabindex=\"0\">Walmart</span><span class=\"ds-chip\" tabindex=\"0\">Shopify</span></div></div>",
-      "css": ".ds-group{padding:20px;background:#0e151b;font-family:Inter,system-ui,sans-serif}.ds-gname{margin:0 0 12px;font-size:13px;font-weight:600;color:#8d97a5}.ds-chips{display:flex;flex-wrap:wrap;gap:8px}.ds-chip{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border:1px solid #222e39;border-radius:999px;font-size:13.5px;color:hsl(228 20% 94%);white-space:nowrap;outline:none;transition:border-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-chip:hover{border-color:hsl(228 30% 34%)}.ds-chip:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:2px}"
+      "refersTo": "aan-coral",
+      "description": "The limbless coral clay diamond, idle breath; it acts only through motion.",
+      "html": "<span class=\"ds-aan\"><span class=\"ds-aan-sq\"><span class=\"ds-aan-bd\"></span><span class=\"ds-aan-ey\"><i></i><i></i></span></span></span>",
+      "css": ".ds-aan{--s:96px;position:relative;display:inline-block;width:var(--s);height:var(--s)}.ds-aan-sq{position:absolute;inset:0;transform-origin:50% 92%;animation:ds-breathe 3.2s ease-in-out infinite}.ds-aan-bd{position:absolute;left:50%;top:48%;width:calc(var(--s)*.62);height:calc(var(--s)*.62);margin:calc(var(--s)*-.31) 0 0 calc(var(--s)*-.31);border-radius:calc(var(--s)*.17);transform:rotate(45deg);background:radial-gradient(circle at 30% 28%,#ffc9cd 0,#f46d76 46%,#b1323d 100%);box-shadow:inset calc(var(--s)*-.05) calc(var(--s)*-.07) calc(var(--s)*.12) rgb(120 20 30/.35),0 calc(var(--s)*.12) calc(var(--s)*.26) calc(var(--s)*-.09) rgb(244 109 118/.45)}.ds-aan-ey{position:absolute;left:50%;top:48%;display:flex;gap:calc(var(--s)*.105);transform:translate(-50%,-50%)}.ds-aan-ey i{width:calc(var(--s)*.085);height:calc(var(--s)*.13);border-radius:50%;background:#24090c}@keyframes ds-breathe{50%{transform:translateY(calc(var(--s)*-.04)) scale(1.02,.98)}}@media (prefers-reduced-motion:reduce){.ds-aan-sq{animation:none}}"
     },
     {
       "name": "Navigation (scrolled)",
       "kind": "nav",
-      "refersTo": "nav-scrolled-night",
-      "description": "Services-site parity nav: transparent until scroll, then a glass pill. Track www.anarix.ai, not this snippet.",
-      "html": "<nav class=\"ds-nav\"><strong class=\"ds-logo\">anarix</strong><span class=\"ds-links\"><a href=\"#\" class=\"is-on\">Platform</a><a href=\"#\">Signals</a><a href=\"#\">Rules</a></span><a class=\"ds-nbtn\" href=\"#\">Book a demo</a></nav>",
-      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:760px;padding:10px 20px;border-radius:9999px;background:hsl(209 28% 11% / 0.8);backdrop-filter:blur(12px);box-shadow:0 4px 16px -4px hsl(0 0% 0% / 0.4);color:hsl(228 20% 94%);font-family:Inter,system-ui,sans-serif}.ds-logo{font-weight:700}.ds-links{display:flex;gap:4px}.ds-links a{padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;color:hsl(215 12% 60%);text-decoration:none;transition:color .2s}.ds-links a:hover,.ds-links a.is-on{color:hsl(228 20% 94%);box-shadow:inset 0 -2px 0 hsl(230 70% 65%)}.ds-nbtn{display:inline-flex;align-items:center;height:40px;padding:0 24px;border-radius:9999px;background:hsl(230 70% 65%);color:#fff;font-size:14px;font-weight:500;text-decoration:none;transition:.2s}.ds-nbtn:hover{transform:translateY(-1px);box-shadow:0 8px 32px -8px hsl(0 0% 0% / 0.5)}.ds-nbtn:focus-visible{outline:2px solid hsl(230 70% 65%);outline-offset:3px}"
+      "refersTo": "nav-scrolled",
+      "description": "Port of www.anarix.ai: transparent until scroll, then a blurred chrome pill.",
+      "html": "<nav class=\"ds-nav\"><b>Anarix</b><a href=\"#\">Signals</a><a href=\"#\">Profitability</a><a href=\"#\">Rules</a><a href=\"#\">Aan</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:24px;padding:10px 20px;border-radius:999px;background:hsl(0 0% 100%/.8);backdrop-filter:blur(12px);box-shadow:0 4px 16px -4px hsl(230 65% 57%/.12);font:500 14px/1 Inter,system-ui,sans-serif}.ds-nav b{color:hsl(209 22% 14%);margin-right:12px}.ds-nav a{position:relative;color:hsl(215 14% 42%);text-decoration:none;transition:color 160ms}.ds-nav a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:hsl(230 65% 57%);transform:scaleX(0);transition:transform 200ms}.ds-nav a:hover{color:hsl(209 22% 14%)}.ds-nav a:hover::after{transform:scaleX(1)}.ds-nav a:focus-visible{outline:2px solid hsl(230 65% 57%);outline-offset:4px}"
     }
   ],
   "narrative": {
-    "northStar": "City Nocturne",
-    "overview": "The platform site is one slate night, the same `#0e151b` as the services site (www.anarix.ai), and on it the platform is drawn as Soft Isometric Systems: small machines of tonal blocks in a 2:1 isometric projection, each edged in one hairline, each a labelled system with named inputs, the Anarix core where Aan docks, and a named outcome. The whole site sits inside one `.nocturne` scope: in the dark theme (the default, set on `<html data-theme=\"dark\">` before first paint) the faces are steps of the night; in the light theme the same machines are white and pale periwinkle on a pale sky. Every screen is the same sky, the same ink, the same face tones. The earlier hand-drawn street of storefronts was retired as too childish; only the MCP wiring map, tool panel and pole remain in 2D line art, because they are diagrams of wiring and read best flat.\n\nPages are made of screens, and a screen holds one idea: a Fraunces headline, one statement in grey Inter with its key phrases lifted to full ink, then either an isometric system that explains a mechanism or the real product card proving it, and a few ruled points. Information sections (How it works, What it does, Works with, the product tour) may grow taller than one viewport; everything else is one screen. Motion has one job, cause and effect: a stage sits quiet until its screen arrives, its blocks settle in one after another, Aan docks on the core, and then the stage powers on: marked faces lift toward periwinkle (what Aan handled) or coral (what was going wrong), and one slow packet runs each cable. Nothing glows or decorates.\n\nTwo pieces of chrome are not part of the world and do not follow its rules: the nav and the Ask Aan action island are a 1:1 port of the services site (www.anarix.ai) and stay at parity with it, including their pill shapes, glass, soft shadows and lift-on-hover buttons.",
+    "northStar": "The Long Exposure",
+    "overview": "The platform site is a Swiss poster shot at night with the shutter open. Headlines are heavy Inter set tight on a 12-column grid you can see; everything that moves leaves light behind it. The one ambient motif is the long-exposure light trail: thin periwinkle streaks that come in from the screen edges, bend late and converge on whatever matters on that screen (Aan in the hero, the stage in the night story, the film at the close, the product card in each product hero). Where a screen carries risk, exactly one of those trails runs coral.\n\nThe proof is the product. Every visual that is not light or Aan is real Anarix UI (Signals, the profit waterfall, a rule being built, an Aan answer, a Slack approval, an MCP session) on a card that stands slightly turned in space and catches a light that follows the cursor. Every number in that UI is labelled as sample data in the card's own top bar. Aan, the coral diamond from the Ask Aan island, is the only warm object on any screen; it has no arms or legs and acts through motion alone.\n\nDensity is one idea per viewport. Copy is short, grey, and lets its key phrases step up to full ink. Motion has one arrival curve, settles once, and always has a designed reduced-motion state that shows the end of the story. Rejected and gone: the City Nocturne line-art scenes and the soft isometric \"circuit\" drawings. Neither returns on site pages.",
     "keyCharacteristics": [
-      "One `.nocturne` world in two lights: night (dark, default) and day (light). Theme is a whole-page switch saved in `localStorage` (`anarix-theme-v2`), never a lit panel inside a dark page.",
-      "Two hues only, periwinkle (230) and coral (355), over slate and navy neutrals. No green anywhere.",
-      "Fraunces 600 speaks, Inter explains, IBM Plex Mono measures (figures only).",
-      "Soft Isometric Systems: tonal blocks in a 2:1 projection, one 1px hairline edge, labels as live type; colour on a face means something (periwinkle data and outcome, coral risk and cost).",
-      "One idea per screen between an 84px nav inset and a 90px island inset; information sections may grow.",
-      "Proximity and hairline rules group content; the only boxes are product UI cards, the video frame and the callout cards pinned to drawings.",
-      "Aan is the unchanged brand mascot, docks as a diamond on the core of each system, and is the warmest object on every screen."
+      "Inter 800 headlines at -0.04em to -0.055em tracking, on a visible 12-column grid in the hero.",
+      "IBM Plex Mono for indexes, clocks, figures and the honest labels; Fraunces only for editorial moments (the morning brief, Aan's letter).",
+      "Long-exposure light trails as the single ambient motif, one coral trail for risk.",
+      "Real product UI on tilted ProductFrame cards with a cursor spotlight and a floor glow.",
+      "One travelling, limbless Aan per page (the island's mascot), landing on two or three stops at most.",
+      "One arrival easing (`cubic-bezier(0.16, 1, 0.3, 1)`), blur-rise reveals, magnetic primary CTAs, number tickers and one Apple-style pinned story.",
+      "Night by default, day by theme toggle; only periwinkle (230) and coral (355) carry hue."
     ],
     "rules": [
       {
         "name": "The No Green Rule",
-        "body": "Positive is periwinkle, negative is coral, in every card, drawing and theme. No hue between roughly 60 and 180 enters the site.",
+        "body": "Positive is periwinkle, negative is coral, in every card, chart and theme. No hue between roughly 60 and 180 enters the site.",
         "section": "colors"
       },
       {
@@ -1310,87 +835,80 @@
         "section": "colors"
       },
       {
-        "name": "The One Street Rule",
-        "body": "Theme is the whole world at a different hour. Colors change only through the `.nocturne` scope (dark values, and `html[data-theme=\"light\"] .nocturne`, or `html[data-theme=\"light\"] .stage` for isometric faces); no section re-scopes itself into the other theme.",
+        "name": "The One Risk Trail Rule",
+        "body": "A set of light trails is all periwinkle, except that a screen about a risk may run exactly one trail coral (`risk` index on `LightTrails`), and only while that risk is live.",
         "section": "colors"
       },
       {
-        "name": "The Meaningful Face Rule",
-        "body": "An isometric face is neutral night unless it carries meaning: periwinkle for data, Anarix and what Aan handled, coral for risk and cost. Colour is never used to make a block prettier.",
+        "name": "The One Scope Rule",
+        "body": "Colours come from the `.nocturne` roles (`--sky`, `--ink`, `--ink-2`, `--accent`, `--accent-solid`, `--risk`, `--risk-ink`, `--rule`, `--card`, `--card-line`, `--bubble-*`). Theme is the whole page at a different hour; no section re-scopes itself into the other theme.",
         "section": "colors"
+      },
+      {
+        "name": "The Heavy And Tight Rule",
+        "body": "Headlines are Inter 800 between -0.04em and -0.055em, line-height under 1, fluid by both width and height (`min(vw, svh)`). Type shrinks on short screens before a screen is allowed to grow.",
+        "section": "typography"
       },
       {
         "name": "The Grey Prose, Ink Phrase Rule",
-        "body": "Statements are Ink 2; only the phrases that carry the argument switch to full Ink. Emphasis is contrast, not color or size.",
+        "body": "Statements are Ink 2; only the phrases that carry the argument switch to full Ink at 500. Emphasis is contrast, not colour or size.",
         "section": "typography"
       },
       {
-        "name": "The Mono Measures Rule",
-        "body": "IBM Plex Mono is for numbers that count or time something, always with tabular numerals. It is never used for labels, headings or UI text.",
+        "name": "The Fraunces Is A Letter Rule",
+        "body": "Fraunces is for writing that reads as written by someone (the morning brief, Aan's letter). It never sets a headline, a figure or UI.",
         "section": "typography"
       },
       {
-        "name": "The Fraunces Ceiling Rule",
-        "body": "Display type is fluid by both width and height (`min(vw, svh)`). The homepage display never exceeds 96px and headlines never exceed 64px; only a product's own name in its hero may go larger. Type shrinks on short screens before a screen is allowed to grow.",
+        "name": "The Mono Counts Rule",
+        "body": "Plex Mono sets numbers that count, time or order something, and the sample-data notes. Every figure that changes uses tabular numerals.",
         "section": "typography"
       },
       {
-        "name": "The Tonal Faces Rule",
-        "body": "Form comes from three flat face tones and a hairline edge. Nothing in the world glows, shines or blurs; a handled state is a face lifting toward periwinkle, never a halo. The one soft light is the Night Watch dawn, a `--lit` wash rising from the bottom of the sky in the last hour of the night, because the screen is about the night ending.",
+        "name": "The One Viewport Rule",
+        "body": "Above 620px of height, a `fit=\"screen\"` section never grows past one viewport; cut copy or hide optional detail instead. QA is `scripts/qa/screens.mjs` at 1280x720, 1366x768, 1440x900, 1920x1080 and 390x844, which scrolls each screen to the top, checks it with `fit-check.js`, and checks a pinned story at each chapter.",
+        "section": "layout"
+      },
+      {
+        "name": "The Ruled, Not Boxed Rule",
+        "body": "Group with space first and a 1px Rule hairline second (`.c-points`, proof figures, the permission ladder, the hero index bar). Only product UI, the film and video frames are boxed, and nothing is a card inside a card.",
+        "section": "layout"
+      },
+      {
+        "name": "The Light Is The Depth Rule",
+        "body": "Lift comes from trails, pools, floor glows and the cursor spotlight, all periwinkle. Nothing gets a hover lift, a hard shadow or a glossy gradient. The one other kind of depth is soft clay: Aan, the ClayBlocks and the primary CTA are matte forms lit from the top left, never glossy. The one light sweep is the primary CTA's streak, because a light crossing the button is the long exposure in miniature.",
         "section": "elevation"
       },
       {
-        "name": "The Name First Rule",
-        "body": "A product page never opens on a slogan alone; its name is the largest type on the page.",
-        "section": "page identities"
-      },
-      {
-        "name": "The One Moment Rule",
-        "body": "One hands-on moment per page, unique to it, built from real buttons or tabs, starting in a state that already makes the point.",
-        "section": "page identities"
-      },
-      {
-        "name": "The Labelled System Rule",
-        "body": "Every drawing is a labelled system: its inputs and outcome are named in live type (tags, face text or callouts), Aan docks on the core, and its `aria-label` says in a sentence what the system does. A drawing that only decorates does not ship.",
-        "section": "page identities"
-      },
-      {
-        "name": "The Words Step Aside Rule",
-        "body": "On small stages the words step aside rather than crowd the drawing: stages are size containers, tags and column labels hide below 520px of stage width (column labels below 640px), callouts below 380px and face text below 340px. The drawing still reads as a system; the copy beside it carries the meaning.",
-        "section": "page identities"
-      },
-      {
-        "name": "The Frame Before Recordings Rule",
-        "body": "The video frame ships before the recording exists. Until then it shows the page's own system (or the tour chapters) inside the same 16:9 frame with a \"… coming soon\" chip, so the space is reserved and nothing looks broken; it never shows an empty player or a fake play button over nothing.",
-        "section": "page identities"
+        "name": "The Transform And Opacity Rule",
+        "body": "Animate transform and opacity. The exceptions the build carries are the reveal's 4px blur, the trails' stroke draw, colour transitions on hover and state, and Aan's cube and bar morphs (which change the body's size); add no more.",
+        "section": "components"
       }
     ],
     "dos": [
-      "Do keep Fraunces + Inter and the periwinkle, coral and ink tokens exactly as defined in `app/styles/tokens.css`; use IBM Plex Mono only for figures.",
-      "Do put every page inside the `.nocturne` scope and take colors from its tokens (`--sky`, `--ink`, `--accent`, `--risk`, and the stage's `--iso-*` faces), so both night and day work.",
-      "Do build each section as one `Screen`; use `fit=\"grow\"` only for information sections (tour, product screens, How it works, What it does, Works with, close with questions).",
-      "Do group with space first and a 1px Rule hairline second; box only product UI, the video frame and drawing callouts.",
-      "Do caption every product card or preview \"Sample data\" (or \"Sample conversation\", \"Sample rule\", \"Sample session\", \"Illustrative\") and label any illustrative number as such.",
-      "Do limit proof figures to $1.2B GMV, 500+ brands and 12.8% TACoS, set in a ruled row.",
-      "Do draw new illustrations with the isometric kit (`IsoStage`, `Block`, `Cable`, `Tag`, `FaceText`, `Callout`) on `lib/iso.ts`: tonal faces, a 1px edge, words as live type, coral for what goes wrong and periwinkle for data and what Aan handled.",
-      "Do make every drawing a labelled system with named inputs, a core where Aan docks and a named outcome, and give it a one-sentence `aria-label`.",
-      "Do reserve an `AanDock` on the system's core, with a bubble of 28 characters or fewer, and dock Aan as the diamond.",
-      "Do put a product's tour in `ProductVideo` (16:9, 18px radius) and show the page's system with a \"coming soon\" chip until the recording exists.",
-      "Do design the reduced-motion state on purpose: final states shown, packets stopped, 200ms fades kept.",
-      "Do keep the nav and Ask Aan island at parity with www.anarix.ai, including the transparent-until-scroll nav."
+      "Do take every colour from the `.nocturne` roles so both night and day work, and keep periwinkle and coral as the only hues.",
+      "Do set headlines in Inter 800 with tight tracking (`.t-h2`, or the hero and name sizes above), and keep Fraunces for the morning brief and Aan's letter.",
+      "Do put product proof in a `ProductFrame` with a breadcrumb title and an honest note (\"Sample data\", \"Sample rule\", \"Sample conversation\", \"Sample message\", \"Illustrative\"), and use the UI's `bare` mode inside it.",
+      "Do aim `LightTrails` at the thing the screen is about, and give at most one trail the `risk` index.",
+      "Do keep proof figures to $1.2B GMV, 500+ brands and 12.8% TACoS, in a ruled row.",
+      "Do name marketplaces and apps (Amazon, Walmart, Shopify, Slack, Claude) as text.",
+      "Do give a page no more than three Aan stops, with bubbles of 28 characters or fewer that state a fact the screen shows (\"Fees took $1,151 today.\", \"Same $3,412 in any AI.\").",
+      "Do dock Aan beside or at the edge of product UI, where the light converges, never over it; the night story's own Aan, which acts on the Signals rows, is the one exception.",
+      "Do wrap the screen's one primary CTA in `<Magnetic>` and count proof figures up once with `Ticker`.",
+      "Do build each section as one `Screen` (or a `StoryScroll` for a pinned story) and run `scripts/qa/screens.mjs` before shipping.",
+      "Do design the reduced-motion state on purpose: the final state shown, nothing travelling."
     ],
     "donts": [
-      "Don't use green, teal or any hue outside periwinkle (230) and coral (355) for status, charts, faces or decoration.",
-      "Don't put a label, eyebrow, kicker or numbered pill above a headline; the headline carries its own weight.",
-      "Don't use gradient text, gradient faces, glows, halos, shine sweeps or hover lifts on the site; the chrome's glass and lift are services-site parity, not a pattern to copy.",
-      "Don't bring back the City Nocturne scene drawings (street, shopfronts, night town, home at night, window close-up, ledger, gatehouse, portrait) or draw new scenes in 2D line art; line art is reserved for the MCP wiring map, tool panel and pole.",
-      "Don't set figures as big-number tiles or hero-metric templates; figures live in ruled rows, product cards or drawing callouts.",
-      "Don't lay content out as grids of boxed tiles where a ruled list will do.",
-      "Don't let a `fit=\"screen\"` screen grow past one viewport above 620px of height; cut copy or hide `data-optional` items instead.",
-      "Don't redraw, recolor or restyle Aan, dock it on product UI, or show it docked as circle, bar or cube.",
-      "Don't add idle loops beyond the one slow packet per powered cable, parallax, scroll pinning or scroll-scrubbing; motion follows cause and effect.",
-      "Don't fabricate customers, testimonials, logos or prices, or show an unlabelled number in product UI; Works-with names are type, never logos.",
+      "Don't use green, teal or any hue outside periwinkle (230) and coral (355).",
       "Don't use coral for buttons, headings, links or decoration.",
+      "Don't give Aan arms, legs, hands or a face beyond its two eyes, or restyle it: every Aan on the site is the island's `AanMascot` (via `AanClay` when it acts).",
+      "Don't bring back City Nocturne line-art scenes or the soft isometric drawings, or add a second ambient motif beside the light trails.",
+      "Don't put a card inside a card, or box content that a ruled list can carry.",
+      "Don't show an unlabelled number in product UI, or fabricate customers, testimonials, logos or prices.",
+      "Don't draw marketplace or app logos.",
+      "Don't let a `fit=\"screen\"` section grow past one viewport above 620px of height.",
+      "Don't add hover lifts, hard shadows, gradient text or glossy surfaces; depth is light.",
+      "Don't add a second pinned story to a page, parallax, or idle loops beyond Aan's breath, the trails' breath and pulse, and the hero's live dot.",
       "Don't bring the film's stamp red, Bodoni or grain onto site pages."
     ]
   }

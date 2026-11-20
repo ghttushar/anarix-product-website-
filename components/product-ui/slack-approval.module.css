@@ -1,3 +1,7 @@
+.bare {
+  display: grid;
+}
+
 .card {
   width: min(100%, 460px);
   margin-inline: auto;

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState, type CSSProperties, type ReactNode, type RefObject } from "react";
-import { AanMascot } from "../AanMascot";
+import { AanClay, type AanAct } from "../clay/AanClay";
 import { useReducedMotion } from "@/components/motion/useReducedMotion";
 import s from "./aan-v2.module.css";
 
@@ -11,12 +11,19 @@ import s from "./aan-v2.module.css";
   - The active stop is the screen crossing the middle of the viewport, so Aan
     docks the moment a screen is on stage.
   - Aan sits in page coordinates and scrolls with the page: no frame loop
-    while idle. It glides between docks (450–700ms) and stays a diamond.
+    while idle. It glides between docks (450–700ms), leaning into the move
+    with a light tail behind it, and looks exactly like the island's Aan (no limbs).
+  - Each dock names Aan's act once it lands (idle, look, point, hop,
+    think, celebrate); the eyes can follow the pointer (the hero).
   - A dock may declare an entry walk (the hero street): on first arrival Aan
     walks in along the street instead of appearing.
   - A dock can move within its screen (the Night Watch patrol): Aan walks
     along the ground to the new spot instead of hopping.
   - Reduced motion: Aan fades out and back in at the new dock.
+  - A pinned story (StoryScroll) docks with `hand`: Aan lands, then the
+    story's own Aan takes over inside the pinned panel (page coordinates
+    cannot follow a sticky panel). Leaving, Aan takes off from where the
+    story's Aan stands at that moment.
 */
 export type AanEntry = { dx: number; delay: number; duration: number };
 export type DockInfo = {
@@ -34,6 +41,12 @@ export type DockInfo = {
   travel?: "fly" | "walk";
   /** Aan lands beneath the page content here (into the film), with no bubble */
   tuck?: boolean;
+  /** what Aan does once it has landed */
+  act?: AanAct;
+  /** the eyes follow the pointer while docked here */
+  track?: boolean;
+  /** the screen's own Aan takes over once landed (pinned stories) */
+  hand?: boolean;
 };
 
 type Api = { register: (d: DockInfo) => () => void };
@@ -97,8 +110,10 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
   const pos = useRef<Pos | null>(null);
   const anim = useRef<Animation | null>(null);
   const reduced = useReducedMotion();
-  const [look, setLook] = useState<{ size: number; bubble?: string; side: "left" | "right"; tuck?: boolean } | null>(null);
+  const [look, setLook] = useState<{ size: number; bubble?: string; side: "left" | "right"; tuck?: boolean; act?: AanAct; track?: boolean } | null>(null);
   const [bubbleOn, setBubbleOn] = useState(false);
+  const [moving, setMoving] = useState(false);
+  const prevStop = useRef<string | null>(null);
 
   const measure = useCallback(
     (d: DockInfo): Pos | null => {
@@ -118,6 +133,14 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
     if (!active || !node.current) return;
     const d = docks.current.get(active);
     if (!d) return;
+    // leaving a pinned story: take off from where its own Aan stands now
+    const prev = prevStop.current ? docks.current.get(prevStop.current) : undefined;
+    prevStop.current = active;
+    if (prev && prev.stop !== active && prev.hand) {
+      prev.section?.dispatchEvent(new CustomEvent("aan:leave"));
+      const now = measure(prev);
+      if (now) pos.current = now;
+    }
     const to = measure(d);
     if (!to) {
       // no drawing to stand in (hidden on small screens): Aan stays put and
@@ -131,9 +154,11 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
 
     anim.current?.cancel();
     setBubbleOn(false);
-    setLook({ size: to.size, bubble: d.tuck ? undefined : d.bubble, side: d.side, tuck: d.tuck });
+    setLook({ size: to.size, bubble: d.tuck ? undefined : d.bubble, side: d.side, tuck: d.tuck, act: d.act, track: d.track });
     el.style.transform = place(to);
     el.style.opacity = "1";
+    // the light tail points back along the way Aan came
+    if (from) el.style.setProperty("--tail", `${(Math.atan2(from.y - to.y, from.x - to.x) * 180) / Math.PI}deg`);
 
     let frames: Keyframe[];
     let timing: KeyframeAnimationOptions;
@@ -172,12 +197,16 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
     d.section?.dispatchEvent(new CustomEvent("aan:depart", { detail: { walk, delay: Number(timing.delay ?? 0), duration: Number(timing.duration) } }));
     const a = el.animate(frames, timing);
     anim.current = a;
+    setMoving(!reduced && !!from);
     let bubbleTimer = 0;
     a.finished
       .then(() => {
+        setMoving(false);
+        // a pinned story's own Aan takes over from here
+        if (d.hand) el.style.opacity = "0";
         d.section?.dispatchEvent(new CustomEvent("aan:arrive", { detail: { stop: d.stop } }));
         window.dispatchEvent(new CustomEvent("aan:dock", { detail: d.stop })); // nav highlights where Aan is
-        bubbleTimer = window.setTimeout(() => setBubbleOn(true), 250);
+        if (!d.hand) bubbleTimer = window.setTimeout(() => setBubbleOn(true), 250);
       })
       .catch(() => {});
     return () => window.clearTimeout(bubbleTimer);
@@ -214,7 +243,7 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
   useEffect(() => {
     if (!active) return;
     const d = docks.current.get(active);
-    if (d) setLook((l) => (l && (l.bubble !== d.bubble || l.side !== d.side) ? { ...l, bubble: d.bubble, side: d.side } : l));
+    if (d) setLook((l) => (l && (l.bubble !== d.bubble || l.side !== d.side || l.act !== d.act || l.track !== d.track) ? { ...l, bubble: d.bubble, side: d.side, act: d.act, track: d.track } : l));
   }, [active, version, docks]);
 
   // the bubble opens to the dock's side unless that would run off screen
@@ -236,8 +265,8 @@ function Traveler({ stage, docks, active, version, moveTick }: { stage: RefObjec
   }, [bubbleOn, look]);
 
   return (
-    <div ref={node} className={s.traveler} data-aan-traveler data-tuck={look?.tuck ? "true" : undefined} aria-hidden="true" style={{ opacity: look ? undefined : 0, "--size": `${look?.size ?? 48}px` } as CSSProperties}>
-      {look && <AanMascot state="diamond" size={look.size} glow={false} shadow={false} />}
+    <div ref={node} className={s.traveler} data-aan-traveler data-tuck={look?.tuck ? "true" : undefined} data-moving={moving ? "true" : undefined} aria-hidden="true" style={{ opacity: look ? undefined : 0, "--size": `${look?.size ?? 48}px` } as CSSProperties}>
+      {look && <AanClay size={look.size} act={moving ? "glide" : (look.act ?? "idle")} track={!moving && look.track} />}
       {look?.bubble && (
         <p ref={bubble} className={s.bubble} data-side={side} data-on={bubbleOn ? "true" : "false"}>
           {look.bubble}

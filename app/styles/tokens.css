@@ -55,7 +55,9 @@
   --c-shadow-medium: 0 4px 16px -4px hsl(230 65% 57% / 0.12);
   --c-shadow-strong: 0 8px 32px -8px hsl(230 65% 57% / 0.18);
 
-  --font-display: var(--font-fraunces), "Fraunces", Georgia, serif;
+  /* Swiss: headlines are heavy Inter on a grid; Fraunces is kept for editorial moments only */
+  --font-display: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-editorial: var(--font-fraunces), "Fraunces", Georgia, serif;
   --font-body: var(--font-inter), Inter, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
   --font-chrome: var(--font-inter), Inter, system-ui, sans-serif;
@@ -142,6 +144,7 @@ html[data-island="dark"] .chrome--island {
   --stagger: 90ms;
   --ease-arrive: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-travel: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   --z-aan: 420;
   --z-island: 450;

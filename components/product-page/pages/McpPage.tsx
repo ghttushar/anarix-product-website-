@@ -2,22 +2,74 @@
 
 import { useState, type KeyboardEvent } from "react";
 import { Screen } from "@/components/layout/Screen";
-import { ToolPanel, WiringMap } from "@/components/illustrations/sets/nocturne/McpMaps";
+import { useRef } from "react";
+import { AanDock } from "@/components/aan/v2/AanDock";
+import { LightTrails } from "@/components/visual/LightTrails";
+import { ProductFrame } from "@/components/visual/ProductFrame";
+import { ClayBlock } from "@/components/visual/ClayBlock";
 import { McpTerminal } from "@/components/product-ui/McpTerminal";
 import { ProductVideo } from "@/components/media/ProductVideo";
 import { Typewriter } from "@/components/motion/Typewriter";
 import type { ProductPage } from "@/content/products/types";
 import { CLIENTS, MCP_ANSWER, MCP_ASK, MCP_SERVER, MCP_SETUP, MCP_TOOL, type Client } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
-import { Figure } from "../shared";
+import { Figure, useHandled } from "../shared";
 import { Close } from "../Close";
 import { Capabilities, HowItWorks } from "../Sections";
 import m from "./mcp.module.css";
 
 /*
-  MCP: the wiring, from above. Technical, diagram-first. Pick any AI: the same
-  question gets the same number, and it matches the dashboard.
+  MCP: the light of every AI runs into Anarix (the hero), then what it is, in
+  the AI you already use. Pick any AI: the same question gets the same
+  number, and it matches the dashboard.
 */
+
+/* the hero: each AI client on the edges as a clay token, its light running in to Aan over the name */
+function McpHub({ bubble }: { bubble: string }) {
+  const hub = useRef<HTMLSpanElement>(null);
+  const left = CLIENTS.slice(0, 2);
+  const right = CLIENTS.slice(2);
+  return (
+    <div className={m.hub}>
+      <LightTrails aim={hub} from="left" count={7} spread={[0.2, 0.8]} bend={1.3} glow={false} className={m.hubTrails} />
+      <LightTrails aim={hub} from="right" count={7} spread={[0.2, 0.8]} bend={1.3} glow={false} className={m.hubTrails} />
+      <ul className={m.hubSide} data-side="left">
+        {left.map((c, i) => (
+          <li key={c}>
+            <ClayBlock label={c} shape="token" size={42} order={i} />
+          </li>
+        ))}
+      </ul>
+      <ul className={m.hubSide} data-side="right">
+        {right.map((c, i) => (
+          <li key={c}>
+            <ClayBlock label={c} shape="token" size={42} order={i + 2} />
+          </li>
+        ))}
+      </ul>
+      <span ref={hub} className={m.hubSpot}>
+        <AanDock stop="mcp" size={30} sizeSm={20} bubble={bubble || undefined} side="right" act="look" style={{ left: "50%", bottom: 0 }} />
+      </span>
+    </div>
+  );
+}
+
+/* what MCP is: your AI asking Anarix, with Aan beside the answer */
+function ToolCard() {
+  const handled = useHandled(500);
+  const spot = useRef<HTMLSpanElement>(null);
+  return (
+    <>
+      <LightTrails aim={spot} from="left" count={8} bend={1.4} className={m.toolsTrails} />
+      <ProductFrame title="Claude / Anarix MCP" note="Illustrative" lean="right">
+        <McpTerminal handled={handled} bare />
+      </ProductFrame>
+      <span ref={spot} className={m.toolsSpot}>
+        <AanDock stop="tools" size={26} sizeSm={18} act="look" style={{ left: "50%", bottom: 0 }} />
+      </span>
+    </>
+  );
+}
 /* the self-serve way in: this AI's setup path and the server address to copy */
 function Connect({ client }: { client: Client }) {
   const [copied, setCopied] = useState(false);
@@ -127,7 +179,7 @@ function WhatItIs({ page }: { page: ProductPage }) {
   return (
     <>
       <div className={m.toolsArt}>
-        <ToolPanel />
+        <ToolCard />
       </div>
       <div className={m.toolsCopy}>
         <h2 className={m.title}>{page.proof.title}</h2>
@@ -141,7 +193,7 @@ function WhatItIs({ page }: { page: ProductPage }) {
 export function McpPage({ page }: { page: ProductPage }) {
   return (
     <>
-      <NameHero page={page} layout="hub" art={<WiringMap bubble={page.bubble} />} />
+      <NameHero page={page} layout="hub" art={<McpHub bubble={page.bubble} />} />
       {/* what MCP is comes first: most sellers have never heard of it */}
       <Screen id="what-mcp-is" hasDock bodyClassName={`l-container ${m.proof}`} label={page.proof.title}>
         <WhatItIs page={page} />

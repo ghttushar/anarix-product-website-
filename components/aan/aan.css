@@ -85,10 +85,14 @@ html[data-theme="dark"] .aan__shadow {
   border-radius: var(--r);
   overflow: hidden;
   transform: translate(-50%, -50%) rotate(var(--rot)) scale(var(--sx), var(--sy));
-  background: radial-gradient(circle at 50% 38%, var(--c-light) 0%, #f57780 42%, var(--c-base) 78%, var(--c-deep) 100%);
+  /* soft clay: lit from the top left, a core shadow toward the bottom right,
+     a matte highlight (the sheen) and a soft rim; every measure follows --u,
+     so the island's 28px Aan and the hero's 128px Aan are the same object */
+  background: radial-gradient(circle at 34% 30%, #ffb3b9 0%, var(--c-light) 26%, var(--c-base) 58%, #d9505c 100%);
   box-shadow:
-    0 26px 64px -28px rgba(244, 109, 118, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    inset calc(var(--u) * -0.12) calc(var(--u) * -0.14) calc(var(--u) * 0.22) rgba(120, 20, 34, 0.38),
+    inset calc(var(--u) * 0.1) calc(var(--u) * 0.1) calc(var(--u) * 0.16) rgba(255, 220, 224, 0.42),
+    0 calc(var(--u) * 0.3) calc(var(--u) * 0.7) calc(var(--u) * -0.32) rgba(244, 109, 118, 0.5);
   transition:
     width 0.6s var(--spring),
     height 0.6s var(--spring),
@@ -99,6 +103,9 @@ html[data-theme="dark"] .aan__shadow {
 
 .aan--bar .aan__body {
   background: linear-gradient(180deg, rgba(244, 109, 118, 0.18) 0%, rgba(244, 109, 118, 0.28) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 5px rgba(120, 20, 34, 0.3);
 }
 
 .aan--cube .aan__body {
@@ -204,8 +211,10 @@ html[data-theme="dark"] .aan__shadow {
 
 /* tiny tier: flat coral chip, no eyes or aura */
 .aan--tiny .aan__body {
-  background: linear-gradient(140deg, var(--c-light) 0%, var(--c-base) 60%, var(--c-deep) 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: radial-gradient(circle at 34% 30%, #ffb3b9 0%, var(--c-light) 30%, var(--c-base) 62%, #d9505c 100%);
+  box-shadow:
+    inset -1px -1px 2px rgba(120, 20, 34, 0.38),
+    inset 1px 1px 1px rgba(255, 220, 224, 0.4);
 }
 
 .aan--tiny .aan__float {

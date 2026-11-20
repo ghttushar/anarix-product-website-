@@ -1,5 +1,5 @@
-/* Homepage screen layouts (docs/redesign/04-screen-specs.md). Every screen
-   keeps copy on the left and its visual on the right. */
+/* Homepage screens without a module of their own: trust and the close.
+   Copy on the left of the 12-column grid, the visual on the right. */
 
 .split {
   align-self: center;
@@ -8,511 +8,21 @@
 
 .copy {
   grid-column: 1 / span 5;
-}
-
-.visual {
-  grid-column: 7 / span 6;
-  display: grid;
-  gap: 18px;
-}
-
-.visualWide {
-  grid-column: 6 / span 7;
-}
-
-.sample {
-  margin: 8px 0 0;
-  font-size: 12px;
-  color: var(--ink-2);
-}
-
-/* ------------------------------------------------------------------ hero */
-.heroBody {
-  display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
-  column-gap: var(--s-7);
-  align-items: center;
-}
-
-.heroCopy {
   position: relative;
   z-index: 1;
 }
 
-.heroArt {
-  justify-self: end;
-  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 780 / 660));
-}
-
-.heroCopy h1 span {
-  display: block;
-}
-
-
-
-/* --------------------------------------------------------------- mission */
-/* the three approved figures, under the hero's buttons */
-.proof {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--s-5);
-  max-width: 620px;
-  margin: var(--gap-m) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.proof li {
-  padding-top: var(--s-3);
-  border-top: 1px solid var(--rule);
-}
-
-.proof b {
-  display: block;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: clamp(1.25rem, min(1.8vw, 3.2svh), 1.625rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.proof span {
-  display: block;
-  text-wrap: pretty;
-  margin-top: 4px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--ink-2);
-}
-
-/* the stack's words, for phones, where its own labels step aside */
-.legend {
-  display: none;
-  margin: var(--s-2) 0 0;
-  font-size: 13px;
-  color: var(--ink-2);
-  text-align: center;
-}
-
-/* ----------------------------------------------------------- night watch */
-.nightScreen {
-  isolation: isolate;
-}
-
-/* the last hour of the night lifts the whole sky, not just the drawing */
-.dawnSky {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(to top, var(--lit), transparent 70%);
-  opacity: calc(var(--dawn, 0) * 0.6);
-}
-.clock {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin: var(--gap-m) 0 0;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2rem, min(3.6vw, 6svh), 3.25rem);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.clockNote {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink-2);
-}
-
-.events {
-  display: grid;
-  margin: var(--gap-s) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.event {
-  display: grid;
-  grid-template-columns: 76px 1fr;
-  gap: 12px;
-  width: 100%;
-  padding: clamp(5px, 0.9svh, 8px) 0;
-  border-top: 1px solid var(--rule);
-  text-align: left;
-  font-size: 14px;
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: color var(--dur-ui) var(--ease-arrive);
-}
-
-.event time {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-variant-numeric: tabular-nums;
-}
-
-.event[data-state="now"] {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.event[data-state="now"] time {
-  color: var(--accent);
-}
-
-.event:hover {
-  color: var(--ink);
-}
-
-.event:focus-visible,
-.play:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 6px;
-}
-
-.now {
-  display: none;
-  margin: 8px 0 0;
-  font-size: 14px;
-  color: var(--ink);
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: var(--gap-s);
-}
-
-.play {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
-  transition: border-color var(--dur-micro) var(--ease-arrive);
-}
-
-.play:hover {
-  border-color: var(--accent);
-}
-
-.play svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-/* the scrubber: a hairline track on the sky, filled up to now */
-.scrub {
-  --fill: 0%;
-  flex: 1;
+.visual {
+  grid-column: 7 / span 6;
+  position: relative;
   min-width: 0;
-  height: 44px;
-  margin: 0;
-  background: transparent;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
 }
 
-.scrub::-webkit-slider-runnable-track {
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(to right, var(--accent-solid) var(--fill), var(--rule) var(--fill));
-}
-
-.scrub::-moz-range-track {
-  height: 3px;
-  border-radius: 999px;
-  background: var(--rule);
-}
-
-.scrub::-moz-range-progress {
-  height: 3px;
-  border-radius: 999px;
-  background: var(--accent-solid);
-}
-
-.scrub::-webkit-slider-thumb {
-  width: 16px;
-  height: 16px;
-  margin-top: -6.5px;
-  border: 0;
-  border-radius: 50%;
-  background: var(--ink);
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.scrub::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border: 0;
-  border-radius: 50%;
-  background: var(--ink);
-}
-
-.scrub:focus-visible {
-  outline: none;
-}
-
-.scrub:focus-visible::-webkit-slider-thumb {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.scrub:focus-visible::-moz-range-thumb {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.note {
-  margin: 8px 0 0;
-  font-size: 12px;
-  color: var(--ink-2);
-}
-
-/* ----------------------------------------------------------- AI for good */
-.goodLine {
-  color: var(--ink-2);
-}
-
-/* the house is the subject, but at the street's scale, not a poster's */
-.goodArt {
-  justify-self: end;
-  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom)) * 760 / 540));
-}
-
-.commitments {
-  display: grid;
-  margin: var(--gap-m) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.commitments li {
-  padding: clamp(10px, 1.6svh, 14px) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.commitments b {
-  display: block;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.commitments span {
-  display: block;
-  text-wrap: pretty;
-  margin-top: 4px;
-  max-width: 46ch;
-  font-size: 14.5px;
-  line-height: 1.5;
-  color: var(--ink-2);
-}
-
-/* ----------------------------------------------------------------- close */
-.closeCopy {
-  grid-column: 1 / span 6;
-}
-
-.closeCopy p {
-  max-width: 46ch;
-}
-
-
-
-.services {
-  margin: var(--gap-m) 0 0;
-  font-size: 14px;
-  color: var(--ink-2);
-}
-
-.services a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-}
-
-.closeFilm {
-  position: relative;
-  --content-h: calc(100svh - var(--inset-top) - var(--inset-bottom));
-  grid-column: 8 / span 5;
-  justify-self: end;
-  width: min(100%, calc(var(--content-h) * 9 / 16));
-}
-
-/* --------------------------------------------------------- short screens */
-@media (max-height: 760px) {
-  .missionStatement {
-    font-size: clamp(1.625rem, min(3.4vw, 5.4svh), 3rem);
-  }
-}
-
-@media (max-height: 800px) {
-  .nightCopy [data-optional] {
-    display: none;
-  }
-}
-
-/* ----------------------------------------------------------------- phone */
-@media (max-width: 900px) {
-  .heroBody {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--s-4);
-    align-content: center;
-  }
-
-  .heroArt {
-    justify-self: center;
-    width: min(100%, 40svh);
-  }
-
-  .split {
-    grid-template-columns: 1fr;
-    row-gap: 20px;
-  }
-
-  .copy,
-  .visual,
-  .visualWide,
-  .closeCopy,
-  .closeFilm {
-    grid-column: 1;
-  }
-
-  .closeFilm {
-    justify-self: center;
-    width: min(100%, calc((var(--content-h) - 400px) * 9 / 16));
-  }
-
-
-
-  .proof {
-    grid-template-columns: 1fr;
-    row-gap: var(--s-4);
-  }
-
-  .events,
-  .nightCopy [data-optional] {
-    display: none;
-  }
-
-  .now {
-    display: block;
-  }
-}
-
-@media (max-width: 640px) {
-  .copy :global(.c-points),
-  .visual > [data-optional] {
-    display: none;
-  }
-
-  .proof span {
-    font-size: 13px;
-  }
-}
-
-/* ------------------------------------------- night watch: the morning brief */
-.visualWide {
-  position: relative;
-}
-
-.brief {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: min(360px, 82%);
-  padding: var(--s-4) var(--s-5);
-  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--card-line));
-  border-radius: 14px;
-  background: var(--card);
-  opacity: 0;
-  transform: translateY(8px);
-  transition:
-    opacity 500ms var(--ease-arrive),
-    transform 500ms var(--ease-arrive);
-  pointer-events: none;
-}
-
-.brief[data-shown="true"] {
-  opacity: 1;
-  transform: none;
-}
-
-.briefTitle {
-  margin: 0 0 var(--s-2);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.brief ul {
-  display: grid;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.brief li {
-  display: grid;
-  grid-template-columns: 4.6rem minmax(0, 1fr) auto;
-  gap: var(--s-2);
-  font-size: 12.5px;
-  line-height: 1.4;
-  color: var(--ink-2);
-}
-
-.brief time,
-.brief li b {
-  font-family: var(--font-mono);
-  font-weight: 500;
-}
-
-.brief li b {
-  color: var(--ink);
-}
-
-.briefHeld {
-  margin: var(--s-3) 0 0;
-  padding-top: var(--s-2);
-  border-top: 1px solid var(--rule);
-  font-size: 12.5px;
-  color: var(--ink);
-}
-
-.briefTotal {
-  margin: var(--s-2) 0 0;
-  font-size: 13px;
-  color: var(--ink-2);
-}
-
-.briefTotal b {
-  font-family: var(--font-mono);
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--accent);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .brief {
-    transition: none;
-  }
+/* the light behind a section's card, running in from the right edge */
+.visual > .trails {
+  inset: -50% -60% -50% 0;
+  width: auto;
+  height: auto;
 }
 
 /* --------------------------------------------- trust: the permission ladder */
@@ -537,36 +47,77 @@
 
 .rung {
   grid-row: 1 / span 2;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
   padding-top: 2px;
+  font: 500 0.75rem/1.4 var(--font-mono);
+  color: var(--accent);
 }
 
 .ladder b {
-  font-size: 15.5px;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--ink);
 }
 
 .ladder li > span:last-child {
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.45;
   color: var(--ink-2);
 }
 
+.trustArt {
+  align-self: center;
+}
+
+/* ----------------------------------------------------------------- close */
+.closeCopy {
+  grid-column: 1 / span 6;
+}
+
+.closeCopy p {
+  max-width: 46ch;
+}
+
+.services {
+  margin: var(--gap-m) 0 0;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.services a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.closeFilm {
+  position: relative;
+  --content-h: calc(100svh - var(--inset-top) - var(--inset-bottom));
+  grid-column: 8 / span 5;
+  justify-self: end;
+  width: min(100%, calc(var(--content-h) * 9 / 16));
+}
+
+/* ----------------------------------------------------------------- phone */
 @media (max-width: 900px) {
-  .legend {
-    display: block;
+  .split {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
   }
 
-  .brief {
-    position: static;
-    width: 100%;
-    margin-top: var(--s-3);
+  .copy,
+  .visual,
+  .closeCopy,
+  .closeFilm {
+    grid-column: 1;
   }
 
-  .brief[data-shown="false"] {
-    display: none;
+  .closeFilm {
+    justify-self: center;
+    width: min(100%, calc((var(--content-h) - 400px) * 9 / 16));
+  }
+
+  .visual > .trails {
+    inset: -20% -10%;
   }
 }

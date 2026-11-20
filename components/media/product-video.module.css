@@ -10,6 +10,13 @@
   background: color-mix(in oklab, var(--card) 72%, transparent);
 }
 
+/* inside a product frame: the frame is the card */
+.bare {
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+}
+
 .frame[data-video="true"] {
   background: hsl(228 50% 6%);
 }

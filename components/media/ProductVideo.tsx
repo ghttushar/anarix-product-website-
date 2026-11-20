@@ -15,7 +15,7 @@ export type VideoSource = { src: string; poster?: string };
  * the fallback (the page's drawing) in the same frame, quietly: the space is
  * there, ready for the video, and nothing announces what is missing.
  */
-export function ProductVideo({ video, title, fallback, ratio = 16 / 9, fitRatio, className }: { video?: VideoSource; title: string; fallback: ReactNode; ratio?: number; /** the fallback drawing's own width / height */ fitRatio?: number; className?: string }) {
+export function ProductVideo({ video, title, fallback, ratio = 16 / 9, fitRatio, className, bare = false }: { video?: VideoSource; title: string; fallback: ReactNode; ratio?: number; /** the fallback drawing's own width / height */ fitRatio?: number; className?: string; /** inside a product frame: no border of its own */ bare?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
 
@@ -44,7 +44,7 @@ export function ProductVideo({ video, title, fallback, ratio = 16 / 9, fitRatio,
   };
 
   return (
-    <figure className={`${v.frame} ${className ?? ""}`} style={{ aspectRatio: String(ratio), "--fit": fitRatio ? String(fitRatio) : undefined } as CSSProperties} data-video={video ? "true" : "false"}>
+    <figure className={`${v.frame} ${bare ? v.bare : ""} ${className ?? ""}`} style={{ aspectRatio: String(ratio), "--fit": fitRatio ? String(fitRatio) : undefined } as CSSProperties} data-video={video ? "true" : "false"}>
       {video ? (
         <>
           <video

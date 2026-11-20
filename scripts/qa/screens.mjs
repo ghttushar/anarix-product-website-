@@ -60,11 +60,17 @@ for (const route of routes) {
     const screens = await page.evaluate(() => window.__fit.list());
     const rows = [];
     for (const s of screens) {
-      await page.evaluate((top) => window.scrollTo({ top, behavior: "instant" }), s.top);
-      await new Promise((r) => setTimeout(r, 1600)); // let entrances, docking and draw-ons settle
-      await page.evaluate(() => document.getAnimations().forEach((a) => { try { if (a.effect?.getComputedTiming().iterations !== Infinity) a.finish(); } catch {} }));
-      const issues = await page.evaluate((i) => window.__fit.check(i), s.i);
-      await page.screenshot({ path: path.join(dir, `${String(s.i).padStart(2, "0")}-${s.id}.jpg`.replace(/[^\w.-]/g, "_")), type: "jpeg", quality: 80 });
+      // a pinned story is checked at each chapter; every other screen once
+      const issues = [];
+      for (const [k, top] of s.stops.entries()) {
+        await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), top);
+        await new Promise((r) => setTimeout(r, k ? 900 : 1600)); // let entrances, docking and draw-ons settle
+        await page.evaluate(() => document.getAnimations().forEach((a) => { try { if (a.effect?.getComputedTiming().iterations !== Infinity) a.finish(); } catch {} }));
+        const found = await page.evaluate((i) => window.__fit.check(i), s.i);
+        issues.push(...found.map((f) => (s.stops.length > 1 ? `ch${k + 1}: ${f}` : f)));
+        const name = `${String(s.i).padStart(2, "0")}-${s.id}${s.stops.length > 1 ? `-ch${k + 1}` : ""}.jpg`;
+        await page.screenshot({ path: path.join(dir, name.replace(/[^\w.-]/g, "_")), type: "jpeg", quality: 80 });
+      }
       rows.push({ ...s, screens: +(s.h / h).toFixed(2), issues });
       failures += issues.length;
     }

@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
 import { AanMascot, type AanState } from "@/components/aan/AanMascot";
-import { AanDock } from "@/components/aan/v2/AanDock";
 import { AnswerChart } from "@/components/product-ui/AnswerChart";
 import { SlackApproval } from "@/components/product-ui/SlackApproval";
-import { ProductVideo } from "@/components/media/ProductVideo";
 import { Typewriter } from "@/components/motion/Typewriter";
 import type { ProductPage } from "@/content/products/types";
 import { QUESTIONS } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
+import { Tour } from "../shared";
 import { Close } from "../Close";
 import { Capabilities } from "../Sections";
 import { MomentSteps } from "../MomentSteps";
@@ -113,7 +112,7 @@ function Brief({ page }: { page: ProductPage }) {
         </button>
       </p>
       <p className={a.body}>
-        All in, <span className={a.fig}>$878</span> protected overnight.
+        All in, <span className={a.fig}>$466</span> protected overnight, and <span className={`${a.fig} ${a.risk}`}>$412</span> at risk on Shopify for you to decide.
       </p>
       <div className={a.sign}>
         <span>Aan</span>
@@ -130,14 +129,11 @@ export function AanPage({ page }: { page: ProductPage }) {
       <NameHero
         page={page}
         layout="portrait"
+        frame="Slack / # store-ops"
         art={
-          <ProductVideo
-            video={page.video}
-            title="Aan product tour"
-            ratio={4 / 3}
-            fitRatio={1.4}
-            fallback={<SlackApproval avatar={<AanDock stop="aan" size={16} style={{ left: "50%", bottom: "4px" }} />} />}
-          />
+          <Tour page={page} title="Aan product tour">
+            <SlackApproval bare />
+          </Tour>
         }
       />
       <Screen id="ask-aan" fit="grow" bodyClassName={`l-container ${a.centre}`} label={page.moment.title}>

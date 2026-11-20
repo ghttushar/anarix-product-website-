@@ -20,24 +20,33 @@ export const proof = {
 };
 
 export const night = {
+  kicker: "One night with Aan",
   title: "You sleep. Aan doesn't.",
   statement: "One night on one account. Aan keeps watch from close to open, handles what your rules allow and leaves you a short brief for the morning.",
   note: "A sample night. Figures are illustrative.",
-  start: { m: 0, bubble: "6:00 PM. 3 stores, all quiet." },
-  events: [
-    { m: 180, time: "9:00 PM", text: "Lights out. Aan on watch.", at: "home", bubble: "9:00 PM. Nothing has changed." },
-    { m: 304, time: "11:04 PM", text: "Price undercut. Flagged.", at: "store", bubble: "Undercut by $3. Flagged." },
-    { m: 494, time: "2:14 AM", text: "$86 wasted. Paused.", at: "ads", bubble: "$86, 0 sales. Paused." },
-    { m: 640, time: "4:40 AM", text: "Low stock. Reorder drafted.", at: "warehouse", bubble: "6 days of stock. Reorder drafted." },
-    { m: 780, time: "7:00 AM", text: "3 fixes. $878 protected.", at: "home", bubble: "$878 protected overnight." },
+  /** the story, one chapter per scroll step; m is minutes after 6 PM */
+  chapters: [
+    { m: 180, time: "9:00 PM", head: "Lights out. Aan on watch.", line: "Three stores, all quiet. Aan reads every change as it lands.", act: "idle" },
+    { m: 304, time: "11:04 PM", head: "Price undercut. Flagged.", line: "A rival dropped $3 below you on Shopify. Aan flags it with the money at risk.", act: "point", row: 0 },
+    { m: 494, time: "2:14 AM", head: "$86 wasted. Paused.", line: "An ad spent $86 with no sales. Your rules allow a pause, so Aan pauses it.", act: "press", row: 1 },
+    { m: 640, time: "4:40 AM", head: "Low stock. Reorder drafted.", line: "Six days of stock left at this pace. Aan drafts the reorder for you to send.", act: "work", row: 2 },
+    { m: 780, time: "7:00 AM", head: "2 fixes, 1 flag. $466 protected.", line: "The brief is waiting when you wake. One change waits for your yes.", act: "celebrate" },
   ],
-  /** the brief Aan leaves at 7:00 AM: every line adds up to the total */
+  /** what Aan sees overnight, as rows in Signals */
+  rows: [
+    { where: "Shopify · Pricing", text: "Rival price $3 below yours", action: "Flag", done: "Flagged" },
+    { where: "Amazon · Ads", text: "“chef knife 8 inch”: $86 spent, 0 sales", action: "Pause", done: "Paused" },
+    { where: "Amazon · Inventory", text: "6 days of stock left", action: "Draft reorder", done: "Drafted" },
+  ],
+  stores: ["Amazon", "Walmart", "Shopify"],
+  /** the brief Aan leaves at 7:00 AM: the fixes add up to the total; a flag
+      shows the money at risk and is not counted as protected */
   brief: {
     title: "Your morning brief",
     items: [
-      { time: "2:14 AM", text: "Paused “chef knife 8 inch”: $86 spent, no sales", v: 86 },
-      { time: "11:04 PM", text: "Flagged a $3 undercut on Shopify", v: 412 },
-      { time: "4:40 AM", text: "Drafted a reorder: 6 days of stock left", v: 380 },
+      { time: "11:04 PM", text: "Flagged a $3 undercut on Shopify", v: 412, fix: false },
+      { time: "2:14 AM", text: "Paused “chef knife 8 inch”: $86 spent, no sales", v: 86, fix: true },
+      { time: "4:40 AM", text: "Drafted a reorder: 6 days of stock left", v: 380, fix: true },
     ],
     held: "Needs you: move $400 a day to Sponsored Brands",
     total: "protected overnight",

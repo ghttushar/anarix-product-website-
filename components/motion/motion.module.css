@@ -1,0 +1,18 @@
+/* a magnetic action: the live area is a little larger than the button */
+.magnet {
+  display: inline-flex;
+  margin: -14px;
+  padding: 14px;
+}
+
+.magnetInner {
+  display: inline-flex;
+  transition: transform 300ms var(--ease-arrive);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magnetInner {
+    transition: none;
+    transform: none !important;
+  }
+}

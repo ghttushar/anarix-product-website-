@@ -17,10 +17,10 @@
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
   font-size: clamp(2.25rem, min(4.4vw, 7.2svh), 4.25rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hint {

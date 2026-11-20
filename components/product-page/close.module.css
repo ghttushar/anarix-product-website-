@@ -11,10 +11,10 @@
   margin: 0;
   max-width: 14ch;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
   font-size: clamp(2.5rem, min(5.4vw, 9svh), 5.5rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   color: var(--ink);
   text-wrap: balance;
 }

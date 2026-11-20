@@ -8,15 +8,17 @@ import s from "./mcp-terminal.module.css";
   Claude using Anarix MCP, illustrative. Its one moment: the AI calls an
   Anarix tool and answers with the same numbers as the dashboard.
 */
-export function McpTerminal({ handled }: { handled: boolean }) {
+export function McpTerminal({ handled, bare = false }: { handled: boolean; /** inside a product frame: no card or title bar of its own */ bare?: boolean }) {
   return (
-    <article className={`${u.card} ${s.term}`} data-ui data-state={handled ? "handled" : "open"} aria-hidden="true">
-      <header className={s.bar} data-part="1">
-        <i />
-        <i />
-        <i />
-        <span>Claude · using anarix</span>
-      </header>
+    <article className={bare ? `${s.term} ${s.bare}` : `${u.card} ${s.term}`} data-ui data-state={handled ? "handled" : "open"} aria-hidden="true">
+      {!bare && (
+        <header className={s.bar} data-part="1">
+          <i />
+          <i />
+          <i />
+          <span>Claude · using anarix</span>
+        </header>
+      )}
       <div className={s.body}>
         <p className={s.you} data-part="2">› What did I spend on Walmart ads this month?</p>
         <p className={`${s.tool} ${u.later}`} data-part="3">→ Anarix · ad spend · Walmart · this month</p>

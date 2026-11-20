@@ -15,7 +15,8 @@
 
 /* a content section that may run taller than the viewport */
 .grow {
-  overflow: visible;
+  /* taller when it needs to be, never wider */
+  overflow: clip visible;
   grid-template-rows: var(--inset-top) minmax(min-content, 1fr) var(--inset-bottom);
 }
 

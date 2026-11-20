@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef, type CSSProperties } from "react";
 import { useAanRegistry, type AanEntry } from "./AanProvider";
+import type { AanAct } from "../clay/AanClay";
 import s from "./aan-v2.module.css";
 
 /**
@@ -19,6 +20,9 @@ export function AanDock({
   at,
   travel = "walk",
   tuck = false,
+  act,
+  track = false,
+  hand = false,
   style,
 }: {
   stop: string;
@@ -36,6 +40,12 @@ export function AanDock({
   travel?: "fly" | "walk";
   /** Aan lands beneath the page content here, with no bubble (into the film) */
   tuck?: boolean;
+  /** what Aan does once it has landed here */
+  act?: AanAct;
+  /** the eyes follow the pointer while Aan is here */
+  track?: boolean;
+  /** the screen's own Aan takes over once Aan lands (pinned stories) */
+  hand?: boolean;
   style?: CSSProperties;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -59,8 +69,11 @@ export function AanDock({
       at,
       travel,
       tuck,
+      act,
+      track,
+      hand,
     });
-  }, [registry, stop, size, sizeSm, bubble, side, dx, delay, duration, at, travel, tuck]);
+  }, [registry, stop, size, sizeSm, bubble, side, dx, delay, duration, at, travel, tuck, act, track, hand]);
 
   return <span ref={ref} className={s.dock} data-aan-dock={stop} style={{ ...style, width: size, height: size }} aria-hidden="true" />;
 }

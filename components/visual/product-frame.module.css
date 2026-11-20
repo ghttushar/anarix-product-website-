@@ -1,0 +1,193 @@
+/* A product card standing in space. Base tilt from data-lean; the pointer adds
+   a little more (--px/--py, -1..1); it rises in once. */
+.stage {
+  --ry: -4deg;
+  --rx: 2deg;
+  position: relative;
+  z-index: 1;
+  perspective: 1600px;
+  perspective-origin: 50% 30%;
+}
+
+.stage[data-lean="right"] {
+  --ry: 4deg;
+}
+
+.stage[data-lean="none"] {
+  --ry: 0deg;
+  --rx: 3deg;
+}
+
+.card {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  box-shadow:
+    0 1px 0 hsl(0 0% 100% / 0.06) inset,
+    0 50px 90px -40px rgb(0 0 0 / 0.65),
+    0 18px 36px -24px rgb(0 0 0 / 0.5);
+  transform-origin: 50% 60%;
+  transform: rotateX(calc(var(--rx) - var(--py) * 2deg)) rotateY(calc(var(--ry) + var(--px) * 2.5deg));
+  transition:
+    transform 700ms var(--ease-arrive),
+    opacity 900ms var(--ease-arrive);
+}
+
+/* a compositor layer only while the pointer is on it, so text rests crisp */
+.card:hover {
+  will-change: transform;
+}
+
+/* first arrival: up from the floor, tipped back */
+.stage[data-shown="false"] .card {
+  opacity: 0;
+  transform: translateY(56px) rotateX(24deg) rotateY(var(--ry));
+}
+
+.stage[data-shown="true"] .card {
+  transition:
+    transform 1100ms var(--ease-arrive),
+    opacity 900ms var(--ease-arrive);
+}
+
+.stage[data-shown="true"] .card:hover {
+  transition: transform 500ms var(--ease-arrive);
+}
+
+/* the top bar: where in the product this is, and the honest label */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--card-line);
+  font: 500 0.75rem/1 var(--font-body);
+  color: var(--ink-2);
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.crumb i {
+  font-style: normal;
+  opacity: 0.45;
+  margin-right: 6px;
+}
+
+.brand {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.note {
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.02em;
+  padding: 4px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--card-line);
+  white-space: nowrap;
+}
+
+.body {
+  position: relative;
+  padding: 18px;
+}
+
+/* the light that follows the cursor, over the UI, under nothing */
+.spot {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), hsl(230 80% 75% / 0.12), transparent 60%);
+  transition: opacity 400ms var(--ease-arrive);
+}
+
+/* and the border it catches */
+.spot::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), hsl(230 80% 75% / 0.7), transparent 70%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.card:hover .spot {
+  opacity: 1;
+}
+
+/* a glow on the floor beneath the card */
+.floor {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -38px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, hsl(230 75% 65% / 0.28), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-arrive) 400ms;
+}
+
+.stage[data-shown="true"] .floor {
+  opacity: 1;
+}
+
+html[data-theme="light"] .card {
+  box-shadow:
+    0 50px 80px -40px hsl(230 40% 30% / 0.35),
+    0 18px 36px -24px hsl(230 40% 30% / 0.25);
+}
+
+html[data-theme="light"] .spot {
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), hsl(230 70% 60% / 0.07), transparent 60%);
+}
+
+/* phones and touch: flat and still */
+@media (max-width: 760px), (hover: none) {
+  .stage {
+    --ry: 0deg;
+    --rx: 0deg;
+  }
+
+  .spot {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .body {
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .stage[data-shown="false"] .card {
+    opacity: 1;
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+    transition: none;
+  }
+
+  .floor {
+    opacity: 1;
+    transition: none;
+  }
+}
