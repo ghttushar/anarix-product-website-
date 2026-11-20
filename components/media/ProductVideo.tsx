@@ -12,8 +12,8 @@ export type VideoSource = { src: string; poster?: string };
  * The frame a product tour plays in. With a recording it plays muted while in
  * view (never under reduced motion), pauses when scrolled away, and "Watch
  * with sound" unmutes and restarts it. Until the recording exists it shows
- * the fallback (the page's drawing) in the same frame, with a quiet note, so
- * the space is there and nothing looks broken.
+ * the fallback (the page's drawing) in the same frame, quietly: the space is
+ * there, ready for the video, and nothing announces what is missing.
  */
 export function ProductVideo({ video, title, fallback, ratio = 16 / 9, fitRatio, className }: { video?: VideoSource; title: string; fallback: ReactNode; ratio?: number; /** the fallback drawing's own width / height */ fitRatio?: number; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -75,12 +75,6 @@ export function ProductVideo({ video, title, fallback, ratio = 16 / 9, fitRatio,
           <div className={v.fallback}>
             <div className={v.fit}>{fallback}</div>
           </div>
-          <figcaption className={v.soon}>
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M5 3.5v9l7.5-4.5z" />
-            </svg>
-            {title} · coming soon
-          </figcaption>
         </>
       )}
     </figure>

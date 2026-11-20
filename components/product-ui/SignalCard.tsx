@@ -1,19 +1,38 @@
 "use client";
 
-import { useCallback } from "react";
 import { AanMascot } from "@/components/aan/AanMascot";
-import { CountUp } from "@/components/motion/CountUp";
 import { SIGNALS, type SampleSignal } from "@/content/products/samples";
 import s from "./signal-card.module.css";
 
 /*
   The product's Signal card (anarix-insight-engine), sample data. It shows one
   calm state change: money at risk becomes money protected once Aan acts.
-  Any of the sample signals can be shown (the Signals page swaps them).
+  The figure stays put; only its label and colour change (coral to
+  periwinkle), so it never counts through zero. With onExecute, Execute is
+  a real button and the visitor makes the change happen.
 */
-export function SignalCard({ handled, signal = SIGNALS[0], live = false }: { handled: boolean; signal?: SampleSignal; /** read by assistive tech (the Signals page's picker) */ live?: boolean }) {
-  const money = useCallback((n: number) => `${n < 0 ? "−" : "+"}$${Math.round(Math.abs(n)).toLocaleString("en-US")}`, []);
+export function SignalCard({
+  handled,
+  signal = SIGNALS[0],
+  live = false,
+  onExecute,
+}: {
+  handled: boolean;
+  signal?: SampleSignal;
+  /** read by assistive tech (the Signals page's picker) */
+  live?: boolean;
+  onExecute?: () => void;
+}) {
   const sg = signal;
+  const execute = (
+    <>
+      <svg className={s.check} viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M3.5 8.5l3 3 6-7" />
+      </svg>
+      <span className={s.k1}>Execute: {sg.action}</span>
+      <span className={s.k2}>Executed: {sg.done}</span>
+    </>
+  );
 
   return (
     <article className={s.card} data-ui data-state={handled ? "handled" : "risk"} aria-hidden={live ? undefined : true} aria-label={live ? `${sg.store}: ${sg.title}` : undefined}>
@@ -25,7 +44,7 @@ export function SignalCard({ handled, signal = SIGNALS[0], live = false }: { han
       </header>
 
       <p className={s.value} data-part="2">
-        <CountUp from={-sg.risk} to={sg.risk} play={handled} format={money} width={6} className={s.figure} />
+        <span className={s.figure}>${sg.risk.toLocaleString("en-US")}</span>
         <span className={s.valueK}>
           <span className={s.k1}>at risk</span>
           <span className={s.k2}>protected</span>
@@ -59,13 +78,13 @@ export function SignalCard({ handled, signal = SIGNALS[0], live = false }: { han
       </div>
 
       <footer className={s.actions} data-part="5">
-        <span className={`${s.btn} ${s.btnPrimary}`}>
-          <svg className={s.check} viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M3.5 8.5l3 3 6-7" />
-          </svg>
-          <span className={s.k1}>Execute: {sg.action}</span>
-          <span className={s.k2}>Executed: {sg.done}</span>
-        </span>
+        {onExecute ? (
+          <button type="button" className={`${s.btn} ${s.btnPrimary}`} onClick={onExecute} disabled={handled} aria-label={handled ? `Executed: ${sg.done}` : `Execute: ${sg.action}`}>
+            {execute}
+          </button>
+        ) : (
+          <span className={`${s.btn} ${s.btnPrimary}`}>{execute}</span>
+        )}
         <span className={s.btn}>Modify</span>
         <span className={s.btn} data-optional>
           Assign

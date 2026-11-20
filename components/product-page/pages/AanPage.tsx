@@ -3,14 +3,17 @@
 import { useEffect, useState } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
 import { AanMascot, type AanState } from "@/components/aan/AanMascot";
-import { AanConsole } from "@/components/illustrations/sets/iso/AanConsole";
+import { AanDock } from "@/components/aan/v2/AanDock";
+import { AnswerChart } from "@/components/product-ui/AnswerChart";
+import { SlackApproval } from "@/components/product-ui/SlackApproval";
 import { ProductVideo } from "@/components/media/ProductVideo";
 import { Typewriter } from "@/components/motion/Typewriter";
 import type { ProductPage } from "@/content/products/types";
 import { QUESTIONS } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
-import { Capabilities, HowItWorks } from "../Sections";
+import { Capabilities } from "../Sections";
+import { MomentSteps } from "../MomentSteps";
 import a from "./aan.module.css";
 
 /*
@@ -54,6 +57,7 @@ function AskAan({ page }: { page: ProductPage }) {
         <h2 className={a.title}>{page.moment.title}</h2>
         <p className={a.hint}>{page.moment.hint}</p>
       </header>
+      <MomentSteps page={page} at={phase < 0 ? 0 : phase < 3 ? 1 : 2} />
       <div className={a.chat}>
         <p className={a.you} key={`q${pick}`}>
           {qa.q}
@@ -66,6 +70,7 @@ function AskAan({ page }: { page: ProductPage }) {
           {phase === 3 && (
             <div key={`a${pick}`}>
               <Typewriter text={qa.a} play delay={0} className={a.answer} />
+              <AnswerChart chart={qa.chart} />
               <p className={a.sources}>
                 {qa.sources.map((s) => (
                   <span key={s}>{s}</span>
@@ -93,6 +98,7 @@ function AskAan({ page }: { page: ProductPage }) {
 
 /* the morning brief as Aan writes it: a short letter, not a dashboard */
 function Brief({ page }: { page: ProductPage }) {
+  const [approved, setApproved] = useState(false);
   return (
     <article className={a.letter}>
       <h2 className={a.letterTitle}>{page.proof.title}</h2>
@@ -101,10 +107,13 @@ function Brief({ page }: { page: ProductPage }) {
         Overnight I paused “chef knife 8 inch” after $86 of spend with no sales, flagged a $3 undercut on Shopify, and drafted a reorder for the bamboo board.
       </p>
       <p className={a.body}>
-        One thing needs you: moving $400 a day to Sponsored Brands. <span className={a.approve}>Approve</span>
+        One thing needs you: moving $400 a day to Sponsored Brands.{" "}
+        <button type="button" className={a.approve} aria-pressed={approved} onClick={() => setApproved(true)} disabled={approved}>
+          {approved ? "Approved" : "Approve"}
+        </button>
       </p>
       <p className={a.body}>
-        All in, the night saved you <span className={a.fig}>$1,240</span>.
+        All in, <span className={a.fig}>$878</span> protected overnight.
       </p>
       <div className={a.sign}>
         <span>Aan</span>
@@ -118,16 +127,27 @@ function Brief({ page }: { page: ProductPage }) {
 export function AanPage({ page }: { page: ProductPage }) {
   return (
     <>
-      <NameHero page={page} layout="portrait" art={<ProductVideo video={page.video} title="Aan product tour" fitRatio={560 / 500} fallback={<AanConsole bubble={page.bubble} />} />} />
-      <HowItWorks page={page} variant="row" />
-      <Screen id="ask-aan" bodyClassName={`l-container ${a.centre}`} label={page.moment.title}>
+      <NameHero
+        page={page}
+        layout="portrait"
+        art={
+          <ProductVideo
+            video={page.video}
+            title="Aan product tour"
+            ratio={4 / 3}
+            fitRatio={1.4}
+            fallback={<SlackApproval avatar={<AanDock stop="aan" size={16} style={{ left: "50%", bottom: "4px" }} />} />}
+          />
+        }
+      />
+      <Screen id="ask-aan" fit="grow" bodyClassName={`l-container ${a.centre}`} label={page.moment.title}>
         <AskAan page={page} />
       </Screen>
       <Capabilities page={page} variant="list" />
       <Screen id="morning-brief" bodyClassName={`l-container ${a.centre}`} label={page.proof.title}>
         <Brief page={page} />
       </Screen>
-      <Close page={page} />
+      <Close page={page} ladder />
     </>
   );
 }

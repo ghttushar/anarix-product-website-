@@ -21,16 +21,18 @@ const STORES = [
   { k: "Shopify", x: 160 },
 ];
 const AIS = [
-  { k: "Claude", x: 412 },
-  { k: "ChatGPT", x: 488 },
-  { k: "Gemini", x: 564 },
+  { k: "Claude", x: 378 },
+  { k: "ChatGPT", x: 446 },
+  { k: "Gemini", x: 514 },
+  { k: "Your agent", x: 582 },
 ];
+const AW = 52; // an AI client's width
 const SW = 60;
 const TOP = 150;
 
 const cable = (x1: number, y1: number, x2: number, y2: number) => `M${x1} ${y1} Q ${(x1 + x2) / 2} ${Math.max(y1, y2) + 26} ${x2} ${y2}`;
 
-export function McpPole({ stop = "mcp", bubble }: { stop?: string; bubble?: string }) {
+export function McpPole({ stop = "mcp", bubble, dock = true }: { stop?: string; bubble?: string; dock?: boolean }) {
   const box = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState(36);
   useEffect(() => {
@@ -47,7 +49,7 @@ export function McpPole({ stop = "mcp", bubble }: { stop?: string; bubble?: stri
         w={W}
         h={H}
         label="Lines run from the Amazon, Walmart and Shopify stores into the Anarix MCP pole, and out to Claude, ChatGPT and Gemini. Aan sits on top of the pole."
-        dock={<AanDock stop={stop} size={size} bubble={bubble} side="right" style={{ left: `${(POLE / W) * 100}%`, bottom: `${((H - 36) / H) * 100}%` }} />}
+        dock={dock ? <AanDock stop={stop} size={size} bubble={bubble} side="right" style={{ left: `${(POLE / W) * 100}%`, bottom: `${((H - 36) / H) * 100}%` }} /> : undefined}
       >
         <g {...g(0)}>
           <line {...d()} x1={-40} y1={BASE} x2={W + 40} y2={BASE} />
@@ -90,18 +92,18 @@ export function McpPole({ stop = "mcp", bubble }: { stop?: string; bubble?: stri
         <g {...g(4)}>
           {AIS.map((a) => (
             <g key={a.k}>
-              <rect {...d(art.body)} x={a.x} y={TOP} width={SW} height={BASE - TOP} rx={4} />
-              <circle {...d(fx.hot)} cx={a.x + SW / 2} cy={TOP + 20} r={7} style={{ "--hot-delay": "600ms" } as CSSProperties} />
+              <rect {...d(art.body)} x={a.x} y={TOP} width={AW} height={BASE - TOP} rx={4} />
+              <circle {...d(fx.hot)} cx={a.x + AW / 2} cy={TOP + 20} r={7} style={{ "--hot-delay": "600ms" } as CSSProperties} />
             </g>
           ))}
         </g>
         {AIS.map((a) => (
-          <Label key={a.k} x={a.x + SW / 2} y={BASE + 16} size={11}>
+          <Label key={a.k} x={a.x + AW / 2} y={BASE + 16} size={12}>
             {a.k}
           </Label>
         ))}
         {AIS.map((a, i) => (
-          <path key={a.k} {...d(fx.after)} d={cable(POLE + 14 + i * 10, ARM_Y, a.x + SW / 2, TOP)} stroke="var(--accent)" style={{ "--after-delay": `${150 + i * 260}ms` } as CSSProperties} />
+          <path key={a.k} {...d(fx.after)} d={cable(POLE + 14 + i * 10, ARM_Y, a.x + AW / 2, TOP)} stroke="var(--accent)" style={{ "--after-delay": `${150 + i * 260}ms` } as CSSProperties} />
         ))}
       </Drawing>
     </div>

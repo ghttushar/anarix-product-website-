@@ -12,13 +12,13 @@ const aan: ProductPage = {
   name: "Aan",
   slogan: "Your 24/7 e‑commerce account manager.",
   line: "The AI inside Anarix. It watches your stores, explains **what changed and why**, and acts within your rules.",
-  bubble: "Ask me anything.",
+  bubble: "",
   meta: {
     title: "Aan, your 24/7 e-commerce account manager",
     description: "Aan is the AI inside Anarix. It watches your Amazon, Walmart and Shopify accounts around the clock, explains what changed and why, and acts within the rules you set.",
   },
   moment: { title: "Ask Aan.", hint: "Pick a question. Watch Aan listen, think, work, then answer.", note: "Sample conversation" },
-  proof: { title: "Your morning brief.", line: "What was handled overnight, what needs you, and what it was worth.", note: "Sample data" },
+  proof: { title: "Your morning brief.", line: "What was handled overnight, what needs you, and what it was worth.", note: "Sample data from the same night" },
   close: { title: "Meet Aan in a demo." },
   faq: [
     { q: "What is Aan?", a: "The AI inside Anarix. The name stands for Anarix Analytical Neural." },
@@ -36,7 +36,7 @@ const aan: ProductPage = {
     ],
   },
   does: {
-    title: "One AI, all through Anarix.",
+    title: "Answers you can check. Changes you approve.",
     intro: "Aan answers in the chat, and it is also inside every alert, meeting, task and rule.",
     items: [
       { t: "Answers with the numbers", d: "Tables, charts and reports, with the sources each answer came from." },
@@ -59,13 +59,13 @@ const signals: ProductPage = {
   name: "Signals",
   slogan: "3am change. 9am answer.",
   line: "Aan watches every price, Buy Box, budget and stock level, and tells you **what changed and why**.",
-  bubble: "Found it. Here's why.",
+  bubble: "",
   meta: {
     title: "Signals: 3am change, 9am answer",
     description: "Signals watches every price, Buy Box, budget and stock level across Amazon, Walmart and Shopify, and tells you what changed, why it matters and what to do.",
   },
-  moment: { title: "Tap a store.", hint: "Each one changed overnight. See what Aan found, and fix it from there.", note: "Sample data" },
-  proof: { title: "Biggest risk first.", line: "Signals rank themselves by money at risk, so the first fix is the one that matters most.", note: "Sample data" },
+  moment: { title: "Tap a store.", hint: "Each one changed overnight. See what Aan found, then press Execute.", note: "Sample data from one store's night" },
+  proof: { title: "Biggest risk first.", line: "Signals rank themselves by money at risk, so the first fix is the one that matters most.", note: "Sample data from one store's night" },
   close: { title: "Catch the next 3am change." },
   faq: [
     { q: "What counts as a signal?", a: "A meaningful change on an account (a price, Buy Box, ad eligibility, budget or stock change) together with its root cause and the money at risk." },
@@ -108,7 +108,7 @@ const profitability: ProductPage = {
   name: "Profitability",
   slogan: "Revenue lies. Profit doesn't.",
   line: "Fees, ads, refunds and COGS all take their share. See **true profit on every product, every day**.",
-  bubble: "Counting every fee.",
+  bubble: "Fees took $1,151 today.",
   meta: {
     title: "Profitability: revenue lies, profit doesn't",
     description: "Sales look great until fees, ads, refunds and COGS take their share. Anarix shows true profit on every product, every day.",
@@ -155,13 +155,13 @@ const rules: ProductPage = {
   name: "Rules",
   slogan: "Your playbook. On autopilot.",
   line: "Write how you run your accounts **in plain words**. Aan turns it into rules that run on your schedule, as often as every hour.",
-  bubble: "Good spend in. Waste out.",
+  bubble: "",
   meta: {
     title: "Rules: your playbook, on autopilot",
     description: "Write how you run your accounts in plain words. Aan turns it into rules that run on your schedule, allowing good spend, stopping waste and logging every decision.",
   },
-  moment: { title: "Say it in a sentence.", hint: "Pick one. Aan builds the rule and shows what it would stop.", note: "Sample rules" },
-  proof: { title: "Every decision, with its reason.", line: "Allowed or stopped, every run, all logged. Changes above your limit wait for your approval.", note: "Sample data" },
+  moment: { title: "Pick a rule.", hint: "Pick one. Aan builds the rule and shows what it would stop.", note: "Sample rules" },
+  proof: { title: "Every decision, with its reason.", line: "Allowed or stopped, every run, all logged. Changes above your limit wait for your approval.", note: "Sample data from the same night" },
   close: { title: "Hand Aan your playbook." },
   faq: [
     { q: "What can rules do?", a: "Set and adjust bids and budgets, harvest keywords, change placements and bidding strategy, day-part your spend and react to inventory, across 13 kinds of rule." },
@@ -195,6 +195,7 @@ const rules: ProductPage = {
     { label: "Ad platforms", items: ["Amazon", "Walmart"] },
     { label: "Applies to", items: ["Campaigns", "Ad groups", "Products", "Keywords", "Targets"] },
     { label: "Runs", items: ["Hourly", "Daily", "Weekly", "Monthly"] },
+    { label: "All 13 kinds of rule", items: ["Inventory", "Share of voice", "Keyword harvesting", "Budget", "Placement", "Platform", "Page type", "Bidding strategy", "State change", "Bidder", "Day-parting", "Keyword", "Target"] },
   ],
 };
 
@@ -203,7 +204,7 @@ const mcp: ProductPage = {
   name: "MCP",
   slogan: "Your data. Any AI.",
   line: "Anarix MCP plugs your marketplace data into the AI you already use, with **the same live numbers as your dashboard**.",
-  bubble: "Plugged in.",
+  bubble: "Same $3,412 in any AI.",
   meta: {
     title: "Anarix MCP: your data, any AI",
     description: "Anarix MCP plugs your marketplace data into Claude, ChatGPT, Gemini or your own agent, with the same live numbers as your dashboard.",
@@ -254,7 +255,7 @@ export const PAGE_IDS = Object.keys(PAGES) as ProductId[];
 
 /** what every close offers, under its own line */
 export const pageClose = {
-  primary: { label: "Book a demo", href: "https://www.anarix.ai/contact-us" },
+  primary: { label: "Schedule a demo", href: "https://www.anarix.ai/contact-us" },
   secondary: "Talk to Aan",
   services: { lead: "Rather we run it for you?", label: "See Anarix Services", href: "https://www.anarix.ai" },
   faqTitle: "Questions",

@@ -19,43 +19,10 @@ export type StackModule = "signals" | "profitability" | "rules" | "mcp";
 
 const STORES = ["Amazon", "Walmart", "Shopify"];
 const LAYERS: { title: string; sub: string; z: number; tone?: "hot" }[] = [
-  { title: "Four tools, one AI", sub: "Signals, Profitability, Rules, MCP", z: GAP * 2 },
+  { title: "Five products, one AI", sub: "Signals, Profitability, Rules, MCP, and Aan", z: GAP * 2 },
   { title: "One data layer", sub: "Sales, ads, inventory, profit", z: GAP, tone: "hot" },
   { title: "Every marketplace", sub: "Amazon, Walmart, Shopify", z: 0 },
 ];
-
-/** each tool wears its own mark on top: the tiles, the stack, the gate, the pins */
-function ToolMark({ iso, id, x, y, z }: { iso: ReturnType<typeof makeIso>; id: StackModule; x: number; y: number; z: number }) {
-  if (id === "signals")
-    return (
-      <>
-        <Block iso={iso} x={x + 8} y={y + 16} w={9} d={24} h={6} z={z} />
-        <Block iso={iso} x={x + 20} y={y + 16} w={9} d={24} h={11} z={z} tone="risk" />
-        <Block iso={iso} x={x + 32} y={y + 16} w={9} d={24} h={6} z={z} />
-      </>
-    );
-  if (id === "profitability")
-    return (
-      <>
-        <Block iso={iso} x={x + 10} y={y + 12} w={28} d={30} h={8} z={z} tone="hot" />
-        <Block iso={iso} x={x + 10} y={y + 12} w={28} d={30} h={5} z={z + 11} tone="risk" />
-      </>
-    );
-  if (id === "rules")
-    return (
-      <>
-        <Block iso={iso} x={x + 20} y={y + 10} w={7} d={7} h={18} z={z} />
-        <Block iso={iso} x={x + 20} y={y + 40} w={7} d={7} h={18} z={z} />
-        <Block iso={iso} x={x + 20} y={y + 10} w={7} d={37} h={5} z={z + 18} tone="hot" />
-      </>
-    );
-  return (
-    <>
-      <Cyl iso={iso} x={x + 17} y={y + 22} r={4} h={12} z={z} power="hot" />
-      <Cyl iso={iso} x={x + 31} y={y + 34} r={4} h={12} z={z} power="hot" />
-    </>
-  );
-}
 
 export function PlatformStack({ stop = "top", bubble, lit, label = true }: { stop?: string; bubble?: string; /** Night Watch: the one module working now */ lit?: StackModule | null; label?: boolean }) {
   const iso = makeIso(268, 498);
@@ -123,7 +90,6 @@ export function PlatformStack({ stop = "top", bubble, lit, label = true }: { sto
         {mods.map((m, i) => (
           <g key={m.id}>
             <Block iso={iso} x={m.x} y={modY} w={MW} d={56} h={30} z={top} i={7 + i} tone={lit === m.id ? "hot" : "base"} power={lit === undefined ? "hot" : undefined} lift={900 + i * 160} />
-            <ToolMark iso={iso} id={m.id} x={m.x} y={modY} z={top + 30} />
           </g>
         ))}
 

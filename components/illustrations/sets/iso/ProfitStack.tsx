@@ -71,8 +71,12 @@ export function ProfitStack({ sales, costs, on, stop = "profitability", bubble, 
           </g>
         ))}
 
+        {/* the whole day's sales, always drawn: a ghost column around what is left */}
+        <Block iso={iso} x={c0} y={c0} w={FOOT} d={FOOT} h={TALL} z={BASE} tone="glass" i={12} />
+
         {/* names under each plinth */}
         {[{ k: all ? "Profit" : none ? "Sales" : "Left", v: left, out: true, lead: true }, ...segs].map((g, k) => {
+          const leadFig = none ? money(sales) : `${money(g.v)} of ${money(sales)}`;
           const [x, y] = pos(k);
           const [px, py] = iso(x + PL / 2, y + PL / 2, 0);
           return (
@@ -81,7 +85,7 @@ export function ProfitStack({ sales, costs, on, stop = "profitability", bubble, 
                 {g.k}
               </text>
               <text x={px} y={py + 50} textAnchor="middle" className={`${isoCss.sub} ${isoCss.mono}`} style={{ "--fs": "13px" } as CSSProperties}>
-                {"lead" in g ? money(g.v) : `−${money(g.v)}`}
+                {"lead" in g ? leadFig : `−${money(g.v)}`}
               </text>
             </g>
           );

@@ -40,7 +40,7 @@
 
 .meta {
   margin-left: auto;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 12px;
   color: var(--ink-2);
 }
@@ -87,11 +87,11 @@
   opacity: 0;
 }
 
-.card[data-state="handled"] .swap > :first-child {
+[data-state="handled"] .swap > :first-child {
   opacity: 0;
 }
 
-.card[data-state="handled"] .swap > :last-child {
+[data-state="handled"] .swap > :last-child {
   opacity: 1;
 }
 

@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import { Screen } from "@/components/layout/Screen";
-import { AanDock } from "@/components/aan/v2/AanDock";
+import { AanMascot } from "@/components/aan/AanMascot";
+import { AnswerChart } from "@/components/product-ui/AnswerChart";
 import { SignalsBoard } from "@/components/illustrations/sets/iso/SignalsBoard";
 import { ProfitStack } from "@/components/illustrations/sets/iso/ProfitStack";
 import { RuleGate } from "@/components/illustrations/sets/iso/RuleGate";
 import { McpPole } from "@/components/illustrations/sets/nocturne/McpPole";
 import { McpTerminal } from "@/components/product-ui/McpTerminal";
-import { Typewriter } from "@/components/motion/Typewriter";
 import { Reveal } from "@/components/motion/Reveal";
 import { useHandled } from "@/components/product-page/shared";
-import type { ProductCopy } from "@/content/home";
+import { works, type ProductCopy } from "@/content/home";
 import { COSTS, QUESTIONS, RULES, SALES } from "@/content/products/samples";
 import { Ink } from "./Ink";
 import ps from "./product-screens.module.css";
@@ -62,7 +62,7 @@ function Signals({ p }: { p: ProductCopy }) {
   const handled = useHandled(1400);
   return (
     <div>
-      <SignalsBoard stop={p.id} bubble={p.bubble} handled={handled} />
+      <SignalsBoard stop={p.id} handled={handled} dock={false} />
       <p className={ps.sample}>Sample data</p>
     </div>
   );
@@ -71,7 +71,7 @@ function Signals({ p }: { p: ProductCopy }) {
 function Profitability({ p }: { p: ProductCopy }) {
   return (
     <div>
-      <ProfitStack sales={SALES} costs={COSTS} on={COSTS.map(() => true)} stop={p.id} bubble={p.bubble} />
+      <ProfitStack sales={SALES} costs={COSTS} on={COSTS.map(() => true)} stop={p.id} dock={false} />
       <p className={ps.sample}>Sample data · one day</p>
     </div>
   );
@@ -80,25 +80,24 @@ function Profitability({ p }: { p: ProductCopy }) {
 function Rules({ p }: { p: ProductCopy }) {
   return (
     <div>
-      <RuleGate stop={p.id} stops={RULES[0].stops} label={RULES[0].stopped} rule={RULES[0].sentence} bubble={p.bubble} />
+      <RuleGate stop={p.id} stops={RULES[0].stops} label={RULES[0].stopped} rule={RULES[0].sentence} dock={false} />
       <p className={ps.sample}>Sample rule</p>
     </div>
   );
 }
 
-function Aan({ p }: { p: ProductCopy }) {
-  const handled = useHandled(600);
-  const qa = QUESTIONS[0];
+function Aan() {
+  const qa = QUESTIONS[1];
   return (
     <div className={ps.talk}>
       <p className={ps.you}>{qa.q}</p>
       <div className={ps.reply}>
-        {/* the travelling Aan answers here itself */}
         <span className={ps.speaker}>
-          <AanDock stop={p.id} size={24} side="right" style={{ left: "50%", bottom: 0 }} />
+          <AanMascot state="diamond" size={28} glow={false} shadow={false} />
         </span>
-        <div>
-          <Typewriter text={qa.a} play={handled} delay={200} className={ps.answer} />
+        <div className={ps.answerCard}>
+          <p className={ps.answer}>{qa.a}</p>
+          <AnswerChart chart={qa.chart} />
           <p className={ps.sources}>
             {qa.sources.map((s) => (
               <span key={s}>{s}</span>
@@ -116,7 +115,7 @@ function Mcp({ p }: { p: ProductCopy }) {
   return (
     <div className={ps.mcpVisual}>
       <div data-optional>
-        <McpPole stop={p.id} bubble={p.bubble} />
+        <McpPole stop={p.id} dock={false} />
       </div>
       <div>
         <McpTerminal handled={handled} />
@@ -126,20 +125,31 @@ function Mcp({ p }: { p: ProductCopy }) {
   );
 }
 
-const VIEW = { signals: Signals, profitability: Profitability, rules: Rules, aan: Aan, mcp: Mcp };
+const VIEW: Record<ProductCopy["id"], (props: { p: ProductCopy }) => React.ReactNode> = { signals: Signals, profitability: Profitability, rules: Rules, aan: Aan, mcp: Mcp };
 /** which side the words sit on, alternating down the page */
 const SIDE = { signals: "left", profitability: "right", rules: "left", aan: "right", mcp: "left" } as const;
 
 export function ProductScreen({ p }: { p: ProductCopy }) {
   const View = VIEW[p.id];
   return (
-    <Screen id={p.id} hasDock fit="grow" bodyClassName={`l-container ${ps.screen}`} label={p.title.join(" ")}>
+    <Screen id={p.id} fit="grow" bodyClassName={`l-container ${ps.screen}`} label={p.title.join(" ")}>
       <div className={ps.pair} data-side={SIDE[p.id]} data-id={p.id}>
         <Copy p={p} />
         <div className={ps.visual}>
           <View p={p} />
         </div>
       </div>
+      {/* MCP closes the product run with everything Anarix plugs into */}
+      {p.id === "mcp" && (
+        <dl className={ps.works}>
+          {works.groups.map((g) => (
+            <div key={g.label}>
+              <dt>{g.label}</dt>
+              <dd>{g.items.join(", ")}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
     </Screen>
   );
 }

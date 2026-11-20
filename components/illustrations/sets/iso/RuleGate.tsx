@@ -1,7 +1,7 @@
 "use client";
 
 import { AanDock } from "@/components/aan/v2/AanDock";
-import { Block, Callout, FaceText, IsoStage, Tag, dockAt, makeIso, useDockSize } from "./kit";
+import { Block, Callout, IsoStage, Tag, dockAt, makeIso, useDockSize } from "./kit";
 import r from "./rule-gate.module.css";
 
 /*
@@ -18,7 +18,7 @@ const CUBE = 30;
 const BEFORE = [-330, -270, -210, -150, -90];
 const AFTER = [70, 130, 190, 250, 310];
 
-export function RuleGate({ stops, label, stop = "rules", bubble, sorting, rule }: { stops: number; label: string; stop?: string; bubble?: string; sorting?: string; /** the rule on the gate's sign */ rule?: string }) {
+export function RuleGate({ stops, label, stop = "rules", bubble, sorting, rule, dock = true }: { stops: number; label: string; stop?: string; bubble?: string; sorting?: string; /** the rule on the gate's sign */ rule?: string; dock?: boolean }) {
   const iso = makeIso(452, 300);
   const { box, size } = useDockSize(22, 44, 0.075);
   const top = BELT.h;
@@ -32,7 +32,7 @@ export function RuleGate({ stops, label, stop = "rules", bubble, sorting, rule }
         h={H}
         className={r.gate}
         label={`A conveyor of proposed changes runs through a gate that carries your rule. Allowed changes roll on and go live. The change the rule stops drops into a tray in front of the gate: ${label}. Aan stands on the gate.`}
-        dock={<AanDock stop={stop} size={size} bubble={bubble} side="right" style={dockAt(aanAt, W, H)} />}
+        dock={dock ? <AanDock stop={stop} size={size} bubble={bubble} side="right" style={dockAt(aanAt, W, H)} /> : undefined}
         html={<Callout key={`s-${sorting}`} to={iso(GATE_X + 13, BELT.y + BELT.d + 71, 8)} w={W} h={H} title={`Stopped: ${label}`} sub={rule} below lift={26} mono={false} />}
       >
         {/* back post */}
@@ -54,11 +54,7 @@ export function RuleGate({ stops, label, stop = "rules", bubble, sorting, rule }
 
         {/* front post, beam and sign */}
         <Block iso={iso} x={GATE_X} y={BELT.y + BELT.d + 12} w={22} d={18} h={beamZ} i={13} />
-        <Block iso={iso} x={GATE_X} y={BELT.y - 30} w={22} d={BELT.d + 60} h={16} z={beamZ} power="hot" lift={200} i={14}>
-          <FaceText iso={iso} x={GATE_X + 22} y={BELT.y + BELT.d + 18} z={beamZ + 4} face="right" size={11} tone="mono">
-            YOUR RULE
-          </FaceText>
-        </Block>
+        <Block iso={iso} x={GATE_X} y={BELT.y - 30} w={22} d={BELT.d + 60} h={16} z={beamZ} power="hot" lift={200} i={14} />
 
         {/* stopped: in the tray */}
         <Block iso={iso} x={GATE_X - 30} y={BELT.y + BELT.d + 44} w={84} d={56} h={8} tone="quiet" i={15} />

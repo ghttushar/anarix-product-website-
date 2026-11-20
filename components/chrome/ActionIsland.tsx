@@ -30,8 +30,14 @@ export function ActionIsland() {
   const drag = useRef<{ sx: number; sy: number; ox: number; oy: number } | null>(null);
   const wrap = useRef<HTMLDivElement>(null);
 
+  // a page can open the chat with its own questions (its FAQ)
+  const [suggest, setSuggest] = useState(SUGGESTIONS);
   useEffect(() => {
-    const openChat = () => setOpen(true);
+    const openChat = (e: Event) => {
+      const d = (e as CustomEvent<{ suggestions?: { q: string; a: string }[] }>).detail;
+      setSuggest(d?.suggestions?.length ? d.suggestions : SUGGESTIONS);
+      setOpen(true);
+    };
     window.addEventListener("aan:open-chat", openChat);
     return () => window.removeEventListener("aan:open-chat", openChat);
   }, []);
@@ -111,7 +117,7 @@ export function ActionIsland() {
             ))}
           </div>
           <div className="island-chat__suggest">
-            {SUGGESTIONS.map((s) => (
+            {suggest.map((s) => (
               <button key={s.q} className="island-chip" onClick={() => ask(s.q, s.a)}>
                 {s.q}
               </button>

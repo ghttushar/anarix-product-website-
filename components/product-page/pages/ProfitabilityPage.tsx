@@ -32,7 +32,8 @@ function TakeOutTheCosts({ page }: { page: ProductPage }) {
       setOn(ALL_ON);
       return;
     }
-    const timers = COSTS.map((_, i) => window.setTimeout(() => setOn((o) => o.map((v, k) => (k === i ? true : v))), 700 + i * 650));
+    // the visitor gets a few seconds to take the first cost out themselves
+    const timers = COSTS.map((_, i) => window.setTimeout(() => setOn((o) => o.map((v, k) => (k === i ? true : v))), 4000 + i * 650));
     return () => timers.forEach(window.clearTimeout);
   }, [arrived, reduced, touched]);
 
@@ -76,7 +77,7 @@ function TakeOutTheCosts({ page }: { page: ProductPage }) {
           </span>
           <span className={l.bigK}>{profit === SALES ? "revenue" : on.every(Boolean) ? "true profit" : "so far"}</span>
         </p>
-        <p className={l.margin}>
+        <p className={l.margin} data-shown={on.every(Boolean) ? "true" : "false"}>
           Margin <span className={l.fig}>{((profit / SALES) * 100).toFixed(1)}%</span>
         </p>
         <div className={l.split} aria-hidden="true">

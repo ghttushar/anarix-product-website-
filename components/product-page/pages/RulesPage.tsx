@@ -3,13 +3,12 @@
 import { useState } from "react";
 import { Screen } from "@/components/layout/Screen";
 import { RuleGate } from "@/components/illustrations/sets/iso/RuleGate";
-import { Guardrails } from "@/components/illustrations/sets/iso/Guardrails";
 import { ProductVideo } from "@/components/media/ProductVideo";
 import type { ProductPage } from "@/content/products/types";
 import { DECISIONS, RULES } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
-import { Capabilities, HowItWorks } from "../Sections";
+import { Capabilities } from "../Sections";
 import r from "./rules.module.css";
 
 /*
@@ -82,7 +81,7 @@ function Log({ page }: { page: ProductPage }) {
         {DECISIONS.map((x) => (
           <li key={x.t + x.what}>
             <time>{x.t}</time>
-            <span className={x.ok ? r.allowed : r.stopped}>{x.ok ? "Allowed" : x.why.includes("approval") ? "Held" : "Stopped"}</span>
+            <span className={x.ok ? r.allowed : x.why.includes("approval") ? r.held : r.stopped}>{x.ok ? "Allowed" : x.why.includes("approval") ? "Held" : "Stopped"}</span>
             <b>{x.what}</b>
             <span className={r.why}>{x.why}</span>
           </li>
@@ -99,9 +98,8 @@ export function RulesPage({ page }: { page: ProductPage }) {
       <NameHero
         page={page}
         layout="bleed"
-        art={<ProductVideo video={page.video} title="Rules product tour" fitRatio={900 / 560} fallback={<RuleGate stops={RULES[0].stops} label={RULES[0].stopped} rule={RULES[0].sentence} bubble={page.bubble} />} />}
+        art={<ProductVideo video={page.video} title="Rules product tour" fitRatio={900 / 560} fallback={<RuleGate stops={RULES[0].stops} label={RULES[0].stopped} rule={RULES[0].sentence} bubble={page.bubble || undefined} />} />}
       />
-      <HowItWorks page={page} variant="aside" hasDock aside={<Guardrails stop="guard" bubble="Over your limit? It waits." />} />
       <Screen id="say-it" bodyClassName={`l-container ${r.moment}`} label={page.moment.title}>
         <SayItInASentence page={page} />
       </Screen>
@@ -109,7 +107,7 @@ export function RulesPage({ page }: { page: ProductPage }) {
       <Screen id="decisions" bodyClassName={`l-container ${r.moment}`} label={page.proof.title}>
         <Log page={page} />
       </Screen>
-      <Close page={page} />
+      <Close page={page} ladder />
     </>
   );
 }

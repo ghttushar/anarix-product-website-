@@ -17,7 +17,7 @@ export { art };
 export const fx = k;
 
 /** the family's one line weight, in screen pixels */
-export const HAIRLINE = 1.4;
+export const HAIRLINE = 1.1;
 
 /**
  * Keeps a drawing's strokes at HAIRLINE px whatever size it renders at, by

@@ -43,6 +43,10 @@
   font-family: var(--font-mono);
   font-size: 14px;
   font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.row[data-p="High"] .value {
   color: var(--risk-ink);
 }
 
