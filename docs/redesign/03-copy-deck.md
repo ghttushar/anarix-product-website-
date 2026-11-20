@@ -38,7 +38,7 @@ Numbers inside product UI are sample data and are labelled on the page.
   - 11:04 PM: Price undercut. Flagged.
   - 2:14 AM: $86 wasted. Paused.
   - 4:40 AM: Low stock. Reorder drafted.
-  - 7:00 AM: 3 fixes. $1,240 saved.
+  - 7:00 AM: 2 fixes, 1 flag. $466 protected. (Only fixes count as protected: $86 paused + $380 reorder; the $412 undercut is flagged, at risk until the seller decides.)
 - **Note:** A sample night. Figures are illustrative.
 - **Controls:** Replay · scrubber labelled "Time of night"
 - **Aan's bubbles** *(kept)*:

@@ -21,7 +21,8 @@ import n from "./night-story.module.css";
 */
 const CH = night.chapters;
 const N = CH.length;
-const TOTAL = night.brief.items.reduce((s, it) => s + it.v, 0);
+/** only fixes count as protected; a flag is money at risk until you decide */
+const TOTAL = night.brief.items.reduce((s, it) => s + (it.fix ? it.v : 0), 0);
 
 function clockText(m: number) {
   const total = 18 * 60 + Math.round(m);
@@ -216,10 +217,10 @@ function Stage({ ch, late, act, here, rowState, briefOn }: { ch: number; late: b
             <p className={n.briefTitle}>{night.brief.title}</p>
             <ul>
               {night.brief.items.map((it) => (
-                <li key={it.text}>
+                <li key={it.text} data-fix={it.fix ? "true" : "false"}>
                   <time>{it.time}</time>
                   <span>{it.text}</span>
-                  <b>${it.v}</b>
+                  <b>{it.fix ? `$${it.v}` : `$${it.v} at risk`}</b>
                 </li>
               ))}
             </ul>

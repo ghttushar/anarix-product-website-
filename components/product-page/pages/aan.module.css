@@ -262,3 +262,8 @@
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* money at risk is coral, like every risk mark */
+.risk {
+  color: var(--risk-ink);
+}

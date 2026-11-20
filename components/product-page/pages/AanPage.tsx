@@ -112,7 +112,7 @@ function Brief({ page }: { page: ProductPage }) {
         </button>
       </p>
       <p className={a.body}>
-        All in, <span className={a.fig}>$878</span> protected overnight.
+        All in, <span className={a.fig}>$466</span> protected overnight, and <span className={`${a.fig} ${a.risk}`}>$412</span> at risk on Shopify for you to decide.
       </p>
       <div className={a.sign}>
         <span>Aan</span>

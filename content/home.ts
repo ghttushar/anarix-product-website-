@@ -30,7 +30,7 @@ export const night = {
     { m: 304, time: "11:04 PM", head: "Price undercut. Flagged.", line: "A rival dropped $3 below you on Shopify. Aan flags it with the money at risk.", act: "point", row: 0 },
     { m: 494, time: "2:14 AM", head: "$86 wasted. Paused.", line: "An ad spent $86 with no sales. Your rules allow a pause, so Aan pauses it.", act: "press", row: 1 },
     { m: 640, time: "4:40 AM", head: "Low stock. Reorder drafted.", line: "Six days of stock left at this pace. Aan drafts the reorder for you to send.", act: "work", row: 2 },
-    { m: 780, time: "7:00 AM", head: "3 fixes. $878 protected.", line: "The brief is waiting when you wake. One change waits for your yes.", act: "celebrate" },
+    { m: 780, time: "7:00 AM", head: "2 fixes, 1 flag. $466 protected.", line: "The brief is waiting when you wake. One change waits for your yes.", act: "celebrate" },
   ],
   /** what Aan sees overnight, as rows in Signals */
   rows: [
@@ -39,13 +39,14 @@ export const night = {
     { where: "Amazon · Inventory", text: "6 days of stock left", action: "Draft reorder", done: "Drafted" },
   ],
   stores: ["Amazon", "Walmart", "Shopify"],
-  /** the brief Aan leaves at 7:00 AM: every line adds up to the total */
+  /** the brief Aan leaves at 7:00 AM: the fixes add up to the total; a flag
+      shows the money at risk and is not counted as protected */
   brief: {
     title: "Your morning brief",
     items: [
-      { time: "2:14 AM", text: "Paused “chef knife 8 inch”: $86 spent, no sales", v: 86 },
-      { time: "11:04 PM", text: "Flagged a $3 undercut on Shopify", v: 412 },
-      { time: "4:40 AM", text: "Drafted a reorder: 6 days of stock left", v: 380 },
+      { time: "11:04 PM", text: "Flagged a $3 undercut on Shopify", v: 412, fix: false },
+      { time: "2:14 AM", text: "Paused “chef knife 8 inch”: $86 spent, no sales", v: 86, fix: true },
+      { time: "4:40 AM", text: "Drafted a reorder: 6 days of stock left", v: 380, fix: true },
     ],
     held: "Needs you: move $400 a day to Sponsored Brands",
     total: "protected overnight",

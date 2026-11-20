@@ -387,6 +387,11 @@
   font: 500 0.8125rem/1 var(--font-mono);
 }
 
+/* a flag is money at risk, not money protected */
+.brief li[data-fix="false"] b {
+  color: var(--risk-ink);
+}
+
 .held {
   margin: 12px 0 0;
   font-size: 0.8125rem;
