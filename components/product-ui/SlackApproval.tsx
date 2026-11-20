@@ -10,21 +10,23 @@ import s from "./slack-approval.module.css";
   the app is named as text, never drawn as its logo. The avatar slot can
   hold the travelling Aan's dock, so Aan "posts" the message itself.
 */
-export function SlackApproval({ avatar }: { avatar?: ReactNode }) {
+export function SlackApproval({ avatar, bare = false }: { avatar?: ReactNode; /** inside a product frame: no card of its own, no label (the frame has both) */ bare?: boolean }) {
   const [state, setState] = useState<"ask" | "yes" | "no">("ask");
   return (
-    <div className={s.card}>
-      <header className={s.head} data-ui>
-        <span className={s.channel}># store-ops</span>
-        <span className={s.app}>in Slack</span>
-      </header>
+    <div className={bare ? s.bare : s.card}>
+      {!bare && (
+        <header className={s.head} data-ui>
+          <span className={s.channel}># store-ops</span>
+          <span className={s.app}>in Slack</span>
+        </header>
+      )}
       <div className={s.msg}>
         <span className={s.avatar}>{avatar ?? <AanMascot state="diamond" size={24} glow={false} shadow={false} />}</span>
         <div className={s.body} data-ui>
           <p className={s.who}>
             <b>Aan</b>
             <span className={s.tag}>App</span>
-            <time>00:00</time>
+            <time>12:00 AM</time>
           </p>
           <p className={s.text}>
             Spring Sale wants <b>$600 a day</b>. That is above your <b>$400 limit</b>, so I have held it for you.
@@ -45,7 +47,7 @@ export function SlackApproval({ avatar }: { avatar?: ReactNode }) {
           </div>
         </div>
       </div>
-      <p className={s.sample}>Sample message</p>
+      {!bare && <p className={s.sample}>Sample message</p>}
     </div>
   );
 }

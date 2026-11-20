@@ -16,12 +16,15 @@ export function SignalCard({
   signal = SIGNALS[0],
   live = false,
   onExecute,
+  bare = false,
 }: {
   handled: boolean;
   signal?: SampleSignal;
   /** read by assistive tech (the Signals page's picker) */
   live?: boolean;
   onExecute?: () => void;
+  /** inside a product frame: no card of its own */
+  bare?: boolean;
 }) {
   const sg = signal;
   const execute = (
@@ -35,7 +38,7 @@ export function SignalCard({
   );
 
   return (
-    <article className={s.card} data-ui data-state={handled ? "handled" : "risk"} aria-hidden={live ? undefined : true} aria-label={live ? `${sg.store}: ${sg.title}` : undefined}>
+    <article className={`${s.card} ${bare ? s.bare : ""}`} data-ui data-state={handled ? "handled" : "risk"} aria-hidden={live ? undefined : true} aria-label={live ? `${sg.store}: ${sg.title}` : undefined}>
       <header className={s.head} data-part="1">
         <span className={`${s.pill} ${sg.priority === "High" ? s.pillRisk : s.pillMuted}`}>{sg.priority}</span>
         <span className={s.pill}>{sg.area}</span>

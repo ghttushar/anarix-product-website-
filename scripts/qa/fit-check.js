@@ -5,7 +5,9 @@
 //               to the top of the viewport first; the runner does this)
 //   page()      page-wide issues (horizontal overflow)
 // A screen is `[data-screen]`; on pages without them (the pre-redesign
-// homepage) every `main > section` is audited instead.
+// homepage) every `main > section` is audited instead. A pinned story
+// (`[data-story]`) is a tall track: its checks run on the pinned panel, at
+// the middle of each chapter (the runner scrolls to each).
 (() => {
   const screens = () => {
     const tagged = [...document.querySelectorAll("[data-screen]")];
@@ -27,6 +29,9 @@
       return [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1);
     });
 
+  // the box a screen's checks run on: the pinned panel for a story
+  const frame = (s) => (s.matches("[data-story]") ? s.querySelector("[data-story-panel]") || s : s);
+
   const hit = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
 
   window.__fit = {
@@ -34,12 +39,16 @@
       return screens().map((s, i) => {
         const r = s.getBoundingClientRect();
         const head = (s.querySelector("h1,h2")?.textContent || "").trim().replace(/\s+/g, " ").slice(0, 40);
-        return { i, id: s.id || s.dataset.screen || s.className.toString().split(" ")[0] || `screen-${i}`, top: Math.round(r.top + scrollY), h: Math.round(r.height), head };
+        const top = Math.round(r.top + scrollY);
+        const chapters = s.matches("[data-story]") ? Number(s.style.getPropertyValue("--chapters")) || 1 : 0;
+        // a story is checked at the middle of each chapter
+        const stops = chapters ? Array.from({ length: chapters }, (_, k) => Math.round(top + ((k + 0.5) / chapters) * Math.max(0, r.height - innerHeight))) : [top];
+        return { i, id: s.id || s.dataset.screen || s.className.toString().split(" ")[0] || `screen-${i}`, top, h: Math.round(r.height), head, stops };
       });
     },
 
     check(i) {
-      const s = screens()[i];
+      const s = frame(screens()[i]);
       const vh = innerHeight;
       const r = s.getBoundingClientRect();
       const issues = [];

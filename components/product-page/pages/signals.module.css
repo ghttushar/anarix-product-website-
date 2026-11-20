@@ -15,10 +15,10 @@
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
   font-size: clamp(2.25rem, min(4.6vw, 7.6svh), 4.5rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hint {
@@ -53,10 +53,21 @@
     color var(--dur-micro) var(--ease-arrive);
 }
 
-.store svg {
+/* the store's state: quiet slate, coral while it has the change */
+.dot {
   grid-row: 1 / span 3;
-  width: 44px;
-  height: 36px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--rule);
+  transition:
+    background-color var(--dur-ui) var(--ease-arrive),
+    box-shadow var(--dur-ui) var(--ease-arrive);
+}
+
+.dot[data-lit="true"] {
+  background: var(--risk);
+  box-shadow: 0 0 0 4px hsl(355 84% 70% / 0.2);
 }
 
 .store:hover {
@@ -118,10 +129,8 @@
     padding: var(--s-2);
   }
 
-  .store svg {
+  .dot {
     grid-row: auto;
-    width: 36px;
-    height: 30px;
   }
 
   .storeRisk {

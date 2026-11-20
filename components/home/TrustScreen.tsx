@@ -2,14 +2,15 @@
 
 import { Screen } from "@/components/layout/Screen";
 import { Reveal } from "@/components/motion/Reveal";
-import { Guardrails } from "@/components/illustrations/sets/iso/Guardrails";
+import { ProductFrame } from "@/components/visual/ProductFrame";
+import { SlackApproval } from "@/components/product-ui/SlackApproval";
 import { trust } from "@/content/home";
 import h from "./home.module.css";
 
 /*
   Trust, after the products: how far Aan goes, step by step (the permission
-  ladder), beside the system that enforces it: proposed changes, the gate of
-  your rules, what goes live, what waits for your yes, the log.
+  ladder, set as a Swiss list), beside the moment that proves it: a change
+  above your limit, held in your team chat until someone says yes.
 */
 export function TrustScreen() {
   return (
@@ -29,8 +30,10 @@ export function TrustScreen() {
           ))}
         </ol>
       </div>
-      <div className={`${h.visual} ${h.goodArt}`}>
-        <Guardrails dock={false} />
+      <div className={`${h.visual} ${h.trustArt}`}>
+        <ProductFrame title="Slack / # store-ops" note="Sample message" lean="right">
+          <SlackApproval bare />
+        </ProductFrame>
       </div>
     </Screen>
   );

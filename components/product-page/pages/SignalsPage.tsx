@@ -2,9 +2,6 @@
 
 import { useEffect, useState, type CSSProperties } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
-import { SignalsBoard } from "@/components/illustrations/sets/iso/SignalsBoard";
-import { StoreTile } from "@/components/illustrations/sets/iso/glyphs";
-import { ProductVideo } from "@/components/media/ProductVideo";
 import { SignalCard } from "@/components/product-ui/SignalCard";
 import { RankedList } from "@/components/product-ui/RankedList";
 import type { ProductPage } from "@/content/products/types";
@@ -13,17 +10,17 @@ import { NameHero } from "../NameHero";
 import { Close } from "../Close";
 import { Capabilities } from "../Sections";
 import { MomentSteps } from "../MomentSteps";
-import { useHandled } from "../shared";
+import { Tour, useHandled } from "../shared";
 import s from "./signals.module.css";
 
 /*
-  Signals: every store as a row of what can change overnight; one tile turns
-  coral and runs into the Anarix core. A feed: centred, timestamped, coral
-  where something went wrong. Tap a store, its overnight change comes up.
+  Signals: the alert itself opens the page, at risk until Aan acts. Then a
+  feed: centred, timestamped, coral where something went wrong. Tap a store,
+  its overnight change comes up.
 */
-function HeroBoard({ page }: { page: ProductPage }) {
+function HeroCard() {
   const handled = useHandled(1400);
-  return <SignalsBoard bubble={page.bubble || undefined} handled={handled} />;
+  return <SignalCard handled={handled} bare />;
 }
 function TapAStore({ page }: { page: ProductPage }) {
   const { arrived, reduced } = useScreen();
@@ -50,7 +47,7 @@ function TapAStore({ page }: { page: ProductPage }) {
       <div className={s.stores} role="group" aria-label="Stores">
         {SIGNALS.map((sg, i) => (
           <button key={sg.store} type="button" className={s.store} aria-pressed={pick === i} onClick={() => setPick(i)}>
-            <StoreTile lit={pick === i} />
+            <span className={s.dot} data-lit={pick === i ? "true" : "false"} aria-hidden="true" />
             <span className={s.storeName}>{sg.store}</span>
             <span className={s.storeTime}>{sg.time}</span>
             <span className={s.storeRisk}>${sg.risk.toLocaleString("en-US")} at risk</span>
@@ -121,7 +118,16 @@ function Ranked({ page }: { page: ProductPage }) {
 export function SignalsPage({ page }: { page: ProductPage }) {
   return (
     <>
-      <NameHero page={page} layout="split" art={<ProductVideo video={page.video} title="Signals product tour" fitRatio={760 / 500} fallback={<HeroBoard page={page} />} />} />
+      <NameHero
+        page={page}
+        layout="split"
+        frame="Signals / Alert"
+        art={
+          <Tour page={page} title="Signals product tour">
+            <HeroCard />
+          </Tour>
+        }
+      />
       <Screen id="tap-a-store" fit="grow" bodyClassName={`l-container ${s.feed}`} label={page.moment.title}>
         <TapAStore page={page} />
       </Screen>

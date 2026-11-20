@@ -24,6 +24,7 @@ type ScreenState = {
 const ScreenCtx = createContext<ScreenState>({ inView: true, arrived: true, walk: { on: false, delay: 0, duration: 0 }, reduced: false });
 
 export const useScreen = () => useContext(ScreenCtx);
+export const ScreenProvider = ScreenCtx.Provider;
 
 export function Screen({
   id,

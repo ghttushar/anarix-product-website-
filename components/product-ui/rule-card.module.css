@@ -1,0 +1,139 @@
+.card {
+  display: grid;
+  gap: 8px;
+}
+
+.k {
+  margin: 4px 0 0;
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.k:first-child {
+  margin-top: 0;
+}
+
+/* what you typed, in a field */
+.said {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+/* what Aan built, part by part */
+.parts {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+
+.parts div {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: hsl(230 60% 70% / 0.07);
+}
+
+.parts dt {
+  font: 600 0.6875rem/1 var(--font-mono);
+  color: var(--accent);
+}
+
+.parts dd {
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 0;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.check svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.log {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--card-line);
+  display: grid;
+  gap: 8px;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.entry time {
+  font: 500 0.6875rem/1 var(--font-mono);
+  color: var(--ink-2);
+}
+
+.stopped {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: hsl(355 84% 70% / 0.16);
+  color: var(--risk-ink);
+  font: 600 0.6875rem/1 var(--font-body);
+}
+
+.what {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* the build plays once: parts, the check, then the decision lands */
+:global(html[data-js]) .card[data-handled="false"] .parts div,
+:global(html[data-js]) .card[data-handled="false"] .check,
+:global(html[data-js]) .card[data-handled="false"] .log {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.parts div,
+.check,
+.log {
+  transition:
+    opacity 500ms var(--ease-arrive),
+    transform 600ms var(--ease-arrive);
+  transition-delay: calc(var(--i) * 160ms + 120ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parts div,
+  .check,
+  .log {
+    transition: none;
+  }
+
+  :global(html[data-js]) .card[data-handled="false"] .parts div,
+  :global(html[data-js]) .card[data-handled="false"] .check,
+  :global(html[data-js]) .card[data-handled="false"] .log {
+    transform: none;
+  }
+}

@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
-import { ProfitStack } from "@/components/illustrations/sets/iso/ProfitStack";
-import { ProductVideo } from "@/components/media/ProductVideo";
 import { MarketTable } from "@/components/product-ui/MarketTable";
+import { ProfitWaterfall } from "@/components/product-ui/ProfitWaterfall";
+import { ProductFrame } from "@/components/visual/ProductFrame";
 import type { ProductPage } from "@/content/products/types";
 import { COSTS, SALES } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
 import { Capabilities, HowItWorks } from "../Sections";
-import { Figure, money, useHandled } from "../shared";
+import { money, Tour, useHandled } from "../shared";
 import l from "./profitability.module.css";
 
 /*
-  Profitability: the ledger. One day's sales as a column; each cost lifts out
-  onto its own plinth and what stays standing is the profit. Figures set as
-  type. Switch each cost on and watch what is really left.
+  Profitability: the ledger. One day's sales, each cost stepping down from it
+  in the waterfall, and what is left standing is the profit. Figures set as
+  type. Switch each cost on in the receipt and watch what is really left.
 */
 const ALL_ON = COSTS.map(() => true);
 
@@ -71,25 +71,9 @@ function TakeOutTheCosts({ page }: { page: ProductPage }) {
         </div>
       </div>
       <div className={l.chartCol}>
-        <p className={l.big}>
-          <span className={l.bigFig}>
-            <Figure text={money(profit)} />
-          </span>
-          <span className={l.bigK}>{profit === SALES ? "revenue" : on.every(Boolean) ? "true profit" : "so far"}</span>
-        </p>
-        <p className={l.margin} data-shown={on.every(Boolean) ? "true" : "false"}>
-          Margin <span className={l.fig}>{((profit / SALES) * 100).toFixed(1)}%</span>
-        </p>
-        <div className={l.split} aria-hidden="true">
-          {COSTS.map((c, i) => (
-            <span key={c.k} className={l.part} data-on={on[i] ? "true" : "false"} style={{ flexGrow: c.v }}>
-              <i>{c.k}</i>
-            </span>
-          ))}
-          <span className={l.left} style={{ flexGrow: SALES - COSTS.reduce((a, c) => a + c.v, 0) }}>
-            <i>Profit</i>
-          </span>
-        </div>
+        <ProductFrame title="Profitability / Yesterday" note="Sample data" lean="right">
+          <ProfitWaterfall on={on} />
+        </ProductFrame>
         <p className={l.note}>{page.moment.note}</p>
       </div>
     </>
@@ -118,7 +102,12 @@ export function ProfitabilityPage({ page }: { page: ProductPage }) {
       <NameHero
         page={page}
         layout="ledger"
-        art={<ProductVideo video={page.video} title="Profitability product tour" fitRatio={640 / 470} fallback={<ProfitStack sales={SALES} costs={COSTS} on={ALL_ON} bubble={page.bubble} />} />}
+        frame="Profitability / Yesterday"
+        art={
+          <Tour page={page} title="Profitability product tour">
+            <ProfitWaterfall on={ALL_ON} compact />
+          </Tour>
+        }
       />
       <HowItWorks page={page} variant="rail" />
       <Screen id="take-out-the-costs" bodyClassName={`l-container ${l.moment}`} label={page.moment.title}>

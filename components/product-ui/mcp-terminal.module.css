@@ -3,6 +3,11 @@
   overflow: hidden;
 }
 
+/* inside a product frame: the frame is the window */
+.bare .body {
+  padding: 0;
+}
+
 .bar {
   display: flex;
   align-items: center;

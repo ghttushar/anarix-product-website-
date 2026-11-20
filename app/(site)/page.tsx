@@ -1,5 +1,5 @@
 import { HeroScreen } from "@/components/home/HeroScreen";
-import { NightWatchScreen } from "@/components/home/NightWatchScreen";
+import { NightStory } from "@/components/home/NightStory";
 import { TrustScreen } from "@/components/home/TrustScreen";
 import { ProductScreen } from "@/components/home/ProductScreen";
 import { CloseScreen } from "@/components/home/CloseScreen";
@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <HeroScreen />
       {tour.video && <TourScreen />}
-      <NightWatchScreen />
+      <NightStory />
       {products
         .filter((p) => p.id !== "mcp")
         .map((p) => (

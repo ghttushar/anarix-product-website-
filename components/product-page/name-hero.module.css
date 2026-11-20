@@ -12,11 +12,11 @@
 
 .name {
   margin: 0;
-  padding-bottom: 0.1em;
+  padding-bottom: 0.06em;
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
   color: var(--ink);
 }
 
@@ -35,7 +35,38 @@
 }
 
 .art {
+  --art-h: calc(100svh - var(--inset-top) - var(--inset-bottom) - 150px);
+  position: relative;
   min-width: 0;
+}
+
+/* the light runs in from the far edge to where Aan stands */
+.art > .trails {
+  inset: -40% -50% -40% -20%;
+  width: auto;
+  height: auto;
+}
+
+.portrait .art > .trails {
+  inset: -40% -20% -40% -50%;
+}
+
+/* Aan stands on the card's top edge, near its far corner */
+.spot {
+  position: absolute;
+  right: 10%;
+  top: 0;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  /* Aan hovers just above the edge (a tilted card rises at its corners) */
+  transform: translateY(calc(-100% - 18px));
+  pointer-events: none;
+}
+
+.portrait .spot {
+  right: auto;
+  left: 10%;
 }
 
 /* ------------------------------------------- split (Signals): close-up */
@@ -71,7 +102,7 @@
 
 .ledger .name {
   grid-column: 1 / -1;
-  padding-top: var(--s-3);
+  padding-top: var(--s-6);
   font-size: clamp(3.5rem, min(9vw, 13svh), 9rem);
 }
 
@@ -93,10 +124,11 @@
 }
 
 .ledger .art {
+  --art-h: calc(100svh - var(--inset-top) - var(--inset-bottom) - 13svh - 170px);
   grid-column: 2;
   grid-row: 2 / span 2;
-  margin-top: var(--s-4);
-  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom) - 15svh - 48px) * 16 / 9));
+  margin-top: var(--s-7);
+  width: 100%;
 }
 
 /* ------------------------------------ bleed (Rules): edge-to-edge belt */
@@ -127,10 +159,11 @@
 }
 
 .bleed .art {
+  --art-h: calc(100svh - var(--inset-top) - var(--inset-bottom) - 21svh - 230px);
   align-self: center;
   justify-self: center;
-  margin-top: var(--gap-m);
-  width: min(100%, calc((100svh - var(--inset-top) - var(--inset-bottom) - 21svh - 120px) * 16 / 9));
+  margin-top: calc(var(--gap-m) + 40px);
+  width: min(100%, 860px);
 }
 
 /* ------------------------------------------ portrait (Aan): mirrored */
@@ -175,7 +208,6 @@
   max-width: 34rem;
   padding: var(--s-5) var(--s-6);
   text-align: center;
-  background: var(--sky);
 }
 
 .hub .name {
@@ -228,6 +260,24 @@
 
   .bleed .art {
     width: 100%;
+  }
+
+  .art,
+  .split .art,
+  .ledger .art,
+  .bleed .art,
+  .portrait .art {
+    --art-h: 29svh;
+    margin-top: 46px;
+  }
+
+  .ledger .name {
+    padding-top: 0;
+  }
+
+  .spot {
+    width: 40px;
+    height: 40px;
   }
 
   .bleed .text {

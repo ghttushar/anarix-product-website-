@@ -14,10 +14,10 @@
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
   font-size: clamp(2.5rem, min(5vw, 8.4svh), 5rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hint {
@@ -184,7 +184,7 @@
 
 .hello {
   margin: 0 0 var(--s-4);
-  font-family: var(--font-display);
+  font-family: var(--font-editorial);
   font-weight: 600;
   font-size: clamp(2.75rem, min(5.6vw, 9svh), 5.25rem);
   line-height: 0.95;
@@ -194,7 +194,7 @@
 
 .body {
   margin: 0 0 var(--s-3);
-  font-family: var(--font-display);
+  font-family: var(--font-editorial);
   font-size: clamp(1.125rem, min(1.6vw, 3svh), 1.5rem);
   font-weight: 400;
   line-height: 1.45;
@@ -227,7 +227,7 @@
   align-items: center;
   gap: var(--s-2);
   margin: var(--s-4) 0 var(--s-3);
-  font-family: var(--font-display);
+  font-family: var(--font-editorial);
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
   font-weight: 600;
 }

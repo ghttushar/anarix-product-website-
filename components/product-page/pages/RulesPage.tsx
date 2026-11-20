@@ -2,20 +2,24 @@
 
 import { useState } from "react";
 import { Screen } from "@/components/layout/Screen";
-import { RuleGate } from "@/components/illustrations/sets/iso/RuleGate";
-import { ProductVideo } from "@/components/media/ProductVideo";
+import { RuleCard } from "@/components/product-ui/RuleCard";
 import type { ProductPage } from "@/content/products/types";
 import { DECISIONS, RULES } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
 import { Capabilities } from "../Sections";
+import { Tour, useHandled } from "../shared";
 import r from "./rules.module.css";
 
 /*
-  Rules: the gatehouse on the belt, side on, running edge to edge. Then the
-  machine, read left to right: a sentence goes in, a rule comes out, and the
-  gate sorts by it.
+  Rules: a rule being made opens the page, wide. Then the machine, read left
+  to right: a sentence goes in, a rule comes out, and its decisions land in
+  the log.
 */
+function HeroRule() {
+  const handled = useHandled(600);
+  return <RuleCard rule={RULES[0]} handled={handled} />;
+}
 const Arrow = () => (
   <svg className={r.arrow} viewBox="0 0 40 16" aria-hidden="true">
     <path d="M2 8h34M30 2l6 6-6 6" />
@@ -54,7 +58,7 @@ function SayItInASentence({ page }: { page: ProductPage }) {
         </div>
         <Arrow />
         <div className={r.result} key={`r${pick}`}>
-          <p className={r.k}>The gate sorts</p>
+          <p className={r.k}>The log</p>
           <p className={r.out}>
             <span className={r.stopped}>Stopped</span>
             <span>{rule.stopped}</span>
@@ -98,7 +102,12 @@ export function RulesPage({ page }: { page: ProductPage }) {
       <NameHero
         page={page}
         layout="bleed"
-        art={<ProductVideo video={page.video} title="Rules product tour" fitRatio={900 / 560} fallback={<RuleGate stops={RULES[0].stops} label={RULES[0].stopped} rule={RULES[0].sentence} bubble={page.bubble || undefined} />} />}
+        frame="Rules / New rule"
+        art={
+          <Tour page={page} title="Rules product tour">
+            <HeroRule />
+          </Tour>
+        }
       />
       <Screen id="say-it" bodyClassName={`l-container ${r.moment}`} label={page.moment.title}>
         <SayItInASentence page={page} />

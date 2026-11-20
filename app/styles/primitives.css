@@ -17,19 +17,19 @@
   .t-display {
     margin: 0;
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 800;
     font-size: var(--fs-display);
-    line-height: 1.02;
-    letter-spacing: -0.028em;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
   }
 
   .t-h2 {
     margin: 0;
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 800;
     font-size: var(--fs-h2);
-    line-height: 1.04;
-    letter-spacing: -0.024em;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
     text-wrap: balance;
   }
 
@@ -65,6 +65,8 @@
   }
 
   .c-cta {
+    position: relative;
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     min-height: 48px;
@@ -75,7 +77,28 @@
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    transition: background-color var(--dur-micro) var(--ease-arrive);
+    transition:
+      background-color var(--dur-micro) var(--ease-arrive),
+      transform 160ms var(--ease-arrive);
+  }
+
+  /* a streak of light crosses the button on hover (the long-exposure motif) */
+  .c-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.38) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 700ms var(--ease-arrive);
+    pointer-events: none;
+  }
+
+  .c-cta:hover::after {
+    transform: translateX(120%);
+  }
+
+  .c-cta:active {
+    transform: scale(0.97);
   }
 
   .c-cta:hover {
@@ -118,6 +141,36 @@
   .c-link:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 4px;
+  }
+
+  /* a card whose border catches the pointer (with <Spotlight>): Linear's glow */
+  .c-glow {
+    position: relative;
+  }
+
+  .c-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), var(--accent), transparent 65%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 300ms var(--ease-arrive);
+    pointer-events: none;
+  }
+
+  .c-glow:hover::before {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-cta::after {
+      display: none;
+    }
   }
 
   /* ruled points: proximity and one hairline, never a row of cards */

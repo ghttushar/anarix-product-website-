@@ -1,0 +1,114 @@
+/* Long-exposure light: sits behind a screen's content, never takes a click. */
+.trails {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.trails path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+
+.core path {
+  stroke-width: 1.6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s var(--ease-arrive) calc(var(--i) * 70ms);
+}
+
+.core path[data-risk] {
+  stroke-width: 1.8;
+}
+
+.bloom path {
+  stroke-width: 8;
+  opacity: 0.16;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2.2s var(--ease-arrive) calc(var(--i) * 70ms + 120ms);
+}
+
+.trails[data-on="true"] .core path,
+.trails[data-on="true"] .bloom path {
+  stroke-dashoffset: 0;
+}
+
+/* the pool of light where they meet */
+.pool {
+  opacity: 0;
+  transition: opacity 1.6s var(--ease-arrive) 700ms;
+}
+
+.trails[data-on="true"] .pool {
+  opacity: 1;
+}
+
+/* then they breathe, slowly, while on screen */
+.trails[data-on="true"][data-live="true"] .core {
+  animation: breathe 7s ease-in-out 2.4s infinite;
+}
+
+@keyframes breathe {
+  50% {
+    opacity: 0.62;
+  }
+}
+
+/* a short bright pulse runs down one trail at a time */
+.pulse path {
+  stroke-width: 2;
+  stroke-dasharray: 0.05 1.1;
+  stroke-dashoffset: 0.05;
+  opacity: 0;
+}
+
+.trails[data-on="true"][data-live="true"] .pulse path {
+  animation: pulse 9s var(--ease-travel) calc(2.6s + var(--i) * 1.3s) infinite;
+}
+
+@keyframes pulse {
+  0% {
+    stroke-dashoffset: 0.05;
+    opacity: 0;
+  }
+  4% {
+    opacity: 0.9;
+  }
+  26% {
+    stroke-dashoffset: -0.96;
+    opacity: 0.9;
+  }
+  30%,
+  100% {
+    stroke-dashoffset: -0.96;
+    opacity: 0;
+  }
+}
+
+html[data-theme="light"] .bloom path {
+  opacity: 0.08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core path,
+  .bloom path {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+
+  .pool {
+    opacity: 1;
+    transition: none;
+  }
+
+  .trails .core,
+  .trails .pulse path {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,35 @@
+/* A tall track; one viewport pinned inside it while the story plays. */
+.track {
+  position: relative;
+  height: calc(100svh + var(--chapters) * var(--per));
+}
+
+.panel {
+  --p: 0;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  grid-template-rows: var(--inset-top) minmax(0, 1fr) var(--inset-bottom);
+  overflow: clip;
+}
+
+.body {
+  grid-row: 2;
+  min-height: 0;
+  display: grid;
+}
+
+/* very short screens (landscape phones): no pin, the story runs as the
+   section scrolls by */
+@media (max-height: 560px) {
+  .track {
+    height: auto;
+  }
+
+  .panel {
+    position: relative;
+    height: auto;
+    grid-template-rows: var(--inset-top) auto var(--s-6);
+  }
+}

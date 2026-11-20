@@ -3,10 +3,10 @@
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
   font-size: clamp(2.25rem, min(4.4vw, 7.4svh), 4.25rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hint {
@@ -129,33 +129,6 @@ button.row[aria-pressed="false"] .cost {
   color: var(--accent);
 }
 
-/* the answer, big */
-.big {
-  display: flex;
-  align-items: baseline;
-  gap: var(--s-3);
-  margin: 0;
-}
-
-.bigFig {
-  font-family: var(--font-mono);
-  font-size: clamp(2.75rem, min(5vw, 9svh), 5rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  color: var(--accent);
-}
-
-.bigK {
-  font-size: 15px;
-  color: var(--ink-2);
-}
-
-.margin {
-  margin: 4px 0 var(--s-4);
-  font-size: 15px;
-  color: var(--ink-2);
-}
 
 /* ------------------------------------------------------- marketplaces */
 .proof {
@@ -196,72 +169,5 @@ button.row[aria-pressed="false"] .cost {
     font-size: 15px;
   }
 
-  .margin {
-    margin-bottom: var(--s-2);
-  }
 }
 
-/* one bar, the whole day's sales: each cost takes its share in coral when it
-   is switched on; switched off, its share counts as profit */
-.split {
-  display: flex;
-  gap: 3px;
-  height: clamp(88px, 16svh, 150px);
-  margin-top: var(--s-4);
-}
-
-.part,
-.left {
-  position: relative;
-  min-width: 0;
-  border-radius: 4px;
-  transition:
-    background-color 500ms var(--ease-arrive),
-    border-color 500ms var(--ease-arrive);
-}
-
-.part {
-  border: 1px solid var(--risk);
-  background: color-mix(in srgb, var(--risk) 22%, transparent);
-}
-
-/* a cost still inside the sales (not yet taken out) is slate; only profit is periwinkle */
-.part[data-on="false"] {
-  border: 1px solid var(--card-line);
-  background: color-mix(in srgb, var(--ink) 6%, transparent);
-}
-
-.left {
-  border: 1px solid var(--accent);
-  background: color-mix(in srgb, var(--accent) 30%, transparent);
-}
-
-.part i,
-.left i {
-  position: absolute;
-  left: 8px;
-  bottom: 8px;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-  .part i {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .part,
-  .left {
-    transition-duration: 1ms;
-  }
-}
-
-/* the margin only means something once every cost is out */
-.margin[data-shown="false"] {
-  visibility: hidden;
-}

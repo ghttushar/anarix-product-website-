@@ -1,27 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { Screen } from "@/components/layout/Screen";
 import { AanMascot } from "@/components/aan/AanMascot";
 import { AnswerChart } from "@/components/product-ui/AnswerChart";
-import { SignalsBoard } from "@/components/illustrations/sets/iso/SignalsBoard";
-import { ProfitStack } from "@/components/illustrations/sets/iso/ProfitStack";
-import { RuleGate } from "@/components/illustrations/sets/iso/RuleGate";
-import { McpPole } from "@/components/illustrations/sets/nocturne/McpPole";
+import { RankedList } from "@/components/product-ui/RankedList";
+import { ProfitWaterfall } from "@/components/product-ui/ProfitWaterfall";
+import { RuleCard } from "@/components/product-ui/RuleCard";
 import { McpTerminal } from "@/components/product-ui/McpTerminal";
+import { ProductFrame } from "@/components/visual/ProductFrame";
 import { Reveal } from "@/components/motion/Reveal";
 import { useHandled } from "@/components/product-page/shared";
 import { works, type ProductCopy } from "@/content/home";
-import { COSTS, QUESTIONS, RULES, SALES } from "@/content/products/samples";
+import { COSTS, QUESTIONS, RULES } from "@/content/products/samples";
 import { Ink } from "./Ink";
 import ps from "./product-screens.module.css";
 
 /*
-  5–9 · One product per screen: its name, a hook, what it is, three things it
-  does and the way to its page, beside a preview of that page. The copy side
-  alternates so the five read as a sequence, not a stack of twins:
-  Signals (board and alert), Profitability (the stack), Rules (the gate),
-  Ask Aan (a conversation), MCP (the pole and the terminal).
+  5–9 · One product per screen, product-led (Linear, Stripe): Swiss words on
+  one side, the product itself on the other, on a card with a light that
+  follows the cursor. The sides alternate so the five read as a sequence. Each card does
+  its one thing when it arrives: Signals sorts by money at risk, the
+  waterfall's costs are switches, a sentence becomes a rule, Aan answers
+  with its receipts, and your AI asks Anarix.
 */
 const Arrow = () => (
   <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -29,10 +31,15 @@ const Arrow = () => (
   </svg>
 );
 
+const INDEX: Record<ProductCopy["id"], string> = { signals: "01", profitability: "02", rules: "03", aan: "04", mcp: "05" };
+
 function Copy({ p }: { p: ProductCopy }) {
   return (
     <div className={ps.copy}>
-      <p className={ps.kicker}>{p.kicker}</p>
+      <p className={ps.kicker}>
+        <span>{INDEX[p.id]}</span>
+        {p.kicker}
+      </p>
       <h2 className="t-h2">
         {p.title[0]}
         <br />
@@ -58,74 +65,68 @@ function Copy({ p }: { p: ProductCopy }) {
   );
 }
 
-function Signals({ p }: { p: ProductCopy }) {
-  const handled = useHandled(1400);
+function Signals() {
+  const handled = useHandled(1200);
   return (
-    <div>
-      <SignalsBoard stop={p.id} handled={handled} dock={false} />
-      <p className={ps.sample}>Sample data</p>
-    </div>
+    <ProductFrame title="Signals / Today" note="Sample data">
+      <RankedList handled={handled} bare />
+    </ProductFrame>
   );
 }
 
-function Profitability({ p }: { p: ProductCopy }) {
+function Profitability() {
+  const [on, setOn] = useState<boolean[]>(COSTS.map(() => true));
   return (
-    <div>
-      <ProfitStack sales={SALES} costs={COSTS} on={COSTS.map(() => true)} stop={p.id} dock={false} />
-      <p className={ps.sample}>Sample data · one day</p>
-    </div>
+    <ProductFrame title="Profitability / Yesterday" note="Sample data" lean="right">
+      <ProfitWaterfall on={on} onToggle={(i) => setOn((o) => o.map((v, k) => (k === i ? !v : v)))} />
+    </ProductFrame>
   );
 }
 
-function Rules({ p }: { p: ProductCopy }) {
+function Rules() {
+  const handled = useHandled(500);
   return (
-    <div>
-      <RuleGate stop={p.id} stops={RULES[0].stops} label={RULES[0].stopped} rule={RULES[0].sentence} dock={false} />
-      <p className={ps.sample}>Sample rule</p>
-    </div>
+    <ProductFrame title="Rules / New rule" note="Sample rule">
+      <RuleCard rule={RULES[0]} handled={handled} />
+    </ProductFrame>
   );
 }
 
 function Aan() {
   const qa = QUESTIONS[1];
   return (
-    <div className={ps.talk}>
-      <p className={ps.you}>{qa.q}</p>
-      <div className={ps.reply}>
-        <span className={ps.speaker}>
-          <AanMascot state="diamond" size={28} glow={false} shadow={false} />
-        </span>
-        <div className={ps.answerCard}>
-          <p className={ps.answer}>{qa.a}</p>
-          <AnswerChart chart={qa.chart} />
-          <p className={ps.sources}>
-            {qa.sources.map((s) => (
-              <span key={s}>{s}</span>
-            ))}
-          </p>
+    <ProductFrame title="Ask Aan" note="Sample conversation" lean="right">
+      <div className={ps.talk}>
+        <p className={ps.you}>{qa.q}</p>
+        <div className={ps.reply}>
+          <span className={ps.speaker}>
+            <AanMascot state="diamond" size={26} glow={false} shadow={false} />
+          </span>
+          <div className={ps.answerCard}>
+            <p className={ps.answer}>{qa.a}</p>
+            <AnswerChart chart={qa.chart} />
+            <p className={ps.sources}>
+              {qa.sources.map((s) => (
+                <span key={s}>{s}</span>
+              ))}
+            </p>
+          </div>
         </div>
       </div>
-      <p className={ps.sample}>Sample conversation</p>
-    </div>
+    </ProductFrame>
   );
 }
 
-function Mcp({ p }: { p: ProductCopy }) {
+function Mcp() {
   const handled = useHandled();
   return (
-    <div className={ps.mcpVisual}>
-      <div data-optional>
-        <McpPole stop={p.id} dock={false} />
-      </div>
-      <div>
-        <McpTerminal handled={handled} />
-        <p className={ps.sample}>Illustrative</p>
-      </div>
-    </div>
+    <ProductFrame title="Claude / Anarix MCP" note="Illustrative">
+      <McpTerminal handled={handled} bare />
+    </ProductFrame>
   );
 }
 
-const VIEW: Record<ProductCopy["id"], (props: { p: ProductCopy }) => React.ReactNode> = { signals: Signals, profitability: Profitability, rules: Rules, aan: Aan, mcp: Mcp };
+const VIEW: Record<ProductCopy["id"], () => React.ReactNode> = { signals: Signals, profitability: Profitability, rules: Rules, aan: Aan, mcp: Mcp };
 /** which side the words sit on, alternating down the page */
 const SIDE = { signals: "left", profitability: "right", rules: "left", aan: "right", mcp: "left" } as const;
 
@@ -136,7 +137,7 @@ export function ProductScreen({ p }: { p: ProductCopy }) {
       <div className={ps.pair} data-side={SIDE[p.id]} data-id={p.id}>
         <Copy p={p} />
         <div className={ps.visual}>
-          <View p={p} />
+          <View />
         </div>
       </div>
       {/* MCP closes the product run with everything Anarix plugs into */}
