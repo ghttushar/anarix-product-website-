@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { AanDock } from "@/components/aan/v2/AanDock";
 import { LightTrails } from "@/components/visual/LightTrails";
 import { ProductFrame } from "@/components/visual/ProductFrame";
+import { ClayBlock } from "@/components/visual/ClayBlock";
 import { McpTerminal } from "@/components/product-ui/McpTerminal";
 import { ProductVideo } from "@/components/media/ProductVideo";
 import { Typewriter } from "@/components/motion/Typewriter";
@@ -23,7 +24,7 @@ import m from "./mcp.module.css";
   number, and it matches the dashboard.
 */
 
-/* the hero: each AI client on the edges, its light running in to Aan over the name */
+/* the hero: each AI client on the edges as a clay token, its light running in to Aan over the name */
 function McpHub({ bubble }: { bubble: string }) {
   const hub = useRef<HTMLSpanElement>(null);
   const left = CLIENTS.slice(0, 2);
@@ -33,13 +34,17 @@ function McpHub({ bubble }: { bubble: string }) {
       <LightTrails aim={hub} from="left" count={7} spread={[0.2, 0.8]} bend={1.3} glow={false} className={m.hubTrails} />
       <LightTrails aim={hub} from="right" count={7} spread={[0.2, 0.8]} bend={1.3} glow={false} className={m.hubTrails} />
       <ul className={m.hubSide} data-side="left">
-        {left.map((c) => (
-          <li key={c}>{c}</li>
+        {left.map((c, i) => (
+          <li key={c}>
+            <ClayBlock label={c} shape="token" size={42} order={i} />
+          </li>
         ))}
       </ul>
       <ul className={m.hubSide} data-side="right">
-        {right.map((c) => (
-          <li key={c}>{c}</li>
+        {right.map((c, i) => (
+          <li key={c}>
+            <ClayBlock label={c} shape="token" size={42} order={i + 2} />
+          </li>
         ))}
       </ul>
       <span ref={hub} className={m.hubSpot}>

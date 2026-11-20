@@ -15,6 +15,39 @@
   transform-origin: 50% 85%;
 }
 
+/* where the clay meets the ground: softens as Aan lifts off */
+.contact {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--s) * 0.06);
+  width: calc(var(--s) * 0.5);
+  height: calc(var(--s) * 0.09);
+  margin-left: calc(var(--s) * -0.25);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.55), transparent);
+  pointer-events: none;
+}
+
+:global(html[data-theme="light"]) .contact {
+  background: radial-gradient(closest-side, hsl(230 40% 25% / 0.28), transparent);
+}
+
+.aan[data-act="hop"] .contact {
+  animation: lift 700ms var(--ease-spring);
+}
+
+.aan[data-act="celebrate"] .contact {
+  animation: lift 1.1s var(--ease-spring);
+}
+
+@keyframes lift {
+  40%,
+  70% {
+    opacity: 0.4;
+    transform: scale(0.6);
+  }
+}
+
 /* the acts own the movement: the mascot's own idle float stays off */
 .aan :global(.aan__float) {
   animation: none;
@@ -127,6 +160,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .contact,
   .sq {
     animation: none !important;
     transition: none !important;

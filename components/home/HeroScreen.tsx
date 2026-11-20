@@ -5,6 +5,7 @@ import { useRef, type CSSProperties } from "react";
 import { Screen, useScreen } from "@/components/layout/Screen";
 import { AanDock } from "@/components/aan/v2/AanDock";
 import { LightTrails } from "@/components/visual/LightTrails";
+import { ClayBlock } from "@/components/visual/ClayBlock";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { Ticker } from "@/components/motion/Ticker";
 import { Reveal } from "@/components/motion/Reveal";
@@ -15,10 +16,13 @@ import x from "./hero.module.css";
 
 /*
   1 · The promise, set like a Swiss poster: three lines across the grid, and
-  the light of every store streaming in to Aan, who looks at you (its eyes
-  follow the cursor). Under it, what Aan is, the two ways in and the three
+  the light of every store streaming in to Aan, who stands guard on your
+  stores (soft clay blocks) and looks at you (its eyes follow the cursor). Under it, what Aan is, the two ways in and the three
   approved figures, counted up once.
 */
+/** the stores Aan watches, as clay */
+const STORES = ["Amazon", "Walmart", "Shopify"];
+
 const FIGURES = [
   { value: 12, format: (n: number) => `$${(n / 10).toFixed(1)}B` },
   { value: 500, format: (n: number) => `${n}+` },
@@ -45,7 +49,7 @@ export function HeroScreen() {
   const spot = useRef<HTMLSpanElement>(null);
   return (
     <Screen id="top" hasDock fit="grow" className={x.hero} bodyClassName={`l-container ${x.body}`} label="Anarix platform">
-      <LightTrails aim={spot} from="right" count={9} bend={1.6} spread={[-0.45, 1.45]} className={x.trails} />
+      <LightTrails aim={spot} from="right" count={9} bend={1.6} spread={[-0.45, 0.8]} className={x.trails} />
       <span className={x.columns} aria-hidden="true" />
 
       <p className={x.eyebrow}>
@@ -66,8 +70,12 @@ export function HeroScreen() {
 
       <div className={x.aan}>
         <span ref={spot} className={x.focus} aria-hidden="true" />
-        <AanDock stop="top" size={64} sizeSm={34} bubble={hero.bubble} side="left" act="idle" track style={{ left: "var(--x)", bottom: "var(--feet)" }} />
-        <FilmDialog className={x.film} />
+        <AanDock stop="top" size={64} sizeSm={28} bubble={hero.bubble} side="left" act="idle" track style={{ left: "var(--x)", bottom: "var(--feet)" }} />
+        <div className={x.stores}>
+          {STORES.map((st, i) => (
+            <ClayBlock key={st} label={st} order={i} className={x.store} />
+          ))}
+        </div>
       </div>
 
       <div className={x.foot}>
@@ -84,8 +92,7 @@ export function HeroScreen() {
             <Link className="c-link" href={hero.secondary.href}>
               {hero.secondary.label}
             </Link>
-            {/* on phones the film sits with the actions, clear of the headline */}
-            <FilmDialog className={x.filmSm} />
+            <FilmDialog />
           </div>
         </div>
         <Figures />

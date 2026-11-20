@@ -42,6 +42,7 @@ html[data-theme="light"] .hero {
 /* ------------------------------------------------------------- eyebrow */
 .eyebrow {
   grid-column: 1 / -1;
+  grid-row: 1;
   display: flex;
   justify-content: space-between;
   gap: var(--s-4);
@@ -125,7 +126,8 @@ html[data-theme="light"] .hero {
 
 /* --------------------------------------------- Aan, where the light meets */
 .aan {
-  --feet: 18%;
+  --blk: 64px;
+  --feet: calc(var(--blk) + 2px);
   --x: 58%;
   --size: 128px;
   grid-column: 9 / -1;
@@ -133,8 +135,23 @@ html[data-theme="light"] .hero {
   align-self: start;
   position: relative;
   z-index: 2;
-  height: calc(var(--fs) * 1.84);
+  height: calc(var(--fs) * 2.76);
   pointer-events: none;
+}
+
+/* the stores Aan stands guard on: three clay blocks on the third line */
+.stores {
+  position: absolute;
+  left: var(--x);
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: calc(var(--blk) * 0.2);
+  transform: translateX(-50%);
+}
+
+.store {
+  --b: var(--blk) !important;
 }
 
 .focus {
@@ -145,20 +162,11 @@ html[data-theme="light"] .hero {
   height: 1px;
 }
 
-.film {
-  position: absolute;
-  right: 0;
-  top: calc(100% + var(--fs) * 0.22);
-  pointer-events: auto;
-}
-
-.filmSm {
-  display: none;
-}
-
 /* ---------------------------------------------------------------- foot */
 .foot {
   grid-column: 1 / -1;
+  /* explicit rows: with the eyebrow hidden (phones) nothing may jump above the title */
+  grid-row: 3;
   display: grid;
   grid-template-columns: subgrid;
   align-items: end;
@@ -247,20 +255,23 @@ html[data-theme="light"] .hero {
     opacity: 0.45;
   }
 
-  .film {
-    display: none;
-  }
 
-  .filmSm {
-    display: inline-flex;
-  }
 
+  /* phones: Aan on its stores gets its own row under the headline,
+     with room above for what it says */
   .aan {
-    --size: 68px;
-    --x: 62%;
-    --feet: 50%;
-    grid-column: 7 / -1;
-    height: calc(var(--fs) * 1.84);
+    /* tablets draw Aan at full size (it shrinks below 640px) */
+    --blk: 56px;
+    --size: 128px;
+    --x: 50%;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    height: calc(var(--blk) + var(--size) + 56px);
+    margin-top: var(--gap-s);
+  }
+
+  .foot {
+    grid-row: 4;
   }
 
   .lead {
@@ -269,6 +280,11 @@ html[data-theme="light"] .hero {
 }
 
 @media (max-width: 640px) {
+  .aan {
+    --blk: 46px;
+    --size: 56px;
+  }
+
   /* Aan and its words take the eyebrow's place on phones */
   .eyebrow {
     display: none;

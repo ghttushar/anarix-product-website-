@@ -270,10 +270,6 @@
   padding: 0;
   list-style: none;
   transform: translateY(-50%);
-  font: 500 0.75rem/1 var(--font-mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
 }
 
 .hubSide[data-side="left"] {
@@ -287,21 +283,10 @@
 
 .hubSide li {
   display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .hubSide[data-side="right"] li {
-  flex-direction: row-reverse;
-}
-
-.hubSide li::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px hsl(230 75% 72% / 0.15);
+  justify-content: flex-end;
 }
 
 /* Aan, over the name, where the light meets */

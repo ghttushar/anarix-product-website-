@@ -300,7 +300,7 @@ Depth is light, not material. The ground is flat Sky; the only things standing o
 - **Chrome soft / medium / strong** (`--c-shadow-*`): nav and island only.
 
 ### Named Rules
-**The Light Is The Depth Rule.** Lift comes from trails, pools, floor glows and the cursor spotlight, all periwinkle. Nothing gets a hover lift, a hard shadow or a glossy gradient. The one light sweep is the primary CTA's streak, because a light crossing the button is the long exposure in miniature.
+**The Light Is The Depth Rule.** Lift comes from trails, pools, floor glows and the cursor spotlight, all periwinkle. Nothing gets a hover lift, a hard shadow or a glossy gradient. The one other kind of depth is soft clay: Aan, the ClayBlocks and the primary CTA are matte forms lit from the top left, never glossy. The one light sweep is the primary CTA's streak, because a light crossing the button is the long exposure in miniature.
 
 ## Shapes
 
@@ -311,7 +311,7 @@ Soft rectangles and pills. Product UI cards round at 20px, ProductFrame at 16px,
 ### Buttons
 Quiet and solid: one filled pill per screen, everything else is a link.
 - **Shape:** full pill (999px), at least 48px tall, 24px side padding, Inter 600 15px.
-- **Primary (`.c-cta`):** white on Working Periwinkle, wrapped in `<Magnetic>` so it leans toward the pointer (strength 0.25, 14px live margin, 300ms spring back). On hover the fill deepens (160ms) and a 40%-wide white streak at 38% crosses it (700ms on the arrive curve). Press scales to 0.97.
+- **Primary (`.c-cta`):** white on Working Periwinkle in soft clay (a lit top edge, `inset 0 2px 4px` white at 28%, and a core shadow underneath, `inset 0 -3px 6px`), wrapped in `<Magnetic>` so it leans toward the pointer (strength 0.25, 14px live margin, 300ms spring back). On hover it dims to 94% brightness (160ms) and a 40%-wide white streak at 38% crosses it (700ms on the arrive curve). Press scales to 0.97.
 - **Secondary (`.c-link`):** Ink text, 44px target, 1px underline at 40% ink offset 6px, an optional 16px stroked arrow. Hover turns text and underline Handled Periwinkle.
 - **Focus:** 2px Handled Periwinkle outline at 4px offset.
 
@@ -328,10 +328,13 @@ Modelled on the product (anarix-insight-engine): Card surface, 20px radius, 1px 
 An SVG (`viewBox 0 0 1000 600`, stretched, non-scaling strokes) behind a screen's content that never takes a click. 7 to 10 trails start off the edge (`from` left, right or both), take a long flat approach and bend late into the target, which is either a percentage point or a live element (`aim`). Each trail is a 1.6px core (1.8px for the risk trail) over an 8px bloom at 16% (8% in day), with a gradient that fades in from the edge. On first view the strokes draw on (core 1.8s, bloom 2.2s, 70ms apart) and the pool fades in; while on screen the core breathes to 62% opacity over 7s and a short bright pulse runs down one trail at a time every 9s. Reduced motion shows them drawn and still.
 
 ### Aan acting (signature)
-Aan looks exactly as it does in the Ask Aan island: `AanClay` renders the product's own `AanMascot` (coral body, sheen, inner ring, no aura or ground shadow) and carries the act as motion on a wrapper, with the mascot's own idle float switched off. The mascot blinks on its own; with `track` (the hero only) its eyes follow the pointer as the island's do, otherwise the act sets a fixed gaze. It acts only through motion and shape:
+Aan looks exactly as it does in the Ask Aan island: `AanClay` renders the product's own `AanMascot` and carries the act as motion on a wrapper, with the mascot's own idle float switched off. The mascot is soft clay at every size, island included (`components/aan/aan.css`): lit from the top left (radial `#ffb3b9` → `#f88a93` → `#f46d76` → `#d9505c`), a core shadow toward the bottom right and a matte highlight as inset shadows, the sheen and the 1px periwinkle rim, all scaled from `--u`. The acting Aan rests on a soft contact shadow that thins as it hops. The mascot blinks on its own; with `track` (the hero only) its eyes follow the pointer as the island's do, otherwise the act sets a fixed gaze. It acts only through motion and shape:
 - **idle:** breathes (3.2s, rises 4% and squashes 2%). **look:** the eyes lead. **hop:** squash, stretch, land (700ms spring). **glide:** leans 8deg into travel with a periwinkle tail behind it. **point:** leans toward the target; the caller draws the beam. **press:** lands and squashes on a button (520ms). **think:** the mascot's cube (spins, swirl inside). **work:** the mascot's bar with its coral fill. **celebrate:** one spin and a periwinkle ring, once per page.
 
 The same `AanMascot` (ported from the product, state as shape) is used directly at small sizes: the Ask Aan island, chat avatars, the speaker beside an answer in product UI. One Aan, one look, at every size.
+
+### ClayBlock (soft clay 3D)
+`components/visual/ClayBlock.tsx`: the things Aan looks after, as matte rounded clay lit from the top left like Aan, with the name pressed into the clay as text (never a logo). A `tile` is a store block (radius 28% of its side, label at the foot); a `token` is a pill for a name. Tone is meaning: slate (night `#405274` → `#222c42`, day `#f3f5fc` → `#cdd4ea`) is quiet, coral is risk, periwinkle is handled. Each drops in once with a soft squash (760ms spring, 110ms apart); reduced motion shows them at rest. In the build: the hero's Amazon, Walmart and Shopify blocks, which Aan stands guard on (on phones and tablets they take their own centred row under the headline), and the MCP hero's AI client tokens (Claude, ChatGPT, Gemini, Your agent) that the light runs from.
 
 ### Travelling Aan and stops
 `AanProvider` holds one Aan per page, drawn at twice its dock size. Screens reserve `AanDock` slots; Aan lands at the dock of whichever screen crosses the middle of the viewport, gliding 450 to 700ms on the travel curve with its light tail (far jumps fade in from just off screen). Each dock names its act, its bubble side and an optional `tuck` (Aan lands behind the film at the close, with no bubble). A pinned story docks with `hand`: Aan lands, the story's own Aan (`AanClay`) takes over inside the sticky panel, and on leaving the traveller takes off from wherever that Aan now stands. Reduced motion swaps the flight for a 200ms fade. Stops in the build: homepage `top`, `night` (hand) and `close` (tuck); each product page's hero card, and on MCP also `tools`.

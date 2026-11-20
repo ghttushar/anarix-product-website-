@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T14:51:41.876Z",
+  "generatedAt": "2026-11-20T15:18:59.766Z",
   "title": "Design System: Anarix Platform",
   "extensions": {
     "colorMeta": {
@@ -876,7 +876,7 @@
       },
       {
         "name": "The Light Is The Depth Rule",
-        "body": "Lift comes from trails, pools, floor glows and the cursor spotlight, all periwinkle. Nothing gets a hover lift, a hard shadow or a glossy gradient. The one light sweep is the primary CTA's streak, because a light crossing the button is the long exposure in miniature.",
+        "body": "Lift comes from trails, pools, floor glows and the cursor spotlight, all periwinkle. Nothing gets a hover lift, a hard shadow or a glossy gradient. The one other kind of depth is soft clay: Aan, the ClayBlocks and the primary CTA are matte forms lit from the top left, never glossy. The one light sweep is the primary CTA's streak, because a light crossing the button is the long exposure in miniature.",
         "section": "elevation"
       },
       {

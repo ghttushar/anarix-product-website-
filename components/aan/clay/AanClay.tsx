@@ -6,8 +6,9 @@ import c from "./aan-clay.module.css";
 
 /*
   Aan acting. Aan looks exactly as it does in the Ask Aan island (the
-  product's own mascot: coral body, sheen, inner ring, no aura or shadow);
-  what it does is carried by motion around it. No arms, no legs.
+  product's own mascot in soft clay: coral body, core shadow, sheen, inner
+  ring), resting on a soft contact shadow; what it does is carried by motion
+  around it. No arms, no legs.
   - idle: a slow breath          - look: the eyes lead
   - hop: squash and stretch      - glide: leans into travel (the trail is drawn
                                    by the traveller and by LightTrails)
@@ -43,6 +44,8 @@ export function AanClay({
   const fixed: [number, number] = gaze ?? (act === "point" ? [0.9, -0.2] : act === "look" ? [0.8, -0.3] : [0, 0]);
   return (
     <span className={`${c.aan} ${className ?? ""}`} data-act={act} style={{ "--s": `${size}px`, ...style } as CSSProperties} aria-hidden="true">
+      {/* a soft contact shadow: Aan is a clay object resting in the scene */}
+      <span className={c.contact} />
       <span className={c.sq}>
         <AanMascot state={SHAPE[act] ?? "diamond"} size={size} glow={false} shadow={false} gaze={track ? undefined : fixed} />
         <span className={c.ring} />

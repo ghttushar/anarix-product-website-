@@ -1,0 +1,113 @@
+/* A soft clay object. Every measure follows --b (the tile's side or the
+   token's height); light comes from the top left, like Aan's. */
+.clay {
+  --top: #405274;
+  --bottom: #222c42;
+  --lift: rgb(175 190 255 / 0.22);
+  --core: rgb(0 0 0 / 0.45);
+  --ink: #b9c3e8;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: flex-end;
+  justify-content: center;
+  width: var(--b);
+  height: var(--b);
+  padding-bottom: calc(var(--b) * 0.12);
+  box-sizing: border-box;
+  border-radius: calc(var(--b) * 0.28);
+  background: linear-gradient(150deg, var(--top), var(--bottom));
+  box-shadow:
+    inset calc(var(--b) * 0.07) calc(var(--b) * 0.07) calc(var(--b) * 0.14) var(--lift),
+    inset calc(var(--b) * -0.09) calc(var(--b) * -0.11) calc(var(--b) * 0.18) var(--core),
+    0 calc(var(--b) * 0.26) calc(var(--b) * 0.34) calc(var(--b) * -0.2) rgb(0 0 0 / 0.75);
+}
+
+.clay[data-shape="token"] {
+  width: auto;
+  align-items: center;
+  padding: 0 calc(var(--b) * 0.5);
+  border-radius: 999px;
+}
+
+.clay[data-tone="coral"] {
+  --top: #ff9aa3;
+  --bottom: #d9505c;
+  --lift: rgb(255 225 228 / 0.45);
+  --core: rgb(120 20 34 / 0.4);
+  --ink: #5a1219;
+}
+
+.clay[data-tone="periwinkle"] {
+  --top: #98a6f5;
+  --bottom: #5b69d8;
+  --lift: rgb(235 238 255 / 0.4);
+  --core: rgb(30 36 110 / 0.42);
+  --ink: #1d2466;
+}
+
+/* the name, pressed into the clay */
+.label {
+  font: 600 clamp(10px, calc(var(--b) * 0.17), 13px) / 1 var(--font-body);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--ink);
+  text-shadow:
+    0 1px 0 rgb(255 255 255 / 0.12),
+    0 -1px 0 rgb(0 0 0 / 0.3);
+}
+
+.clay[data-shape="token"] .label {
+  font-size: clamp(11px, calc(var(--b) * 0.32), 14px);
+}
+
+:global(html[data-theme="light"]) .clay[data-tone="slate"] {
+  --top: #f3f5fc;
+  --bottom: #cdd4ea;
+  --lift: rgb(255 255 255 / 0.9);
+  --core: hsl(230 30% 45% / 0.28);
+  --ink: #4a5578;
+}
+
+:global(html[data-theme="light"]) .clay {
+  box-shadow:
+    inset calc(var(--b) * 0.07) calc(var(--b) * 0.07) calc(var(--b) * 0.14) var(--lift),
+    inset calc(var(--b) * -0.09) calc(var(--b) * -0.11) calc(var(--b) * 0.18) var(--core),
+    0 calc(var(--b) * 0.26) calc(var(--b) * 0.34) calc(var(--b) * -0.2) hsl(230 40% 30% / 0.35);
+}
+
+/* the drop-in: a soft squash as the clay lands */
+:global(html[data-js]) .clay[data-shown="false"] {
+  opacity: 0;
+  transform: translateY(calc(var(--b) * -0.5));
+}
+
+.clay[data-shown="true"] {
+  animation: land 760ms var(--ease-spring) calc(var(--i) * 110ms + 200ms) both;
+}
+
+@keyframes land {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--b) * -0.5));
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0) scale(1.08, 0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html[data-js]) .clay[data-shown="false"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .clay[data-shown="true"] {
+    animation: none;
+  }
+}
