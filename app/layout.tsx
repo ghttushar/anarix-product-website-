@@ -2,8 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./styles/index.css";
 
-// Fraunces (display) + Inter (body): the Anarix website design system
-const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-fraunces" });
+// Inter for everything set in type, Plex Mono for counting, and Fraunces for
+// written moments and the one italic word in a Signals headline (its real
+// italic is loaded, so the browser never fakes one)
+const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "600", "700"], style: ["normal", "italic"], variable: "--font-fraunces" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono" });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-inter" });
 

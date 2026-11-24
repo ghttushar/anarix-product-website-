@@ -13,9 +13,9 @@ export const hero = {
 /** the three approved figures, under the hero's buttons */
 export const proof = {
   items: [
-    { figure: "$1.2B", text: "GMV driven for the brands Anarix works with" },
-    { figure: "500+", text: "brands managed across Amazon and Walmart" },
-    { figure: "12.8%", text: "average TACoS across the brands we manage" },
+    { figure: "$1.2B", text: "GMV driven for the brands Anarix works with", short: "GMV driven" },
+    { figure: "500+", text: "brands managed across Amazon and Walmart", short: "brands managed" },
+    { figure: "12.8%", text: "average TACoS across the brands we manage", short: "average TACoS" },
   ],
 };
 
@@ -188,6 +188,40 @@ export const journey = {
   ringOrder: ["signals", "profitability", "rules", "mcp", "aan"] as const,
   manifesto:
     "Aan is your 24/7 e-commerce account manager. It watches your Amazon, Walmart and Shopify accounts around the clock, explains what changed and why, and acts within the rules you set. Bigger changes wait for your yes. Every action is logged, and every fix is checked over the next seven days.",
+};
+
+/** the homepage in the AI Studio design (Phase 10): every product, one scroll */
+export const layers = {
+  hero: {
+    title: ["One AI.", "Every marketplace."],
+    lede: "Always on. Anarix watches your Amazon, Walmart and Shopify accounts around the clock: what changed, what you really made, what your rules should do, and the answer to any question.",
+    primary: { label: "Schedule a demo", href: "https://www.anarix.ai/contact-us" },
+    secondary: { label: "Meet Aan", href: "/aan" },
+    corner: ["Amazon, Walmart and Shopify,", "watched around the clock."],
+  },
+  marquee: ["One AI", "Every marketplace", "Always on", "Amazon", "Walmart", "Shopify"],
+  explore: { label: "Explore the platform", href: "#products" },
+  manifesto: [
+    "Anarix is one AI over every marketplace you sell on. Signals tells you what changed overnight and why. Profitability shows what you really made after every fee. Rules runs your playbook while you sleep.",
+    "Ask Aan answers with the numbers behind it, and MCP brings all of it into the AI you already use. One place, watched around the clock.",
+  ],
+  gallery: [
+    { id: "signals", name: "Signals", meta: ["Signals", "Alerts", "What changed and why"], href: "/signals" },
+    { id: "profitability", name: "Profitability", meta: ["Profitability", "P&L", "True profit, every product"], href: "/profitability" },
+    { id: "rules", name: "Rules", meta: ["Rules", "Automation", "Your playbook, running"], href: "/rules" },
+    { id: "aan", name: "Ask Aan", meta: ["Ask Aan", "Answers", "The numbers behind it"], href: "/aan" },
+    { id: "mcp", name: "MCP", meta: ["Anarix MCP", "Any AI", "Same numbers everywhere"], href: "/mcp" },
+  ],
+  fragments: [
+    { k: "Signals", v: "$1,651 protected" },
+    { k: "Buy Box", v: "Lost to a reseller · $940" },
+    { k: "Profit", v: "$1,568 true profit" },
+    { k: "Rule", v: "Pause at $50, 0 sales" },
+    { k: "Ask Aan", v: "Why did ROAS drop?" },
+    { k: "MCP", v: "$3,412 in any AI" },
+    { k: "Undo", v: "0:30 to change your mind" },
+    { k: "Stores", v: "Amazon · Walmart · Shopify" },
+  ],
 };
 
 /** render **bold** phrases as <b> inside grey prose */

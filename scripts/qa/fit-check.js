@@ -41,6 +41,15 @@
         const head = (s.querySelector("h1,h2")?.textContent || "").trim().replace(/\s+/g, " ").slice(0, 40);
         const top = Math.round(r.top + scrollY);
         const chapters = s.matches("[data-story]") ? Number(s.style.getPropertyValue("--chapters")) || 1 : 0;
+        // a GSAP-pinned scene ([data-pin]) sits in a pin-spacer as tall as its
+        // scroll; it is checked at its start and three points through the pin
+        const spacer = s.matches("[data-pin]") && s.parentElement?.classList.contains("pin-spacer") ? s.parentElement : null;
+        if (spacer) {
+          const sr = spacer.getBoundingClientRect();
+          const st = Math.round(sr.top + scrollY);
+          const run = Math.max(0, sr.height - innerHeight);
+          return { i, id: s.id || s.dataset.screen || `screen-${i}`, top: st, h: Math.round(sr.height), head, stops: [0, 0.36, 0.68, 0.98].map((f) => Math.round(st + f * run)) };
+        }
         // a story is checked at the middle of each chapter
         const stops = chapters ? Array.from({ length: chapters }, (_, k) => Math.round(top + ((k + 0.5) / chapters) * Math.max(0, r.height - innerHeight))) : [top];
         return { i, id: s.id || s.dataset.screen || s.className.toString().split(" ")[0] || `screen-${i}`, top, h: Math.round(r.height), head, stops };

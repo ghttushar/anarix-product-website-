@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T15:18:59.766Z",
+  "generatedAt": "2026-11-24T16:27:31.312Z",
   "title": "Design System: Anarix Platform",
   "extensions": {
     "colorMeta": {
@@ -543,20 +543,121 @@
           "hsl(209 25% 80%)",
           "hsl(209 25% 95%)"
         ]
+      },
+      "periwinkle-act": {
+        "role": "primary",
+        "displayName": "Act Periwinkle",
+        "canonical": "#8a9cf6",
+        "tonalRamp": [
+          "hsl(230 86% 15%)",
+          "hsl(230 86% 25%)",
+          "hsl(230 86% 35%)",
+          "hsl(230 86% 45%)",
+          "hsl(230 86% 55%)",
+          "hsl(230 86% 65%)",
+          "hsl(230 86% 80%)",
+          "hsl(230 86% 95%)"
+        ]
+      },
+      "studio-deep": {
+        "role": "tertiary",
+        "displayName": "Studio Gradient, deep",
+        "canonical": "#10163a",
+        "tonalRamp": [
+          "hsl(231 57% 15%)",
+          "hsl(231 57% 25%)",
+          "hsl(231 57% 35%)",
+          "hsl(231 57% 45%)",
+          "hsl(231 57% 55%)",
+          "hsl(231 57% 65%)",
+          "hsl(231 57% 80%)",
+          "hsl(231 57% 95%)"
+        ]
+      },
+      "studio-mid": {
+        "role": "tertiary",
+        "displayName": "Studio Gradient, mid",
+        "canonical": "#1f2c7a",
+        "tonalRamp": [
+          "hsl(231 60% 15%)",
+          "hsl(231 60% 25%)",
+          "hsl(231 60% 35%)",
+          "hsl(231 60% 45%)",
+          "hsl(231 60% 55%)",
+          "hsl(231 60% 65%)",
+          "hsl(231 60% 80%)",
+          "hsl(231 60% 95%)"
+        ]
+      },
+      "studio-bright": {
+        "role": "tertiary",
+        "displayName": "Studio Gradient, bright",
+        "canonical": "#4a62d9",
+        "tonalRamp": [
+          "hsl(230 65% 15%)",
+          "hsl(230 65% 25%)",
+          "hsl(230 65% 35%)",
+          "hsl(230 65% 45%)",
+          "hsl(230 65% 55%)",
+          "hsl(230 65% 65%)",
+          "hsl(230 65% 80%)",
+          "hsl(230 65% 95%)"
+        ]
+      },
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "#05060a",
+        "tonalRamp": [
+          "hsl(228 33% 15%)",
+          "hsl(228 33% 25%)",
+          "hsl(228 33% 35%)",
+          "hsl(228 33% 45%)",
+          "hsl(228 33% 55%)",
+          "hsl(228 33% 65%)",
+          "hsl(228 33% 80%)",
+          "hsl(228 33% 95%)"
+        ]
+      },
+      "stage-white": {
+        "role": "neutral",
+        "displayName": "Stage White",
+        "canonical": "#fff",
+        "tonalRamp": [
+          "hsl(0 0% 15%)",
+          "hsl(0 0% 25%)",
+          "hsl(0 0% 35%)",
+          "hsl(0 0% 45%)",
+          "hsl(0 0% 55%)",
+          "hsl(0 0% 65%)",
+          "hsl(0 0% 80%)",
+          "hsl(0 0% 95%)"
+        ]
+      },
+      "stage-ink": {
+        "role": "neutral",
+        "displayName": "Stage Ink",
+        "canonical": "#0b0e14",
+        "tonalRamp": [
+          "hsl(220 29% 15%)",
+          "hsl(220 29% 25%)",
+          "hsl(220 29% 35%)",
+          "hsl(220 29% 45%)",
+          "hsl(220 29% 55%)",
+          "hsl(220 29% 65%)",
+          "hsl(220 29% 80%)",
+          "hsl(220 29% 95%)"
+        ]
       }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Display",
-        "purpose": "Homepage hero: three stacked lines across the 12-column grid, the third in Handled Periwinkle."
-      },
       "display-name": {
         "displayName": "Display Name",
         "purpose": "A product's own name in its hero; size varies per hero layout up to clamp(5rem, min(14vw, 24svh), 15rem)."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Every screen heading (.t-h2)."
+        "purpose": "Every screen-register heading (.t-h2), Inter 800."
       },
       "slogan": {
         "displayName": "Slogan",
@@ -568,7 +669,7 @@
       },
       "editorial": {
         "displayName": "Editorial",
-        "purpose": "Fraunces for the morning brief and Aan's letter only."
+        "purpose": "The morning brief, Aan's letter, and one italic word per Signals headline."
       },
       "statement": {
         "displayName": "Statement",
@@ -601,6 +702,22 @@
       "frame-note": {
         "displayName": "Frame Note",
         "purpose": "The honest sample-data label in a ProductFrame's top bar."
+      },
+      "studio-display": {
+        "displayName": "Studio Display",
+        "purpose": "Signals hero headline; the homepage hero title and the Finale close use the same face and weight at their own sizes."
+      },
+      "studio-headline": {
+        "displayName": "Studio Headline",
+        "purpose": "Signals section headings."
+      },
+      "marquee": {
+        "displayName": "Marquee",
+        "purpose": "Giant words sliding behind the homepage product ring."
+      },
+      "studio-button": {
+        "displayName": "Studio Button",
+        "purpose": "Homepage light and glass buttons, Signals act and ghost pills."
       }
     },
     "shadows": [
@@ -638,6 +755,21 @@
         "name": "chrome-medium",
         "value": "0 4px 16px -4px hsl(230 65% 57% / 0.12)",
         "purpose": "Nav when scrolled (day)."
+      },
+      {
+        "name": "studio-card-drop",
+        "value": "0 40px 70px -40px rgb(10 14 40 / 0.55)",
+        "purpose": "A product card on the homepage white stage."
+      },
+      {
+        "name": "glass-drop",
+        "value": "0 50px 90px -40px rgb(0 0 0 / 0.8)",
+        "purpose": "Product UI on a gallery panel; Signals glass cards go to 0 50px 140px -50px rgb(0 0 0 / 0.95)."
+      },
+      {
+        "name": "act-glow",
+        "value": "0 0 28px hsl(230 85% 75% / 0.45)",
+        "purpose": "Signals action pill on hover."
       }
     ],
     "motion": [
@@ -699,7 +831,27 @@
       {
         "name": "magnetic",
         "value": "strength 0.25, 300ms return",
-        "purpose": "Primary CTA leaning toward the pointer."
+        "purpose": "NameHero primary CTA leaning toward the pointer."
+      },
+      {
+        "name": "lenis",
+        "value": "lerp 0.085, touchMultiplier 1.4, driven by the GSAP ticker, lagSmoothing(0)",
+        "purpose": "Smooth scroll under every ScrollTrigger scene; off under reduced motion."
+      },
+      {
+        "name": "scroll-scene",
+        "value": "GSAP timeline, pin: true, scrub: 1, invalidateOnRefresh, anticipatePin",
+        "purpose": "Pinned, scrubbed scenes: Intro (+=720%), Gallery (track overflow), Finale (+=360%), Signals panel (+=240%)."
+      },
+      {
+        "name": "ease-signals",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Signals transitions; GSAP power3.out for its blur-rise."
+      },
+      {
+        "name": "halo-follow",
+        "value": "9% per frame toward the section shape",
+        "purpose": "Signals halo easing between [data-halo] shapes."
       }
     ],
     "breakpoints": [
@@ -734,6 +886,10 @@
       {
         "name": "grow-allowed",
         "value": "max-height 620px"
+      },
+      {
+        "name": "short-phone-hero",
+        "value": "max-width 760px and max-height 740px"
       }
     ]
   },
@@ -742,7 +898,7 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one filled pill per screen, magnetic, with a light streak crossing it on hover.",
+      "description": "Screen-register primary: a flat periwinkle pill with a light streak crossing it on hover; magnetic in a NameHero.",
       "html": "<a class=\"ds-cta\" href=\"#\">Book a demo</a>",
       "css": ".ds-cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:hsl(230 65% 57%);color:#fff;font:600 15px/1 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 160ms cubic-bezier(0.16,1,0.3,1),transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgb(255 255 255/.38) 50%,transparent 70%);transform:translateX(-120%);transition:transform 700ms cubic-bezier(0.16,1,0.3,1);pointer-events:none}.ds-cta:hover{background:hsl(230 65% 52%)}.ds-cta:hover::after{transform:translateX(120%)}.ds-cta:active{transform:scale(.97)}.ds-cta:focus-visible{outline:2px solid hsl(230 75% 72%);outline-offset:4px}"
     },
@@ -795,43 +951,79 @@
       "css": ".ds-bubble{display:inline-block;margin:0;padding:8px 14px;border-radius:14px;border-bottom-right-radius:4px;background:hsl(228 25% 97%);color:hsl(228 40% 14%);font:600 13px/1.3 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px hsl(228 50% 4%/.6)}"
     },
     {
-      "name": "Aan (clay)",
-      "kind": "custom",
-      "refersTo": "aan-coral",
-      "description": "The limbless coral clay diamond, idle breath; it acts only through motion.",
-      "html": "<span class=\"ds-aan\"><span class=\"ds-aan-sq\"><span class=\"ds-aan-bd\"></span><span class=\"ds-aan-ey\"><i></i><i></i></span></span></span>",
-      "css": ".ds-aan{--s:96px;position:relative;display:inline-block;width:var(--s);height:var(--s)}.ds-aan-sq{position:absolute;inset:0;transform-origin:50% 92%;animation:ds-breathe 3.2s ease-in-out infinite}.ds-aan-bd{position:absolute;left:50%;top:48%;width:calc(var(--s)*.62);height:calc(var(--s)*.62);margin:calc(var(--s)*-.31) 0 0 calc(var(--s)*-.31);border-radius:calc(var(--s)*.17);transform:rotate(45deg);background:radial-gradient(circle at 30% 28%,#ffc9cd 0,#f46d76 46%,#b1323d 100%);box-shadow:inset calc(var(--s)*-.05) calc(var(--s)*-.07) calc(var(--s)*.12) rgb(120 20 30/.35),0 calc(var(--s)*.12) calc(var(--s)*.26) calc(var(--s)*-.09) rgb(244 109 118/.45)}.ds-aan-ey{position:absolute;left:50%;top:48%;display:flex;gap:calc(var(--s)*.105);transform:translate(-50%,-50%)}.ds-aan-ey i{width:calc(var(--s)*.085);height:calc(var(--s)*.13);border-radius:50%;background:#24090c}@keyframes ds-breathe{50%{transform:translateY(calc(var(--s)*-.04)) scale(1.02,.98)}}@media (prefers-reduced-motion:reduce){.ds-aan-sq{animation:none}}"
-    },
-    {
       "name": "Navigation (scrolled)",
       "kind": "nav",
       "refersTo": "nav-scrolled",
       "description": "Port of www.anarix.ai: transparent until scroll, then a blurred chrome pill.",
       "html": "<nav class=\"ds-nav\"><b>Anarix</b><a href=\"#\">Signals</a><a href=\"#\">Profitability</a><a href=\"#\">Rules</a><a href=\"#\">Aan</a></nav>",
       "css": ".ds-nav{display:flex;align-items:center;gap:24px;padding:10px 20px;border-radius:999px;background:hsl(0 0% 100%/.8);backdrop-filter:blur(12px);box-shadow:0 4px 16px -4px hsl(230 65% 57%/.12);font:500 14px/1 Inter,system-ui,sans-serif}.ds-nav b{color:hsl(209 22% 14%);margin-right:12px}.ds-nav a{position:relative;color:hsl(215 14% 42%);text-decoration:none;transition:color 160ms}.ds-nav a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:hsl(230 65% 57%);transform:scaleX(0);transition:transform 200ms}.ds-nav a:hover{color:hsl(209 22% 14%)}.ds-nav a:hover::after{transform:scaleX(1)}.ds-nav a:focus-visible{outline:2px solid hsl(230 65% 57%);outline-offset:4px}"
+    },
+    {
+      "name": "Studio Light Button",
+      "kind": "button",
+      "refersTo": "button-studio-light",
+      "description": "Homepage hero and close primary: white on the gradient card, 10px radius.",
+      "html": "<a class=\"ds-light\" href=\"#\">Book a demo</a>",
+      "css": ".ds-light{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:10px;background:#fff;color:#0b0e14;font:600 .8125rem/1 Inter,system-ui,sans-serif;text-decoration:none;transition:transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-light:active{transform:scale(.97)}.ds-light:focus-visible{outline:2px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Studio Glass Button",
+      "kind": "button",
+      "refersTo": "button-studio-glass",
+      "description": "Homepage secondary on a gradient: white at 10% with a white hairline.",
+      "html": "<a class=\"ds-glass\" href=\"#\">See the products</a>",
+      "css": ".ds-glass{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:10px;border:1px solid hsl(0 0% 100% / .25);background:hsl(0 0% 100% / .1);color:#fff;font:600 .8125rem/1 Inter,system-ui,sans-serif;text-decoration:none;transition:transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-glass:active{transform:scale(.97)}.ds-glass:focus-visible{outline:2px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Act Pill (Signals)",
+      "kind": "button",
+      "refersTo": "button-act",
+      "description": "Signals action: an Act Periwinkle pill with dark ink and a periwinkle glow on hover.",
+      "html": "<a class=\"ds-act\" href=\"#\">Book a demo</a>",
+      "css": ".ds-act{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:999px;background:#8a9cf6;color:#0b0e14;font:600 .8125rem/1 Inter,system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 0 hsl(230 85% 75% / 0);transition:transform .3s cubic-bezier(0.22,1,0.36,1),box-shadow .3s cubic-bezier(0.22,1,0.36,1)}.ds-act:hover{box-shadow:0 0 28px hsl(230 85% 75% / .45)}.ds-act:active{transform:scale(.97)}.ds-act:focus-visible{outline:2px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Studio Product Card",
+      "kind": "card",
+      "refersTo": "studio-card",
+      "description": "A product on the homepage ring: gradient, name pill, mono index, real UI, two-line hook.",
+      "html": "<article class=\"ds-scard\"><header><span class=\"ds-scard-pill\">Signals</span><span class=\"ds-scard-idx\">01 / 05</span></header><div class=\"ds-scard-ui\"></div><p class=\"ds-scard-hook\">3am change.<br><span>9am answer.</span></p></article>",
+      "css": ".ds-scard{display:flex;flex-direction:column;width:280px;height:409px;padding:16px;box-sizing:border-box;border-radius:22px;background:linear-gradient(170deg,#121a33,#1d2a66 60%,#3a4fc4);color:hsl(228 20% 94%);box-shadow:0 40px 70px -40px rgb(10 14 40 / .55)}.ds-scard header{display:flex;justify-content:space-between;align-items:center}.ds-scard-pill{padding:5px 10px;border-radius:999px;background:hsl(0 0% 100% / .14);font:500 .75rem/1 Inter,system-ui,sans-serif}.ds-scard-idx{font:500 .625rem/1 \"IBM Plex Mono\",ui-monospace,monospace;color:hsl(0 0% 100% / .6)}.ds-scard-ui{flex:1;margin:12px 0;border-radius:12px;background:hsl(222 30% 12% / .7);border:1px solid hsl(0 0% 100% / .1)}.ds-scard-hook{margin:0;font:500 1.4rem/1.12 Inter,system-ui,sans-serif;letter-spacing:-.025em}.ds-scard-hook span{color:hsl(0 0% 100% / .6)}"
+    },
+    {
+      "name": "Aan (flat)",
+      "kind": "custom",
+      "refersTo": "aan-coral",
+      "description": "The limbless coral diamond, flat and matte, with an idle breath; it acts only through motion.",
+      "html": "<span class=\"ds-aan\"><span class=\"ds-aan-sq\"><span class=\"ds-aan-bd\"></span><span class=\"ds-aan-ey\"><i></i><i></i></span></span></span>",
+      "css": ".ds-aan{--s:96px;position:relative;display:inline-block;width:var(--s);height:var(--s)}.ds-aan-sq{position:absolute;inset:0;transform-origin:50% 92%;animation:ds-breathe 3.2s ease-in-out infinite}.ds-aan-bd{position:absolute;left:50%;top:48%;width:calc(var(--s)*.62);height:calc(var(--s)*.62);margin:calc(var(--s)*-.31) 0 0 calc(var(--s)*-.31);border-radius:calc(var(--s)*.17);transform:rotate(45deg);background:radial-gradient(circle at 50% 38%,#f88a93 0%,#f57780 42%,#f46d76 78%,#f05e6a 100%);box-shadow:0 26px 64px -28px rgba(244,109,118,.5),inset 0 1px 0 rgba(255,255,255,.2)}.ds-aan-ey{position:absolute;left:50%;top:48%;display:flex;gap:calc(var(--s)*.105);transform:translate(-50%,-50%)}.ds-aan-ey i{width:calc(var(--s)*.085);height:calc(var(--s)*.13);border-radius:50%;background:#24090c}@keyframes ds-breathe{50%{transform:translateY(calc(var(--s)*-.04)) scale(1.02,.98)}}@media (prefers-reduced-motion:reduce){.ds-aan-sq{animation:none}}"
     }
   ],
   "narrative": {
     "northStar": "The Long Exposure",
-    "overview": "The platform site is a Swiss poster shot at night with the shutter open. Headlines are heavy Inter set tight on a 12-column grid you can see; everything that moves leaves light behind it. The one ambient motif is the long-exposure light trail: thin periwinkle streaks that come in from the screen edges, bend late and converge on whatever matters on that screen (Aan in the hero, the stage in the night story, the film at the close, the product card in each product hero). Where a screen carries risk, exactly one of those trails runs coral.\n\nThe proof is the product. Every visual that is not light or Aan is real Anarix UI (Signals, the profit waterfall, a rule being built, an Aan answer, a Slack approval, an MCP session) on a card that stands slightly turned in space and catches a light that follows the cursor. Every number in that UI is labelled as sample data in the card's own top bar. Aan, the coral diamond from the Ask Aan island, is the only warm object on any screen; it has no arms or legs and acts through motion alone.\n\nDensity is one idea per viewport. Copy is short, grey, and lets its key phrases step up to full ink. Motion has one arrival curve, settles once, and always has a designed reduced-motion state that shows the end of the story. Rejected and gone: the City Nocturne line-art scenes and the soft isometric \"circuit\" drawings. Neither returns on site pages.",
+    "overview": "The platform site is Swiss type shot with the shutter open: periwinkle light, one coral creature, and the real product, moved by the scroll. It now speaks in two registers that share one palette and one creature.\n\nThe **studio register** carries the homepage (`/platform`) and Signals (`/platform/signals`). Both are getlayers templates re-purposed for Anarix: the homepage is \"AI Studio\" (a gradient hero card that tilts and collapses into a 3D ring of the five products over a giant marquee, Aan's white diamond opening into a black world with a particle sphere and the manifesto, pinned horizontal product panels, and fragments drifting past a card that opens into the close), and Signals is \"Relay\" (black, a halo of light fibres behind everything, dark glass cards, mono labels). Headlines here are Inter 500, larger in size than in weight; light comes from deep-blue-to-periwinkle gradients with a coral glow, from the three.js particle sphere, and from the Signals halo. The homepage is a mix of every product (Signals, Profitability, Rules, MCP, Ask Aan), never a page about Aan alone.\n\nThe **screen register** carries the other product pages (Profitability, Rules, MCP with its pinned McpGap scene, and Aan). It is the Phase 8 system: one idea per `Screen`, Inter 800 headlines on a 12-column grid, long-exposure light trails converging on what matters, real product UI on `ProductFrame` cards that turn toward the cursor, and one travelling, limbless Aan.\n\nIn both registers the proof is the product: every visual that is not light or Aan is real Anarix UI, and every number in it is labelled as sample data. Aan, the coral diamond from the Ask Aan island, is flat and matte everywhere except one place, the homepage close, where `GlossyAan` renders it as the site's single glossy three.js object. Rejected and gone: soft clay (`ClayBlock`, the clay mascot shading, the clay CTA), the City Nocturne line-art scenes and the soft isometric \"circuit\" drawings. None of them return.",
     "keyCharacteristics": [
-      "Inter 800 headlines at -0.04em to -0.055em tracking, on a visible 12-column grid in the hero.",
-      "IBM Plex Mono for indexes, clocks, figures and the honest labels; Fraunces only for editorial moments (the morning brief, Aan's letter).",
-      "Long-exposure light trails as the single ambient motif, one coral trail for risk.",
-      "Real product UI on tilted ProductFrame cards with a cursor spotlight and a floor glow.",
-      "One travelling, limbless Aan per page (the island's mascot), landing on two or three stops at most.",
-      "One arrival easing (`cubic-bezier(0.16, 1, 0.3, 1)`), blur-rise reveals, magnetic primary CTAs, number tickers and one Apple-style pinned story.",
-      "Night by default, day by theme toggle; only periwinkle (230) and coral (355) carry hue."
+      "Two registers on one palette: studio (Inter 500, gradient cards, black worlds, pinned GSAP scenes) on the homepage and Signals; screen (Inter 800, `Screen`, `ProductFrame`, `LightTrails`, travelling Aan) on the other product pages.",
+      "Only periwinkle (230) and coral (355) carry hue; studio surfaces blend from one to the other.",
+      "Real product UI everywhere, always labelled \"Sample data\" or \"Illustrative\".",
+      "Lenis smooth scroll under GSAP ScrollTrigger timelines that are pinned and scrubbed; transforms and opacity only while scrolling.",
+      "Aan is flat and limbless; the one glossy Aan stands in the homepage close.",
+      "IBM Plex Mono for indexes, clocks, figures and honest labels; Fraunces for written moments and for the single italic word in a Signals headline."
     ],
     "rules": [
       {
         "name": "The No Green Rule",
-        "body": "Positive is periwinkle, negative is coral, in every card, chart and theme. No hue between roughly 60 and 180 enters the site.",
+        "body": "Positive is periwinkle, negative is coral, in every card, chart, halo and theme. No hue between roughly 60 and 180 enters the site.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Hues Rule",
+        "body": "Only periwinkle (230) and coral (355) carry hue. A studio surface may blend from one to the other, and the blend's middle stops are the violets between them (`#c993d6`, `#6a5fe0`); a violet never appears on its own as a flat fill, a text colour or a UI state.",
         "section": "colors"
       },
       {
         "name": "The Coral Is Aan's Rule",
-        "body": "Coral is Aan, or it is something going wrong. It is never a button, a heading, a link or decoration, and Aan stays the warmest, most saturated object on any screen.",
+        "body": "Coral is Aan, something going wrong, or the warm glow at the foot of a studio gradient. It is never a button fill, a heading, a link or a UI state of success.",
         "section": "colors"
       },
       {
@@ -840,23 +1032,23 @@
         "section": "colors"
       },
       {
-        "name": "The One Scope Rule",
-        "body": "Colours come from the `.nocturne` roles (`--sky`, `--ink`, `--ink-2`, `--accent`, `--accent-solid`, `--risk`, `--risk-ink`, `--rule`, `--card`, `--card-line`, `--bubble-*`). Theme is the whole page at a different hour; no section re-scopes itself into the other theme.",
+        "name": "The Scope Rule",
+        "body": "In the screen register, colours come from the `.nocturne` roles (`--sky`, `--ink`, `--ink-2`, `--accent`, `--accent-solid`, `--risk`, `--risk-ink`, `--rule`, `--card`, `--card-line`, `--bubble-*`) and theme is the whole page at a different hour. The studio register is the exception and stays fixed in both themes: the homepage is a white stage with black worlds, Signals is black. Studio cards re-set the product UI roles locally so the same components render on them.",
         "section": "colors"
       },
       {
-        "name": "The Heavy And Tight Rule",
-        "body": "Headlines are Inter 800 between -0.04em and -0.055em, line-height under 1, fluid by both width and height (`min(vw, svh)`). Type shrinks on short screens before a screen is allowed to grow.",
+        "name": "The Weight Per Register Rule",
+        "body": "Screen-register headlines are Inter 800 between -0.04em and -0.055em, line-height under 1, fluid by both width and height (`min(vw, svh)`). Studio-register headlines are Inter 500 between -0.04em and -0.045em, line-height 1 to 1.08. Never mix the two weights in one section.",
         "section": "typography"
       },
       {
         "name": "The Grey Prose, Ink Phrase Rule",
-        "body": "Statements are Ink 2; only the phrases that carry the argument switch to full Ink at 500. Emphasis is contrast, not colour or size.",
+        "body": "Prose is the quieter ink; only the phrases that carry the argument switch to full ink at 500. In studio headlines the same move runs the other way: the second line drops to white at 55–60%. Emphasis is contrast, not colour or size.",
         "section": "typography"
       },
       {
-        "name": "The Fraunces Is A Letter Rule",
-        "body": "Fraunces is for writing that reads as written by someone (the morning brief, Aan's letter). It never sets a headline, a figure or UI.",
+        "name": "The Written Word Rule",
+        "body": "Fraunces is for writing that reads as written by someone (the morning brief, Aan's letter) and, in Signals only, for one italic word per headline. It never sets a whole headline, a figure or UI.",
         "section": "typography"
       },
       {
@@ -866,50 +1058,71 @@
       },
       {
         "name": "The One Viewport Rule",
-        "body": "Above 620px of height, a `fit=\"screen\"` section never grows past one viewport; cut copy or hide optional detail instead. QA is `scripts/qa/screens.mjs` at 1280x720, 1366x768, 1440x900, 1920x1080 and 390x844, which scrolls each screen to the top, checks it with `fit-check.js`, and checks a pinned story at each chapter.",
+        "body": "Above 620px of height, a `fit=\"screen\"` section and every pinned studio scene is exactly one viewport; cut copy or hide optional detail instead. QA is `scripts/qa/screens.mjs` at 1280x720, 1366x768, 1440x900, 1920x1080 and 390x844 with `fit-check.js`: a `Screen` is checked at its top, a `StoryScroll` at the middle of each chapter, and a GSAP-pinned `[data-pin]` scene at its start and at 36%, 68% and 98% through its pin-spacer. Flowing Relay sections on Signals are not screens and are not held to one viewport.",
+        "section": "layout"
+      },
+      {
+        "name": "The Pinned Scene Rule",
+        "body": "A long story is a pinned, scrubbed scene, and its number is set by the page's register: the homepage is three pinned scenes back to back, Signals has one, a screen-register page has at most one (`StoryScroll` or a GSAP pin, such as MCP's `McpGap`).",
         "section": "layout"
       },
       {
         "name": "The Ruled, Not Boxed Rule",
-        "body": "Group with space first and a 1px Rule hairline second (`.c-points`, proof figures, the permission ladder, the hero index bar). Only product UI, the film and video frames are boxed, and nothing is a card inside a card.",
+        "body": "In the screen register, group with space first and a 1px Rule hairline second (`.c-points`, proof figures, the permission ladder). Only product UI, studio cards, the film and video frames are boxed, and nothing is a card inside a card except product UI inside a studio card or panel, which is the template's own device.",
         "section": "layout"
       },
       {
         "name": "The Light Is The Depth Rule",
-        "body": "Lift comes from trails, pools, floor glows and the cursor spotlight, all periwinkle. Nothing gets a hover lift, a hard shadow or a glossy gradient. The one other kind of depth is soft clay: Aan, the ClayBlocks and the primary CTA are matte forms lit from the top left, never glossy. The one light sweep is the primary CTA's streak, because a light crossing the button is the long exposure in miniature.",
+        "body": "Lift comes from light (trails, pools, floor glows, the cursor spotlight, the particle sphere, the halo, radial glows) and from real perspective, never from a hover lift or a hard offset shadow. Every surface is matte. The one glossy object on the site is `GlossyAan` in the homepage close (a clearcoated coral `MeshPhysicalMaterial` lit by a studio environment), standing where AI Studio has its chrome star; nothing else gets a sheen or a glossy gradient.",
         "section": "elevation"
       },
       {
+        "name": "The No Clay Rule",
+        "body": "Soft clay is retired. Aan, the primary CTA and every block are flat: no lit top edges, core shadows, contact shadows or pressed-in labels.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Smooth Scroll Rule",
+        "body": "Nothing re-renders React per scroll frame: scroll scenes write transforms and opacity through GSAP, the halo sets shader uniforms, and layout is measured on ScrollTrigger refresh only (`invalidateOnRefresh`, function-based values, the halo's `measure` on `refresh`). WebGL draws only while it can be seen (the sphere is switched by its ScrollTrigger, Glossy Aan by an IntersectionObserver, the halo stops when the tab is hidden). Reduced motion shows each scene's end state and leaves Lenis off.",
+        "section": "components"
+      },
+      {
         "name": "The Transform And Opacity Rule",
-        "body": "Animate transform and opacity. The exceptions the build carries are the reveal's 4px blur, the trails' stroke draw, colour transitions on hover and state, and Aan's cube and bar morphs (which change the body's size); add no more.",
+        "body": "Animate transform and opacity. The exceptions the build carries are the blur-rise reveals, the trails' stroke draw, colour and glow transitions on hover and state, Aan's cube and bar morphs, and the Intro's hero frame collapsing onto its centre card by `clip-path`; add no more.",
+        "section": "components"
+      },
+      {
+        "name": "The Depth Drift Rule",
+        "body": "Parallax exists only inside pinned studio scenes, as depth: each gallery panel's UI drifts 14% against its frame, and the Finale's fragments travel at speeds set by their depth. The screen register has none.",
         "section": "components"
       }
     ],
     "dos": [
-      "Do take every colour from the `.nocturne` roles so both night and day work, and keep periwinkle and coral as the only hues.",
-      "Do set headlines in Inter 800 with tight tracking (`.t-h2`, or the hero and name sizes above), and keep Fraunces for the morning brief and Aan's letter.",
-      "Do put product proof in a `ProductFrame` with a breadcrumb title and an honest note (\"Sample data\", \"Sample rule\", \"Sample conversation\", \"Sample message\", \"Illustrative\"), and use the UI's `bare` mode inside it.",
-      "Do aim `LightTrails` at the thing the screen is about, and give at most one trail the `risk` index.",
-      "Do keep proof figures to $1.2B GMV, 500+ brands and 12.8% TACoS, in a ruled row.",
-      "Do name marketplaces and apps (Amazon, Walmart, Shopify, Slack, Claude) as text.",
-      "Do give a page no more than three Aan stops, with bubbles of 28 characters or fewer that state a fact the screen shows (\"Fees took $1,151 today.\", \"Same $3,412 in any AI.\").",
-      "Do dock Aan beside or at the edge of product UI, where the light converges, never over it; the night story's own Aan, which acts on the Signals rows, is the one exception.",
-      "Do wrap the screen's one primary CTA in `<Magnetic>` and count proof figures up once with `Ticker`.",
-      "Do build each section as one `Screen` (or a `StoryScroll` for a pinned story) and run `scripts/qa/screens.mjs` before shipping.",
-      "Do design the reduced-motion state on purpose: the final state shown, nothing travelling."
+      "**Do** keep periwinkle and coral as the only hues; let studio gradients blend between them and nowhere else.",
+      "**Do** take every screen-register colour from the `.nocturne` roles so night and day both work, and keep the studio register's fixed grounds (white stage and black worlds on the homepage, black on Signals).",
+      "**Do** set screen-register headlines in Inter 800 (`.t-h2`, the name sizes) and studio headlines in Inter 500, and keep Fraunces for the morning brief, Aan's letter and one italic word per Signals headline.",
+      "**Do** show real product UI with an honest label (\"Sample data\", \"Sample rule\", \"Sample conversation\", \"Sample message\", \"Illustrative\"), in a `ProductFrame` or on a studio card or panel.",
+      "**Do** give the homepage every product (Signals, Profitability, Rules, MCP, Ask Aan), never a page about Aan alone.",
+      "**Do** keep proof figures to $1.2B GMV, 500+ brands and 12.8% TACoS.",
+      "**Do** name marketplaces and apps (Amazon, Walmart, Shopify, Slack, Claude) as text.",
+      "**Do** build scroll scenes as pinned, scrubbed GSAP timelines over Lenis, moving transforms and opacity, measuring on refresh only, and mark them `data-pin` so `fit-check.js` checks them through the pin.",
+      "**Do** pause WebGL when it cannot be seen and load three.js only when the component mounts.",
+      "**Do** design the reduced-motion state on purpose: each scene's end state shown in flow, nothing travelling, no Lenis.",
+      "**Do** keep the nav, the Ask Aan island and the footer at parity with www.anarix.ai."
     ],
     "donts": [
-      "Don't use green, teal or any hue outside periwinkle (230) and coral (355).",
-      "Don't use coral for buttons, headings, links or decoration.",
-      "Don't give Aan arms, legs, hands or a face beyond its two eyes, or restyle it: every Aan on the site is the island's `AanMascot` (via `AanClay` when it acts).",
-      "Don't bring back City Nocturne line-art scenes or the soft isometric drawings, or add a second ambient motif beside the light trails.",
-      "Don't put a card inside a card, or box content that a ruled list can carry.",
-      "Don't show an unlabelled number in product UI, or fabricate customers, testimonials, logos or prices.",
-      "Don't draw marketplace or app logos.",
-      "Don't let a `fit=\"screen\"` section grow past one viewport above 620px of height.",
-      "Don't add hover lifts, hard shadows, gradient text or glossy surfaces; depth is light.",
-      "Don't add a second pinned story to a page, parallax, or idle loops beyond Aan's breath, the trails' breath and pulse, and the hero's live dot.",
-      "Don't bring the film's stamp red, Bodoni or grain onto site pages."
+      "**Don't** use green, teal or any hue outside periwinkle (230) and coral (355), or a flat violet fill on its own.",
+      "**Don't** use coral for buttons, headings, links or success states.",
+      "**Don't** give Aan arms, legs, hands or a face beyond its two eyes, or restyle it outside the island's `AanMascot`, the ring card's white diamond and `GlossyAan`.",
+      "**Don't** bring back soft clay, City Nocturne line-art scenes or the soft isometric drawings.",
+      "**Don't** add a second glossy object; `GlossyAan` in the homepage close is the only one.",
+      "**Don't** set React state from scroll, animate layout properties while scrolling, or measure the DOM on a scroll frame.",
+      "**Don't** show an unlabelled number in product UI, or invent customers, testimonials, logos or prices.",
+      "**Don't** draw marketplace or app logos.",
+      "**Don't** let a `fit=\"screen\"` section or a pinned scene grow past one viewport above 620px of height.",
+      "**Don't** add hover lifts, hard offset shadows or gradient text.",
+      "**Don't** add parallax outside a pinned studio scene, or a second pinned story to a screen-register page.",
+      "**Don't** bring the film's stamp red, Bodoni or grain onto site pages."
     ]
   }
 }

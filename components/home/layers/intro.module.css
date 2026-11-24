@@ -1,0 +1,569 @@
+/* The homepage opening in the AI Studio design: a white stage, a gradient
+   hero card, a 3D ring of product cards, and the black world behind Aan's
+   window. Anarix colors: deep blue to periwinkle with a coral glow; coral
+   where AI Studio uses lime. GSAP moves everything; CSS only places it. */
+.intro {
+  --cw: clamp(236px, 21.5vw, 318px);
+  --ch: calc(var(--cw) * 1.46);
+  --R: calc(var(--cw) * 0.86);
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: #fff;
+  color: #0b0e14;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  perspective: 1500px;
+  perspective-origin: 50% 50%;
+}
+
+/* --------------------------------------------------------------- marquee */
+.marquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.marqueeTrack {
+  display: inline-flex;
+  align-items: center;
+  font: 500 clamp(3.4rem, 7.2vw, 8.5rem) / 1 var(--font-display);
+  letter-spacing: -0.045em;
+  color: #0b0e14;
+  will-change: transform;
+}
+
+.marqueeTrack span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.marqueeTrack i {
+  display: inline-block;
+  width: 0.14em;
+  height: 0.14em;
+  margin: 0 0.5em;
+  border: 0.03em solid #0b0e14;
+  border-radius: 50%;
+}
+
+/* --------------------------------------------------------------- the ring */
+.ringWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--R) * -1));
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.slot {
+  position: absolute;
+  left: calc(var(--cw) / -2);
+  top: calc(var(--ch) / -2);
+  width: var(--cw);
+  height: var(--ch);
+  backface-visibility: hidden;
+}
+
+/* a product card (the same in the hero and on the ring) */
+.card {
+  --sky: #0b0f16;
+  --ink: hsl(228 20% 94%);
+  --ink-2: #94a0b4;
+  --accent: hsl(230 75% 74%);
+  --accent-solid: hsl(230 65% 57%);
+  --risk: #f46d76;
+  --risk-ink: hsl(355 84% 76%);
+  --rule: hsl(0 0% 100% / 0.1);
+  --card: hsl(222 30% 12% / 0.7);
+  --card-line: hsl(0 0% 100% / 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(170deg, #121a33, #1d2a66 60%, #3a4fc4);
+  color: var(--ink);
+  box-shadow: 0 40px 70px -40px rgb(10 14 40 / 0.55);
+  backface-visibility: hidden;
+}
+
+.card[data-id="profitability"] {
+  background:
+    radial-gradient(90% 60% at 80% 100%, hsl(355 84% 70% / 0.45), transparent 60%),
+    linear-gradient(170deg, #0d0f17, #1a1730 70%);
+}
+
+.card[data-id="rules"] {
+  background: linear-gradient(170deg, #0e1022, #26227a 65%, #5d52d6);
+}
+
+.card[data-id="mcp"] {
+  background:
+    radial-gradient(80% 60% at 20% 0%, hsl(230 75% 65% / 0.4), transparent 60%),
+    linear-gradient(170deg, #07090e, #111726);
+}
+
+.card[data-id="aan"] {
+  background:
+    radial-gradient(70% 55% at 50% 100%, hsl(355 84% 72% / 0.85), transparent 70%),
+    radial-gradient(90% 70% at 50% 20%, #8d9cf5, transparent 70%),
+    linear-gradient(170deg, #4a62d9, #6a5fe0 60%, #b67bd4);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cardPill {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: hsl(0 0% 100% / 0.14);
+  font: 500 0.75rem/1 var(--font-body);
+}
+
+.cardIdx {
+  font: 500 0.625rem/1 var(--font-mono);
+  color: hsl(0 0% 100% / 0.6);
+}
+
+.cardUi {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 12px 0;
+  overflow: hidden;
+  /* where the UI is cut, it fades rather than chops */
+  mask-image: linear-gradient(180deg, #000 80%, transparent);
+}
+
+/* product UI, shrunk to the card */
+.cardFit {
+  width: 128%;
+  transform: scale(0.78);
+  transform-origin: top left;
+  font-size: 0.875rem;
+}
+
+.cardHook {
+  margin: 0;
+  font: 500 clamp(1.2rem, 1.55vw, 1.6rem) / 1.12 var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+.cardHook span {
+  color: hsl(0 0% 100% / 0.6);
+}
+
+/* Ask Aan: Aan, white, which the page will open through */
+.aanFace {
+  position: absolute;
+  inset: 0;
+}
+
+.shape {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--cw) * 0.3);
+  aspect-ratio: 1;
+  margin: calc(var(--cw) * -0.15) 0 0 calc(var(--cw) * -0.15);
+  border-radius: 22%;
+  background: #fff;
+  transform: rotate(45deg);
+  box-shadow: 0 0 40px hsl(0 0% 100% / 0.45);
+}
+
+/* Aan's eyes, upright */
+.shape i {
+  position: absolute;
+  width: 13%;
+  height: 13%;
+  border-radius: 50%;
+  background: #11141f;
+  transform: rotate(-45deg);
+}
+
+/* placed in the rotated square so they read side by side on screen */
+.shape i:first-child {
+  left: 48.5%;
+  top: 32.9%;
+}
+
+.shape i:last-child {
+  left: 32.9%;
+  top: 48.5%;
+}
+
+.explore {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--inset-bottom) + 4px);
+  z-index: 3;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #0b0e14;
+  color: #fff;
+  font: 500 0.8125rem/1 var(--font-body);
+  text-decoration: none;
+  transform: translateX(-50%);
+}
+
+.explore:focus-visible {
+  outline: 2px solid var(--accent-solid, #4a62d9);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------- the hero */
+.hero {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.frame {
+  position: absolute;
+  inset: 12px;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(70% 55% at 50% 108%, hsl(355 84% 72% / 0.75), transparent 62%),
+    radial-gradient(60% 60% at 62% 45%, hsl(230 80% 66% / 0.55), transparent 70%),
+    linear-gradient(160deg, #10163a 0%, #1f2c7a 45%, #4a62d9 100%);
+  color: #fff;
+  will-change: clip-path;
+}
+
+.title {
+  position: absolute;
+  left: clamp(20px, 3.4vw, 56px);
+  top: clamp(86px, 13svh, 130px);
+  margin: 0;
+  font: 500 clamp(2.3rem, 3.7vw, 4.2rem) / 1 var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.title span {
+  display: block;
+}
+
+.title span + span {
+  color: hsl(0 0% 100% / 0.55);
+}
+
+.foot {
+  position: absolute;
+  left: clamp(20px, 3.4vw, 56px);
+  bottom: clamp(20px, 4svh, 40px);
+  max-width: min(30rem, 34vw);
+}
+
+.lede {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: hsl(0 0% 100% / 0.82);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.light,
+.glass {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font: 600 0.8125rem/1 var(--font-body);
+  text-decoration: none;
+  transition: transform var(--dur-micro) var(--ease-arrive);
+}
+
+.light {
+  background: #fff;
+  color: #0b0e14;
+}
+
+.glass {
+  border: 1px solid hsl(0 0% 100% / 0.25);
+  background: hsl(0 0% 100% / 0.1);
+  color: #fff;
+}
+
+.light:active,
+.glass:active {
+  transform: scale(0.97);
+}
+
+.light:focus-visible,
+.glass:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.proof li {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: hsl(0 0% 100% / 0.1);
+  font-size: 0.75rem;
+  color: hsl(0 0% 100% / 0.8);
+}
+
+.proof b {
+  color: #fff;
+}
+
+.corner {
+  position: absolute;
+  right: clamp(20px, 3.4vw, 56px);
+  bottom: clamp(20px, 4svh, 40px);
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: right;
+  color: hsl(0 0% 100% / 0.75);
+}
+
+.heroCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--cw);
+  height: var(--ch);
+  margin: calc(var(--ch) / -2) 0 0 calc(var(--cw) / -2);
+}
+
+/* ------------------------------------------- the window and the world */
+.window {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  width: 160vmax;
+  height: 160vmax;
+  overflow: hidden;
+  border-radius: 22%;
+  background: #05060a;
+  will-change: transform;
+}
+
+.world {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100vw;
+  height: 100svh;
+  background: radial-gradient(60% 60% at 50% 50%, #0d1022, #05060a 70%);
+  will-change: transform;
+}
+
+.sphere {
+  position: absolute;
+  inset: 0;
+}
+
+.sphere canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.glowCorner {
+  position: absolute;
+  right: -10vw;
+  bottom: -18svh;
+  width: 46vw;
+  height: 40svh;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, hsl(355 84% 70% / 0.6), hsl(230 75% 65% / 0.25) 55%, transparent);
+  filter: blur(10px);
+}
+
+.mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 6;
+  line-height: 0;
+  filter: drop-shadow(0 10px 40px hsl(230 80% 60% / 0.6));
+}
+
+.words {
+  position: absolute;
+  left: clamp(20px, 3.4vw, 56px);
+  bottom: calc(var(--inset-bottom) + 8px);
+  z-index: 6;
+  max-width: min(34rem, 44vw);
+  color: hsl(228 20% 94%);
+}
+
+.words p {
+  margin: 0 0 12px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: hsl(228 15% 78%);
+}
+
+/* ----------------------------------------------------------------- phone */
+@media (max-width: 760px) {
+  /* a shorter card on phones, so it sits between the title and the lede */
+  .intro {
+    --cw: 56vw;
+    --ch: min(calc(var(--cw) * 1.32), 36svh);
+  }
+
+  .ringWrap {
+    top: 41%;
+  }
+
+  .title {
+    top: 96px;
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .foot {
+    max-width: none;
+    right: 20px;
+    bottom: calc(var(--inset-bottom) - 2px);
+  }
+
+  .corner {
+    display: none;
+  }
+
+  .heroCard {
+    top: 41%;
+  }
+
+  .words {
+    max-width: none;
+    right: 20px;
+  }
+}
+
+/* short phones have no room between the title and the lede */
+@media (max-width: 760px) and (max-height: 740px) {
+  .heroCard {
+    opacity: 0;
+  }
+}
+
+/* --------------------------------- reduced motion: one after another */
+.intro[data-static="true"] {
+  height: auto;
+  overflow: visible;
+}
+
+.intro[data-static="true"] .stage {
+  position: relative;
+  display: grid;
+  perspective: none;
+}
+
+.intro[data-static="true"] .hero {
+  position: relative;
+  height: 100svh;
+  order: 0;
+}
+
+.intro[data-static="true"] .heroCard {
+  display: none;
+}
+
+.intro[data-static="true"] .marquee,
+.intro[data-static="true"] .explore {
+  display: none;
+}
+
+.intro[data-static="true"] .ringWrap {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: auto;
+  order: 1;
+  transform: none;
+  padding: 48px 16px;
+}
+
+.intro[data-static="true"] .ring {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.intro[data-static="true"] .slot {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none !important;
+}
+
+.intro[data-static="true"] .window {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: 100svh;
+  order: 2;
+  border-radius: 0;
+  transform: none;
+}
+
+.intro[data-static="true"] .world {
+  left: 0;
+  top: 0;
+  transform: none;
+}
+
+.intro[data-static="true"] .mark {
+  top: calc(100svh * 2 + 120px);
+}
+
+.intro[data-static="true"] .words {
+  position: absolute;
+  bottom: 48px;
+}

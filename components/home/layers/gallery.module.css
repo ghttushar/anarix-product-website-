@@ -1,0 +1,205 @@
+/* The products as wide panels on black, sliding sideways (AI Studio). */
+.gallery {
+  --sky: #0b0f16;
+  --ink: hsl(228 20% 94%);
+  --ink-2: #94a0b4;
+  --accent: hsl(230 75% 74%);
+  --accent-solid: hsl(230 65% 57%);
+  --risk: #f46d76;
+  --risk-ink: hsl(355 84% 76%);
+  --rule: hsl(0 0% 100% / 0.1);
+  --card: hsl(222 30% 11% / 0.82);
+  --card-line: hsl(0 0% 100% / 0.12);
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: #05060a;
+  color: var(--ink);
+}
+
+.track {
+  position: absolute;
+  left: 0;
+  top: calc(var(--inset-top) + 10px);
+  bottom: calc(var(--inset-bottom) - 8px);
+  display: flex;
+  gap: 1.4vw;
+  padding: 0 3.4vw;
+  will-change: transform;
+}
+
+.panel {
+  position: relative;
+  flex: 0 0 min(60vw, 920px);
+  height: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+  isolation: isolate;
+  background: linear-gradient(170deg, #0d1640, #1d2c86 55%, #3a51c9);
+}
+
+.panel[data-id="profitability"] {
+  background:
+    radial-gradient(80% 70% at 75% 110%, hsl(355 84% 66% / 0.7), transparent 65%),
+    linear-gradient(170deg, #0b0a14, #1c1530);
+}
+
+.panel[data-id="rules"] {
+  background: linear-gradient(170deg, #0a0c1f, #282090 60%, #6156dd);
+}
+
+.panel[data-id="aan"] {
+  background:
+    radial-gradient(70% 60% at 50% 110%, hsl(355 84% 72% / 0.8), transparent 65%),
+    linear-gradient(170deg, #2b3aa8, #5a63e0 55%, #9a7ad8);
+}
+
+.panel[data-id="mcp"] {
+  background:
+    radial-gradient(60% 55% at 85% 105%, hsl(355 84% 68% / 0.6), transparent 62%),
+    radial-gradient(70% 70% at 15% 0%, hsl(230 80% 66% / 0.5), transparent 62%),
+    linear-gradient(170deg, #070a18, #16205a 55%, #2f43b0);
+}
+
+/* the terminal is text-only, so it gets more room to carry its panel */
+.panel[data-id="mcp"] .ui {
+  width: min(52%, 460px);
+}
+
+/* a field of light in each scene */
+.light {
+  position: absolute;
+  right: -10%;
+  top: -20%;
+  z-index: -1;
+  width: 70%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, hsl(0 0% 100% / 0.18), transparent);
+}
+
+.meta {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  display: flex;
+  gap: 22px;
+  margin: 0;
+  font: 500 0.75rem/1 var(--font-body);
+  color: hsl(0 0% 100% / 0.85);
+}
+
+.ui {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  width: min(46%, 400px);
+  padding: 16px;
+  border: 1px solid var(--card-line);
+  border-radius: 16px;
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 50px 90px -40px rgb(0 0 0 / 0.8);
+  /* centring via translate, so GSAP's transform can drift it sideways */
+  translate: 0 -50%;
+  will-change: transform;
+}
+
+.sample {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  margin: 0;
+  font: 500 0.6875rem/1 var(--font-mono);
+  color: hsl(0 0% 100% / 0.6);
+}
+
+.name {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  font: 500 clamp(2.6rem, 5.2vw, 5.6rem) / 1 var(--font-display);
+  letter-spacing: -0.045em;
+  color: #fff;
+}
+
+.idx {
+  margin-top: 0.4em;
+  font: 500 0.75rem/1 var(--font-mono);
+  letter-spacing: 0;
+  color: hsl(0 0% 100% / 0.6);
+}
+
+.panel:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.answer {
+  display: grid;
+  gap: 10px;
+}
+
+.q {
+  justify-self: end;
+  margin: 0;
+  padding: 9px 13px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--accent-solid);
+  color: #fff;
+  font-size: 0.8125rem;
+}
+
+.a {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* the row's progress, a glow along the bottom */
+.bar {
+  position: absolute;
+  right: 3.4vw;
+  bottom: calc(var(--inset-bottom) - 40px);
+  width: 30vw;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, hsl(230 75% 65%), hsl(355 84% 70%));
+  box-shadow: 0 0 24px hsl(355 84% 70% / 0.8);
+  transform-origin: left;
+}
+
+@media (max-width: 760px) {
+  .panel {
+    flex-basis: 86vw;
+  }
+
+  .ui {
+    left: 14px;
+    right: 14px;
+    top: 48px;
+    width: auto;
+    translate: none;
+  }
+
+  .meta span:nth-child(n + 2) {
+    display: none;
+  }
+}
+
+/* reduced motion: the row scrolls sideways by hand */
+.gallery[data-static="true"] .track {
+  position: absolute;
+  inset: calc(var(--inset-top) + 10px) 0 calc(var(--inset-bottom) - 8px);
+  overflow-x: auto;
+}
+
+.gallery[data-static="true"] .bar {
+  display: none;
+}

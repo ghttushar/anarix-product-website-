@@ -1,26 +1,20 @@
-import { HeroScreen } from "@/components/home/HeroScreen";
 import { TourScreen } from "@/components/home/TourScreen";
-import { RingScene } from "@/components/home/journey/ProductRing";
-import { Manifesto } from "@/components/home/journey/Manifesto";
-import { NightGallery } from "@/components/home/journey/NightGallery";
-import { Finale } from "@/components/home/journey/Finale";
+import { Intro } from "@/components/home/layers/Intro";
+import { Gallery } from "@/components/home/layers/Gallery";
+import { Finale } from "@/components/home/layers/Finale";
 import { tour } from "@/content/home";
 
-/* The homepage as one scroll journey (Phase 9, structure from the
-   Superconscious reference): the promise; the products on a ring that
-   settles on Aan; the burst through Aan's hollow diamond, where the Anarix
-   mark rises; what Aan is, word by word; one night with Aan as a sideways
-   gallery; and the fragments of how far Aan goes converging on the card
-   that opens into the close. */
+/* The homepage in the AI Studio design (getlayers), re-purposed for Anarix:
+   the hero card collapses into a ring of every product, Aan's shape opens
+   onto the world inside, then the products as a gallery, the fragments of
+   how far Aan goes converging, and the close. */
 export default function Home() {
   return (
     <>
-      <HeroScreen />
-      {tour.video && <TourScreen />}
-      <RingScene />
-      <Manifesto />
-      <NightGallery />
+      <Intro />
+      <Gallery />
       <Finale />
+      {tour.video && <TourScreen />}
     </>
   );
 }
