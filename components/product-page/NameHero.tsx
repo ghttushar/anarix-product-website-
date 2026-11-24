@@ -32,6 +32,7 @@ export function NameHero({
   aside,
   frame,
   dock = true,
+  trails = true,
 }: {
   page: ProductPage;
   layout: HeroLayout;
@@ -41,6 +42,8 @@ export function NameHero({
   frame?: string;
   /** Aan stands on the card (off where the art holds Aan's dock itself) */
   dock?: boolean;
+  /** the hero's own light trails (off where the page has the energy halo) */
+  trails?: boolean;
 }) {
   const spot = useRef<HTMLSpanElement>(null);
   const lean = layout === "portrait" ? "right" : layout === "bleed" ? "none" : "left";
@@ -66,7 +69,7 @@ export function NameHero({
       <div className={h.art}>
         {frame ? (
           <>
-            <LightTrails aim={dock ? spot : undefined} from={layout === "portrait" ? "left" : "right"} count={10} bend={1.4} className={h.trails} />
+            {trails && <LightTrails aim={dock ? spot : undefined} from={layout === "portrait" ? "left" : "right"} count={10} bend={1.4} className={h.trails} />}
             <ProductFrame title={frame} note={page.video ? "Product tour" : "Sample data"} lean={lean} fit="var(--art-h)">
               {art}
             </ProductFrame>

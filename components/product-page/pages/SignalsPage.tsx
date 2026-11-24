@@ -6,6 +6,7 @@ import { SignalCard } from "@/components/product-ui/SignalCard";
 import { RankedList } from "@/components/product-ui/RankedList";
 import type { ProductPage } from "@/content/products/types";
 import { SIGNALS } from "@/content/products/samples";
+import { EnergyField } from "@/components/visual/EnergyField";
 import { NameHero } from "../NameHero";
 import { Close } from "../Close";
 import { Capabilities } from "../Sections";
@@ -116,12 +117,16 @@ function Ranked({ page }: { page: ProductPage }) {
 }
 
 export function SignalsPage({ page }: { page: ProductPage }) {
+  // the energy halo flows behind the whole page (owner: "put that halo effect for signals")
   return (
     <>
-      <NameHero
+      <EnergyField />
+      <div className={s.overHalo}>
+        <NameHero
         page={page}
         layout="split"
         frame="Signals / Alert"
+        trails={false}
         art={
           <Tour page={page} title="Signals product tour">
             <HeroCard />
@@ -136,6 +141,7 @@ export function SignalsPage({ page }: { page: ProductPage }) {
         <Ranked page={page} />
       </Screen>
       <Close page={page} ladder />
+      </div>
     </>
   );
 }

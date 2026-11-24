@@ -1,0 +1,405 @@
+/* MCP's "data everywhere except your AI" scene, in dreamteam.ai's motion:
+   pieces slide in from both sides, converge into the Anarix mark, and an
+   iris of dark opens from it. --a, --c, --i come from the scroll. */
+.body {
+  position: static;
+}
+
+.stage {
+  --a: 0;
+  --c: 0;
+  --i: 0;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(70% 70% at 50% 50%, hsl(214 26% 13%), var(--sky) 75%);
+}
+
+html[data-theme="light"] .stage {
+  background: radial-gradient(70% 70% at 50% 50%, #fff, var(--sky) 80%);
+}
+
+/* ------------------------------------------------------------ the pieces */
+.pieces {
+  position: absolute;
+  inset: 0;
+}
+
+.piece {
+  --k: 1.2;
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: calc(var(--w) * var(--k));
+  padding: 16px 18px;
+  box-sizing: border-box;
+  border: 1px solid var(--card-line);
+  border-radius: 16px;
+  background: var(--card);
+  color: var(--ink);
+  box-shadow:
+    0 30px 60px -30px rgb(0 0 0 / 0.75),
+    0 8px 20px -12px rgb(0 0 0 / 0.5);
+  /* in from its side, settle at its spot, then into the centre */
+  transform: translate(-50%, -50%)
+    translate(
+      calc((var(--x) * 1vw + var(--side) * (1 - var(--a)) * 46vw) * (1 - var(--c))),
+      calc((var(--y) * 1vh + (1 - var(--a)) * var(--d) * 8vh) * (1 - var(--c)))
+    )
+    rotate(calc(var(--r) * 1deg * (1 - var(--c)) + var(--side) * (1 - var(--a)) * 6deg))
+    scale(calc(1 - var(--c) * 0.9));
+  opacity: calc(min(1, var(--a) * 2.5) * (1 - var(--c) * 1.25));
+  will-change: transform, opacity;
+}
+
+html[data-theme="light"] .piece {
+  box-shadow:
+    0 30px 60px -30px hsl(230 30% 30% / 0.35),
+    0 8px 20px -12px hsl(230 30% 30% / 0.25);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font: 600 1.0625rem/1.3 var(--font-body);
+}
+
+.faint {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.rec {
+  width: 10px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--ink-2);
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 8px 12px;
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--card-line);
+  font-size: 0.875rem;
+}
+
+.kv dt {
+  color: var(--ink-2);
+}
+
+.kv dd {
+  margin: 0;
+}
+
+.caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--ink);
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.flag {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: hsl(355 84% 70% / 0.16);
+  color: var(--risk-ink);
+  font: 600 0.75rem/1.2 var(--font-body);
+}
+
+.pillSmall {
+  display: inline-block;
+  margin: 10px 0 0;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: hsl(0 0% 100% / 0.06);
+  font: 500 0.75rem/1.2 var(--font-mono);
+  color: var(--ink-2);
+}
+
+.file .fileIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 42px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background: hsl(230 60% 60% / 0.18);
+  color: var(--accent);
+  font: 600 0.625rem/1 var(--font-mono);
+}
+
+/* app tiles, as text (never logos) */
+.tile {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 22px;
+}
+
+.tileTxt {
+  font: 700 1.5rem/1 var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--sky);
+  font: 700 0.75rem/1 var(--font-body);
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 68px;
+  margin: 12px 0 4px;
+}
+
+.wave i {
+  flex: 1;
+  height: calc(var(--h) * 100%);
+  border-radius: 2px;
+  background: var(--risk);
+  opacity: 0.85;
+}
+
+.sticky {
+  border: 0;
+  border-radius: 4px;
+  background: #f1e6b6;
+  color: #3a3220;
+}
+
+.hand {
+  margin: 0;
+  font: italic 400 1.85rem/1.25 var(--font-editorial);
+}
+
+.sheet {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.sheet td {
+  padding: 6px 8px;
+  border: 1px solid var(--card-line);
+}
+
+.hot {
+  outline: 2px solid var(--risk);
+  outline-offset: -2px;
+  color: var(--risk-ink);
+  font-weight: 600;
+}
+
+.bubble {
+  border: 0;
+  border-radius: 18px;
+  background: #0b0e13;
+  color: #fff;
+}
+
+.bubble p,
+.ai p {
+  margin: 0;
+  font: 600 0.9375rem/1.35 var(--font-body);
+}
+
+.ai {
+  border-color: hsl(230 75% 72% / 0.45);
+}
+
+.ai .faint {
+  margin: 0 0 4px;
+  font: 500 0.75rem/1 var(--font-mono);
+}
+
+/* ----------------------------------------------------- the headline */
+.copy {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: 2;
+  width: min(92vw, 30rem);
+  text-align: center;
+  transform: translate(-50%, -50%) scale(calc(1 - var(--c) * 0.12));
+  opacity: calc(1 - var(--c) * 1.6);
+  filter: blur(calc(var(--c) * 10px));
+}
+
+.label {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: hsl(355 84% 70% / 0.14);
+  color: var(--risk-ink);
+  font: 500 0.875rem/1 var(--font-body);
+}
+
+.h2 {
+  margin: 0;
+  font: 700 clamp(2.1rem, min(3.5vw, 6.4svh), 3.4rem) / 1.08 var(--font-display);
+  letter-spacing: -0.035em;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* ---------------------------------------------------- the mark, the iris */
+.mark {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border: 1px solid var(--card-line);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.8);
+  transform: translate(-50%, -50%) scale(calc(0.3 + clamp(0, calc((var(--c) - 0.45) * 2), 1) * 0.7));
+  opacity: clamp(0, calc((var(--c) - 0.45) * 3), 1);
+}
+
+.iris {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: radial-gradient(60% 60% at 50% 52%, hsl(228 18% 16%), #05070a 70%);
+  clip-path: circle(calc(var(--i) * 120vmax) at 50% 52%);
+}
+
+.rays {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: calc(var(--i) * 1.2);
+}
+
+.rays line {
+  stroke: hsl(228 30% 85% / 0.16);
+  stroke-width: 0.08;
+}
+
+.meet {
+  position: absolute;
+  left: 50%;
+  top: calc(52% - 210px);
+  z-index: 4;
+  width: min(92vw, 34rem);
+  text-align: center;
+  transform: translate(-50%, calc((1 - var(--i)) * 30px));
+  opacity: clamp(0, calc((var(--i) - 0.55) * 3), 1);
+  color: hsl(228 20% 94%);
+}
+
+.meetTitle {
+  margin: 0;
+  font: 700 clamp(2rem, min(3.2vw, 6svh), 3.1rem) / 1.05 var(--font-display);
+  letter-spacing: -0.035em;
+}
+
+.meetLine {
+  margin: 12px auto 0;
+  max-width: 44ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: hsl(228 15% 72%);
+}
+
+/* the line out of the mark, down into the next section */
+.stem {
+  position: absolute;
+  left: 50%;
+  top: calc(52% + 40px);
+  bottom: 0;
+  z-index: 4;
+  width: 1px;
+  background: linear-gradient(var(--accent), transparent);
+  transform: scaleY(var(--i));
+  transform-origin: top;
+}
+
+.note {
+  position: absolute;
+  right: max(16px, 3vw);
+  bottom: calc(var(--inset-bottom) + 8px);
+  z-index: 4;
+  margin: 0;
+  font: 500 0.6875rem/1 var(--font-mono);
+  color: var(--ink-2);
+  opacity: calc(1 - var(--i));
+}
+
+/* ------------------------------------------------------------ phones */
+@media (max-width: 760px) {
+  .piece {
+    --k: 1;
+    --w: 220px !important;
+    padding: 12px 14px;
+    scale: 0.82;
+  }
+
+  .piece:not([data-phone]) {
+    display: none;
+  }
+
+  .tile {
+    --w: 70px !important;
+  }
+
+  .hand {
+    font-size: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

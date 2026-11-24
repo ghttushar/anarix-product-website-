@@ -1,3 +1,9 @@
+/* the page sits over the energy halo, which is fixed behind it */
+.overHalo {
+  position: relative;
+  z-index: 1;
+}
+
 /* Signals: a feed. One centred column, timestamps in mono, coral for risk. */
 
 .feed {

@@ -1,0 +1,27 @@
+/* fixed behind the whole page; the page's sections sit over it */
+.field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* without WebGL2: a still wash of the same light */
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background:
+    radial-gradient(40% 60% at 78% 30%, hsl(230 75% 65% / 0.28), transparent 70%),
+    radial-gradient(30% 40% at 30% 80%, hsl(355 84% 70% / 0.16), transparent 70%);
+}
+
+.fallback[data-on="true"] {
+  display: block;
+}

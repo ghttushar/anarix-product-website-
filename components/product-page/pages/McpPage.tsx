@@ -13,6 +13,7 @@ import { Typewriter } from "@/components/motion/Typewriter";
 import type { ProductPage } from "@/content/products/types";
 import { CLIENTS, MCP_ANSWER, MCP_ASK, MCP_SERVER, MCP_SETUP, MCP_TOOL, type Client } from "@/content/products/samples";
 import { NameHero } from "../NameHero";
+import { McpGap } from "./McpGap";
 import { Figure, useHandled } from "../shared";
 import { Close } from "../Close";
 import { Capabilities, HowItWorks } from "../Sections";
@@ -194,6 +195,8 @@ export function McpPage({ page }: { page: ProductPage }) {
   return (
     <>
       <NameHero page={page} layout="hub" art={<McpHub bubble={page.bubble} />} />
+      {/* the problem, told the dreamteam.ai way: the data everywhere except your AI */}
+      <McpGap />
       {/* what MCP is comes first: most sellers have never heard of it */}
       <Screen id="what-mcp-is" hasDock bodyClassName={`l-container ${m.proof}`} label={page.proof.title}>
         <WhatItIs page={page} />
