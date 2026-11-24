@@ -180,6 +180,16 @@ export const close = {
   bubble: "Ready when you are.",
 };
 
+/** the homepage as one scroll journey (Phase 9): the words that slide behind
+    the product ring, the order the ring turns in (it settles on Aan, whose
+    diamond the page bursts through), and what Aan is, read word by word */
+export const journey = {
+  marquee: ["One AI", "Every marketplace", "Always on", "Amazon", "Walmart", "Shopify"],
+  ringOrder: ["signals", "profitability", "rules", "mcp", "aan"] as const,
+  manifesto:
+    "Aan is your 24/7 e-commerce account manager. It watches your Amazon, Walmart and Shopify accounts around the clock, explains what changed and why, and acts within the rules you set. Bigger changes wait for your yes. Every action is logged, and every fix is checked over the next seven days.",
+};
+
 /** render **bold** phrases as <b> inside grey prose */
 export function inkSplit(text: string): { ink: boolean; text: string }[] {
   return text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part) => (part.startsWith("**") ? { ink: true, text: part.slice(2, -2) } : { ink: false, text: part }));

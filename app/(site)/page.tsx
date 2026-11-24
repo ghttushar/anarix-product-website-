@@ -1,29 +1,26 @@
 import { HeroScreen } from "@/components/home/HeroScreen";
-import { NightStory } from "@/components/home/NightStory";
-import { TrustScreen } from "@/components/home/TrustScreen";
-import { ProductScreen } from "@/components/home/ProductScreen";
-import { CloseScreen } from "@/components/home/CloseScreen";
 import { TourScreen } from "@/components/home/TourScreen";
-import { products, tour } from "@/content/home";
+import { RingScene } from "@/components/home/journey/ProductRing";
+import { Manifesto } from "@/components/home/journey/Manifesto";
+import { NightGallery } from "@/components/home/journey/NightGallery";
+import { Finale } from "@/components/home/journey/Finale";
+import { tour } from "@/content/home";
 
-/* The promise and its proof, one night with Aan, the products in the order a
-   seller meets them, why you can trust it, what it plugs into, and the film.
-   The product tour appears after the hero once its recording exists. */
+/* The homepage as one scroll journey (Phase 9, structure from the
+   Superconscious reference): the promise; the products on a ring that
+   settles on Aan; the burst through Aan's hollow diamond, where the Anarix
+   mark rises; what Aan is, word by word; one night with Aan as a sideways
+   gallery; and the fragments of how far Aan goes converging on the card
+   that opens into the close. */
 export default function Home() {
-  const mcp = products.find((p) => p.id === "mcp");
   return (
     <>
       <HeroScreen />
       {tour.video && <TourScreen />}
-      <NightStory />
-      {products
-        .filter((p) => p.id !== "mcp")
-        .map((p) => (
-          <ProductScreen key={p.id} p={p} />
-        ))}
-      <TrustScreen />
-      {mcp && <ProductScreen p={mcp} />}
-      <CloseScreen />
+      <RingScene />
+      <Manifesto />
+      <NightGallery />
+      <Finale />
     </>
   );
 }

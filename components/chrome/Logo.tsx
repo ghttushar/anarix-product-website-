@@ -26,3 +26,18 @@ export function AnarixLogo({ className = "", height = 22 }: { className?: string
     </svg>
   );
 }
+
+/** The Anarix symbol alone (coral diamond over the blue peaks), for moments
+    where the mark appears without the wordmark: it rises out of Aan's
+    diamond in the homepage journey. */
+export function AnarixMark({ className = "", height = 48 }: { className?: string; height?: number }) {
+  return (
+    <svg className={className} viewBox="0 0 559 342" height={height} width={(height * 559) / 342} role="img" aria-label="Anarix">
+      <polygon fill="#F26E77" points="300.4,149.8 366.5,74.4 299.7,0 233.6,75.4" />
+      <path
+        fill="#4A62D9"
+        d="M399.9,111.7l-99.1,113.1L200.6,113.1L0,342h155.4c27.2,0,53-11.7,70.9-32.1l74.7-85.2l77.2,86.1c17.9,19.9,43.4,31.3,70.2,31.3h158.1L399.9,111.7L399.9,111.7z"
+      />
+    </svg>
+  );
+}
