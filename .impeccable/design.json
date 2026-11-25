@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-24T16:27:31.312Z",
+  "generatedAt": "2026-11-25T04:34:14.629Z",
   "title": "Design System: Anarix Platform",
   "extensions": {
     "colorMeta": {
@@ -62,6 +62,21 @@
           "hsl(230 65% 65%)",
           "hsl(230 65% 80%)",
           "hsl(230 65% 95%)"
+        ]
+      },
+      "periwinkle-act": {
+        "role": "primary",
+        "displayName": "Act Periwinkle",
+        "canonical": "#8a9cf6",
+        "tonalRamp": [
+          "hsl(230 86% 15%)",
+          "hsl(230 86% 25%)",
+          "hsl(230 86% 35%)",
+          "hsl(230 86% 45%)",
+          "hsl(230 86% 55%)",
+          "hsl(230 86% 65%)",
+          "hsl(230 86% 80%)",
+          "hsl(230 86% 95%)"
         ]
       },
       "lit-night": {
@@ -152,6 +167,51 @@
           "hsl(355 70% 65%)",
           "hsl(355 70% 80%)",
           "hsl(355 70% 95%)"
+        ]
+      },
+      "studio-deep": {
+        "role": "tertiary",
+        "displayName": "Studio Gradient, deep",
+        "canonical": "#10163a",
+        "tonalRamp": [
+          "hsl(231 57% 15%)",
+          "hsl(231 57% 25%)",
+          "hsl(231 57% 35%)",
+          "hsl(231 57% 45%)",
+          "hsl(231 57% 55%)",
+          "hsl(231 57% 65%)",
+          "hsl(231 57% 80%)",
+          "hsl(231 57% 95%)"
+        ]
+      },
+      "studio-mid": {
+        "role": "tertiary",
+        "displayName": "Studio Gradient, mid",
+        "canonical": "#1f2c7a",
+        "tonalRamp": [
+          "hsl(231 60% 15%)",
+          "hsl(231 60% 25%)",
+          "hsl(231 60% 35%)",
+          "hsl(231 60% 45%)",
+          "hsl(231 60% 55%)",
+          "hsl(231 60% 65%)",
+          "hsl(231 60% 80%)",
+          "hsl(231 60% 95%)"
+        ]
+      },
+      "studio-bright": {
+        "role": "tertiary",
+        "displayName": "Studio Gradient, bright",
+        "canonical": "#4a62d9",
+        "tonalRamp": [
+          "hsl(230 65% 15%)",
+          "hsl(230 65% 25%)",
+          "hsl(230 65% 35%)",
+          "hsl(230 65% 45%)",
+          "hsl(230 65% 55%)",
+          "hsl(230 65% 65%)",
+          "hsl(230 65% 80%)",
+          "hsl(230 65% 95%)"
         ]
       },
       "sky-night": {
@@ -394,6 +454,531 @@
           "hsl(0 0% 95%)"
         ]
       },
+      "ground-day": {
+        "role": "neutral",
+        "displayName": "Ground (day)",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "hsl(0 0% 15%)",
+          "hsl(0 0% 25%)",
+          "hsl(0 0% 35%)",
+          "hsl(0 0% 45%)",
+          "hsl(0 0% 55%)",
+          "hsl(0 0% 65%)",
+          "hsl(0 0% 80%)",
+          "hsl(0 0% 95%)"
+        ]
+      },
+      "ground-night": {
+        "role": "neutral",
+        "displayName": "Ground (night)",
+        "canonical": "#0b0e14",
+        "tonalRamp": [
+          "hsl(220 29% 15%)",
+          "hsl(220 29% 25%)",
+          "hsl(220 29% 35%)",
+          "hsl(220 29% 45%)",
+          "hsl(220 29% 55%)",
+          "hsl(220 29% 65%)",
+          "hsl(220 29% 80%)",
+          "hsl(220 29% 95%)"
+        ]
+      },
+      "ground-ink-day": {
+        "role": "neutral",
+        "displayName": "Ground Ink (day)",
+        "canonical": "#0b0e14",
+        "tonalRamp": [
+          "hsl(220 29% 15%)",
+          "hsl(220 29% 25%)",
+          "hsl(220 29% 35%)",
+          "hsl(220 29% 45%)",
+          "hsl(220 29% 55%)",
+          "hsl(220 29% 65%)",
+          "hsl(220 29% 80%)",
+          "hsl(220 29% 95%)"
+        ]
+      },
+      "ground-ink-night": {
+        "role": "neutral",
+        "displayName": "Ground Ink (night)",
+        "canonical": "#f2f3fa",
+        "tonalRamp": [
+          "hsl(233 44% 15%)",
+          "hsl(233 44% 25%)",
+          "hsl(233 44% 35%)",
+          "hsl(233 44% 45%)",
+          "hsl(233 44% 55%)",
+          "hsl(233 44% 65%)",
+          "hsl(233 44% 80%)",
+          "hsl(233 44% 95%)"
+        ]
+      },
+      "ground-ink-2-day": {
+        "role": "neutral",
+        "displayName": "Ground Ink 2 (day)",
+        "canonical": "hsl(220 10% 40%)",
+        "tonalRamp": [
+          "hsl(220 10% 15%)",
+          "hsl(220 10% 25%)",
+          "hsl(220 10% 35%)",
+          "hsl(220 10% 45%)",
+          "hsl(220 10% 55%)",
+          "hsl(220 10% 65%)",
+          "hsl(220 10% 80%)",
+          "hsl(220 10% 95%)"
+        ]
+      },
+      "ground-ink-2-night": {
+        "role": "neutral",
+        "displayName": "Ground Ink 2 (night)",
+        "canonical": "hsl(228 14% 66%)",
+        "tonalRamp": [
+          "hsl(228 14% 15%)",
+          "hsl(228 14% 25%)",
+          "hsl(228 14% 35%)",
+          "hsl(228 14% 45%)",
+          "hsl(228 14% 55%)",
+          "hsl(228 14% 65%)",
+          "hsl(228 14% 80%)",
+          "hsl(228 14% 95%)"
+        ]
+      },
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "#05060a",
+        "tonalRamp": [
+          "hsl(228 33% 15%)",
+          "hsl(228 33% 25%)",
+          "hsl(228 33% 35%)",
+          "hsl(228 33% 45%)",
+          "hsl(228 33% 55%)",
+          "hsl(228 33% 65%)",
+          "hsl(228 33% 80%)",
+          "hsl(228 33% 95%)"
+        ]
+      },
+      "signals-black": {
+        "role": "neutral",
+        "displayName": "Signals Black",
+        "canonical": "#020205",
+        "tonalRamp": [
+          "hsl(240 43% 15%)",
+          "hsl(240 43% 25%)",
+          "hsl(240 43% 35%)",
+          "hsl(240 43% 45%)",
+          "hsl(240 43% 55%)",
+          "hsl(240 43% 65%)",
+          "hsl(240 43% 80%)",
+          "hsl(240 43% 95%)"
+        ]
+      },
+      "stage-ink": {
+        "role": "neutral",
+        "displayName": "Stage Ink",
+        "canonical": "#0b0e14",
+        "tonalRamp": [
+          "hsl(220 29% 15%)",
+          "hsl(220 29% 25%)",
+          "hsl(220 29% 35%)",
+          "hsl(220 29% 45%)",
+          "hsl(220 29% 55%)",
+          "hsl(220 29% 65%)",
+          "hsl(220 29% 80%)",
+          "hsl(220 29% 95%)"
+        ]
+      },
+      "app-bg-day": {
+        "role": "neutral",
+        "displayName": "App Bg (day)",
+        "canonical": "#f5f6fa",
+        "tonalRamp": [
+          "hsl(228 33% 15%)",
+          "hsl(228 33% 25%)",
+          "hsl(228 33% 35%)",
+          "hsl(228 33% 45%)",
+          "hsl(228 33% 55%)",
+          "hsl(228 33% 65%)",
+          "hsl(228 33% 80%)",
+          "hsl(228 33% 95%)"
+        ]
+      },
+      "app-bg-night": {
+        "role": "neutral",
+        "displayName": "App Bg (night)",
+        "canonical": "#121217",
+        "tonalRamp": [
+          "hsl(240 12% 15%)",
+          "hsl(240 12% 25%)",
+          "hsl(240 12% 35%)",
+          "hsl(240 12% 45%)",
+          "hsl(240 12% 55%)",
+          "hsl(240 12% 65%)",
+          "hsl(240 12% 80%)",
+          "hsl(240 12% 95%)"
+        ]
+      },
+      "app-card-day": {
+        "role": "neutral",
+        "displayName": "App Card (day)",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "hsl(0 0% 15%)",
+          "hsl(0 0% 25%)",
+          "hsl(0 0% 35%)",
+          "hsl(0 0% 45%)",
+          "hsl(0 0% 55%)",
+          "hsl(0 0% 65%)",
+          "hsl(0 0% 80%)",
+          "hsl(0 0% 95%)"
+        ]
+      },
+      "app-card-night": {
+        "role": "neutral",
+        "displayName": "App Card (night)",
+        "canonical": "#1b1b22",
+        "tonalRamp": [
+          "hsl(240 11% 15%)",
+          "hsl(240 11% 25%)",
+          "hsl(240 11% 35%)",
+          "hsl(240 11% 45%)",
+          "hsl(240 11% 55%)",
+          "hsl(240 11% 65%)",
+          "hsl(240 11% 80%)",
+          "hsl(240 11% 95%)"
+        ]
+      },
+      "app-raise-day": {
+        "role": "neutral",
+        "displayName": "App Raise (day)",
+        "canonical": "#f4f5f8",
+        "tonalRamp": [
+          "hsl(225 22% 15%)",
+          "hsl(225 22% 25%)",
+          "hsl(225 22% 35%)",
+          "hsl(225 22% 45%)",
+          "hsl(225 22% 55%)",
+          "hsl(225 22% 65%)",
+          "hsl(225 22% 80%)",
+          "hsl(225 22% 95%)"
+        ]
+      },
+      "app-raise-night": {
+        "role": "neutral",
+        "displayName": "App Raise (night)",
+        "canonical": "#22222b",
+        "tonalRamp": [
+          "hsl(240 12% 15%)",
+          "hsl(240 12% 25%)",
+          "hsl(240 12% 35%)",
+          "hsl(240 12% 45%)",
+          "hsl(240 12% 55%)",
+          "hsl(240 12% 65%)",
+          "hsl(240 12% 80%)",
+          "hsl(240 12% 95%)"
+        ]
+      },
+      "app-line-day": {
+        "role": "neutral",
+        "displayName": "App Line (day)",
+        "canonical": "#dfe1ec",
+        "tonalRamp": [
+          "hsl(231 25% 15%)",
+          "hsl(231 25% 25%)",
+          "hsl(231 25% 35%)",
+          "hsl(231 25% 45%)",
+          "hsl(231 25% 55%)",
+          "hsl(231 25% 65%)",
+          "hsl(231 25% 80%)",
+          "hsl(231 25% 95%)"
+        ]
+      },
+      "app-line-night": {
+        "role": "neutral",
+        "displayName": "App Line (night)",
+        "canonical": "#282833",
+        "tonalRamp": [
+          "hsl(240 12% 15%)",
+          "hsl(240 12% 25%)",
+          "hsl(240 12% 35%)",
+          "hsl(240 12% 45%)",
+          "hsl(240 12% 55%)",
+          "hsl(240 12% 65%)",
+          "hsl(240 12% 80%)",
+          "hsl(240 12% 95%)"
+        ]
+      },
+      "app-ink-day": {
+        "role": "neutral",
+        "displayName": "App Ink (day)",
+        "canonical": "#1f1f27",
+        "tonalRamp": [
+          "hsl(240 11% 15%)",
+          "hsl(240 11% 25%)",
+          "hsl(240 11% 35%)",
+          "hsl(240 11% 45%)",
+          "hsl(240 11% 55%)",
+          "hsl(240 11% 65%)",
+          "hsl(240 11% 80%)",
+          "hsl(240 11% 95%)"
+        ]
+      },
+      "app-ink-night": {
+        "role": "neutral",
+        "displayName": "App Ink (night)",
+        "canonical": "#f0f0ff",
+        "tonalRamp": [
+          "hsl(240 100% 15%)",
+          "hsl(240 100% 25%)",
+          "hsl(240 100% 35%)",
+          "hsl(240 100% 45%)",
+          "hsl(240 100% 55%)",
+          "hsl(240 100% 65%)",
+          "hsl(240 100% 80%)",
+          "hsl(240 100% 95%)"
+        ]
+      },
+      "app-ink-2-day": {
+        "role": "neutral",
+        "displayName": "App Ink 2 (day)",
+        "canonical": "#3d424b",
+        "tonalRamp": [
+          "hsl(219 10% 15%)",
+          "hsl(219 10% 25%)",
+          "hsl(219 10% 35%)",
+          "hsl(219 10% 45%)",
+          "hsl(219 10% 55%)",
+          "hsl(219 10% 65%)",
+          "hsl(219 10% 80%)",
+          "hsl(219 10% 95%)"
+        ]
+      },
+      "app-ink-2-night": {
+        "role": "neutral",
+        "displayName": "App Ink 2 (night)",
+        "canonical": "#c6c9dd",
+        "tonalRamp": [
+          "hsl(232 25% 15%)",
+          "hsl(232 25% 25%)",
+          "hsl(232 25% 35%)",
+          "hsl(232 25% 45%)",
+          "hsl(232 25% 55%)",
+          "hsl(232 25% 65%)",
+          "hsl(232 25% 80%)",
+          "hsl(232 25% 95%)"
+        ]
+      },
+      "app-muted-day": {
+        "role": "neutral",
+        "displayName": "App Muted (day)",
+        "canonical": "#646a76",
+        "tonalRamp": [
+          "hsl(220 8% 15%)",
+          "hsl(220 8% 25%)",
+          "hsl(220 8% 35%)",
+          "hsl(220 8% 45%)",
+          "hsl(220 8% 55%)",
+          "hsl(220 8% 65%)",
+          "hsl(220 8% 80%)",
+          "hsl(220 8% 95%)"
+        ]
+      },
+      "app-muted-night": {
+        "role": "neutral",
+        "displayName": "App Muted (night)",
+        "canonical": "#9197b6",
+        "tonalRamp": [
+          "hsl(230 20% 15%)",
+          "hsl(230 20% 25%)",
+          "hsl(230 20% 35%)",
+          "hsl(230 20% 45%)",
+          "hsl(230 20% 55%)",
+          "hsl(230 20% 65%)",
+          "hsl(230 20% 80%)",
+          "hsl(230 20% 95%)"
+        ]
+      },
+      "app-faint-day": {
+        "role": "neutral",
+        "displayName": "App Faint (day)",
+        "canonical": "#9aa0ab",
+        "tonalRamp": [
+          "hsl(219 9% 15%)",
+          "hsl(219 9% 25%)",
+          "hsl(219 9% 35%)",
+          "hsl(219 9% 45%)",
+          "hsl(219 9% 55%)",
+          "hsl(219 9% 65%)",
+          "hsl(219 9% 80%)",
+          "hsl(219 9% 95%)"
+        ]
+      },
+      "app-faint-night": {
+        "role": "neutral",
+        "displayName": "App Faint (night)",
+        "canonical": "#6c7190",
+        "tonalRamp": [
+          "hsl(232 14% 15%)",
+          "hsl(232 14% 25%)",
+          "hsl(232 14% 35%)",
+          "hsl(232 14% 45%)",
+          "hsl(232 14% 55%)",
+          "hsl(232 14% 65%)",
+          "hsl(232 14% 80%)",
+          "hsl(232 14% 95%)"
+        ]
+      },
+      "app-primary-day": {
+        "role": "tertiary",
+        "displayName": "App Primary (day)",
+        "canonical": "#4a62d9",
+        "tonalRamp": [
+          "hsl(230 65% 15%)",
+          "hsl(230 65% 25%)",
+          "hsl(230 65% 35%)",
+          "hsl(230 65% 45%)",
+          "hsl(230 65% 55%)",
+          "hsl(230 65% 65%)",
+          "hsl(230 65% 80%)",
+          "hsl(230 65% 95%)"
+        ]
+      },
+      "app-primary-night": {
+        "role": "tertiary",
+        "displayName": "App Primary (night)",
+        "canonical": "#6e82f5",
+        "tonalRamp": [
+          "hsl(231 87% 15%)",
+          "hsl(231 87% 25%)",
+          "hsl(231 87% 35%)",
+          "hsl(231 87% 45%)",
+          "hsl(231 87% 55%)",
+          "hsl(231 87% 65%)",
+          "hsl(231 87% 80%)",
+          "hsl(231 87% 95%)"
+        ]
+      },
+      "app-tint-day": {
+        "role": "tertiary",
+        "displayName": "App Tint (day)",
+        "canonical": "#eff1fd",
+        "tonalRamp": [
+          "hsl(231 78% 15%)",
+          "hsl(231 78% 25%)",
+          "hsl(231 78% 35%)",
+          "hsl(231 78% 45%)",
+          "hsl(231 78% 55%)",
+          "hsl(231 78% 65%)",
+          "hsl(231 78% 80%)",
+          "hsl(231 78% 95%)"
+        ]
+      },
+      "app-tint-night": {
+        "role": "tertiary",
+        "displayName": "App Tint (night)",
+        "canonical": "hsl(231 88% 70% / 0.14)",
+        "tonalRamp": [
+          "hsl(231 88% 15%)",
+          "hsl(231 88% 25%)",
+          "hsl(231 88% 35%)",
+          "hsl(231 88% 45%)",
+          "hsl(231 88% 55%)",
+          "hsl(231 88% 65%)",
+          "hsl(231 88% 80%)",
+          "hsl(231 88% 95%)"
+        ]
+      },
+      "app-gain-day": {
+        "role": "tertiary",
+        "displayName": "App Gain (mockups only) (day)",
+        "canonical": "#2c9653",
+        "tonalRamp": [
+          "hsl(142 55% 15%)",
+          "hsl(142 55% 25%)",
+          "hsl(142 55% 35%)",
+          "hsl(142 55% 45%)",
+          "hsl(142 55% 55%)",
+          "hsl(142 55% 65%)",
+          "hsl(142 55% 80%)",
+          "hsl(142 55% 95%)"
+        ]
+      },
+      "app-gain-night": {
+        "role": "tertiary",
+        "displayName": "App Gain (mockups only) (night)",
+        "canonical": "#3fb068",
+        "tonalRamp": [
+          "hsl(142 47% 15%)",
+          "hsl(142 47% 25%)",
+          "hsl(142 47% 35%)",
+          "hsl(142 47% 45%)",
+          "hsl(142 47% 55%)",
+          "hsl(142 47% 65%)",
+          "hsl(142 47% 80%)",
+          "hsl(142 47% 95%)"
+        ]
+      },
+      "app-risk-day": {
+        "role": "tertiary",
+        "displayName": "App Risk (mockups only) (day)",
+        "canonical": "#ca2b2b",
+        "tonalRamp": [
+          "hsl(0 65% 15%)",
+          "hsl(0 65% 25%)",
+          "hsl(0 65% 35%)",
+          "hsl(0 65% 45%)",
+          "hsl(0 65% 55%)",
+          "hsl(0 65% 65%)",
+          "hsl(0 65% 80%)",
+          "hsl(0 65% 95%)"
+        ]
+      },
+      "app-risk-night": {
+        "role": "tertiary",
+        "displayName": "App Risk (mockups only) (night)",
+        "canonical": "#e05252",
+        "tonalRamp": [
+          "hsl(0 70% 15%)",
+          "hsl(0 70% 25%)",
+          "hsl(0 70% 35%)",
+          "hsl(0 70% 45%)",
+          "hsl(0 70% 55%)",
+          "hsl(0 70% 65%)",
+          "hsl(0 70% 80%)",
+          "hsl(0 70% 95%)"
+        ]
+      },
+      "app-warn-day": {
+        "role": "tertiary",
+        "displayName": "App Warn (mockups only) (day)",
+        "canonical": "#c98a1d",
+        "tonalRamp": [
+          "hsl(38 75% 15%)",
+          "hsl(38 75% 25%)",
+          "hsl(38 75% 35%)",
+          "hsl(38 75% 45%)",
+          "hsl(38 75% 55%)",
+          "hsl(38 75% 65%)",
+          "hsl(38 75% 80%)",
+          "hsl(38 75% 95%)"
+        ]
+      },
+      "app-warn-night": {
+        "role": "tertiary",
+        "displayName": "App Warn (mockups only) (night)",
+        "canonical": "#d99726",
+        "tonalRamp": [
+          "hsl(38 70% 15%)",
+          "hsl(38 70% 25%)",
+          "hsl(38 70% 35%)",
+          "hsl(38 70% 45%)",
+          "hsl(38 70% 55%)",
+          "hsl(38 70% 65%)",
+          "hsl(38 70% 80%)",
+          "hsl(38 70% 95%)"
+        ]
+      },
       "video-ground": {
         "role": "neutral",
         "displayName": "Video Ground",
@@ -543,111 +1128,6 @@
           "hsl(209 25% 80%)",
           "hsl(209 25% 95%)"
         ]
-      },
-      "periwinkle-act": {
-        "role": "primary",
-        "displayName": "Act Periwinkle",
-        "canonical": "#8a9cf6",
-        "tonalRamp": [
-          "hsl(230 86% 15%)",
-          "hsl(230 86% 25%)",
-          "hsl(230 86% 35%)",
-          "hsl(230 86% 45%)",
-          "hsl(230 86% 55%)",
-          "hsl(230 86% 65%)",
-          "hsl(230 86% 80%)",
-          "hsl(230 86% 95%)"
-        ]
-      },
-      "studio-deep": {
-        "role": "tertiary",
-        "displayName": "Studio Gradient, deep",
-        "canonical": "#10163a",
-        "tonalRamp": [
-          "hsl(231 57% 15%)",
-          "hsl(231 57% 25%)",
-          "hsl(231 57% 35%)",
-          "hsl(231 57% 45%)",
-          "hsl(231 57% 55%)",
-          "hsl(231 57% 65%)",
-          "hsl(231 57% 80%)",
-          "hsl(231 57% 95%)"
-        ]
-      },
-      "studio-mid": {
-        "role": "tertiary",
-        "displayName": "Studio Gradient, mid",
-        "canonical": "#1f2c7a",
-        "tonalRamp": [
-          "hsl(231 60% 15%)",
-          "hsl(231 60% 25%)",
-          "hsl(231 60% 35%)",
-          "hsl(231 60% 45%)",
-          "hsl(231 60% 55%)",
-          "hsl(231 60% 65%)",
-          "hsl(231 60% 80%)",
-          "hsl(231 60% 95%)"
-        ]
-      },
-      "studio-bright": {
-        "role": "tertiary",
-        "displayName": "Studio Gradient, bright",
-        "canonical": "#4a62d9",
-        "tonalRamp": [
-          "hsl(230 65% 15%)",
-          "hsl(230 65% 25%)",
-          "hsl(230 65% 35%)",
-          "hsl(230 65% 45%)",
-          "hsl(230 65% 55%)",
-          "hsl(230 65% 65%)",
-          "hsl(230 65% 80%)",
-          "hsl(230 65% 95%)"
-        ]
-      },
-      "void": {
-        "role": "neutral",
-        "displayName": "Void",
-        "canonical": "#05060a",
-        "tonalRamp": [
-          "hsl(228 33% 15%)",
-          "hsl(228 33% 25%)",
-          "hsl(228 33% 35%)",
-          "hsl(228 33% 45%)",
-          "hsl(228 33% 55%)",
-          "hsl(228 33% 65%)",
-          "hsl(228 33% 80%)",
-          "hsl(228 33% 95%)"
-        ]
-      },
-      "stage-white": {
-        "role": "neutral",
-        "displayName": "Stage White",
-        "canonical": "#fff",
-        "tonalRamp": [
-          "hsl(0 0% 15%)",
-          "hsl(0 0% 25%)",
-          "hsl(0 0% 35%)",
-          "hsl(0 0% 45%)",
-          "hsl(0 0% 55%)",
-          "hsl(0 0% 65%)",
-          "hsl(0 0% 80%)",
-          "hsl(0 0% 95%)"
-        ]
-      },
-      "stage-ink": {
-        "role": "neutral",
-        "displayName": "Stage Ink",
-        "canonical": "#0b0e14",
-        "tonalRamp": [
-          "hsl(220 29% 15%)",
-          "hsl(220 29% 25%)",
-          "hsl(220 29% 35%)",
-          "hsl(220 29% 45%)",
-          "hsl(220 29% 55%)",
-          "hsl(220 29% 65%)",
-          "hsl(220 29% 80%)",
-          "hsl(220 29% 95%)"
-        ]
       }
     },
     "typographyMeta": {
@@ -697,15 +1177,15 @@
       },
       "index": {
         "displayName": "Index",
-        "purpose": "Mono sequence numerals, uppercase, Ink 2 or Handled Periwinkle."
+        "purpose": "Mono sequence numerals (\"01 / 06\" on ring cards, gallery indexes, start steps)."
       },
       "frame-note": {
         "displayName": "Frame Note",
-        "purpose": "The honest sample-data label in a ProductFrame's top bar."
+        "purpose": "The honest sample-data label in a ProductFrame's top bar and at the foot of every app-ui card."
       },
       "studio-display": {
         "displayName": "Studio Display",
-        "purpose": "Signals hero headline; the homepage hero title and the Finale close use the same face and weight at their own sizes."
+        "purpose": "Signals hero headline; the homepage hero title, the world title, the gallery lead and the finale close use the same face and weight at their own sizes."
       },
       "studio-headline": {
         "displayName": "Studio Headline",
@@ -713,11 +1193,15 @@
       },
       "marquee": {
         "displayName": "Marquee",
-        "purpose": "Giant words sliding behind the homepage product ring."
+        "purpose": "Giant words sliding behind the homepage product ring, in Ground Ink."
       },
       "studio-button": {
         "displayName": "Studio Button",
         "purpose": "Homepage light and glass buttons, Signals act and ghost pills."
+      },
+      "app-ui": {
+        "displayName": "App UI",
+        "purpose": "Every app-ui mockup; parts are em steps of --app-fs (13px default), so a mockup is scaled by font size, never by transform."
       }
     },
     "shadows": [
@@ -759,17 +1243,27 @@
       {
         "name": "studio-card-drop",
         "value": "0 40px 70px -40px rgb(10 14 40 / 0.55)",
-        "purpose": "A product card on the homepage white stage."
+        "purpose": "A product card on the homepage ring."
       },
       {
         "name": "glass-drop",
         "value": "0 50px 90px -40px rgb(0 0 0 / 0.8)",
-        "purpose": "Product UI on a gallery panel; Signals glass cards go to 0 50px 140px -50px rgb(0 0 0 / 0.95)."
+        "purpose": "Mockups on a gallery panel; Signals glass cards go to 0 50px 140px -50px rgb(0 0 0 / 0.95)."
       },
       {
         "name": "act-glow",
         "value": "0 0 28px hsl(230 85% 75% / 0.45)",
         "purpose": "Signals action pill on hover."
+      },
+      {
+        "name": "app-shadow-night",
+        "value": "0 1px 2px rgb(0 0 0 / 0.3), 0 24px 48px -24px rgb(0 0 0 / 0.7)",
+        "purpose": "Every app-ui card at night (--app-shadow)."
+      },
+      {
+        "name": "app-shadow-day",
+        "value": "0 1px 2px rgb(20 22 33 / 0.04), 0 24px 48px -28px rgb(20 22 60 / 0.28)",
+        "purpose": "Every app-ui card by day (--app-shadow)."
       }
     ],
     "motion": [
@@ -841,7 +1335,7 @@
       {
         "name": "scroll-scene",
         "value": "GSAP timeline, pin: true, scrub: 1, invalidateOnRefresh, anticipatePin",
-        "purpose": "Pinned, scrubbed scenes: Intro (+=720%), Gallery (track overflow), Finale (+=360%), Signals panel (+=240%)."
+        "purpose": "Pinned, scrubbed scenes: Intro (+=760%), Gallery (track overflow), Finale (+=360%), Signals panel (+=240%)."
       },
       {
         "name": "ease-signals",
@@ -852,6 +1346,21 @@
         "name": "halo-follow",
         "value": "9% per frame toward the section shape",
         "purpose": "Signals halo easing between [data-halo] shapes."
+      },
+      {
+        "name": "chrome-tone",
+        "value": "throttled to 90ms on scroll and resize; also on theme or data-tone change",
+        "purpose": "ChromeTone reads the data-tone under the nav and island and sets html[data-nav]/[data-island] to dark in the light theme over a dark stage."
+      },
+      {
+        "name": "hero-lean",
+        "value": "up to 26px x 18px times depth, 0.8s power2.out",
+        "purpose": "The hero's floating app pieces lean against the pointer while the Intro is at rest."
+      },
+      {
+        "name": "signals-scrim",
+        "value": "opacity 0 to 1, scrubbed from 35% of the hero to its bottom",
+        "purpose": "Dims the halo past the Signals hero; 0.85 under reduced motion."
       }
     ],
     "breakpoints": [
@@ -890,6 +1399,10 @@
       {
         "name": "short-phone-hero",
         "value": "max-width 760px and max-height 740px"
+      },
+      {
+        "name": "hero-pieces",
+        "value": "max-height 800px or max-width 1180px"
       }
     ]
   },
@@ -962,7 +1475,7 @@
       "name": "Studio Light Button",
       "kind": "button",
       "refersTo": "button-studio-light",
-      "description": "Homepage hero and close primary: white on the gradient card, 10px radius.",
+      "description": "Homepage hero and close primary: white on a brand stage, 10px radius.",
       "html": "<a class=\"ds-light\" href=\"#\">Book a demo</a>",
       "css": ".ds-light{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:10px;background:#fff;color:#0b0e14;font:600 .8125rem/1 Inter,system-ui,sans-serif;text-decoration:none;transition:transform 160ms cubic-bezier(0.16,1,0.3,1)}.ds-light:active{transform:scale(.97)}.ds-light:focus-visible{outline:2px solid #fff;outline-offset:3px}"
     },
@@ -986,9 +1499,9 @@
       "name": "Studio Product Card",
       "kind": "card",
       "refersTo": "studio-card",
-      "description": "A product on the homepage ring: gradient, name pill, mono index, real UI, two-line hook.",
-      "html": "<article class=\"ds-scard\"><header><span class=\"ds-scard-pill\">Signals</span><span class=\"ds-scard-idx\">01 / 05</span></header><div class=\"ds-scard-ui\"></div><p class=\"ds-scard-hook\">3am change.<br><span>9am answer.</span></p></article>",
-      "css": ".ds-scard{display:flex;flex-direction:column;width:280px;height:409px;padding:16px;box-sizing:border-box;border-radius:22px;background:linear-gradient(170deg,#121a33,#1d2a66 60%,#3a4fc4);color:hsl(228 20% 94%);box-shadow:0 40px 70px -40px rgb(10 14 40 / .55)}.ds-scard header{display:flex;justify-content:space-between;align-items:center}.ds-scard-pill{padding:5px 10px;border-radius:999px;background:hsl(0 0% 100% / .14);font:500 .75rem/1 Inter,system-ui,sans-serif}.ds-scard-idx{font:500 .625rem/1 \"IBM Plex Mono\",ui-monospace,monospace;color:hsl(0 0% 100% / .6)}.ds-scard-ui{flex:1;margin:12px 0;border-radius:12px;background:hsl(222 30% 12% / .7);border:1px solid hsl(0 0% 100% / .1)}.ds-scard-hook{margin:0;font:500 1.4rem/1.12 Inter,system-ui,sans-serif;letter-spacing:-.025em}.ds-scard-hook span{color:hsl(0 0% 100% / .6)}"
+      "description": "A product on the homepage ring: gradient, name pill, mono index, app-ui elements, two-line hook.",
+      "html": "<article class=\"ds-scard\"><header><span class=\"ds-scard-pill\">Signals</span><span class=\"ds-scard-idx\">01 / 06</span></header><div class=\"ds-scard-ui\"></div><p class=\"ds-scard-hook\">3am change.<br><span>9am answer.</span></p></article>",
+      "css": ".ds-scard{display:flex;flex-direction:column;width:280px;height:409px;padding:14px;box-sizing:border-box;border-radius:22px;background:linear-gradient(170deg,#121a33,#1d2a66 60%,#3a4fc4);color:#fff;box-shadow:0 40px 70px -40px rgb(10 14 40 / .55)}.ds-scard header{display:flex;justify-content:space-between;align-items:center}.ds-scard-pill{padding:5px 10px;border-radius:999px;background:hsl(0 0% 100% / .14);font:500 .75rem/1 Inter,system-ui,sans-serif}.ds-scard-idx{font:500 .625rem/1 \"IBM Plex Mono\",ui-monospace,monospace;color:hsl(0 0% 100% / .6)}.ds-scard-ui{flex:1;margin:12px 0;border-radius:12px;background:hsl(222 30% 12% / .7);border:1px solid hsl(0 0% 100% / .1)}.ds-scard-hook{margin:0;font:500 1.4rem/1.12 Inter,system-ui,sans-serif;letter-spacing:-.025em}.ds-scard-hook span{color:hsl(0 0% 100% / .6)}"
     },
     {
       "name": "Aan (flat)",
@@ -997,33 +1510,55 @@
       "description": "The limbless coral diamond, flat and matte, with an idle breath; it acts only through motion.",
       "html": "<span class=\"ds-aan\"><span class=\"ds-aan-sq\"><span class=\"ds-aan-bd\"></span><span class=\"ds-aan-ey\"><i></i><i></i></span></span></span>",
       "css": ".ds-aan{--s:96px;position:relative;display:inline-block;width:var(--s);height:var(--s)}.ds-aan-sq{position:absolute;inset:0;transform-origin:50% 92%;animation:ds-breathe 3.2s ease-in-out infinite}.ds-aan-bd{position:absolute;left:50%;top:48%;width:calc(var(--s)*.62);height:calc(var(--s)*.62);margin:calc(var(--s)*-.31) 0 0 calc(var(--s)*-.31);border-radius:calc(var(--s)*.17);transform:rotate(45deg);background:radial-gradient(circle at 50% 38%,#f88a93 0%,#f57780 42%,#f46d76 78%,#f05e6a 100%);box-shadow:0 26px 64px -28px rgba(244,109,118,.5),inset 0 1px 0 rgba(255,255,255,.2)}.ds-aan-ey{position:absolute;left:50%;top:48%;display:flex;gap:calc(var(--s)*.105);transform:translate(-50%,-50%)}.ds-aan-ey i{width:calc(var(--s)*.085);height:calc(var(--s)*.13);border-radius:50%;background:#24090c}@keyframes ds-breathe{50%{transform:translateY(calc(var(--s)*-.04)) scale(1.02,.98)}}@media (prefers-reduced-motion:reduce){.ds-aan-sq{animation:none}}"
+    },
+    {
+      "name": "App UI Card",
+      "kind": "card",
+      "refersTo": "app-card",
+      "description": "A single element of the real app (here an alert row), in the app's own tokens, sized in em from --app-fs, with its Sample data note. Follows the theme: light by day, dark by night.",
+      "html": "<div class=\"ds-ui\"><div class=\"ds-uc\"><div class=\"ds-uh\"><span class=\"ds-ut\">Buy Box lost · Store A</span><span class=\"ds-um\">02:14</span></div><div class=\"ds-ub\"><span class=\"ds-prio\">High</span><span class=\"ds-cat\">Pricing</span><span class=\"ds-uv\">-$2,140</span></div><span class=\"ds-us\">Sample data</span></div></div>",
+      "css": ".ds-ui{--app-fs:13px;font:400 var(--app-fs)/1.35 Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums;color:#1f1f27;padding:24px;background:#fff}.ds-uc{border:1px solid #dfe1ec;border-radius:.72em;background:#fff;box-shadow:0 1px 2px rgb(20 22 33/.04),0 24px 48px -28px rgb(20 22 60/.28);overflow:hidden;max-width:26em}.ds-uh{display:flex;justify-content:space-between;gap:.8em;padding:.85em 1.1em;border-bottom:1px solid #eceef1}.ds-ut{font-weight:600;font-size:1.04em}.ds-um{font-size:.85em;color:#646a76}.ds-ub{display:flex;align-items:center;gap:.5em;padding:1em 1.1em}.ds-prio{padding:.25em .62em;border-radius:.38em;font-weight:700;font-size:.77em;letter-spacing:.04em;text-transform:uppercase;background:hsl(0 65% 48%/.1);color:#ca2b2b}.ds-cat{padding:.22em .6em;border:1px solid #c8cff9;border-radius:.38em;font-weight:600;font-size:.77em}.ds-uv{margin-left:auto;font-weight:600;color:#ca2b2b}.ds-us{display:block;padding:0 1.25em .85em;font:500 .72em/1 'IBM Plex Mono',ui-monospace,monospace;text-align:right;color:#9aa0ab}@media (prefers-color-scheme:dark){.ds-ui{background:#0b0e14;color:#f0f0ff}.ds-uc{background:#1b1b22;border-color:#282833;box-shadow:0 1px 2px rgb(0 0 0/.3),0 24px 48px -24px rgb(0 0 0/.7)}.ds-uh{border-color:#23232d}.ds-um{color:#9197b6}.ds-prio{background:hsl(0 60% 52%/.16);color:#e05252}.ds-cat{border-color:hsl(231 88% 70%/.32)}.ds-uv{color:#e05252}.ds-us{color:#6c7190}}"
+    },
+    {
+      "name": "Ground Button",
+      "kind": "button",
+      "refersTo": "button-ground",
+      "description": "The ring's explore button: Ground Ink on the page ground, inverting with the theme.",
+      "html": "<a class=\"ds-gb\" href=\"#\">Explore the platform</a>",
+      "css": ".ds-gb{display:inline-flex;padding:10px 18px;border-radius:10px;background:#0b0e14;color:#fff;font:500 .8125rem/1 Inter,system-ui,sans-serif;text-decoration:none}.ds-gb:focus-visible{outline:2px solid #4a62d9;outline-offset:3px}@media (prefers-color-scheme:dark){.ds-gb{background:#f2f3fa;color:#0b0e14}}"
     }
   ],
   "narrative": {
     "northStar": "The Long Exposure",
-    "overview": "The platform site is Swiss type shot with the shutter open: periwinkle light, one coral creature, and the real product, moved by the scroll. It now speaks in two registers that share one palette and one creature.\n\nThe **studio register** carries the homepage (`/platform`) and Signals (`/platform/signals`). Both are getlayers templates re-purposed for Anarix: the homepage is \"AI Studio\" (a gradient hero card that tilts and collapses into a 3D ring of the five products over a giant marquee, Aan's white diamond opening into a black world with a particle sphere and the manifesto, pinned horizontal product panels, and fragments drifting past a card that opens into the close), and Signals is \"Relay\" (black, a halo of light fibres behind everything, dark glass cards, mono labels). Headlines here are Inter 500, larger in size than in weight; light comes from deep-blue-to-periwinkle gradients with a coral glow, from the three.js particle sphere, and from the Signals halo. The homepage is a mix of every product (Signals, Profitability, Rules, MCP, Ask Aan), never a page about Aan alone.\n\nThe **screen register** carries the other product pages (Profitability, Rules, MCP with its pinned McpGap scene, and Aan). It is the Phase 8 system: one idea per `Screen`, Inter 800 headlines on a 12-column grid, long-exposure light trails converging on what matters, real product UI on `ProductFrame` cards that turn toward the cursor, and one travelling, limbless Aan.\n\nIn both registers the proof is the product: every visual that is not light or Aan is real Anarix UI, and every number in it is labelled as sample data. Aan, the coral diamond from the Ask Aan island, is flat and matte everywhere except one place, the homepage close, where `GlossyAan` renders it as the site's single glossy three.js object. Rejected and gone: soft clay (`ClayBlock`, the clay mascot shading, the clay CTA), the City Nocturne line-art scenes and the soft isometric \"circuit\" drawings. None of them return.",
+    "overview": "The platform site is Swiss type shot with the shutter open: periwinkle light, one coral creature, and the real app, moved by the scroll. It speaks in two registers that share one palette and one creature, and every page is built from three colour layers: the page ground, brand stages and product mockups.\n\nThe **studio register** carries the homepage (`/platform`) and Signals (`/platform/signals`). Both are getlayers templates re-purposed for Anarix. The homepage is \"AI Studio\": a gradient hero card with real app pieces floating in it, which tilts and closes onto the first card of a 3D ring of six products over a giant marquee; Aan's white diamond opening into a black world with a particle sphere and \"AI for good\"; pinned horizontal story panels; and app fragments drifting past a card that opens into the close. Signals is \"Relay\": black, a halo of light fibres behind everything, dark glass cards, mono labels, and the real Signals UI. Headlines here are Inter 500, larger in size than in weight; light comes from deep-blue-to-periwinkle gradients with a coral glow, from the three.js particle sphere and from the Signals halo. The homepage covers the whole platform (Signals, Profitability, Advertising, Rules, MCP, Ask Aan), never Aan alone.\n\nThe **screen register** carries the other product pages (Profitability, Rules, MCP with its pinned McpGap scene, and Aan). It is the Phase 8 system: one idea per `Screen`, Inter 800 headlines on a 12-column grid, long-exposure light trails converging on what matters, product UI on `ProductFrame` cards that turn toward the cursor, and one travelling, limbless Aan.\n\nIn both registers the proof is the product. On the homepage and Signals it is the app UI kit (`components/app-ui`): close recreations of single elements of the real Anarix app, in the app's own colours, following the theme the way the app does. Every number in it is labelled as sample data. Aan, the coral diamond from the Ask Aan island, is flat and matte everywhere; there is no glossy object on the site. Rejected and gone: soft clay (`ClayBlock`, the clay mascot shading, the clay CTA), the glossy three.js Aan, the City Nocturne line-art scenes and the soft isometric \"circuit\" drawings. None of them return.",
     "keyCharacteristics": [
+      "Three colour layers: the page ground follows the theme, brand stages stay one colour in both themes, product mockups follow the theme with the app's own tokens.",
       "Two registers on one palette: studio (Inter 500, gradient cards, black worlds, pinned GSAP scenes) on the homepage and Signals; screen (Inter 800, `Screen`, `ProductFrame`, `LightTrails`, travelling Aan) on the other product pages.",
-      "Only periwinkle (230) and coral (355) carry hue; studio surfaces blend from one to the other.",
-      "Real product UI everywhere, always labelled \"Sample data\" or \"Illustrative\".",
-      "Lenis smooth scroll under GSAP ScrollTrigger timelines that are pinned and scrubbed; transforms and opacity only while scrolling.",
-      "Aan is flat and limbless; the one glossy Aan stands in the homepage close.",
+      "The site's own hues are periwinkle (230) and coral (355); the app's green, red and amber appear only inside product mockups.",
+      "Real app elements, never whole pages, always labelled \"Sample data\" or \"Illustrative\".",
+      "Lenis smooth scroll under GSAP ScrollTrigger timelines that are pinned and scrubbed; transforms and opacity only while scrolling; the chrome reads its tone on a 90ms throttle, never per frame.",
+      "Aan is flat, matte and limbless everywhere.",
       "IBM Plex Mono for indexes, clocks, figures and honest labels; Fraunces for written moments and for the single italic word in a Signals headline."
     ],
     "rules": [
       {
+        "name": "The Three Layers Rule",
+        "body": "Every colour is ground, stage or mockup. The ground follows the theme; a brand stage keeps its colours in both themes; a mockup follows the theme through `--app-*` and never takes a stage's colours. Nothing on a stage reads `--ground`, and nothing on the ground is a fixed white or black.",
+        "section": "colors"
+      },
+      {
         "name": "The No Green Rule",
-        "body": "Positive is periwinkle, negative is coral, in every card, chart, halo and theme. No hue between roughly 60 and 180 enters the site.",
+        "body": "The site's own type, chrome, gradients, trails and halo never use green: positive is periwinkle, negative is coral. Green enters only inside a product mockup, as the app's own `--app-gain` for gains and Done, beside the app's red (`--app-risk`) for risk and amber (`--app-warn`) for warnings. Outside `components/app-ui` no hue between roughly 60 and 180 appears.",
         "section": "colors"
       },
       {
         "name": "The Two Hues Rule",
-        "body": "Only periwinkle (230) and coral (355) carry hue. A studio surface may blend from one to the other, and the blend's middle stops are the violets between them (`#c993d6`, `#6a5fe0`); a violet never appears on its own as a flat fill, a text colour or a UI state.",
+        "body": "Outside product mockups, only periwinkle (230) and coral (355) carry hue. A studio surface may blend from one to the other, and the blend's middle stops are the violets between them (`#c993d6`, `#6a5fe0`); a violet never appears on its own as a flat fill, a text colour or a UI state.",
         "section": "colors"
       },
       {
         "name": "The Coral Is Aan's Rule",
-        "body": "Coral is Aan, something going wrong, or the warm glow at the foot of a studio gradient. It is never a button fill, a heading, a link or a UI state of success.",
+        "body": "On the site's own surfaces coral is Aan, something going wrong, or the warm glow at the foot of a studio gradient. It is never a button fill, a heading, a link or a state of success.",
         "section": "colors"
       },
       {
@@ -1033,7 +1568,7 @@
       },
       {
         "name": "The Scope Rule",
-        "body": "In the screen register, colours come from the `.nocturne` roles (`--sky`, `--ink`, `--ink-2`, `--accent`, `--accent-solid`, `--risk`, `--risk-ink`, `--rule`, `--card`, `--card-line`, `--bubble-*`) and theme is the whole page at a different hour. The studio register is the exception and stays fixed in both themes: the homepage is a white stage with black worlds, Signals is black. Studio cards re-set the product UI roles locally so the same components render on them.",
+        "body": "In the screen register, colours come from the `.nocturne` roles (`--sky`, `--ink`, `--ink-2`, `--accent`, `--accent-solid`, `--risk`, `--risk-ink`, `--rule`, `--card`, `--card-line`, `--bubble-*`) and theme is the whole page at a different hour. In the studio register, ground, stage and mockup colours come from `--ground-*`, the stage's own fixed values and `--app-*`.",
         "section": "colors"
       },
       {
@@ -1043,7 +1578,7 @@
       },
       {
         "name": "The Grey Prose, Ink Phrase Rule",
-        "body": "Prose is the quieter ink; only the phrases that carry the argument switch to full ink at 500. In studio headlines the same move runs the other way: the second line drops to white at 55–60%. Emphasis is contrast, not colour or size.",
+        "body": "Prose is the quieter ink; only the phrases that carry the argument switch to full ink at 500. In studio headlines the same move runs the other way: the second line drops to white at 50–60%. Emphasis is contrast, not colour or size.",
         "section": "typography"
       },
       {
@@ -1057,8 +1592,13 @@
         "section": "typography"
       },
       {
+        "name": "The Em Scale Rule",
+        "body": "A mockup is sized by `--app-fs` and everything inside it in em; it is never scaled with a CSS or GSAP `scale` to fit. Motion may scale a piece in flight (the hero pieces flying into the centre card), never to size it.",
+        "section": "typography"
+      },
+      {
         "name": "The One Viewport Rule",
-        "body": "Above 620px of height, a `fit=\"screen\"` section and every pinned studio scene is exactly one viewport; cut copy or hide optional detail instead. QA is `scripts/qa/screens.mjs` at 1280x720, 1366x768, 1440x900, 1920x1080 and 390x844 with `fit-check.js`: a `Screen` is checked at its top, a `StoryScroll` at the middle of each chapter, and a GSAP-pinned `[data-pin]` scene at its start and at 36%, 68% and 98% through its pin-spacer. Flowing Relay sections on Signals are not screens and are not held to one viewport.",
+        "body": "Above 620px of height, a `fit=\"screen\"` section and every pinned studio scene is exactly one viewport; cut copy or hide optional detail instead. QA is `scripts/qa/screens.mjs` at 1280x720, 1366x768, 1440x900, 1920x1080 and 390x844 with `fit-check.js`, in both themes (`--theme light|dark`, which seeds the saved theme before the page boots): a `Screen` is checked at its top, a `StoryScroll` at the middle of each chapter, and a GSAP-pinned `[data-pin]` scene at its start and at 36%, 68% and 98% through its pin-spacer. Flowing Relay sections on Signals are not screens and are not held to one viewport.",
         "section": "layout"
       },
       {
@@ -1068,12 +1608,12 @@
       },
       {
         "name": "The Ruled, Not Boxed Rule",
-        "body": "In the screen register, group with space first and a 1px Rule hairline second (`.c-points`, proof figures, the permission ladder). Only product UI, studio cards, the film and video frames are boxed, and nothing is a card inside a card except product UI inside a studio card or panel, which is the template's own device.",
+        "body": "In the screen register, group with space first and a 1px Rule hairline second (`.c-points`, proof figures, the permission ladder). Only product UI, studio cards and panels, the hero proof strip, the start steps, the film and video frames are boxed, and nothing is a card inside a card except mockups inside a studio card or panel, which is the template's own device.",
         "section": "layout"
       },
       {
         "name": "The Light Is The Depth Rule",
-        "body": "Lift comes from light (trails, pools, floor glows, the cursor spotlight, the particle sphere, the halo, radial glows) and from real perspective, never from a hover lift or a hard offset shadow. Every surface is matte. The one glossy object on the site is `GlossyAan` in the homepage close (a clearcoated coral `MeshPhysicalMaterial` lit by a studio environment), standing where AI Studio has its chrome star; nothing else gets a sheen or a glossy gradient.",
+        "body": "Lift comes from light (trails, pools, floor glows, the cursor spotlight, the particle sphere, the halo, radial glows and auras) and from real perspective, never from a hover lift or a hard offset shadow. Every surface on the site is matte, Aan included; nothing gets a sheen, a clearcoat or a glossy gradient, and no glossy object returns.",
         "section": "elevation"
       },
       {
@@ -1082,46 +1622,54 @@
         "section": "elevation"
       },
       {
+        "name": "The Quiet Halo Rule",
+        "body": "On Signals the halo is sharp and bright only behind the hero. Every halo shape after it is defocused (0.9 or more) and dimmer (glow 0.42–0.55, no core), and a scroll-scrubbed scrim (`.scrim`, black radial at 30–72%) fades in over the canvas from 35% of the hero to its bottom, so the page reads. Under reduced motion the scrim sits at 0.85.",
+        "section": "elevation"
+      },
+      {
         "name": "The Smooth Scroll Rule",
-        "body": "Nothing re-renders React per scroll frame: scroll scenes write transforms and opacity through GSAP, the halo sets shader uniforms, and layout is measured on ScrollTrigger refresh only (`invalidateOnRefresh`, function-based values, the halo's `measure` on `refresh`). WebGL draws only while it can be seen (the sphere is switched by its ScrollTrigger, Glossy Aan by an IntersectionObserver, the halo stops when the tab is hidden). Reduced motion shows each scene's end state and leaves Lenis off.",
+        "body": "Nothing re-renders React per scroll frame: scroll scenes write transforms and opacity through GSAP, the halo sets shader uniforms, the chrome tone reads at most every 90ms, and layout is measured on ScrollTrigger refresh only (`invalidateOnRefresh`, function-based values, the halo's `measure` on `refresh`). WebGL draws only while it can be seen (the sphere is switched by its ScrollTrigger, the halo stops when the tab is hidden). Reduced motion shows each scene's end state and leaves Lenis off.",
         "section": "components"
       },
       {
         "name": "The Transform And Opacity Rule",
-        "body": "Animate transform and opacity. The exceptions the build carries are the blur-rise reveals, the trails' stroke draw, colour and glow transitions on hover and state, Aan's cube and bar morphs, and the Intro's hero frame collapsing onto its centre card by `clip-path`; add no more.",
+        "body": "Animate transform and opacity. The exceptions the build carries are the blur-rise reveals, the trails' stroke draw, colour and glow transitions on hover and state, Aan's cube and bar morphs, the Intro's hero frame collapsing onto its centre card by `clip-path`, and the `data-tone` attribute sets; add no more.",
         "section": "components"
       },
       {
         "name": "The Depth Drift Rule",
-        "body": "Parallax exists only inside pinned studio scenes, as depth: each gallery panel's UI drifts 14% against its frame, and the Finale's fragments travel at speeds set by their depth. The screen register has none.",
+        "body": "Parallax exists only inside the studio register, as depth: the hero's floating pieces lean with the pointer by their depth while the Intro is at rest, each gallery panel's mock drifts 10% each way against its frame, and the finale's fragments travel at speeds set by their depth. The screen register has none.",
         "section": "components"
       }
     ],
     "dos": [
-      "**Do** keep periwinkle and coral as the only hues; let studio gradients blend between them and nowhere else.",
-      "**Do** take every screen-register colour from the `.nocturne` roles so night and day both work, and keep the studio register's fixed grounds (white stage and black worlds on the homepage, black on Signals).",
+      "**Do** put every colour in its layer: page ground from `--ground-*`, brand stages fixed in both themes, product mockups from `--app-*`.",
+      "**Do** keep periwinkle and coral as the site's only hues; let studio gradients blend between them, and leave the app's green, red and amber inside mockups.",
+      "**Do** declare `data-tone` on every studio section and set it from the timeline when a pinned scene changes what sits under the chrome.",
+      "**Do** take every screen-register colour from the `.nocturne` roles so night and day both work.",
       "**Do** set screen-register headlines in Inter 800 (`.t-h2`, the name sizes) and studio headlines in Inter 500, and keep Fraunces for the morning brief, Aan's letter and one italic word per Signals headline.",
-      "**Do** show real product UI with an honest label (\"Sample data\", \"Sample rule\", \"Sample conversation\", \"Sample message\", \"Illustrative\"), in a `ProductFrame` or on a studio card or panel.",
-      "**Do** give the homepage every product (Signals, Profitability, Rules, MCP, Ask Aan), never a page about Aan alone.",
+      "**Do** build mockups from single app-ui elements, sized by `--app-fs`, with neutral sample names and a \"Sample data\" or \"Illustrative\" note.",
+      "**Do** give the homepage the whole platform (Signals, Profitability, Advertising, Rules, MCP, Ask Aan), never a page about Aan alone.",
       "**Do** keep proof figures to $1.2B GMV, 500+ brands and 12.8% TACoS.",
       "**Do** name marketplaces and apps (Amazon, Walmart, Shopify, Slack, Claude) as text.",
-      "**Do** build scroll scenes as pinned, scrubbed GSAP timelines over Lenis, moving transforms and opacity, measuring on refresh only, and mark them `data-pin` so `fit-check.js` checks them through the pin.",
+      "**Do** build scroll scenes as pinned, scrubbed GSAP timelines over Lenis, moving transforms and opacity, measuring on refresh only, and mark them `data-pin` so `fit-check.js` checks them through the pin; run QA in both themes.",
       "**Do** pause WebGL when it cannot be seen and load three.js only when the component mounts.",
       "**Do** design the reduced-motion state on purpose: each scene's end state shown in flow, nothing travelling, no Lenis.",
       "**Do** keep the nav, the Ask Aan island and the footer at parity with www.anarix.ai."
     ],
     "donts": [
-      "**Don't** use green, teal or any hue outside periwinkle (230) and coral (355), or a flat violet fill on its own.",
+      "**Don't** use green, teal or any hue outside periwinkle (230) and coral (355) on the site's own type, chrome, gradients, trails or halo, or a flat violet fill on its own.",
+      "**Don't** paint a brand stage with `--ground`, or let a mockup keep dark colours in the light theme.",
       "**Don't** use coral for buttons, headings, links or success states.",
-      "**Don't** give Aan arms, legs, hands or a face beyond its two eyes, or restyle it outside the island's `AanMascot`, the ring card's white diamond and `GlossyAan`.",
-      "**Don't** bring back soft clay, City Nocturne line-art scenes or the soft isometric drawings.",
-      "**Don't** add a second glossy object; `GlossyAan` in the homepage close is the only one.",
-      "**Don't** set React state from scroll, animate layout properties while scrolling, or measure the DOM on a scroll frame.",
-      "**Don't** show an unlabelled number in product UI, or invent customers, testimonials, logos or prices.",
-      "**Don't** draw marketplace or app logos.",
+      "**Don't** recreate a whole app page as a mockup, invent customers, or show an unlabelled number.",
+      "**Don't** scale a mockup with a transform to make it fit; change `--app-fs`.",
+      "**Don't** give Aan arms, legs, hands or a face beyond its two eyes, or restyle it outside the island's `AanMascot` and the ring card's white diamond.",
+      "**Don't** bring back soft clay, a glossy or clearcoated Aan, City Nocturne line-art scenes or the soft isometric drawings.",
+      "**Don't** set React state from scroll, animate layout properties while scrolling, measure the DOM on a scroll frame, or check the chrome tone per frame.",
+      "**Don't** invent testimonials, logos or prices, or draw marketplace or app logos.",
       "**Don't** let a `fit=\"screen\"` section or a pinned scene grow past one viewport above 620px of height.",
-      "**Don't** add hover lifts, hard offset shadows or gradient text.",
-      "**Don't** add parallax outside a pinned studio scene, or a second pinned story to a screen-register page.",
+      "**Don't** add hover lifts, hard offset shadows, glossy surfaces or gradient text.",
+      "**Don't** add parallax outside the studio register, or a second pinned story to a screen-register page.",
       "**Don't** bring the film's stamp red, Bodoni or grain onto site pages."
     ]
   }

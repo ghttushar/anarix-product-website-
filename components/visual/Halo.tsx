@@ -8,9 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
   hundred fibres of light pinched to a white-hot core, with bloom. On load
   the core flares and the fibres shoot out of it, out of focus, and settle
   sharp. Down the page the same fibres travel through a set of shapes, one
-  per section ([data-halo="n"]): the arc in the hero, an S-ribbon, a soft
-  out-of-focus field mid-page, a sharp sweep behind the catalog, a fade at
-  the end. Every fibre is computed on the GPU from a handful of numbers, so
+  per section ([data-halo="n"]): the sharp arc in the hero, then, out of
+  focus and dimmer so the page reads, an S-ribbon, a soft field, a
+  diagonal, a sweep behind the ways to act, and a fade at the end. Every fibre is computed on the GPU from a handful of numbers, so
   a scroll frame only sets uniforms: nothing is measured while scrolling.
 */
 
@@ -31,17 +31,17 @@ const KEYS: Key[] = [
   // 0 · hero: the arc, pinched to a white-hot core left of centre
   { p: [[0.9, -0.12], [0.64, 0.22], [0.49, 0.62], [0.57, 0.9], [0.74, 1.16]], pinch: 0.5, pinchW: 0.004, endW: 0.3, defocus: 0, glow: 1, core: 1 },
   // 1 · the strip and the glue line: an S-ribbon down the right
-  { p: [[0.98, -0.12], [0.64, 0.22], [0.74, 0.55], [0.5, 0.86], [0.62, 1.16]], pinch: 0.45, pinchW: 0.05, endW: 0.2, defocus: 0.12, glow: 0.95, core: 0 },
+  { p: [[0.98, -0.12], [0.64, 0.22], [0.74, 0.55], [0.5, 0.86], [0.62, 1.16]], pinch: 0.45, pinchW: 0.05, endW: 0.22, defocus: 1, glow: 0.55, core: 0 },
   // 2 · the rows: broad and out of focus
-  { p: [[1.08, 0.02], [0.6, 0.3], [0.26, 0.56], [0.46, 0.82], [0.18, 1.12]], pinch: 0.5, pinchW: 0.22, endW: 0.32, defocus: 1, glow: 0.5, core: 0 },
+  { p: [[1.08, 0.02], [0.6, 0.3], [0.26, 0.56], [0.46, 0.82], [0.18, 1.12]], pinch: 0.5, pinchW: 0.22, endW: 0.32, defocus: 1.2, glow: 0.45, core: 0 },
   // 3 · the panel, coverage and the brief: a soft field across the top
-  { p: [[-0.08, 0.18], [0.32, 0.36], [0.68, 0.28], [1.02, 0.56], [1.12, 0.92]], pinch: 0.5, pinchW: 0.2, endW: 0.3, defocus: 0.85, glow: 0.45, core: 0 },
+  { p: [[-0.08, 0.18], [0.32, 0.36], [0.68, 0.28], [1.02, 0.56], [1.12, 0.92]], pinch: 0.5, pinchW: 0.2, endW: 0.3, defocus: 1.1, glow: 0.42, core: 0 },
   // 4 · the numbers: back into focus, a diagonal
-  { p: [[-0.04, -0.1], [0.24, 0.3], [0.54, 0.46], [0.8, 0.72], [1.06, 1.06]], pinch: 0.45, pinchW: 0.06, endW: 0.18, defocus: 0.28, glow: 0.85, core: 0 },
+  { p: [[-0.04, -0.1], [0.24, 0.3], [0.54, 0.46], [0.8, 0.72], [1.06, 1.06]], pinch: 0.45, pinchW: 0.06, endW: 0.2, defocus: 1, glow: 0.5, core: 0 },
   // 5 · the catalog: a sharp horizontal sweep
-  { p: [[-0.12, 0.56], [0.24, 0.42], [0.5, 0.52], [0.76, 0.64], [1.12, 0.46]], pinch: 0.32, pinchW: 0.02, endW: 0.15, defocus: 0, glow: 1, core: 0.35 },
+  { p: [[-0.12, 0.56], [0.24, 0.42], [0.5, 0.52], [0.76, 0.64], [1.12, 0.46]], pinch: 0.32, pinchW: 0.04, endW: 0.17, defocus: 0.9, glow: 0.55, core: 0 },
   // 6 · the close: drifting off the top, soft
-  { p: [[-0.12, 0.3], [0.28, 0.2], [0.58, 0.3], [0.88, 0.18], [1.14, 0.12]], pinch: 0.5, pinchW: 0.08, endW: 0.18, defocus: 0.5, glow: 0.5, core: 0 },
+  { p: [[-0.12, 0.3], [0.28, 0.2], [0.58, 0.3], [0.88, 0.18], [1.14, 0.12]], pinch: 0.5, pinchW: 0.08, endW: 0.2, defocus: 1, glow: 0.45, core: 0 },
 ];
 
 /* on a portrait screen the hero arc hugs the right edge, clear of the copy */
@@ -97,7 +97,7 @@ const FIBRE_VS = /* glsl */ `
     vec2 tg = normalize(p1 - p0 + vec2(1e-4, 0.0));
     vec2 n = vec2(-tg.y, tg.x);
     // a sharp fibre is a hairline; out of focus it spreads wide and dim
-    float hw = 0.8 + uDefocus * (3.5 + 7.0 * aSeed.w);
+    float hw = 0.8 + uDefocus * (2.6 + 5.2 * aSeed.w);
     vAcross = aSide * 1.7;
     vec2 p = p0 + n * aSide * hw * 1.7;
     float fade = smoothstep(aRange.x, aRange.x + 0.08, aT) * (1.0 - smoothstep(aRange.y - 0.08, aRange.y, aT));
@@ -360,6 +360,15 @@ export function Halo({ className }: { className?: string }) {
       composer.addPass(bloom);
       composer.addPass(new OutputPass());
 
+      let soft = false;
+      const fullIndex = index.length;
+      const setSoft = (on: boolean) => {
+        soft = on;
+        renderer.setPixelRatio(on ? dpr * 0.5 : dpr);
+        composer.setPixelRatio(on ? dpr * 0.5 : dpr);
+        fg.setDrawRange(0, on ? Math.floor(fullIndex / 2 / 6) * 6 : fullIndex);
+        size();
+      };
       const size = () => {
         const w = el.clientWidth;
         const h = el.clientHeight;
@@ -456,6 +465,12 @@ export function Halo({ className }: { className?: string }) {
           bloom.strength = 0.8 + Math.exp(-Math.pow((el2 - 260) / 380, 2)) * 1.1;
         }
         shared.uDefocus.value = defocus;
+        // out of focus the field needs neither full resolution nor every
+        // fibre: half the pixels and half the strands, switched with a
+        // little hysteresis so it changes once at the hero's edge, not
+        // back and forth
+        if (!soft && defocus > 0.62) setSoft(true);
+        else if (soft && defocus < 0.38) setSoft(false);
         shared.uGlow.value = glow;
         const c = spineAt(pts, pinch);
         coreU.uCore.value.set(c[0] * shared.uRes.value.x, c[1] * shared.uRes.value.y);

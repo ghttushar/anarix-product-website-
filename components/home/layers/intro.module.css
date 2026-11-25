@@ -1,16 +1,19 @@
-/* The homepage opening in the AI Studio design: a white stage, a gradient
-   hero card, a 3D ring of product cards, and the black world behind Aan's
-   window. Anarix colors: deep blue to periwinkle with a coral glow; coral
-   where AI Studio uses lime. GSAP moves everything; CSS only places it. */
+/* The homepage opening in the AI Studio design: the page ground (which
+   follows the theme), a gradient hero card with real pieces of the product
+   floating in it, a 3D ring of six product cards, and the black world
+   behind Aan's window. The hero card, the ring cards and the world are
+   brand stages and keep their colours in both themes; the product UI on
+   them is the app's own, light by day and dark by night. GSAP moves
+   everything; CSS only places it. */
 .intro {
   --cw: clamp(236px, 21.5vw, 318px);
   --ch: calc(var(--cw) * 1.46);
-  --R: calc(var(--cw) * 0.86);
+  --R: calc(var(--cw) * 0.9);
   position: relative;
   height: 100svh;
   overflow: hidden;
-  background: #fff;
-  color: #0b0e14;
+  background: var(--ground);
+  color: var(--ground-ink);
 }
 
 .stage {
@@ -37,7 +40,7 @@
   align-items: center;
   font: 500 clamp(3.4rem, 7.2vw, 8.5rem) / 1 var(--font-display);
   letter-spacing: -0.045em;
-  color: #0b0e14;
+  color: var(--ground-ink);
   will-change: transform;
 }
 
@@ -51,7 +54,7 @@
   width: 0.14em;
   height: 0.14em;
   margin: 0 0.5em;
-  border: 0.03em solid #0b0e14;
+  border: 0.03em solid currentColor;
   border-radius: 50%;
 }
 
@@ -83,37 +86,41 @@
   backface-visibility: hidden;
 }
 
+.face {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
 /* a product card (the same in the hero and on the ring) */
 .card {
-  --sky: #0b0f16;
-  --ink: hsl(228 20% 94%);
-  --ink-2: #94a0b4;
-  --accent: hsl(230 75% 74%);
-  --accent-solid: hsl(230 65% 57%);
-  --risk: #f46d76;
-  --risk-ink: hsl(355 84% 76%);
-  --rule: hsl(0 0% 100% / 0.1);
-  --card: hsl(222 30% 12% / 0.7);
-  --card-line: hsl(0 0% 100% / 0.1);
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 16px;
+  padding: 14px;
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 22px;
-  background: linear-gradient(170deg, #121a33, #1d2a66 60%, #3a4fc4);
-  color: var(--ink);
+  background:
+    radial-gradient(80% 50% at 80% 105%, hsl(355 84% 70% / 0.45), transparent 62%),
+    linear-gradient(170deg, #121a33, #1d2a66 60%, #3a4fc4);
+  color: #fff;
   box-shadow: 0 40px 70px -40px rgb(10 14 40 / 0.55);
   backface-visibility: hidden;
 }
 
 .card[data-id="profitability"] {
   background:
-    radial-gradient(90% 60% at 80% 100%, hsl(355 84% 70% / 0.45), transparent 60%),
+    radial-gradient(90% 60% at 80% 100%, hsl(355 84% 70% / 0.5), transparent 60%),
     linear-gradient(170deg, #0d0f17, #1a1730 70%);
+}
+
+.card[data-id="advertising"] {
+  background:
+    radial-gradient(80% 60% at 20% 105%, hsl(355 84% 70% / 0.4), transparent 62%),
+    linear-gradient(170deg, #0a1030, #1b3487 58%, #4a62d9);
 }
 
 .card[data-id="rules"] {
@@ -143,7 +150,7 @@
 .cardPill {
   padding: 5px 10px;
   border-radius: 999px;
-  background: hsl(0 0% 100% / 0.14);
+  background: hsl(0 0% 100% / 0.16);
   font: 500 0.75rem/1 var(--font-body);
 }
 
@@ -159,15 +166,24 @@
   margin: 12px 0;
   overflow: hidden;
   /* where the UI is cut, it fades rather than chops */
-  mask-image: linear-gradient(180deg, #000 80%, transparent);
+  mask-image: linear-gradient(180deg, #000 82%, transparent);
 }
 
-/* product UI, shrunk to the card */
+/* the app's UI, sized to the card through its em base */
 .cardFit {
-  width: 128%;
-  transform: scale(0.78);
-  transform-origin: top left;
-  font-size: 0.875rem;
+  --app-fs: calc(var(--cw) * 0.031);
+}
+
+.stack {
+  display: grid;
+  gap: 0.6em;
+}
+
+.uiCard {
+  overflow: hidden;
+  border: 1px solid var(--app-line);
+  border-radius: 0.72em;
+  background: var(--app-card);
 }
 
 .cardHook {
@@ -227,8 +243,8 @@
   z-index: 3;
   padding: 10px 18px;
   border-radius: 10px;
-  background: #0b0e14;
-  color: #fff;
+  background: var(--ground-ink);
+  color: var(--ground);
   font: 500 0.8125rem/1 var(--font-body);
   text-decoration: none;
   transform: translateX(-50%);
@@ -261,10 +277,28 @@
   will-change: clip-path;
 }
 
-.title {
+.head {
   position: absolute;
   left: clamp(20px, 3.4vw, 56px);
-  top: clamp(86px, 13svh, 130px);
+  top: clamp(80px, 11svh, 118px);
+}
+
+/* "AI for good", the line the platform stands on */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 6px 16px 6px 8px;
+  border: 1px solid hsl(0 0% 100% / 0.3);
+  border-radius: 999px;
+  background: hsl(0 0% 100% / 0.1);
+  box-shadow: 0 0 40px hsl(355 84% 70% / 0.25);
+  font: 600 0.9375rem/1 var(--font-body);
+  letter-spacing: -0.005em;
+}
+
+.title {
   margin: 0;
   font: 500 clamp(2.3rem, 3.7vw, 4.2rem) / 1 var(--font-display);
   letter-spacing: -0.04em;
@@ -282,14 +316,14 @@
   position: absolute;
   left: clamp(20px, 3.4vw, 56px);
   bottom: clamp(20px, 4svh, 40px);
-  max-width: min(30rem, 34vw);
+  max-width: min(33rem, 36vw);
 }
 
 .lede {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.55;
-  color: hsl(0 0% 100% / 0.82);
+  color: hsl(0 0% 100% / 0.86);
 }
 
 .ctas {
@@ -328,41 +362,117 @@
 }
 
 .light:focus-visible,
-.glass:focus-visible {
+.glass:focus-visible,
+.index a:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
 }
 
+/* the proof, as a stat strip */
 .proof {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
+  overflow: hidden;
+  border: 1px solid hsl(0 0% 100% / 0.2);
+  border-radius: 12px;
+  background: hsl(0 0% 100% / 0.06);
 }
 
-.proof li {
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: hsl(0 0% 100% / 0.1);
-  font-size: 0.75rem;
-  color: hsl(0 0% 100% / 0.8);
+.proof div {
+  padding: 10px 14px;
+  border-left: 1px solid hsl(0 0% 100% / 0.14);
 }
 
-.proof b {
-  color: #fff;
+.proof div:first-child {
+  border-left: 0;
 }
 
-.corner {
+.proof dt {
+  font: 600 0.625rem/1.2 var(--font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: hsl(0 0% 100% / 0.62);
+}
+
+.proof dd {
+  margin: 4px 0 0;
+  font: 600 1.25rem/1 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* the platform index, bottom right */
+.index {
   position: absolute;
   right: clamp(20px, 3.4vw, 56px);
   bottom: clamp(20px, 4svh, 40px);
-  margin: 0;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  text-align: right;
-  color: hsl(0 0% 100% / 0.75);
+  display: grid;
+  justify-items: end;
+  gap: 5px;
+  font-size: 0.8125rem;
+}
+
+.index span {
+  margin-bottom: 4px;
+  font: 500 0.625rem/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: hsl(0 0% 100% / 0.55);
+}
+
+.index a {
+  color: hsl(0 0% 100% / 0.82);
+  text-decoration: none;
+  transition: color var(--dur-micro);
+}
+
+.index a:hover {
+  color: #fff;
+}
+
+/* real pieces of the product, floating in the hero */
+.cluster {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bit {
+  position: absolute;
+  will-change: transform;
+}
+
+.bitUi {
+  --app-fs: 11.5px;
+  will-change: transform;
+}
+
+.bit[data-k="note"] {
+  right: 4.5%;
+  top: 14%;
+  width: 300px;
+}
+
+.bit[data-k="kpi"] {
+  right: 8%;
+  top: 40%;
+  width: 210px;
+}
+
+.bit[data-k="rule"] {
+  right: 5%;
+  top: 60%;
+}
+
+.bit[data-k="ask"] {
+  left: calc(50% - var(--cw) / 2 - 330px);
+  top: 40%;
+  width: 300px;
+}
+
+.bit[data-k="done"] {
+  left: calc(50% - var(--cw) / 2 - 250px);
+  top: 57%;
 }
 
 .heroCard {
@@ -429,37 +539,102 @@
   filter: drop-shadow(0 10px 40px hsl(230 80% 60% / 0.6));
 }
 
+/* AI for good: what the platform stands for, inside Aan */
 .words {
   position: absolute;
   left: clamp(20px, 3.4vw, 56px);
-  bottom: calc(var(--inset-bottom) + 8px);
+  right: clamp(20px, 3.4vw, 56px);
+  bottom: calc(var(--inset-bottom) + 4px);
   z-index: 6;
-  max-width: min(34rem, 44vw);
-  color: hsl(228 20% 94%);
+  color: hsl(228 20% 95%);
 }
 
-.words p {
-  margin: 0 0 12px;
-  font-size: 0.875rem;
+.worldTitle {
+  margin: 0;
+  font: 500 clamp(2.4rem, 4.4vw, 4.6rem) / 1.02 var(--font-display);
+  letter-spacing: -0.045em;
+}
+
+.worldTitle span {
+  display: block;
+}
+
+.worldTitle span + span {
+  color: hsl(0 0% 100% / 0.5);
+}
+
+.worldLede {
+  max-width: 46rem;
+  margin: 18px 0 0;
+  font-size: 0.9375rem;
   line-height: 1.6;
-  color: hsl(228 15% 78%);
+  color: hsl(228 15% 80%);
 }
 
-/* ----------------------------------------------------------------- phone */
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 40px);
+  margin: 26px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid hsl(0 0% 100% / 0.14);
+  list-style: none;
+}
+
+.principles b {
+  display: block;
+  font: 600 1rem/1.3 var(--font-display);
+}
+
+.principles span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: hsl(228 14% 70%);
+}
+
+/* ------------------------------------------------------- smaller screens */
+@media (max-height: 800px), (max-width: 1180px) {
+  .bit[data-k="ask"],
+  .bit[data-k="done"] {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .bit {
+    display: none;
+  }
+
+  .index {
+    display: none;
+  }
+}
+
 @media (max-width: 760px) {
   /* a shorter card on phones, so it sits between the title and the lede */
   .intro {
     --cw: 56vw;
-    --ch: min(calc(var(--cw) * 1.32), 36svh);
+    --ch: min(calc(var(--cw) * 1.25), 31svh);
   }
 
+  /* below the kicker and the two-line title, above the lede */
   .ringWrap {
-    top: 41%;
+    top: 44.5%;
+  }
+
+  .head {
+    top: 92px;
+  }
+
+  .kicker {
+    margin-bottom: 12px;
+    font-size: 0.8125rem;
   }
 
   .title {
-    top: 96px;
-    font-size: clamp(2.2rem, 10vw, 3rem);
+    font-size: clamp(2rem, 9.4vw, 2.8rem);
   }
 
   .foot {
@@ -468,24 +643,43 @@
     bottom: calc(var(--inset-bottom) - 2px);
   }
 
-  .corner {
+  .lede {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.875rem;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .heroCard {
+    top: 44.5%;
+  }
+
+  .principles {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .principles span {
     display: none;
   }
 
-  .heroCard {
-    top: 41%;
-  }
-
-  .words {
-    max-width: none;
-    right: 20px;
+  .worldLede {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
   }
 }
 
-/* short phones have no room between the title and the lede */
+/* short phones: the smallest card, and the proof row drops */
 @media (max-width: 760px) and (max-height: 740px) {
-  .heroCard {
-    opacity: 0;
+  .intro {
+    --ch: min(calc(var(--cw) * 1.2), 28svh);
+  }
+
+  .proof {
+    display: none;
   }
 }
 
@@ -560,7 +754,9 @@
 }
 
 .intro[data-static="true"] .mark {
-  top: calc(100svh * 2 + 120px);
+  top: auto;
+  bottom: calc(100svh - 140px);
+  transform: translateX(-50%);
 }
 
 .intro[data-static="true"] .words {

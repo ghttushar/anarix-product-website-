@@ -85,8 +85,8 @@ const signals: ProductPage = {
     ],
   },
   does: {
-    title: "79 ways things go wrong, caught early.",
-    intro: "Signals covers 79 alert reasons in 12 groups, from suppressed listings to billing, and maps each one to a recommended action.",
+    title: "78 ways things go wrong, caught early.",
+    intro: "Signals covers 78 alert reasons in 12 groups, from suppressed listings to billing, and maps each one to a recommended action.",
     items: [
       { t: "Ranked by money at risk", d: "The biggest dollar impact comes first, so the first fix is the one that matters most." },
       { t: "The why, and how sure", d: "Each fix comes with its root cause, a confidence, a risk level and whether it can be undone." },

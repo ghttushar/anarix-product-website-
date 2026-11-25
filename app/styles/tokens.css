@@ -206,6 +206,69 @@ html[data-theme="light"] .nocturne {
   --bubble-ink: #fff;
 }
 
+/* ------------------------------------------------------------------
+   App UI: close recreations of the Anarix app (anarix-revamp-scope-2027,
+   frontend/src/index.css) for product mockups. They follow the theme the
+   way the app does: its dark UI at night, its light UI by day. Gains are
+   the app's green, risk its red, warnings its amber, inside mockups only.
+   The ground is the homepage's page colour, which also follows the theme.
+------------------------------------------------------------------- */
+.nocturne {
+  --app-bg: #121217;
+  --app-card: #1b1b22;
+  --app-raise: #22222b;
+  --app-line: #282833;
+  --app-line-2: #23232d;
+  --app-ink: #f0f0ff;
+  --app-ink-2: #c6c9dd;
+  --app-muted: #9197b6;
+  --app-faint: #6c7190;
+  --app-primary: #6e82f5;
+  --app-primary-ink: #121217;
+  --app-tint: hsl(231 88% 70% / 0.14);
+  --app-tint-line: hsl(231 88% 70% / 0.32);
+  --app-gain: #3fb068;
+  --app-gain-tint: hsl(142 50% 42% / 0.16);
+  --app-risk: #e05252;
+  --app-risk-tint: hsl(0 60% 52% / 0.16);
+  --app-warn: #d99726;
+  --app-warn-tint: hsl(38 70% 50% / 0.16);
+  --app-lilac: #bdc7ff;
+  --app-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 24px 48px -24px rgb(0 0 0 / 0.7);
+  --ground: #0b0e14;
+  --ground-ink: #f2f3fa;
+  --ground-ink-2: hsl(228 14% 66%);
+  --ground-line: hsl(0 0% 100% / 0.1);
+}
+
+html[data-theme="light"] .nocturne {
+  --app-bg: #f5f6fa;
+  --app-card: #ffffff;
+  --app-raise: #f4f5f8;
+  --app-line: #dfe1ec;
+  --app-line-2: #eceef1;
+  --app-ink: #1f1f27;
+  --app-ink-2: #3d424b;
+  --app-muted: #646a76;
+  --app-faint: #9aa0ab;
+  --app-primary: #4a62d9;
+  --app-primary-ink: #ffffff;
+  --app-tint: #eff1fd;
+  --app-tint-line: #c8cff9;
+  --app-gain: #2c9653;
+  --app-gain-tint: hsl(142 55% 38% / 0.1);
+  --app-risk: #ca2b2b;
+  --app-risk-tint: hsl(0 65% 48% / 0.1);
+  --app-warn: #c98a1d;
+  --app-warn-tint: hsl(38 75% 45% / 0.12);
+  --app-lilac: #abb5f2;
+  --app-shadow: 0 1px 2px rgb(20 22 33 / 0.04), 0 24px 48px -28px rgb(20 22 60 / 0.28);
+  --ground: #ffffff;
+  --ground-ink: #0b0e14;
+  --ground-ink-2: hsl(220 10% 40%);
+  --ground-line: hsl(228 20% 88%);
+}
+
 /* the page behind the street (overscroll, the gap under the footer) */
 html:has(.nocturne) body {
   background-color: #0e151b;

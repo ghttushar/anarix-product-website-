@@ -5,7 +5,7 @@
 //   FILM_TOOLS=<dir with puppeteer-core> node scripts/qa/screens.mjs \
 //     [--base http://localhost:3000] [--routes /platform,/platform/signals] \
 //     [--viewports 1280x720,1366x768,1440x900,1920x1080,390x844] \
-//     [--reduced] [--out qa-out/<name>] [--audit]
+//     [--reduced] [--theme light|dark] [--out qa-out/<name>] [--audit]
 //
 // Exits 1 when any check fails (unless --audit, which only reports).
 import { createRequire } from "node:module";
@@ -30,6 +30,8 @@ const viewports = String(args.viewports ?? "1280x720,1366x768,1440x900,1920x1080
   .map((v) => v.split("x").map(Number));
 const out = path.resolve(String(args.out ?? "qa-out/latest"));
 const reduced = Boolean(args.reduced);
+// the saved theme the page boots into (app/layout.tsx reads it before paint)
+const theme = args.theme === "light" ? "light" : "dark";
 const fitScript = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "fit-check.js"), "utf8");
 const browserPath = process.env.FILM_BROWSER ?? "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
 
@@ -51,11 +53,12 @@ for (const route of routes) {
     page.on("response", (r) => r.status() >= 400 && consoleIssues.push(`HTTP ${r.status()}: ${r.url()}`));
     await page.setViewport({ width: w, height: h, deviceScaleFactor: 1, isMobile: w < 768, hasTouch: w < 768 });
     if (reduced) await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
+    await page.evaluateOnNewDocument((t) => { try { localStorage.setItem("anarix-theme-v2", t); } catch {} }, theme);
     await page.goto(base + route, { waitUntil: "networkidle0", timeout: 120000 });
     await page.evaluate(() => document.fonts.ready);
     await page.evaluate(fitScript);
 
-    const dir = path.join(out, route.replace(/^\//, "").replace(/\//g, "_") || "root", `${w}x${h}${reduced ? "-reduced" : ""}`);
+    const dir = path.join(out, route.replace(/^\//, "").replace(/\//g, "_") || "root", `${w}x${h}${reduced ? "-reduced" : ""}${theme === "light" ? "-light" : ""}`);
     fs.mkdirSync(dir, { recursive: true });
     const screens = await page.evaluate(() => window.__fit.list());
     const rows = [];

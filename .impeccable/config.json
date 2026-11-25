@@ -17,6 +17,12 @@
         ],
         "createdAt": "2026-11-05T17:42:12.558Z",
         "reason": "Copied from the reference site's .text-gradient-primary (anarix-website-final-state hero); user asked to match that site's component style"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-24T20:29:03.773Z",
+        "reason": "Anarix brand type: DESIGN.md sets Inter (with Fraunces and IBM Plex Mono); the app mockups mirror the Anarix app, which uses Inter and Inter Tight"
       }
     ]
   },

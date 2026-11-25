@@ -1,5 +1,8 @@
-/* Fragments drifting past a small card on black; the card opens out into
-   the close, framed in white (AI Studio's ending), with Aan in 3D. */
+/* Real pieces of the platform drifting through dark space past a small
+   card; the card opens out into the close, framed by the page ground (white
+   by day, near-black by night, as AI Studio frames its last hero), with the
+   flat Aan from the Ask Aan island where the reference has its star. The
+   card is a brand stage and keeps its colours in both themes. */
 .finale {
   position: relative;
   height: 100svh;
@@ -8,10 +11,11 @@
   color: hsl(228 20% 94%);
 }
 
-.white {
+/* the page ground, which frames the close at the end */
+.ground {
   position: absolute;
   inset: 0;
-  background: #fff;
+  background: var(--ground);
 }
 
 .bits {
@@ -24,63 +28,12 @@
 
 .bit {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  aspect-ratio: 1;
-  padding: 14px;
-  overflow: hidden;
-  border: 1px solid hsl(0 0% 100% / 0.12);
-  border-radius: 14px;
-  background: linear-gradient(165deg, #0d1640, #1d2c86 58%, #3a51c9);
-  box-shadow: 0 40px 80px -36px rgb(0 0 0 / 0.95);
   translate: -50% -50%;
   will-change: transform;
 }
 
-.bit[data-shape="tall"] {
-  aspect-ratio: 0.78;
-}
-
-.bit[data-shape="wide"] {
-  aspect-ratio: 1.6;
-}
-
-.bit[data-tone="profit"] {
-  background:
-    radial-gradient(90% 70% at 80% 110%, hsl(355 84% 66% / 0.75), transparent 62%),
-    linear-gradient(165deg, #0b0a14, #1c1530);
-}
-
-.bit[data-tone="rules"] {
-  background: linear-gradient(165deg, #0a0c1f, #282090 60%, #6156dd);
-}
-
-.bit[data-tone="aan"] {
-  background:
-    radial-gradient(80% 60% at 50% 110%, hsl(355 84% 72% / 0.8), transparent 65%),
-    linear-gradient(165deg, #2b3aa8, #5a63e0 55%, #9a7ad8);
-}
-
-.bit[data-tone="mcp"] {
-  background:
-    radial-gradient(80% 70% at 15% 0%, hsl(230 75% 62% / 0.55), transparent 60%),
-    linear-gradient(165deg, #06080d, #0f1424);
-}
-
-.bit small {
-  align-self: flex-start;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: hsl(0 0% 100% / 0.14);
-  font: 500 0.6875rem/1 var(--font-body);
-  color: #fff;
-}
-
-.bit b {
-  font: 500 1.0625rem/1.15 var(--font-display);
-  letter-spacing: -0.02em;
-  color: #fff;
+.bitUi {
+  --app-fs: 11px;
 }
 
 /* the card: full frame, scaled down by GSAP until it opens */
@@ -100,23 +53,32 @@
   will-change: transform;
 }
 
+/* Aan, flat, on the right where AI Studio has its chrome star */
 .aan {
   position: absolute;
-  right: -6%;
-  top: -4%;
-  width: 62%;
-  height: 112%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 46%;
+  display: grid;
+  place-items: center;
 }
 
-.gl {
+.aura {
   position: absolute;
-  inset: 0;
+  width: 34vw;
+  max-width: 520px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, hsl(355 90% 76% / 0.55), hsl(230 80% 70% / 0.18) 60%, transparent);
 }
 
-.gl canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
+.aanBody {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 260px;
+  height: 260px;
 }
 
 .copy {
@@ -137,11 +99,39 @@
 }
 
 .body {
-  max-width: 40ch;
+  max-width: 42ch;
   margin: 18px 0 0;
   font-size: 0.9375rem;
   line-height: 1.55;
-  color: hsl(0 0% 100% / 0.8);
+  color: hsl(0 0% 100% / 0.82);
+}
+
+/* how a team starts */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 40rem;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid hsl(0 0% 100% / 0.18);
+  border-radius: 12px;
+  background: hsl(0 0% 100% / 0.06);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.steps span {
+  font: 500 0.6875rem/1 var(--font-mono);
+  color: hsl(0 0% 100% / 0.6);
 }
 
 .ctas {
@@ -190,7 +180,7 @@
 }
 
 .services {
-  margin: 22px 0 0;
+  margin: 20px 0 0;
   font-size: 0.8125rem;
   color: hsl(0 0% 100% / 0.7);
 }
@@ -198,6 +188,12 @@
 .services a {
   color: #fff;
   text-underline-offset: 4px;
+}
+
+@media (max-height: 760px) {
+  .steps {
+    display: none;
+  }
 }
 
 @media (max-width: 760px) {
@@ -210,13 +206,32 @@
   .aan {
     left: 0;
     right: 0;
-    top: 0;
+    bottom: auto;
     width: 100%;
-    height: 50%;
+    height: 34%;
+  }
+
+  .aura {
+    width: 70vw;
+  }
+
+  .aanBody {
+    zoom: 0.5;
+  }
+
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .steps li {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
   }
 
   .bit {
-    width: 160px !important;
+    width: 170px !important;
   }
 
   .bit:nth-child(n + 6) {
@@ -224,7 +239,7 @@
   }
 }
 
-.finale[data-static="true"] .white {
+.finale[data-static="true"] .ground {
   opacity: 1;
 }
 

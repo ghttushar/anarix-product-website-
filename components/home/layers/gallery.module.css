@@ -1,49 +1,103 @@
-/* The products as wide panels on black, sliding sideways (AI Studio). */
+/* The platform as wide panels sliding sideways (AI Studio). The ground is
+   the page colour and follows the theme; each panel is a brand stage with
+   its own light, white copy on the left and the product's own UI on the
+   right (light by day, dark by night, like the app). */
 .gallery {
-  --sky: #0b0f16;
-  --ink: hsl(228 20% 94%);
-  --ink-2: #94a0b4;
-  --accent: hsl(230 75% 74%);
-  --accent-solid: hsl(230 65% 57%);
-  --risk: #f46d76;
-  --risk-ink: hsl(355 84% 76%);
-  --rule: hsl(0 0% 100% / 0.1);
-  --card: hsl(222 30% 11% / 0.82);
-  --card-line: hsl(0 0% 100% / 0.12);
   position: relative;
   height: 100svh;
   overflow: hidden;
-  background: #05060a;
-  color: var(--ink);
+  background: var(--ground);
+  color: var(--ground-ink);
 }
 
 .track {
   position: absolute;
   left: 0;
-  top: calc(var(--inset-top) + 10px);
-  bottom: calc(var(--inset-bottom) - 8px);
+  top: calc(var(--inset-top) + 6px);
+  bottom: calc(var(--inset-bottom) - 10px);
   display: flex;
   gap: 1.4vw;
   padding: 0 3.4vw;
   will-change: transform;
 }
 
+/* the lead, on the ground */
+.lead {
+  flex: 0 0 min(30vw, 420px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 2vw;
+}
+
+.leadKicker {
+  margin: 0;
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ground-ink-2);
+}
+
+.leadTitle {
+  margin: 16px 0 0;
+  font: 500 clamp(2.4rem, 4vw, 4.2rem) / 1.02 var(--font-display);
+  letter-spacing: -0.045em;
+}
+
+.leadTitle span {
+  color: var(--ground-ink-2);
+}
+
+.leadBody {
+  margin: 18px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ground-ink-2);
+}
+
+.leadHint {
+  margin: 28px 0 0;
+  font: 500 0.75rem/1 var(--font-mono);
+  color: var(--ground-ink-2);
+}
+
+.leadHint span {
+  display: inline-block;
+  animation: nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes nudge {
+  50% {
+    transform: translateX(6px);
+  }
+}
+
 .panel {
   position: relative;
-  flex: 0 0 min(60vw, 920px);
+  flex: 0 0 min(78vw, 1180px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
   height: 100%;
   overflow: hidden;
-  border-radius: 6px;
-  color: inherit;
-  text-decoration: none;
+  border-radius: 8px;
+  color: #fff;
   isolation: isolate;
-  background: linear-gradient(170deg, #0d1640, #1d2c86 55%, #3a51c9);
+  background:
+    radial-gradient(70% 60% at 85% 110%, hsl(355 84% 70% / 0.45), transparent 62%),
+    linear-gradient(170deg, #0d1640, #1d2c86 55%, #3a51c9);
 }
 
 .panel[data-id="profitability"] {
   background:
     radial-gradient(80% 70% at 75% 110%, hsl(355 84% 66% / 0.7), transparent 65%),
     linear-gradient(170deg, #0b0a14, #1c1530);
+}
+
+.panel[data-id="advertising"] {
+  background:
+    radial-gradient(70% 60% at 15% 110%, hsl(355 84% 70% / 0.45), transparent 62%),
+    linear-gradient(170deg, #0a1030, #1b3487 55%, #4a62d9);
 }
 
 .panel[data-id="rules"] {
@@ -63,11 +117,6 @@
     linear-gradient(170deg, #070a18, #16205a 55%, #2f43b0);
 }
 
-/* the terminal is text-only, so it gets more room to carry its panel */
-.panel[data-id="mcp"] .ui {
-  width: min(52%, 460px);
-}
-
 /* a field of light in each scene */
 .light {
   position: absolute;
@@ -77,48 +126,116 @@
   width: 70%;
   height: 120%;
   border-radius: 50%;
-  background: radial-gradient(closest-side, hsl(0 0% 100% / 0.18), transparent);
+  background: radial-gradient(closest-side, hsl(0 0% 100% / 0.16), transparent);
 }
 
 .meta {
   position: absolute;
-  left: 18px;
-  top: 16px;
+  left: clamp(18px, 2.4vw, 32px);
+  top: 18px;
   display: flex;
   gap: 22px;
   margin: 0;
   font: 500 0.75rem/1 var(--font-body);
-  color: hsl(0 0% 100% / 0.85);
+  color: hsl(0 0% 100% / 0.8);
+}
+
+.copy {
+  align-self: center;
+  padding: 64px clamp(18px, 2.4vw, 32px) clamp(96px, 16svh, 150px);
+}
+
+.headline {
+  margin: 0;
+  max-width: 15ch;
+  font: 500 clamp(1.7rem, 2.6vw, 2.6rem) / 1.06 var(--font-display);
+  letter-spacing: -0.035em;
+}
+
+.body {
+  max-width: 40ch;
+  margin: 16px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.58;
+  color: hsl(0 0% 100% / 0.8);
+}
+
+.points {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+}
+
+.points li::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #fff;
+  font: 600 0.8125rem/1 var(--font-body);
+  color: #0b0e14;
+  text-decoration: none;
+  transition: transform var(--dur-micro) var(--ease-arrive);
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
+
+.cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .ui {
-  position: absolute;
-  right: 6%;
-  top: 50%;
-  width: min(46%, 400px);
-  padding: 16px;
-  border: 1px solid var(--card-line);
-  border-radius: 16px;
-  background: var(--card);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 50px 90px -40px rgb(0 0 0 / 0.8);
-  /* centring via translate, so GSAP's transform can drift it sideways */
-  translate: 0 -50%;
+  align-self: center;
+  justify-self: center;
+  width: min(92%, 470px);
   will-change: transform;
 }
 
-.sample {
-  position: absolute;
-  right: 18px;
-  top: 16px;
-  margin: 0;
-  font: 500 0.6875rem/1 var(--font-mono);
-  color: hsl(0 0% 100% / 0.6);
+/* the app's UI, sized by height so it fits any panel */
+.uiFit {
+  --app-fs: clamp(10px, 1.42svh, 12.5px);
+}
+
+.stack {
+  display: grid;
+  gap: 0.8em;
+}
+
+.uiCard {
+  overflow: hidden;
+  border: 1px solid var(--app-line);
+  border-radius: 0.72em;
+  background: var(--app-card);
+  box-shadow: var(--app-shadow);
 }
 
 .name {
   position: absolute;
-  left: 18px;
+  left: clamp(18px, 2.4vw, 32px);
   bottom: 14px;
   display: flex;
   align-items: flex-start;
@@ -127,6 +244,7 @@
   font: 500 clamp(2.6rem, 5.2vw, 5.6rem) / 1 var(--font-display);
   letter-spacing: -0.045em;
   color: #fff;
+  pointer-events: none;
 }
 
 .idx {
@@ -136,37 +254,11 @@
   color: hsl(0 0% 100% / 0.6);
 }
 
-.panel:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: -4px;
-}
-
-.answer {
-  display: grid;
-  gap: 10px;
-}
-
-.q {
-  justify-self: end;
-  margin: 0;
-  padding: 9px 13px;
-  border-radius: 14px 14px 4px 14px;
-  background: var(--accent-solid);
-  color: #fff;
-  font-size: 0.8125rem;
-}
-
-.a {
-  margin: 0;
-  font-size: 0.8125rem;
-  line-height: 1.5;
-}
-
 /* the row's progress, a glow along the bottom */
 .bar {
   position: absolute;
   right: 3.4vw;
-  bottom: calc(var(--inset-bottom) - 40px);
+  bottom: calc(var(--inset-bottom) - 34px);
   width: 30vw;
   height: 4px;
   border-radius: 4px;
@@ -175,17 +267,68 @@
   transform-origin: left;
 }
 
+/* short screens: the name gives the copy room */
+@media (max-height: 760px) {
+  .name {
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+  }
+
+  .points {
+    display: none;
+  }
+}
+
 @media (max-width: 760px) {
+  .lead {
+    flex-basis: 82vw;
+  }
+
   .panel {
-    flex-basis: 86vw;
+    flex-basis: 88vw;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .copy {
+    padding: 50px 16px 0;
+  }
+
+  .headline {
+    font-size: 1.5rem;
+  }
+
+  .body {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .points {
+    display: none;
+  }
+
+  .cta {
+    margin-top: 14px;
   }
 
   .ui {
-    left: 14px;
-    right: 14px;
-    top: 48px;
-    width: auto;
-    translate: none;
+    align-self: start;
+    width: calc(100% - 28px);
+    margin-top: 16px;
+    max-height: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, #000 70%, transparent);
+  }
+
+  .uiFit {
+    --app-fs: 10px;
+  }
+
+  .name {
+    display: none;
   }
 
   .meta span:nth-child(n + 2) {
@@ -196,10 +339,16 @@
 /* reduced motion: the row scrolls sideways by hand */
 .gallery[data-static="true"] .track {
   position: absolute;
-  inset: calc(var(--inset-top) + 10px) 0 calc(var(--inset-bottom) - 8px);
+  inset: calc(var(--inset-top) + 6px) 0 calc(var(--inset-bottom) - 10px);
   overflow-x: auto;
 }
 
 .gallery[data-static="true"] .bar {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leadHint span {
+    animation: none;
+  }
 }

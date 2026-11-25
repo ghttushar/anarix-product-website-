@@ -75,7 +75,7 @@ On phones the hero card is shorter (`--ch: min(cw*1.32, 36svh)`) and sits betwee
 | Relay section | Signals section |
 |---|---|
 | Hero: "The handoffs run *themselves.*" with a workflow graph and last runs | "3am change. *9am answer.*" The graph runs from Buy Box lost to the undercut, then splits to "Match at $34.89" or "Hold, tell the team". The last signals rotate in from the top |
-| App tiles with a moving highlight, "connects to 240 apps" | "watches 79 alert reasons in 12 groups": price, Buy Box, ad eligibility, budget, stock, listings, suppressed, billing, plus 79 reasons |
+| App tiles with a moving highlight, "connects to 240 apps" | "watches 78 alert reasons in 12 groups": price, Buy Box, ad eligibility, budget, stock, listings, suppressed, billing, plus 78 reasons |
 | "Most of a process is *glue*." | "Most of a bad morning is *finding out*." |
 | 01 run card | 01 "One feed, every store": a night as a run, with a marker where the change was found at 03:12 |
 | 02 Slack approval, typing first | 02 "Fixed from the alert": Aan types in #store-ops, then the Walmart Buy Box signal with Match price / Hold |
@@ -84,7 +84,53 @@ On phones the hero card is shorter (`--ch: min(cw*1.32, 36svh)`) and sits betwee
 | "*Boring* in the ways that matter." | "*Quiet* in the ways that matter.": every store in one feed (hub), and the biggest risk first (bars) |
 | "A *Tuesday*, seen from Relay." bento | "A *night*, seen from Signals.": a heatmap of changes, confidence ring, waiting on you, before and after, where it changed |
 | Numbers counting up, with quotes | "Counted, *not* estimated.": 79, 12, 7, with facts in place of quotes |
-| Pricing slider and three tiers | "Watch every product, not *a sample*.": a catalog slider (products × 79 reasons) and three ways to act (Fix it yourself, Let a rule act, Hand it off). No prices |
+| Pricing slider and three tiers | "Watch every product, not *a sample*.": a catalog slider (products × 78 reasons) and three ways to act (Fix it yourself, Let a rule act, Hand it off). No prices |
 | CTA pair, status line, footer | "Pick the alert you *dread* most." The field opens Ask Aan with the Signals questions. A status line follows, then the site's own footer |
 
 Every section's sample data is labelled as sample data.
+
+## Phase 11 revisions (owner notes, 2026-11-25)
+
+**Homepage.** It now covers the whole platform, as six products: Signals, Profitability, Advertising, Rules, MCP and Ask Aan.
+
+- **Hero.** It is full rather than empty:
+  - a prominent "AI for good" kicker;
+  - real app pieces floating around the centre card;
+  - a proof stat strip and a platform index.
+- **Hand-off.** It no longer swaps the hero for the ring:
+  - the ring's own front card sits under the hero from the start;
+  - the floating pieces fly into the card;
+  - the side cards rise in from depth.
+- **Inside Aan.** The world says "AI for good. Built to earn your trust." and gives three principles.
+- **Gallery.** The panels tell each product's story beside a piece of its UI.
+- **Close.** It uses the flat Aan; the glossy three.js Aan is gone.
+- **Logo.** The mark's viewBox was 559 wide and cropped the blue peak; it is now 607.
+
+**Signals.** It is told by the product itself. One alert's story runs from catch to a verified fix:
+
+| Step | Elements |
+|---|---|
+| Catch, value and rank | AlertRow |
+| Explain | Aan's analysis and the affected items |
+| Fix | the item picker and a partial batch with undo |
+| Verify | the 7-day impact report |
+
+The page also carries:
+- a product-tour placeholder;
+- the 8 categories (78 reasons in 12 groups);
+- sources and hand-off;
+- the morning Brief;
+- meetings and tasks;
+- 66 action types.
+
+Aan replaces the Anarix mark. Past the hero the halo is out of focus, dimmer, and sits behind a scrim.
+
+**Theme.** Three layers:
+
+| Layer | Behaviour |
+|---|---|
+| Page ground | Follows the theme |
+| Brand stages | Gradients, the world inside Aan and Signals' black stay one colour |
+| Product mockups | The app's own light or dark UI, through the `--app-*` tokens |
+
+`ChromeTone` switches the nav and island to their dark dress over a dark stage in light theme.

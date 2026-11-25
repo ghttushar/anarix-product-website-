@@ -32,7 +32,7 @@ export function AnarixLogo({ className = "", height = 22 }: { className?: string
     diamond in the homepage journey. */
 export function AnarixMark({ className = "", height = 48 }: { className?: string; height?: number }) {
   return (
-    <svg className={className} viewBox="0 0 559 342" height={height} width={(height * 559) / 342} role="img" aria-label="Anarix">
+    <svg className={className} viewBox="0 0 607 343" height={height} width={(height * 607) / 343} role="img" aria-label="Anarix">
       <polygon fill="#F26E77" points="300.4,149.8 366.5,74.4 299.7,0 233.6,75.4" />
       <path
         fill="#4A62D9"

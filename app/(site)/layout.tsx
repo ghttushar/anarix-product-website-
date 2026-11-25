@@ -8,11 +8,13 @@ import { Footer } from "@/components/chrome/Footer";
 import { ActionIsland } from "@/components/chrome/ActionIsland";
 import { AanProvider } from "@/components/aan/v2/AanProvider";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { ChromeTone } from "@/components/chrome/ChromeTone";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="nocturne">
       <SmoothScroll />
+      <ChromeTone />
       <Nav />
       <AanProvider>
         <main>{children}</main>
